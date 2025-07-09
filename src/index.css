@@ -1,0 +1,10 @@
+/* index.css or main.css */
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-primary-hover: #C18620;
+  --color-primary: #DB9E30;
+  --color-secondary: #57A68F;
+  
+}
