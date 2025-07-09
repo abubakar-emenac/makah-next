@@ -16,7 +16,7 @@ const ViewAllButton = ({ label='View All Packages', color = "secondary", icon='/
     >
       <span className="font-semibold text-white text-[18px] pl-4" >{label}</span>
 
-      <span className="bg-white w-10 h-10 rounded-full flex items-center justify-center mr-1.5">
+      <span className=" w-10 h-10 rounded-full flex items-center justify-center mr-1.5">
         {icon ? (
           typeof icon === "string" ? (
             <img src={icon} alt="icon" className="w-12 h-12" />
