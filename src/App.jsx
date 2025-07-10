@@ -1,16 +1,11 @@
-import EnquiryBox from './Components/CommonComponents/EnquiryBox'
-import Navbar from './Components/CommonComponents/NavBar'
-import PackageCard from './Components/CommonComponents/PackageCard'
-import ViewAllButton from './Components/CommonComponents/ViewAllButton'
+import Home from "./Pages/CommonPages/HomePage"
+
 function App() {
 
 
   return (
     <>
-      <Navbar/>
-      <ViewAllButton/>
-      <PackageCard/>
-      <EnquiryBox />
+      <Home />
     </>
   )
 }

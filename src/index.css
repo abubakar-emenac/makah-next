@@ -1,10 +1,28 @@
 /* index.css or main.css */
-@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap');
+@font-face {
+  font-family: Abril;
+  src: url('./assets/fonts/AbrilFatface-Regular.ttf');
+}
+
+@font-face {
+  font-family: Montserrat-italic;
+  src: url('./assets/fonts/Montserrat-Italic-VariableFont_wght.ttf');
+}
+
+@font-face {
+  font-family: Montserrat;
+  src: url('./assets/fonts/Montserrat-VariableFont_wght.ttf');
+}
 @import "tailwindcss";
 
 @theme {
+  --font-abril: Abril, 'sans-serif';
+    --font-Montserrat-italic: Montserrat-italic, 'sans-serif';
+    --font-Montserrat: Montserrat, 'sans-serif';
   --color-primary-hover: #C18620;
   --color-primary: #DB9E30;
   --color-secondary: #57A68F;
-  
+  --default-font-family:
+
 }
+

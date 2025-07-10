@@ -26,10 +26,10 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-orange-500 text-black w-full relative z-50">
+    <nav className=" text-black w-full relative z-50 font-Montserrat">
       <div className="m-full  lg:max-w-[80%] lg:mx-auto px-4 lg:px-8 py-3 flex justify-between items-center">
         {/* Logo */}
-        <div className="text-lg font-semibold whitespace-nowrap">
+        <div className="text-lg font-semibold whitespace-nowrap text-white">
           Makkah Travel Logo
         </div>
 

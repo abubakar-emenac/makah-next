@@ -1,0 +1,184 @@
+[
+  {
+    "id": 1,
+    "title": "7-Night Umrah Package",
+    "description": "Enjoy a peaceful journey with top-tier services.",
+    "night": 7,
+    "price": 1200,
+    "location": "Makkah & Madinah",
+    "star": "03"
+  },
+  {
+    "id": 2,
+    "title": "5-Star VIP Umrah Deal",
+    "description": "Luxury experience with private transport and meals.",
+    "night": 10,
+    "price": 2200,
+    "location": "Makkah & Madinah",
+    "star": "03"
+  },
+  {
+    "id": 3,
+    "title": "Economy Budget Umrah",
+    "description": "Affordable package with essential services.",
+    "night": 7,
+    "price": 850,
+    "location": "Makkah",
+    "star": "04"
+  },
+  {
+    "id": 4,
+    "title": "Family Umrah Bundle",
+    "description": "Perfect for families with kids. Includes guided tours.",
+    "night": 8,
+    "price": 1800,
+    "location": "Madinah"
+  },
+  {
+    "id": 5,
+    "title": "Ramadan Umrah Special",
+    "description": "Spend your Ramadan night in the holy cities.",
+    "night": 12,
+    "price": 2500,
+    "location": "Makkah & Madinah",
+    "star": "03"
+  },
+  {
+    "id": 6,
+    "title": "Senior Citizen Friendly Umrah",
+    "description": "Special care and wheelchair assistance included.",
+    "night": 10,
+    "price": 2000,
+    "location": "Makkah",
+    "star": "04"
+  },
+  {
+    "id": 7,
+    "title": "Premium Couple Umrah",
+    "description": "Tailored for couples seeking a private stay.",
+    "night": 6,
+    "price": 1600,
+    "location": "Madinah"
+  },
+  {
+    "id": 8,
+    "title": "Group Discount Umrah",
+    "description": "Discounted rates for groups of 10+ pilgrims.",
+    "night": 9,
+    "price": 1900,
+    "location": "Makkah & Madinah",
+    "star": "03"
+  },
+  {
+    "id": 9,
+    "title": "Weekend Quick Umrah",
+    "description": "Short and convenient Umrah for busy schedules.",
+    "night": 3,
+    "price": 700,
+    "location": "Makkah",
+    "star": "04"
+  },
+  {
+    "id": 10,
+    "title": "Luxury Gold Umrah Package",
+    "description": "Includes 5-star hotels and VIP lounge access.",
+    "night": 14,
+    "price": 3000,
+    "location": "Makkah & Madinah",
+    "star": "03"
+  },
+  {
+    "id": 11,
+    "title": "Mid-Range Umrah Package",
+    "description": "Balance between quality and affordability.",
+    "night": 7,
+    "price": 1350,
+    "location": "Madinah"
+  },
+  {
+    "id": 12,
+    "title": "Early Bird Umrah Offer",
+    "description": "Book in advance and save big on your trip.",
+    "night": 6,
+    "price": 1100,
+    "location": "Makkah",
+    "star": "04"
+  },
+  {
+    "id": 13,
+    "title": "Women Only Umrah Group",
+    "description": "Women-led group with female guides and privacy.",
+    "night": 8,
+    "price": 1700,
+    "location": "Makkah & Madinah",
+    "star": "03"
+  },
+  {
+    "id": 14,
+    "title": "Student Umrah Deal",
+    "description": "Tailored for university students on a budget.",
+    "night": 5,
+    "price": 950,
+    "location": "Madinah"
+  },
+  {
+    "id": 15,
+    "title": "Corporate Group Umrah",
+    "description": "Ideal for organizations or employee rewards.",
+    "night": 9,
+    "price": 2100,
+    "location": "Makkah",
+    "star": "04"
+  },
+  {
+    "id": 16,
+    "title": "Comfort Plus Umrah",
+    "description": "Extra comfort, flexible schedule, great value.",
+    "night": 7,
+    "price": 1450,
+    "location": "Makkah & Madinah",
+    "star": "03"
+  },
+  {
+    "id": 17,
+    "title": "Short Family Umrah Trip",
+    "description": "Quick and comfortable for small families.",
+    "night": 5,
+    "price": 1250,
+    "location": "Madinah"
+  },
+  {
+    "id": 18,
+    "title": "Deluxe Winter Umrah",
+    "description": "Cool season with deluxe accommodations.",
+    "night": 10,
+    "price": 2400,
+    "location": "Makkah & Madinah",
+    "star": "03"
+  },
+  {
+    "id": 19,
+    "title": "All-Inclusive Umrah",
+    "description": "Meals, transport, and Ziyarat included.",
+    "night": 11,
+    "price": 2600,
+    "location": "Makkah & Madinah",
+    "star": "03"
+  },
+  {
+    "id": 20,
+    "title": "Express Youth Umrah",
+    "description": "Quick-paced for young travelers.",
+    "night": 4,
+    "price": 800,
+    "location": "Makkah",
+    "star": "04"
+  },  {
+    "id": 21,
+    "title": "Mid-Range Umrah Package",
+    "description": "Balance between quality and affordability.",
+    "night": 7,
+    "price": 1350,
+    "location": "Madinah"
+  }
+]

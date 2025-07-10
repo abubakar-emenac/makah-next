@@ -50,7 +50,7 @@ export const EmptyStar = () => (
 
 );
 
-export default function PackageCard({ img, description='10 Nights 4 Star Ramadan Umrah Package 2025', night = '10 Nights', star = '03', price='1250', slug }) {
+export default function PackageCard({ img = '/svg/umrah.svg', description = '10 Nights 4 Star Ramadan Umrah Package 2025', night = '10 Nights', star = '03', price = '1250', slug }) {
     const safeStar = Math.min(Math.max(Number(star), 0), 5);
     const navigate = useNavigate();
 
@@ -59,7 +59,7 @@ export default function PackageCard({ img, description='10 Nights 4 Star Ramadan
         onClick={() => navigate(slug)}
         className="w-full max-w-[424px] cursor-pointer flex flex-col overflow-hidden mx-auto sm:mx-0">
             <img src={img} alt="package_image" className="w-full h-[215px] object-cover" />
-            <div className="p-4 flex flex-col gap-3 border hover:border-secondary border-primary w-full">
+            <div className="p-4 bg-white flex flex-col gap-3 border hover:border-secondary border-primary w-full">
                 {/* Title */}
                 <span className="text-start font-semibold text-base md:text-[18px] line-clamp-2 pl-2">
                     {description}
