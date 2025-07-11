@@ -50,51 +50,50 @@ export const EmptyStar = () => (
 
 );
 
-export default function PackageCard({ img = '/svg/umrah.svg', description = '10 Nights 4 Star Ramadan Umrah Package 2025', night = '10 Nights', star = '03', price = '1250', slug }) {
+export default function HajjCard({ img = '/svg/umrah.svg', description = '13 Days 5* Non Shifting Hajj 2025', night = '10', star = '03', price = '1250', slug }) {
     const safeStar = Math.min(Math.max(Number(star), 0), 5);
     const navigate = useNavigate();
 
     return (
-        <div 
-        onClick={() => navigate(slug)}
-        className="w-full max-w-[424px] cursor-pointer flex flex-col overflow-hidden mx-auto sm:mx-0">
-            <img src={img} alt="package_image" className="w-full h-[215px] object-cover" />
+        <div
+            onClick={() => navigate(slug)}
+            className="w-full max-w-[312px] cursor-pointer flex flex-col overflow-hidden mx-auto sm:mx-0">
+            <img src={img} alt="package_image" className="w-full h-[180px] object-cover" />
             <div className="p-4 bg-white flex flex-col gap-3 border hover:border-secondary border-primary w-full">
                 {/* Title */}
-                <span className="text-start font-semibold text-base md:text-[18px] line-clamp-2 pl-2">
+                <span className="text-start font-Montserrat text-[18px] md:text-[18px] line-clamp-2 pl-2">
                     {description}
                 </span>
 
                 {/* Night & Star Section */}
                 <div className="flex flex-col sm:flex-row justify-around items-center text-[18px] sm:text-[20px] font-semibold gap-2 sm:gap-0">
-                    {/* Night with Moon */}
-                    <div className="flex items-center gap-2 text-secondary text-[24px]">
-                        {night}
-                        <MoonIcon />
-                    </div>
 
                     {/* Stars */}
-                    <div className="flex items-center gap-0.5">
+                    <div className="flex items-center gap-1 ">
                         <div className='gap-1 flex items-center text-[24px]'>
-                            <span className='text-secondary'>{star}</span> <span>Star</span>
+                            <span className='text-secondary font-Montserrat'>{star}</span> <span className='font-Montserrat font-medium'>Star</span>
                         </div>
                         {[...Array(5)].map((_, i) =>
                             i < safeStar ? <FilledStar key={i} /> : <EmptyStar key={i} />
                         )}
                     </div>
+                    <img src="/svg/Card_Element.svg" alt="" className='w-12' />
                 </div>
 
                 {/* Price Section */}
-                <div className="text-center">
+                <div className="text-start">
                     <span className="text-[12px] md:text-[14px] relative bottom-6  ">from</span>
                     <span className="text-[32px] md:text-[40px] font-bold mx-2">£{price}</span>
                     <span className="text-[12px] md:text-[14px]">/pp</span>
                 </div>
 
                 {/* Decorative Images */}
-                <div className="flex gap-3 justify-between mt-2">
-                    <img src="/svg/Card_Element.svg" alt="element" />
-                    <img src="/svg/Card_Element.svg" alt="element" className="rotate-y-180" />
+                <div className="flex gap-3 justify-between mt-2 px-2">
+                    <div className="flex items-center gap-2  text-[24px] font-Montserrat font-semibold">
+                        <span className='text-secondary'>{night}</span><span className='text-black'>Nights</span>
+                        <MoonIcon />
+                    </div>
+                    <img src="/svg/Card_Element.svg" alt="element" className="rotate-y-180 w-12" />
                 </div>
             </div>
 
