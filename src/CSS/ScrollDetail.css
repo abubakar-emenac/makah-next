@@ -1,0 +1,27 @@
+.arabic-text {
+    font-family: 'Arial Unicode MS', 'Tahoma', sans-serif;
+    direction: rtl;
+    unicode-bidi: bidi-override;
+  }
+  
+  /* Custom Scrollbar Styles */
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 1px;
+  }
+  
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background-color: #710C5C;
+    border-radius: 6px;
+    box-shadow: 0 0 0 2px #710C5C;
+  }
+  
+  .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+    background-color: #710C5C;
+    box-shadow: 0 0 0 2px #710C5C;
+  }
+  
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background-color: #710C5C;
+    border-radius: 6px;
+  }
+  

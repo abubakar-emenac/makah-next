@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
-const Navbar = () => {
+
+const Navbar = ({ textColor = "black" }) => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState(null);
 
@@ -14,19 +16,26 @@ const Navbar = () => {
     "Hajj 2025", "Economy Hajj", "Shifting Hajj", "Non-shifting Hajj", "VIP Hajj Packages",
   ];
 
+  const textColorClass = textColor === "white" ? "text-white" : "text-black";
   const navItems = [
-    { label: "Umrah Package", hasDropdown: true, dropdown: umrahDropdown },
-    { label: "Hajj Packages", hasDropdown: true, dropdown: hajjDropdown },
-    { label: "Contact Us" },
-    { label: "Visas" },
+    { label: "Umrah Package", hasDropdown: true, dropdown: umrahDropdown, link: '/umrah/best-umrah-packages' },
+    { label: "Hajj Packages", hasDropdown: true, dropdown: hajjDropdown, link: '/umrah/best-umrah-packages' },
+    { label: "Contact Us", link: '/umrah/best-umrah-packages' },
+    { label: "Visas", link: '/umrah/best-umrah-packages' },
   ];
 
   const toggleDropdown = (label) => {
     setActiveDropdown(prev => (prev === label ? null : label));
   };
 
+  const handleMobileNavClick = () => {
+    setMobileOpen(false);
+    setActiveDropdown(null);
+  };
+
+
   return (
-    <nav className=" text-black w-full relative z-50 font-Montserrat">
+    <nav className={`w-full relative z-50 font-Montserrat ${textColorClass}`}>
       <div className="m-full  lg:max-w-[80%] lg:mx-auto px-4 lg:px-8 py-3 flex justify-between items-center">
         {/* Logo */}
         <div className="text-lg font-semibold whitespace-nowrap text-white">
@@ -44,21 +53,21 @@ const Navbar = () => {
                 onMouseEnter={() => setActiveDropdown(item.label)}
                 onMouseLeave={() => setActiveDropdown(null)}
               >
-                <div className="cursor-pointer hover:text-green-700">
+                <Link to={item.link} className="hover:text-green-700 cursor-pointer">
                   {item.label}
                   {item.hasDropdown && " ▾"}
-                </div>
+                </Link>
+
 
                 {/* Desktop Dropdown */}
                 {item.hasDropdown && (
                   <div
                     className={`absolute -left-3.5 top-full mt-2 w-40
                       
-                      bg-white text-black rounded-md shadow-md border border-yellow-300 z-50 transition-all duration-200 ${
-                      activeDropdown === item.label
+                      bg-white text-black rounded-md shadow-md border border-yellow-300 z-50 transition-all duration-200 ${activeDropdown === item.label
                         ? "opacity-100 visible"
                         : "opacity-0 invisible"
-                    }`}
+                      }`}
                   >
                     <ul className="py-2 text-xs">
                       {item.dropdown.map((option, i) => (
@@ -66,7 +75,14 @@ const Navbar = () => {
                           key={i}
                           className="px-4 py-1 hover:text-green-700 cursor-pointer"
                         >
-                          {option}
+                          <Link
+                            to={`${item.link}/${option.toLowerCase().replace(/\s+/g, '-')}`}
+                            onClick={handleMobileNavClick}
+                            className=" cursor-pointer hover:text-green-700 block"
+                          >
+                            {option}
+                          </Link>
+
                         </li>
                       ))}
                     </ul>

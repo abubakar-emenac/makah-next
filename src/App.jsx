@@ -1,11 +1,48 @@
 import Home from "./Pages/CommonPages/HomePage"
+import Footer from "./Components/CommonComponents/Footer"
+import { Routes, Route, Navigate } from "react-router-dom"
+import NotFound from "./Pages/CommonPages/NotFound"
+import SpecificCategoryUmrah from "./Pages/UmrahPages/SpecificCategoryUmrah"
+import AboutPage from "./Pages/CommonPages/AboutPage"
+import BestUmrahDeals from "./Pages/UmrahPages/BestUmrahDeals"
+import UmrahPackageStar from "./Pages/UmrahPages/UmrahPackageStar"
+import UmrahDetail from "./Pages/UmrahPages/UmrahDetail"
 
 function App() {
 
 
   return (
     <>
-      <Home />
+      <Routes>
+        <Route
+          path="/"
+          element={<Home />}
+        />
+        <Route
+          path="/umrah"
+          element={<SpecificCategoryUmrah />}
+        />
+        <Route
+          path="/about-us"
+          element={<AboutPage />}
+        />
+        <Route
+          path="/umrah/best-umrah-deals"
+          element={<BestUmrahDeals />}
+        />
+        <Route
+          path="/umrah/3-star-umrah-packages"
+          element={<UmrahPackageStar />}
+        />
+        <Route
+          path="/umrah/umrah-detail"
+          element={<UmrahDetail />}
+        />
+        <Route path="/not-found" element={<NotFound />} />
+        <Route path="*" element={<Navigate to="/not-found" replace />} />
+
+      </Routes>
+      <Footer />
     </>
   )
 }

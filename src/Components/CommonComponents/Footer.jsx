@@ -24,7 +24,7 @@ export default function Footer() {
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
             }}
-            className="text-white py-10 mt-16 w-full"
+            className="text-white py-10 w-full"
         >
             <div className=' max-w-[75%] mx-auto w-full'>
                 <div className='logo flex justify-between w-full'>
@@ -105,38 +105,44 @@ export default function Footer() {
                     <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center my-5 gap-y-5 lg:gap-y-0 lg:gap-x-10">
 
                         {/* Call Us */}
-                        <div className="flex items-start gap-x-4">
+                        <a href="tel:0208000000" className="flex items-start gap-x-4 hover:underline">
                             <img src="/svg/Need Help Section (Call) SVG.svg" alt="Call Icon" className="w-12" />
                             <div>
                                 <p className="text-primary font-semibold font-Montserrat">CALL US</p>
-                                <p className="font-Montserrat">(0208) - 000 - 000</p>
+                                <p className="font-Montserrat text-xl">(0208) - 000 - 000</p>
                             </div>
-                        </div>
+                        </a>
 
                         {/* Divider */}
                         <div className="hidden lg:block w-px h-16 bg-white" />
 
                         {/* Write to Us */}
-                        <div className="flex items-start gap-x-4">
+                        <a href="mailto:info@makkahtravel.co.uk" className="flex items-start gap-x-4 hover:underline">
                             <img src="/svg/Need Help Section (Call) SVG.svg" alt="Email Icon" className="w-12" />
                             <div>
                                 <p className="text-primary font-semibold font-Montserrat">WRITE TO US</p>
-                                <p className="font-Montserrat text-2xl">info@makkahtravel.co.uk</p>
+                                <p className="font-Montserrat text-xl">info@makkahtravel.co.uk</p>
                             </div>
-                        </div>
+                        </a>
+
 
                         {/* Divider */}
                         <div className="hidden lg:block w-px h-16 bg-white" />
 
                         {/* Address */}
-                        <div>
+                        <a
+                            href="https://www.google.com/maps?q=Suite+No.5,+The+Old+Dispensary,+30+Romford+Road,+Stratford+London,+England,+E15+4BZ,+United+Kingdom"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="hover:underline"
+                        >
                             <p className="text-primary font-semibold font-Montserrat">ADDRESS</p>
                             <p className="font-Montserrat">
                                 Suite No.5, The Old Dispensary, 30 Romford Road<br />
                                 Stratford London, England, E15 4BZ,<br />
                                 United Kingdom
                             </p>
-                        </div>
+                        </a>
                     </div>
 
                     <hr />

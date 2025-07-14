@@ -8,7 +8,7 @@ import data from '../../data/dummyData.json';
 
 const CARDS_PER_SLIDE = 4;
 
-export default function MonthlyUmrahPackages() {
+export default function MonthlyUmrahPackages({ title = ' December Umrah Deals', subtitle = `Makkah Travel is here to help you visit religious places and make Umrah trips that connect with your soul. We're experts at creating meaningful journeys. ` }) {
     const sliderRef = useRef(null);
     const [currentSlide, setCurrentSlide] = useState(0);
     
@@ -71,10 +71,10 @@ export default function MonthlyUmrahPackages() {
                 <div className="w-full lg:w-[45%] flex flex-col justify-start">
                     <img src="/svg/crown-black.svg" alt="Crown" className="w-16 sm:w-18 md:w-20 mb-3 sm:mb-4" />
                     <h2 className="text-[28px] sm:text-[32px] md:text-[36px] font-abril leading-tight mb-3 sm:mb-4">
-                        December Umrah Deals
+                        {title}
                     </h2>
                     <span className="font-Montserrat text-[14px] sm:text-[15px] md:text-[16px] leading-relaxed text-black max-w-md">
-                        Makkah Travel is here to help you visit religious places and make Umrah trips that connect with your soul. We're experts at creating meaningful journeys.
+                        {subtitle}
                     </span>
                 </div>
                 

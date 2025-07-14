@@ -6,7 +6,6 @@ const colorClasses = {
   secondary: "bg-[#57A68F] text-white",
 };
 
-// Define size variations while keeping original layout
 const sizeClasses = {
   sm: {
     text: "text-[14px] pl-3",
@@ -34,13 +33,22 @@ const ViewAllButton = ({
   icon = "/svg/(View All Packages) Arrow SVG.svg",
   slug,
   size = "md",
+  onClick, // 👈 optional custom click handler
 }) => {
   const navigate = useNavigate();
   const { text, iconWrapper, icon: iconSize, padding } = sizeClasses[size] || sizeClasses["md"];
 
+  const handleClick = () => {
+    if (typeof onClick === "function") {
+      onClick(); // ✅ Call custom handler
+    } else if (slug) {
+      navigate(slug); // ✅ Navigate if slug exists and onClick not provided
+    }
+  };
+
   return (
     <button
-      onClick={() => navigate(slug)}
+      onClick={handleClick}
       className={`inline-flex font-Montserrat cursor-pointer items-center justify-between gap-5 rounded-full font-semibold shadow-md transition-all duration-300 hover:opacity-90 ${padding} ${colorClasses[color]}`}
     >
       <span className={`font-semibold text-white ${text}`}>{label}</span>

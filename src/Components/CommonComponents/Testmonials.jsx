@@ -50,7 +50,7 @@ const TestimonialCard = ({ avatar, name, location, rating, text }) => {
                     {text.length > 200 && (
                         <button
                             onClick={() => setShowFullText(!showFullText)}
-                            className="text-secondary hover:text-green-700 font-medium flex items-center transition-colors duration-200 ease-in-out"
+                            className="text-secondary cursor-pointer hover:text-green-700 font-medium flex items-center transition-colors duration-200 ease-in-out"
                         >
                             {showFullText ? 'Show Less' : 'Show More'}
                         </button>
