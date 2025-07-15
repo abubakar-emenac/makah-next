@@ -3,11 +3,11 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 const images = [
     '/svg/umrah.svg',
+    '/svg/img2.svg',
     '/svg/umrah.svg',
+    '/svg/img2.svg',
     '/svg/umrah.svg',
-    '/svg/umrah.svg',
-    '/svg/umrah.svg',
-    '/svg/umrah.svg',
+    '/svg/img2.svg',
 ];
 
 export default function ImageGallery() {
@@ -63,21 +63,27 @@ export default function ImageGallery() {
 
                 {/* Fixed 4 Thumbnails */}
                 <div className="absolute left-1/2 -translate-x-1/2 -bottom-16 z-10 flex items-center justify-center gap-3">
-                    {getVisibleThumbnails().map((img) => {
-                        const index = images.indexOf(img);
+                    {getVisibleThumbnails().map((img, i) => {
+                        const actualIndex = currentIndex < 2
+                            ? i
+                            : currentIndex > images.length - 3
+                                ? images.length - 4 + i
+                                : currentIndex - 1 + i;
+
                         return (
                             <img
-                                key={index}
+                                key={actualIndex}
                                 src={img}
-                                onClick={() => handleThumbnailClick(index)}
-                                className={` w-48 object-cover cursor-pointer border-2 transition-all duration-300 ${currentIndex === index
+                                onClick={() => handleThumbnailClick(actualIndex)}
+                                className={`w-48 object-cover cursor-pointer border-2 transition-all duration-300 ${currentIndex === actualIndex
                                     ? 'border-primary ring-2 ring-primary'
                                     : 'border-white'
                                     }`}
-                                alt={`Thumbnail ${index + 1}`}
+                                alt={`Thumbnail ${actualIndex + 1}`}
                             />
                         );
                     })}
+
                 </div>
             </div>
 
