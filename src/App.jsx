@@ -7,6 +7,7 @@ import AboutPage from "./Pages/CommonPages/AboutPage"
 import BestUmrahDeals from "./Pages/UmrahPages/BestUmrahDeals"
 import UmrahPackageStar from "./Pages/UmrahPages/UmrahPackageStar"
 import UmrahDetail from "./Pages/UmrahPages/UmrahDetail"
+import CustomizationForm from "./Components/CommonComponents/CustomizationForm"
 
 function App() {
 
@@ -17,6 +18,10 @@ function App() {
         <Route
           path="/"
           element={<Home />}
+        />
+        <Route
+          path="/customization"
+          element={<CustomizationForm />}
         />
         <Route
           path="/umrah"

@@ -53,51 +53,105 @@ export const EmptyStar = () => (
 export default function PackageCard({ img = '/svg/umrah.svg', description = '10 Nights 4 Star Ramadan Umrah Package 2025', night = '10 Nights', star = '03', price = '1250', slug }) {
     const safeStar = Math.min(Math.max(Number(star), 0), 5);
     const navigate = useNavigate();
-
+    const services = [
+        {
+            label: "Flight",
+            icon: "flight.svg"
+        },
+        {
+            label: "Flight",
+            icon: "flight.svg"
+        },
+        {
+            label: "Flight",
+            icon: "flight.svg"
+        },
+        {
+            label: "Flight",
+            icon: "flight.svg"
+        }
+    ]
     return (
-        <div 
-        onClick={() => navigate(slug)}
-        className="w-full max-w-[424px] cursor-pointer flex flex-col overflow-hidden mx-auto sm:mx-0">
-            <img src={img} alt="package_image" className="w-full h-[215px] object-cover" />
-            <div className="p-4 bg-white flex flex-col gap-3 border hover:border-secondary border-primary w-full">
+        <div
+            onClick={() => navigate(slug)}
+            className="w-full max-w-[95%] sm:max-w-[360px] md:max-w-[400px] lg:max-w-[550px] max-h-[600px] md:max-h-[630px] lg:max-h-[653px] cursor-pointer flex flex-col overflow-hidden mx-auto sm:mx-0"
+        >
+            <img src={img} alt="package_image" className="w-full h-[180px] md:h-[200px] lg:h-[215px] object-cover" />
+
+            <div className="p-3 md:p-4 bg-white flex flex-col gap-3 border hover:border-secondary border-primary w-full h-full">
                 {/* Title */}
-                <span className="text-start font-semibold text-base md:text-[18px] line-clamp-2 pl-2">
+                <span className="text-start font-semibold text-sm md:text-base lg:text-[18px] line-clamp-2 pl-2">
                     {description}
                 </span>
-
-                {/* Night & Star Section */}
-                <div className="flex flex-col sm:flex-row justify-around items-center text-[18px] sm:text-[20px] font-semibold gap-2 sm:gap-0">
-                    {/* Night with Moon */}
-                    <div className="flex items-center gap-2 text-secondary text-[24px]">
-                        {night}
-                        <MoonIcon />
+                <div className="flex flex-col sm:flex-row justify-around items-center text-[16px] md:text-[18px] lg:text-[20px] font-semibold gap-2 sm:gap-0">
+                    <div className="flex items-center gap-2 text-secondary text-[20px] md:text-[22px] lg:text-[24px]">
+                        {night} Nights <MoonIcon />
                     </div>
 
-                    {/* Stars */}
                     <div className="flex items-center gap-0.5">
-                        <div className='gap-1 flex items-center text-[24px]'>
-                            <span className='text-secondary'>{star}</span> <span>Star</span>
+                        <div className="gap-1 flex items-center text-[20px] md:text-[22px] lg:text-[24px]">
+                            <span className="text-secondary">{star}</span> <span className='text-secondary'>Star</span>
                         </div>
                         {[...Array(5)].map((_, i) =>
                             i < safeStar ? <FilledStar key={i} /> : <EmptyStar key={i} />
                         )}
                     </div>
                 </div>
+                <div className="flex flex-col sm:flex-row justify-around items-center gap-2 sm:gap-0">
+                    <div className="flex flex-col items-center gap-1">
+                        <img src="/svg/kaba.svg" alt="kaba" />
+                        <span className="text-Black font-semibold text-[10px] md:text-[12px] lg:text-[15px]">4 Nights in Makkah</span>
+                        <span className='text-[8px] md:text-[10px] lg:text-[12px]'>Al Kiswah Towers</span>
+                    </div>
 
-                {/* Price Section */}
-                <div className="text-center">
-                    <span className="text-[12px] md:text-[14px] relative bottom-6  ">from</span>
-                    <span className="text-[32px] md:text-[40px] font-bold mx-2">£{price}</span>
-                    <span className="text-[12px] md:text-[14px]">/pp</span>
+                    <div className="flex flex-col items-center gap-1">
+                        <img src="/svg/madina.svg" alt="madina" />
+                        <span className="text-Black font-semibold text-[10px] md:text-[12px] lg:text-[15px]">4 Nights in Madina</span>
+                        <span className='text-[8px] md:text-[10px] lg:text-[12px]'>Emaar Taiba Hotel</span>
+                    </div>
+                </div>
+                <div className="flex flex-wrap justify-center flex-grid-row-5 items-center gap-3">
+                    {services.map((service, index) => (
+                        <div key={index} className="flex items-center justify-center gap-5">
+                            <div className="flex flex-col items-center">
+                                <img
+                                    src={`/svg/${service.icon}`}
+                                    alt={service.label}
+                                    className="w-10 h-10"
+                                />
+                                <span className="text-[10px] md:text-[12px] lg:text-[14px] text-center">
+                                    {service.label}
+                                </span>
+                            </div>
+
+                            {/* + Icon — only between items */}
+                            {index < services.length - 1 && (
+                                <span className="text-xl font-bold self-center">+</span>
+                            )}
+                        </div>
+                    ))}
                 </div>
 
-                {/* Decorative Images */}
-                <div className="flex gap-3 justify-between mt-2">
-                    <img src="/svg/Card_Element.svg" alt="element" />
-                    <img src="/svg/Card_Element.svg" alt="element" className="rotate-y-180" />
+                <div className='flex gap-2 justify-between items-center'>
+                    <div className="flex gap-3 justify-between mt-auto">
+                        <img src="/svg/Card_Element.svg" alt="element" className='w-12' />
+                    </div>
+                    <div className="text-center">
+                        <span className="text-[10px] md:text-[12px] lg:text-[14px] relative bottom-4 md:bottom-5">
+                            from
+                        </span>
+                        <span className="text-[26px] md:text-[34px] lg:text-[40px] font-bold mx-2">£{price}</span>
+                        <span className="text-[10px] md:text-[12px] lg:text-[14px]">/pp</span>
+                    </div>
+
+                    {/* Decorative Images */}
+                    <div className="flex gap-3 justify-between mt-auto">
+
+                        <img src="/svg/Card_Element.svg" alt="element" className="rotate-y-180 w-12" />
+                    </div>
                 </div>
             </div>
+        </div >
 
-        </div>
     );
 }

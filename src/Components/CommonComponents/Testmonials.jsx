@@ -26,7 +26,7 @@ const TestimonialCard = ({ avatar, name, location, rating, text }) => {
     const truncatedText = text.length > 150 && !showFullText ? text.substring(0, 150) + '...' : text;
 
     return (
-        <div className="relative bg-white rounded-lg shadow-md p-6 w-full flex flex-col items-center">
+        <div className="relative shadow-md p-6 w-full flex flex-col items-center bg-gray-100 rounded-lg">
             <div className="absolute -top-12">
                 <img
                     src={avatar}
@@ -129,7 +129,7 @@ export default function Testimonials() {
     return (
         <div className="w-full max-w-[82%] mx-auto mt-8 sm:mt-12 md:mt-28 px-4 sm:px-6 md:px-9 font-sans mb-10">
             {/* Header */}
-            <div className="w-full lg:w-[48%] mb-24 pl-16">
+            <div className="w-full lg:w-[48%] mb-24 pl-16 ">
                 <img src="/svg/crown-black.svg" alt="Crown" className="w-16 sm:w-18 md:w-24 mb-3 sm:mb-4" />
                 <h2 className="text-[28px] sm:text-[32px] md:text-[36px] font-abril leading-tight mb-3 sm:mb-4">
                     What Our Clients Say
@@ -140,7 +140,7 @@ export default function Testimonials() {
             </div>
 
             {/* Slider */}
-            <div className="relative w-full">
+            <div className="relative w-full ">
                 {/* Left Arrow */}
                 <button
                     onClick={prevSlide}

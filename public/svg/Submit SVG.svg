@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="310.5" height="51" viewBox="0 0 310.5 51">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_185" data-name="Rectangle 185" width="18.129" height="30.4" fill="none"/>
+    </clipPath>
+  </defs>
+  <g id="Group_1265" data-name="Group 1265" transform="translate(-1285.5 -719)">
+    <rect id="Rectangle_272" data-name="Rectangle 272" width="310.5" height="51" rx="12" transform="translate(1285.5 719)" fill="#57a68f"/>
+    <text id="Submit" transform="translate(1377.15 731)" fill="#fff" font-size="22" font-family="Montserrat-SemiBold, Montserrat" font-weight="600"><tspan x="0" y="21">SUBMIT</tspan></text>
+    <g id="Group_388" data-name="Group 388" transform="translate(1462.047 719.435) rotate(90)">
+      <g id="Group_277" data-name="Group 277" transform="translate(16 -50.803)" clip-path="url(#clip-path)">
+        <path id="Path_886" data-name="Path 886" d="M10.919,58.909V59.4q0,7.726,0,15.453a1.831,1.831,0,1,1-3.647.337c-.014-.186-.011-.373-.011-.559q0-7.619,0-15.238v-.5l-.193-.136a1.7,1.7,0,0,1-.226.414c-1.221,1.234-2.44,2.471-3.684,3.682A1.817,1.817,0,0,1,.11,62.109a1.763,1.763,0,0,1,.477-1.857Q4.163,56.674,7.742,53.1a1.814,1.814,0,0,1,2.714.027q3.264,3.25,6.516,6.512c.2.2.41.4.608.61a1.836,1.836,0,0,1,0,2.626,1.817,1.817,0,0,1-2.592-.032c-1.228-1.207-2.44-2.43-3.651-3.654a1.72,1.72,0,0,1-.227-.414l-.191.134" transform="translate(-0.018 -46.465)" fill="#fff"/>
+        <path id="Path_887" data-name="Path 887" d="M9.076,3.684c-2.382,0-4.764,0-7.145,0A1.847,1.847,0,0,1,.119,2.48,1.735,1.735,0,0,1,.662.463,2.2,2.2,0,0,1,1.835.022C6.656-.007,11.477,0,16.3.008a1.8,1.8,0,0,1,1.832,1.83A1.814,1.814,0,0,1,16.265,3.68c-2.4.013-4.792,0-7.188,0" transform="translate(-0.001 0)" fill="#fff"/>
+      </g>
+    </g>
+  </g>
+</svg>

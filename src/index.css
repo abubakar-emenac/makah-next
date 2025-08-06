@@ -26,3 +26,50 @@
 
 }
 
+
+.custom-scroll {
+  /* Optional: flip scrollbar to the left */
+  direction: rtl;
+  scrollbar-width: thin;
+  scrollbar-color: #888 #f1f1f1;
+  position: relative;
+}
+
+/* Flip content back to normal */
+.custom-scroll>* {
+  direction: ltr;
+}
+
+/* WebKit Scrollbar Styles */
+.custom-scroll::-webkit-scrollbar {
+  width: 8px;
+}
+
+.custom-scroll::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 9999px;
+  /* Pill shape for the track */
+}
+
+.custom-scroll::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 9999px;
+  /* Pill shape */
+  border: 2px solid #f1f1f1;
+  /* Creates "line track" illusion */
+  background-clip: content-box;
+}
+
+/* Optional: Simulated vertical line (track line) */
+.custom-scroll::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 2px;
+  width: 4px;
+  background-color: #e0e0e0;
+  border-radius: 9999px;
+  z-index: 0;
+  pointer-events: none;
+}

@@ -10,18 +10,14 @@
   }
   
   .scrollbar-thin::-webkit-scrollbar-thumb {
-    background-color: #710C5C;
+    background-color: #DB9E30;
     border-radius: 6px;
-    box-shadow: 0 0 0 2px #710C5C;
-  }
-  
-  .scrollbar-thin::-webkit-scrollbar-thumb:hover {
-    background-color: #710C5C;
-    box-shadow: 0 0 0 2px #710C5C;
+    box-shadow: 0 0 0 2px #DB9E30;
   }
   
   .scrollbar-thin::-webkit-scrollbar-track {
-    background-color: #710C5C;
+    background-color: #57A68F;
+      width: 13px;
     border-radius: 6px;
   }
   
