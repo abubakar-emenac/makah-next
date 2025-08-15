@@ -37,18 +37,27 @@ export default function ImageSlider() {
 
                 {/* Bottom-positioned Arrows */}
                 <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 flex gap-4">
-                    <button
+                    {/* <button
                         onClick={goToPrev}
                         className="bg-secondary hover:bg-white p-1.5 rounded-full shadow"
                     >
                         <ChevronLeft size={18} />
-                    </button>
-                    <button
-                        onClick={goToNext}
-                        className="bg-secondary hover:bg-white p-1.5 rounded-full shadow"
+                    </button> */}
+                    <span
+                        onClick={goToPrev}
+                        className="bg-white cursor-pointer rounded-full p-2 shadow-md hover:scale-105 transition border border-gray-200"
+                        aria-label="Next Slide"
                     >
-                        <ChevronRight size={18} />
-                    </button>
+                        <img src="/svg/arrow-left.svg" alt="Right Arrow" className="w-5 h-5 sm:w-6 sm:h-6" />
+                    </span>
+
+                    <span
+                        onClick={goToNext}
+                        className="bg-white cursor-pointer rounded-full p-2 shadow-md hover:scale-105 transition border border-gray-200"
+                        aria-label="Next Slide"
+                    >
+                        <img src="/svg/arrow-right.svg" alt="Right Arrow" className="w-5 h-5 sm:w-6 sm:h-6" />
+                    </span>
                 </div>
             </div>
         </div>

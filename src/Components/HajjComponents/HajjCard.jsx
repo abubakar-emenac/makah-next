@@ -57,7 +57,7 @@ export default function HajjCard({ img = '/svg/umrah.svg', description = '13 Day
     return (
         <div
             onClick={() => navigate(slug)}
-            className="w-full max-w-[312px] cursor-pointer flex flex-col overflow-hidden mx-auto sm:mx-0">
+            className="w-full max-w-[350px] cursor-pointer flex flex-col overflow-hidden mx-auto sm:mx-0">
             <img src={img} alt="package_image" className="w-full h-[180px] object-cover" />
             <div className="p-4 bg-white flex flex-col gap-3 border hover:border-secondary border-primary w-full">
                 {/* Title */}

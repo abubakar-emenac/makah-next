@@ -190,6 +190,172 @@
 
 // export default Navbar;
 
+
+
+// import React, { useState } from "react";
+// import { Link } from "react-router-dom";
+
+// const Navbar = ({ textColor = "black" }) => {
+//   const [mobileOpen, setMobileOpen] = useState(false);
+//   const [activeDropdown, setActiveDropdown] = useState(null);
+
+//   const umrahDropdown = [
+//     "Umrah 2025", "February Umrah", "Ramadan Umrah", "March Umrah",
+//     "Easter Umrah", "April Umrah", "London Umrah", "Birmingham Umrah",
+//     "Manchester Umrah", "December Umrah",
+//   ];
+
+//   const hajjDropdown = [
+//     "Hajj 2025", "Economy Hajj", "Shifting Hajj", "Non-shifting Hajj", "VIP Hajj Packages",
+//   ];
+
+//   const textColorClass = textColor === "white" ? "text-white" : "text-black";
+
+//   const navItems = [
+//     { label: "Umrah Package", hasDropdown: true, dropdown: umrahDropdown, link: '/umrah/best-umrah-packages' },
+//     { label: "Hajj Packages", hasDropdown: true, dropdown: hajjDropdown, link: '/umrah/best-umrah-packages' },
+//     { label: "Contact Us", link: '/umrah/best-umrah-packages' },
+//     { label: "Visas", link: '/umrah/best-umrah-packages' },
+//   ];
+
+//   const toggleDropdown = (label) => {
+//     setActiveDropdown(prev => (prev === label ? null : label));
+//   };
+
+//   const handleMobileNavClick = () => {
+//     setMobileOpen(false);
+//     setActiveDropdown(null);
+//   };
+
+//   return (
+//     <nav className={`w-full relative z-50 font-Montserrat ${textColorClass}`}>
+//       <div className="w-full lg:max-w-[90%] mx-auto px-4 lg:px-8 py-3 flex justify-between items-center">
+
+//         {/* Logo */}
+//         <div className="text-lg font-semibold whitespace-nowrap text-white">
+//           Makkah Travel Logo
+//         </div>
+
+//         {/* Desktop Nav */}
+//         <div className="flex flex-col gap-2 lg:flex-row lg:justify-center lg:items-center lg:gap-6 flex-1">
+//           <div className="bg-white text-black rounded-md px-3 py-2 shadow-md flex flex-col gap-2 text-xs lg:text-sm font-medium items-start lg:flex-row lg:items-center lg:gap-4 lg:px-6 lg:py-3">
+//             {navItems.map((item, index) => (
+//               <div
+//                 key={index}
+//                 className="relative group"
+//                 onMouseEnter={() => setActiveDropdown(item.label)}
+//                 onMouseLeave={() => setActiveDropdown(null)}
+//               >
+//                 <Link to={item.link} className="hover:text-green-700 whitespace-nowrap">
+//                   {item.label} {item.hasDropdown && "▾"}
+//                 </Link>
+
+//                 {item.hasDropdown && (
+//                   <div
+//                     className={`absolute top-full mt-2 w-44 bg-white text-black rounded-md shadow-md border border-yellow-300 z-50 transition-all duration-200 hidden group-hover:block lg:block ${activeDropdown === item.label ? "opacity-100 visible" : "opacity-0 invisible"
+//                       }`}
+//                   >
+
+//                     <ul className="py-2 text-xs space-y-1">
+//                       {item.dropdown.map((option, i) => (
+//                         <li key={i} className="px-4 py-1 hover:text-green-700 cursor-pointer whitespace-nowrap">
+//                           <Link
+//                             to={`${item.link}/${option.toLowerCase().replace(/\s+/g, '-')}`}
+//                             onClick={handleMobileNavClick}
+//                             className="block"
+//                           >
+//                             {option}
+//                           </Link>
+//                         </li>
+//                       ))}
+//                     </ul>
+//                   </div>
+//                 )}
+//               </div>
+//             ))}
+//           </div>
+//         </div>
+
+//         {/* Call Now Button + WhatsApp */}
+//         <div className="hidden lg:flex items-center relative text-sm font-medium">
+//           <div className="bg-white rounded-l-3xl pl-4 pr-12 py-2 flex flex-col items-end shadow-md">
+//             <span className="text-yellow-500 leading-tight">Call Now:</span>
+//             <span className="text-gray-800">0203 - 970 - 0002</span>
+//           </div>
+//           <div className="absolute right-0 translate-x-1/2 top-1/2 -translate-y-1/2 w-8 h-8 bg-white rounded-full shadow-md flex items-center justify-center p-[2px]">
+//             <img src="/svg/wa.svg" alt="whatsapp" />
+//           </div>
+//         </div>
+
+//         {/* Mobile Hamburger */}
+//         <button
+//           onClick={() => setMobileOpen(!mobileOpen)}
+//           className="lg:hidden text-white focus:outline-none"
+//         >
+//           <svg
+//             className="w-6 h-6"
+//             fill="none"
+//             stroke="currentColor"
+//             strokeWidth={2}
+//             viewBox="0 0 24 24"
+//           >
+//             {mobileOpen ? (
+//               <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+//             ) : (
+//               <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+//             )}
+//           </svg>
+//         </button>
+//       </div>
+
+//       {/* Mobile Nav */}
+//       {mobileOpen && (
+//         <div className="lg:hidden bg-white text-gray-800 px-4 pb-4 space-y-3">
+//           {navItems.map((item, index) => (
+//             <div key={index} className="text-sm font-medium">
+//               <div
+//                 className="py-2 flex justify-between items-center cursor-pointer border-b"
+//                 onClick={() => item.hasDropdown && toggleDropdown(item.label)}
+//               >
+//                 <span>{item.label}</span>
+//                 {item.hasDropdown && (
+//                   <span>{activeDropdown === item.label ? "▲" : "▼"}</span>
+//                 )}
+//               </div>
+
+//               {item.hasDropdown && activeDropdown === item.label && (
+//                 <ul className="pl-4 pb-2 text-xs space-y-1">
+//                   {item.dropdown.map((option, i) => (
+//                     <li
+//                       key={i}
+//                       className="py-2 border-b cursor-pointer hover:text-green-700"
+//                     >
+//                       {option}
+//                     </li>
+//                   ))}
+//                 </ul>
+//               )}
+//             </div>
+//           ))}
+
+//           <div className="flex items-center justify-between pt-2 text-sm font-medium">
+//             <div className="flex flex-col">
+//               <span className="text-yellow-500">Call Now:</span>
+//               <span className="text-gray-800">0203 - 970 - 0002</span>
+//             </div>
+//             <div className="w-6 h-6">
+//               <img src="/svg/wa.svg" alt="whatsapp" />
+//             </div>
+//           </div>
+//         </div>
+//       )}
+//     </nav>
+//   );
+// };
+
+// export default Navbar;
+
+
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
@@ -226,68 +392,17 @@ const Navbar = ({ textColor = "black" }) => {
   };
 
   return (
-    <nav className={`w-full relative z-50 font-Montserrat ${textColorClass}`}>
-      <div className="w-full lg:max-w-[90%] mx-auto px-4 lg:px-8 py-3 flex justify-between items-center">
-
+    <nav className={`w-full relative z-50 font-Montserrat block lg:hidden ${textColorClass}`}>
+      <div className="w-full px-4 py-3 flex justify-between items-center ">
         {/* Logo */}
         <div className="text-lg font-semibold whitespace-nowrap text-white">
           Makkah Travel Logo
         </div>
 
-        {/* Desktop Nav */}
-        <div className="hidden lg:flex justify-center items-center gap-6 flex-1">
-          <div className="bg-white text-black rounded-md px-6 py-3 shadow-md flex gap-4 text-sm font-medium leading-none items-center">
-            {navItems.map((item, index) => (
-              <div
-                key={index}
-                className="relative group"
-                onMouseEnter={() => setActiveDropdown(item.label)}
-                onMouseLeave={() => setActiveDropdown(null)}
-              >
-                <Link to={item.link} className="hover:text-green-700 whitespace-nowrap">
-                  {item.label} {item.hasDropdown && "▾"}
-                </Link>
-
-                {item.hasDropdown && (
-                  <div
-                    className={`absolute top-full mt-2 w-44 bg-white text-black rounded-md shadow-md border border-yellow-300 z-50 transition-all duration-200 ${activeDropdown === item.label ? "opacity-100 visible" : "opacity-0 invisible"
-                      }`}
-                  >
-                    <ul className="py-2 text-xs space-y-1">
-                      {item.dropdown.map((option, i) => (
-                        <li key={i} className="px-4 py-1 hover:text-green-700 cursor-pointer whitespace-nowrap">
-                          <Link
-                            to={`${item.link}/${option.toLowerCase().replace(/\s+/g, '-')}`}
-                            onClick={handleMobileNavClick}
-                            className="block"
-                          >
-                            {option}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Call Now Button + WhatsApp */}
-        <div className="hidden lg:flex items-center relative text-sm font-medium">
-          <div className="bg-white rounded-l-3xl pl-4 pr-12 py-2 flex flex-col items-end shadow-md">
-            <span className="text-yellow-500 leading-tight">Call Now:</span>
-            <span className="text-gray-800">0203 - 970 - 0002</span>
-          </div>
-          <div className="absolute right-0 translate-x-1/2 top-1/2 -translate-y-1/2 w-8 h-8 bg-white rounded-full shadow-md flex items-center justify-center p-[2px]">
-            <img src="/svg/wa.svg" alt="whatsapp" />
-          </div>
-        </div>
-
-        {/* Mobile Hamburger */}
+        {/* Hamburger */}
         <button
           onClick={() => setMobileOpen(!mobileOpen)}
-          className="lg:hidden text-white focus:outline-none"
+          className="text-white focus:outline-none"
         >
           <svg
             className="w-6 h-6"
@@ -307,7 +422,7 @@ const Navbar = ({ textColor = "black" }) => {
 
       {/* Mobile Nav */}
       {mobileOpen && (
-        <div className="lg:hidden bg-white text-gray-800 px-4 pb-4 space-y-3">
+        <div className="bg-white text-black px-4 pb-4 space-y-3">
           {navItems.map((item, index) => (
             <div key={index} className="text-sm font-medium">
               <div
@@ -327,7 +442,12 @@ const Navbar = ({ textColor = "black" }) => {
                       key={i}
                       className="py-2 border-b cursor-pointer hover:text-green-700"
                     >
-                      {option}
+                      <Link
+                        to={`${item.link}/${option.toLowerCase().replace(/\s+/g, '-')}`}
+                        onClick={handleMobileNavClick}
+                      >
+                        {option}
+                      </Link>
                     </li>
                   ))}
                 </ul>
@@ -335,6 +455,7 @@ const Navbar = ({ textColor = "black" }) => {
             </div>
           ))}
 
+          {/* Call now & WhatsApp */}
           <div className="flex items-center justify-between pt-2 text-sm font-medium">
             <div className="flex flex-col">
               <span className="text-yellow-500">Call Now:</span>

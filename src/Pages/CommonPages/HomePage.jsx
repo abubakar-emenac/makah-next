@@ -25,7 +25,7 @@ export default function Home() {
             <HajjDeals />
             <Testmonials />
             <BlogSection />
-            <div className="w-full max-w-[75%] mx-auto">
+            <div className="w-full lg:max-w-[75%] mx-auto">
                 <ScrollDetail description={description} />
             </div>
             <FAQSection />

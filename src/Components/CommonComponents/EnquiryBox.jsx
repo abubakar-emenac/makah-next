@@ -16,7 +16,7 @@ export default function EnquiryBox() {
 
     return (
         <div className="bg-white px-4 py-6 rounded-xl shadow-md w-full">
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                 {/* Date Picker Field */}
                 <div
                     onClick={() => setIsOpen(true)}

@@ -32,6 +32,7 @@ const ViewAllButton = ({
   color = "secondary",
   icon = "/svg/(View All Packages) Arrow SVG.svg",
   slug,
+  textColor = 'white',
   size = "md",
   onClick, // 👈 optional custom click handler
 }) => {
@@ -40,9 +41,9 @@ const ViewAllButton = ({
 
   const handleClick = () => {
     if (typeof onClick === "function") {
-      onClick(); // ✅ Call custom handler
+      onClick();
     } else if (slug) {
-      navigate(slug); // ✅ Navigate if slug exists and onClick not provided
+      navigate(slug);
     }
   };
 
@@ -51,7 +52,7 @@ const ViewAllButton = ({
       onClick={handleClick}
       className={`inline-flex font-Montserrat cursor-pointer items-center justify-between gap-5 rounded-full font-semibold shadow-md transition-all duration-300 hover:opacity-90 ${padding} ${colorClasses[color]}`}
     >
-      <span className={`font-semibold text-white ${text}`}>{label}</span>
+      <span className={`font-semibold text-${textColor} ${text}`}>{label}</span>
 
       <span className={`rounded-full flex items-center justify-center ${iconWrapper}`}>
         {icon ? (

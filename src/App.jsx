@@ -8,6 +8,7 @@ import BestUmrahDeals from "./Pages/UmrahPages/BestUmrahDeals"
 import UmrahPackageStar from "./Pages/UmrahPages/UmrahPackageStar"
 import UmrahDetail from "./Pages/UmrahPages/UmrahDetail"
 import CustomizationForm from "./Components/CommonComponents/CustomizationForm"
+import HajjPackage from "./Pages/HajjPackages/HajjPackage"
 
 function App() {
 
@@ -26,6 +27,10 @@ function App() {
         <Route
           path="/umrah"
           element={<SpecificCategoryUmrah />}
+        />
+        <Route
+          path="/hajj"
+          element={<HajjPackage />}
         />
         <Route
           path="/about-us"

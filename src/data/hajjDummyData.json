@@ -1,0 +1,202 @@
+[
+    {
+        "id": 1,
+        "title": "7-Night Hajj Package",
+        "description": "Experience a spiritually fulfilling journey with excellent services.",
+        "night": 7,
+        "price": 4500,
+        "location": "Makkah & Madinah",
+        "star": "03",
+        "type": "Non-Shifting"
+    },
+    {
+        "id": 2,
+        "title": "5-Star VIP Hajj Deal",
+        "description": "Luxury Hajj experience with private transport and premium meals.",
+        "night": 10,
+        "price": 7500,
+        "location": "Makkah & Madinah",
+        "star": "05",
+        "type": "Shifting"
+    },
+    {
+        "id": 3,
+        "title": "Economy Budget Hajj",
+        "description": "Affordable package with all essential Hajj services.",
+        "night": 7,
+        "price": 3800,
+        "location": "Makkah",
+        "star": "03",
+        "type": "Non-Shifting"
+    },
+    {
+        "id": 4,
+        "title": "Family Hajj Bundle",
+        "description": "Perfect for families, including guided tours and shared accommodation.",
+        "night": 8,
+        "price": 5200,
+        "location": "Madinah",
+        "star": "04",
+        "type": "Shifting"
+    },
+    {
+        "id": 5,
+        "title": "Ramadan Hajj Special",
+        "description": "Perform Hajj during Ramadan for maximum blessings.",
+        "night": 12,
+        "price": 8200,
+        "location": "Makkah & Madinah",
+        "star": "04",
+        "type": "Non-Shifting"
+    },
+    {
+        "id": 6,
+        "title": "Senior Citizen Friendly Hajj",
+        "description": "Special care with wheelchair assistance for elderly pilgrims.",
+        "night": 10,
+        "price": 6400,
+        "location": "Makkah",
+        "star": "04",
+        "type": "Shifting"
+    },
+    {
+        "id": 7,
+        "title": "Premium Couple Hajj",
+        "description": "Tailored for couples seeking privacy and comfort.",
+        "night": 6,
+        "price": 5000,
+        "location": "Madinah",
+        "star": "04",
+        "type": "Non-Shifting"
+    },
+    {
+        "id": 8,
+        "title": "Group Discount Hajj",
+        "description": "Discounted rates for groups of 10+ pilgrims.",
+        "night": 9,
+        "price": 5800,
+        "location": "Makkah & Madinah",
+        "star": "03",
+        "type": "Shifting"
+    },
+    {
+        "id": 9,
+        "title": "Weekend Quick Hajj",
+        "description": "Short and convenient Hajj package for busy schedules.",
+        "night": 3,
+        "price": 3000,
+        "location": "Makkah",
+        "star": "03",
+        "type": "Non-Shifting"
+    },
+    {
+        "id": 10,
+        "title": "Luxury Gold Hajj Package",
+        "description": "Includes 5-star hotels, VIP lounge, and exclusive services.",
+        "night": 14,
+        "price": 9000,
+        "location": "Makkah & Madinah",
+        "star": "05",
+        "type": "Shifting"
+    },
+    {
+        "id": 11,
+        "title": "Student Group Hajj",
+        "description": "Affordable package tailored for students with flexible schedules.",
+        "night": 8,
+        "price": 4100,
+        "location": "Makkah",
+        "star": "03",
+        "type": "Non-Shifting"
+    },
+    {
+        "id": 12,
+        "title": "Business Class Hajj",
+        "description": "Fly business class with luxury accommodation and private tours.",
+        "night": 10,
+        "price": 8800,
+        "location": "Makkah & Madinah",
+        "star": "05",
+        "type": "Shifting"
+    },
+    {
+        "id": 13,
+        "title": "Hajj with Ziyarat",
+        "description": "Includes guided visits to historic Islamic sites in Makkah and Madinah.",
+        "night": 11,
+        "price": 6700,
+        "location": "Makkah & Madinah",
+        "star": "04",
+        "type": "Non-Shifting"
+    },
+    {
+        "id": 14,
+        "title": "Deluxe Hajj Experience",
+        "description": "Premium hotels, high-end catering, and dedicated guides.",
+        "night": 12,
+        "price": 8500,
+        "location": "Makkah & Madinah",
+        "star": "05",
+        "type": "Shifting"
+    },
+    {
+        "id": 15,
+        "title": "Budget Shifting Hajj",
+        "description": "Low-cost shifting package with all basic Hajj services.",
+        "night": 7,
+        "price": 3600,
+        "location": "Makkah",
+        "star": "03",
+        "type": "Shifting"
+    },
+    {
+        "id": 16,
+        "title": "VIP Royal Hajj",
+        "description": "Ultra-luxury package with royal treatment and private services.",
+        "night": 14,
+        "price": 12000,
+        "location": "Makkah & Madinah",
+        "star": "05",
+        "type": "Non-Shifting"
+    },
+    {
+        "id": 17,
+        "title": "Youth Hajj Special",
+        "description": "Designed for young pilgrims with active schedules and group events.",
+        "night": 9,
+        "price": 4200,
+        "location": "Makkah",
+        "star": "03",
+        "type": "Shifting"
+    },
+    {
+        "id": 18,
+        "title": "Corporate Group Hajj",
+        "description": "For organizations booking Hajj for employees with business facilities.",
+        "night": 10,
+        "price": 6900,
+        "location": "Makkah & Madinah",
+        "star": "04",
+        "type": "Non-Shifting"
+    },
+    {
+        "id": 19,
+        "title": "Short Shifting Hajj",
+        "description": "Quick shifting stay with basic accommodation and transport.",
+        "night": 5,
+        "price": 3400,
+        "location": "Makkah",
+        "star": "03",
+        "type": "Shifting"
+    },
+    {
+        "id": 20,
+        "title": "Golden Anniversary Hajj",
+        "description": "Special luxury package for couples celebrating anniversaries.",
+        "night": 12,
+        "price": 9500,
+        "location": "Makkah & Madinah",
+        "star": "05",
+        "type": "Non-Shifting"
+    }
+]

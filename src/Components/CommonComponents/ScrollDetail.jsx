@@ -94,6 +94,65 @@
 // }
 
 
+// import React, { useEffect, useState } from 'react';
+// import '../../CSS/ScrollDetail.css';
+
+// export default function ScrollDetail({ description }) {
+//     const [topImageUrl, setTopImageUrl] = useState(null);
+//     const [filteredDescription, setFilteredDescription] = useState('');
+
+//     useEffect(() => {
+//         if (typeof description !== 'string') return;
+
+//         const parser = new DOMParser();
+//         const doc = parser.parseFromString(description, 'text/html');
+
+//         const figureImg = doc.querySelector('figure img');
+//         if (figureImg?.getAttribute('src')) {
+//             setTopImageUrl(figureImg.getAttribute('src'));
+//             figureImg.closest('figure')?.remove(); // Remove the <figure> tag
+//         }
+
+//         setFilteredDescription(doc.body.innerHTML);
+//     }, [description]);
+
+//     return (
+//         <div className=" rounded-[25px] p-[30px] flex flex-col">
+//             {/* Top Image */}
+//             {/* {topImageUrl ? (
+//                 <div className="w-full mb-6 flex items-center justify-center">
+//                     <img
+//                         src={topImageUrl}
+//                         alt="Content illustration"
+//                         className="w-full max-h-[400px] object-contain rounded-xl"
+//                     />
+//                 </div>
+//             ) : (
+//                 <div className="text-gray-400 italic text-center mb-6">No image available</div>
+//             )} */}
+//             <div className="w-full mb-6 flex items-center justify-center">
+//                 <img
+//                     src="/images/Layer 0.png"
+//                     alt="Content illustration"
+//                     className="w-full max-h-[400px] object-contain"
+//                 />
+//             </div>
+
+//             {/* Full Width Content */}
+//             <div className="w-full">
+//                 <div className="bg-white h-[500px] flex flex-col">
+//                     <div className="flex-1 overflow-y-auto scrollbar-thin" style={{ direction: 'rtl' }}>
+//                         <div
+//                             style={{ direction: 'ltr' }}
+//                             className="p-6 prose max-w-none font-quicksand"
+//                             dangerouslySetInnerHTML={{ __html: filteredDescription }}
+//                         />
+//                     </div>
+//                 </div>
+//             </div>
+//         </div>
+//     );
+// }
 import React, { useEffect, useState } from 'react';
 import '../../CSS/ScrollDetail.css';
 
@@ -117,34 +176,23 @@ export default function ScrollDetail({ description }) {
     }, [description]);
 
     return (
-        <div className=" rounded-[25px] p-[30px] flex flex-col">
-            {/* Top Image */}
-            {/* {topImageUrl ? (
-                <div className="w-full mb-6 flex items-center justify-center">
-                    <img
-                        src={topImageUrl}
-                        alt="Content illustration"
-                        className="w-full max-h-[400px] object-contain rounded-xl"
-                    />
-                </div>
-            ) : (
-                <div className="text-gray-400 italic text-center mb-6">No image available</div>
-            )} */}
-            <div className="w-full mb-6 flex items-center justify-center">
+        <div className="w-full flex flex-col font-quicksand">
+            {/* Full-width Top Image */}
+            <div className="w-full">
                 <img
-                    src="/images/Layer 0.png"
+                    src={topImageUrl || "/images/Layer 0.png"}
                     alt="Content illustration"
-                    className="w-full max-h-[400px] object-contain"
+                    className="w-full h-auto max-h-[250px] sm:max-h-[350px] object-cover"
                 />
             </div>
 
-            {/* Full Width Content */}
-            <div className="w-full">
-                <div className="bg-white h-[500px] flex flex-col">
-                    <div className="flex-1 overflow-y-auto scrollbar-thin" style={{ direction: 'rtl' }}>
+            {/* Scrollable Content Box */}
+            <div className="w-full px-4 sm:px-6 md:px-10 mt-6">
+                <div className="bg-white h-[400px] sm:h-[500px] overflow-hidden">
+                    <div className="h-full overflow-y-auto scrollbar-thin" style={{ direction: 'rtl' }}>
                         <div
                             style={{ direction: 'ltr' }}
-                            className="p-6 prose max-w-none font-quicksand"
+                            className="p-4 sm:p-6 prose max-w-none"
                             dangerouslySetInnerHTML={{ __html: filteredDescription }}
                         />
                     </div>
@@ -153,3 +201,4 @@ export default function ScrollDetail({ description }) {
         </div>
     );
 }
+

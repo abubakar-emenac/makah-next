@@ -26,6 +26,10 @@
 
 }
 
+*::selection {
+  background-color: black;
+  color: white;
+}
 
 .custom-scroll {
   /* Optional: flip scrollbar to the left */

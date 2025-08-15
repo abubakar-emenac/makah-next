@@ -190,3 +190,143 @@ export default function CardSlider() {
   );
 }
 
+// import React, { useState, useRef } from 'react';
+// import Slider from 'react-slick';
+// import ViewAllButton from './ViewAllButton';
+// import PackageCard from './PackageCard';
+// import data from '../../data/dummyData.json';
+
+// import "slick-carousel/slick/slick.css";
+// import "slick-carousel/slick/slick-theme.css";
+
+// export default function CardSlider() {
+//   const [currentSlide, setCurrentSlide] = useState(0);
+//   const sliderRef = useRef(null);
+
+//   const handleNext = () => {
+//     sliderRef.current?.slickNext();
+//   };
+
+//   const handlePrev = () => {
+//     sliderRef.current?.slickPrev();
+//   };
+
+//   const slickSettings = {
+//     dots: false,
+//     infinite: true,
+//     speed: 700,
+//     slidesToShow: 1,
+//     slidesToScroll: 1,
+//     autoplay: true,
+//     autoplaySpeed: 3000,
+//     arrows: false,
+//     beforeChange: (_, next) => setCurrentSlide(next),
+//     responsive: [
+//       {
+//         breakpoint: 1024, // tablet & small desktop
+//         settings: {
+//           slidesToShow: 2,
+//           slidesToScroll: 1,
+//         },
+//       },
+//       {
+//         breakpoint: 640, // mobile
+//         settings: {
+//           slidesToShow: 1,
+//           slidesToScroll: 1,
+//         },
+//       },
+//       {
+//         breakpoint: 720, // mobile
+//         settings: {
+//           slidesToShow: 1,
+//           slidesToScroll: 1,
+//         },
+//       },
+//     ],
+//   };
+
+//   // chunk cards: each slide contains 1 on mobile, 2 on tablet, 3 on desktop
+//   const slides = [];
+//   const chunkSize = 1; // mobile-first (handled visually per breakpoint)
+//   for (let i = 0; i < data.length; i += chunkSize) {
+//     slides.push(data.slice(i, i + chunkSize));
+//   }
+
+//   return (
+//     <div className="w-full bg-cover bg-no-repeat bg-left-top"
+//       style={{
+//         backgroundImage: `
+//           url('/svg/orange-overlay.svg'),
+//           url('/images/iStock-1001687846.png')
+//         `,
+//         backgroundSize: 'contain, contain',
+//         backgroundRepeat: 'no-repeat, no-repeat',
+//         backgroundPosition: 'top, top',
+//       }}
+//     >
+//       {/* Top orange content section */}
+//       <div className="w-full flex flex-col  px-4 pt-10 pb-6 sm:px-6 md:px-12 md:pt-14 md:pb-10">
+//         <img src="/svg/crown.svg" alt="Crown" className="w-24 sm:w-24 md:w-24 mb-4" />
+//         <div className="text-white text-[32px] sm:text-[32px] md:text-[40px] font-abril text-start leading-tight">
+//           <h2>Our Best Umrah</h2>
+//           <h2>Deals 2025–2026</h2>
+//         </div>
+//         <p className="text-white text-[16px] sm:text-[16px] mt-4 font-Montserrat text-start leading-relaxed max-w-xl">
+//           Makkah Travel is here to help you visit religious places and make Umrah trips that connect with your soul. We're experts at creating meaningful journeys, so it isn't just a trip but a transformative experience.
+//         </p>
+
+//         {/* Buttons */}
+//         <div className="mt-6 flex items-center gap-3">
+//           <ViewAllButton color="secondary" slug="/" size="sm" />
+//           <button onClick={handlePrev} className="bg-white p-2 rounded-full shadow hover:scale-105 transition">
+//             <img src="/svg/arrow-left.svg" alt="Previous" className="w-5 h-5" />
+//           </button>
+//           <button onClick={handleNext} className="bg-white p-2 rounded-full shadow hover:scale-105 transition">
+//             <img src="/svg/arrow-right.svg" alt="Next" className="w-5 h-5" />
+//           </button>
+//         </div>
+//       </div>
+
+//       {/* Card Slider Section */}
+//       <div className="mt-6 sm:mt-10 md:mt-10 px-4 sm:px-3 md:px-2">
+//         <Slider {...slickSettings} ref={sliderRef}>
+//           {slides.map((slide, index) => (
+//             <div key={index}>
+//               <div className="flex flex-wrap justify-center sm:justify-between gap-4 sm:gap-6">
+//                 {slide.map((item, i) => (
+//                   <div
+//                     key={i}
+//                     className="w-full sm:w-[90%] md:w-full transition-all duration-300"
+//                   >
+//                     <PackageCard
+//                       description={item.description}
+//                       night={item.night}
+//                       star={item.star}
+//                       price={item.price}
+//                     />
+//                   </div>
+//                 ))}
+//               </div>
+//             </div>
+//           ))}
+//         </Slider>
+
+//         {/* Pills */}
+//         <div className="mt-6 overflow-x-auto whitespace-nowrap flex gap-2 justify-start px-2 sm:justify-center scrollbar-hide">
+//           {slides.map((_, index) => (
+//             <span
+//               key={index}
+//               onClick={() => {
+//                 setCurrentSlide(index);
+//                 sliderRef.current?.slickGoTo(index);
+//               }}
+//               className={`inline-block h-1 rounded-full cursor-pointer transition-all duration-300 ${currentSlide === index ? 'w-20 bg-primary' : 'w-10 bg-secondary'
+//                 }`}
+//             />
+//           ))}
+//         </div>
+//       </div>
+//     </div>
+//   );
+// }

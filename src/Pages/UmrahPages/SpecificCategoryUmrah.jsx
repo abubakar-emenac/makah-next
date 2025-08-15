@@ -18,7 +18,7 @@ export default function SpecificCategoryUmrah() {
         <div className='flex flex-col mb-4'>
             <HeroSection />
 
-            <div className='w-full max-w-[75%] mx-auto m-16'>
+            <div className='w-full max-w-[90%] sm:max-w-[90%] md:max-w-[85%] lg:max-w-[75%] mx-auto pt-8'>
                 {/* Header */}
                 <div className="w-full lg:w-[45%] flex flex-col justify-start">
                     <img src="/svg/crown-black.svg" alt="Crown" className="w-16 sm:w-18 md:w-20 mb-3 sm:mb-4" />
@@ -28,7 +28,7 @@ export default function SpecificCategoryUmrah() {
                 </div>
 
                 {/* Package Grid */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-10">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-rows-2 lg:grid-cols-3 gap-6 mt-10">
                     {data.slice(0, visibleCount).map((pkg) => (
                         <PackageCard
                             description={pkg.description}
