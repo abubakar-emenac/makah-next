@@ -3,6 +3,7 @@ import HeroSection from '../../Components/CommonComponents/HeroSection';
 import PackageCard from '../../Components/CommonComponents/PackageCard';
 import ViewAllButton from '../../Components/CommonComponents/ViewAllButton';
 import data from '../../data/dummyData.json';
+import FAQSection from '../../Components/CommonComponents/FAQSection';
 
 const UmrahStarSection = ({ star, packages }) => {
     const [visibleCount, setVisibleCount] = useState(9);
@@ -57,6 +58,7 @@ export default function UmrahPackageStar() {
             <div className='flex flex-col my-8 w-full max-w-[75%] mx-auto'>
                 <UmrahStarSection star="03" packages={data} />
             </div>
+            <FAQSection />
         </div>
     );
 }

@@ -10,7 +10,7 @@ import "slick-carousel/slick/slick-theme.css";
 
 const CARDS_PER_SLIDE = 3;
 
-export default function CardSlider() {
+export default function CardSlider({ pageData }) {
   const [currentSlide, setCurrentSlide] = useState(0);
   const sliderRef = useRef(null);
 

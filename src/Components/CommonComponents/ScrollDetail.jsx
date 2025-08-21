@@ -153,31 +153,93 @@
 //         </div>
 //     );
 // }
-import React, { useEffect, useState } from 'react';
-import '../../CSS/ScrollDetail.css';
 
-export default function ScrollDetail({ description }) {
+
+
+// import React, { useEffect, useState } from 'react';
+// import '../../CSS/ScrollDetail.css';
+
+// export default function ScrollDetail({ pageData }) {
+//     const [topImageUrl, setTopImageUrl] = useState(null);
+//     const [filteredDescription, setFilteredDescription] = useState('');
+
+//     useEffect(() => {
+//         if (typeof description !== 'string') return;
+
+//         const parser = new DOMParser();
+//         const doc = parser.parseFromString(, 'text/html');
+
+//         const figureImg = doc.querySelector('figure img');
+//         if (figureImg?.getAttribute('src')) {
+//             setTopImageUrl(figureImg.getAttribute('src'));
+//             figureImg.closest('figure')?.remove(); // Remove the <figure> tag
+//         }
+
+//         setFilteredDescription(doc.body.innerHTML);
+//     }, [description]);
+
+//     return (
+//         <div className="w-full flex flex-col font-quicksand">
+//             {/* Full-width Top Image */}
+//             <div className="w-full">
+//                 <img
+//                     src={topImageUrl || "/images/Layer 0.png"}
+//                     alt="Content illustration"
+//                     className="w-full h-auto max-h-[250px] sm:max-h-[350px] object-cover"
+//                 />
+//             </div>
+
+//             {/* Scrollable Content Box */}
+//             <div className="w-full px-4 sm:px-6 md:px-10 mt-6">
+//                 <div className="bg-white h-[400px] sm:h-[500px] overflow-hidden">
+//                     <div className="h-full overflow-y-auto scrollbar-thin" style={{ direction: 'rtl' }}>
+//                         <div
+//                             style={{ direction: 'ltr' }}
+//                             className="p-4 sm:p-6 prose max-w-none"
+//                             dangerouslySetInnerHTML={{ __html: filteredDescription }}
+//                         />
+//                     </div>
+//                 </div>
+//             </div>
+//         </div>
+//     );
+// }
+
+
+
+import React, { useEffect, useState } from "react";
+import "../../CSS/ScrollDetail.css";
+
+export default function ScrollDetail({ pageData }) {
     const [topImageUrl, setTopImageUrl] = useState(null);
-    const [filteredDescription, setFilteredDescription] = useState('');
+    const [filteredDescription, setFilteredDescription] = useState("");
 
     useEffect(() => {
-        if (typeof description !== 'string') return;
+        if (!pageData) return;
+
+        // Prefer scroll_description, fallback to description
+        const rawHtml =
+            pageData.scroll_description || pageData.description || "";
+
+        if (!rawHtml) return;
 
         const parser = new DOMParser();
-        const doc = parser.parseFromString(description, 'text/html');
+        const doc = parser.parseFromString(rawHtml, "text/html");
 
-        const figureImg = doc.querySelector('figure img');
-        if (figureImg?.getAttribute('src')) {
-            setTopImageUrl(figureImg.getAttribute('src'));
-            figureImg.closest('figure')?.remove(); // Remove the <figure> tag
+        // Handle <figure> image if present
+        const figureImg = doc.querySelector("figure img");
+        if (figureImg?.getAttribute("src")) {
+            setTopImageUrl(figureImg.getAttribute("src"));
+            figureImg.closest("figure")?.remove(); // remove figure
         }
 
+        // Save clean innerHTML
         setFilteredDescription(doc.body.innerHTML);
-    }, [description]);
+    }, [pageData]);
 
     return (
         <div className="w-full flex flex-col font-quicksand">
-            {/* Full-width Top Image */}
+            {/* Top Image */}
             <div className="w-full">
                 <img
                     src={topImageUrl || "/images/Layer 0.png"}
@@ -186,19 +248,30 @@ export default function ScrollDetail({ description }) {
                 />
             </div>
 
-            {/* Scrollable Content Box */}
-            <div className="w-full px-4 sm:px-6 md:px-10 mt-6">
-                <div className="bg-white h-[400px] sm:h-[500px] overflow-hidden">
-                    <div className="h-full overflow-y-auto scrollbar-thin" style={{ direction: 'rtl' }}>
+            {/* If backend already sends scrollable div (scroll_description), just render it */}
+            <div className="w-full sm:px-6 md:px-1 mt-6">
+                {pageData.scroll_description ? (
+                    <div
+                        className="prose max-w-none"
+                        dangerouslySetInnerHTML={{ __html: filteredDescription }}
+                    />
+                ) : (
+                    <div className="bg-white h-[400px] sm:h-[500px] overflow-hidden">
                         <div
-                            style={{ direction: 'ltr' }}
-                            className="p-4 sm:p-6 prose max-w-none"
-                            dangerouslySetInnerHTML={{ __html: filteredDescription }}
-                        />
-                    </div>
-                </div>
+                                className="h-full overflow-y-auto scrollbar-thin"
+                                style={{ direction: "rtl" }}
+                            >
+                                <div
+                                    style={{ direction: "ltr" }}
+                                    className=" prose max-w-none"
+                                    dangerouslySetInnerHTML={{ __html: filteredDescription }}
+                                />
+                            </div>
+                        </div>
+                )}
             </div>
         </div>
     );
 }
+
 

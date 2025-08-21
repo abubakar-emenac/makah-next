@@ -20,4 +20,43 @@
       width: 13px;
     border-radius: 6px;
   }
+    .custom-scrollbar {
+      direction: rtl;
+      /* moves scrollbar to the left */
+    }
+  
+    .custom-scrollbar>* {
+      direction: ltr;
+      /* reset children text back to normal */
+    }
+  
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 8px;
+      /* overall scrollbar thickness */
+    }
+  
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: #f3f3f3;
+      /* light gray rail */
+      margin-top: 10px;
+      /* spacing at top */
+      margin-bottom: 10px;
+      /* spacing at bottom */
+      border-radius: 10px;
+  
+      /* make the track visually thinner than the thumb */
+      box-shadow: inset 2px 0 0 0 white, inset -2px 0 0 0 white;
+    }
+  
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background-color: #DB9E30;
+      /* thumb color */
+      border-radius: 10px;
+      min-height: 30px;
+      /* prevents tiny thumb */
+    }
+  
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+      background-color: #DB9E30;
+    }
   

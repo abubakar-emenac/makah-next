@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function NeedHelp() {
     return (
-        <div className="w-full px-8 m-10 flex flex-col-reverse lg:flex-row max-w-screen-xl mx-auto gap-8">
+        <div className="w-full px-8 m-10 flex flex-col-reverse lg:flex-row max-w-[82%] mx-auto gap-8">
             {/* Left Section - Mobile Stacked */}
             <div className="w-full lg:w-1/2 flex flex-col gap-8">
                 {/* Call Us Now */}

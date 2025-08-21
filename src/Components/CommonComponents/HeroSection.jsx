@@ -97,13 +97,18 @@ import React from 'react';
 import Navbar from './NavBar';
 import ViewAllButton from './ViewAllButton';
 import EnquiryBox from './EnquiryBox';
+import { BASE_URL_IMG } from '../../Helpers/apiEndpoints';
 
-export default function HeroSection() {
+export default function HeroSection({ pageData }) {
+    React.useEffect(() => {
+        console.log("HeroSection received data:", pageData);
+    }, [pageData]);
+
     return (
         <div
             className="flex flex-col w-full"
             style={{
-                backgroundImage: `url('/svg/HeroBg.png')`,
+                backgroundImage: `url(${BASE_URL_IMG}/${pageData?.image_url})`,
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
             }}
@@ -116,26 +121,22 @@ export default function HeroSection() {
                 <div className="mt-10 sm:mt-14 md:mt-20 text-white font-abril leading-tight 
                                 text-[32px] sm:text-[38px] md:text-[48px] 
                                 w-full sm:w-[90%] md:w-[77%] mx-auto">
-                    <h1>Trusted Islamic</h1>
-                    <h1>Travel Agency in UK</h1>
+                    <h1>{pageData?.banner_heading}</h1>
                 </div>
 
                 {/* Subheading paragraph */}
                 <div className="mt-4 sm:mt-5 md:mt-6 text-white font-Montserrat 
                                 text-[14px] sm:text-[16px] md:text-[18px] leading-relaxed 
                                 w-full sm:w-[90%] md:w-[77%] mx-auto">
-                    <p>
-                        Go on a faith-filled journey without breaking the bank.
-                        <br />
-                        Makkah Travel offers the best deals on Umrah so that you
-                        <br />
-                        can have a hassle-free and unforgettable journey.
+                    <p
+                        dangerouslySetInnerHTML={{ __html: pageData.description }}
+                    >
                     </p>
                 </div>
 
                 {/* Button */}
                 <div className="mt-8 sm:mt-10 md:mt-12 w-full sm:w-[90%] md:w-[77%] mx-auto">
-                    <ViewAllButton color="primary" slug="/" />
+                    <ViewAllButton color="primary" slug={pageData.button_link} label={pageData.button_text} />
                 </div>
 
                 {/* Enquiry Box */}

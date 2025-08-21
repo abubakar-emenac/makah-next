@@ -435,7 +435,7 @@ export default function UmrahDetail() {
             </div>
 
             <NeedHelp />
-            {/* <CustomizeUmrahPopup /> */}
+            <CustomizeUmrahPopup />
         </div>
     )
 }

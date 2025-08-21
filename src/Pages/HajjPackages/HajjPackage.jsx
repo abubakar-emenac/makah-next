@@ -133,6 +133,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import hajjDummyData from '../../data/hajjDummyData.json';
 import ScrollDetail from '../../Components/CommonComponents/ScrollDetail';
+import FAQSection from '../../Components/CommonComponents/FAQSection';
 
 export default function HajjPackage() {
     const description =
@@ -211,6 +212,7 @@ export default function HajjPackage() {
             <div className="w-full lg:max-w-[75%] mx-auto my-5 mb-7">
                 <ScrollDetail description={description} />
             </div>
+            <FAQSection />
         </div>
     );
 }

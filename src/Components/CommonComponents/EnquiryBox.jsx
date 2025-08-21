@@ -1,7 +1,166 @@
+// import React, { useRef, useState } from 'react';
+// import DatePicker from 'react-datepicker';
+// import 'react-datepicker/dist/react-datepicker.css';
+// import '../../CSS/datepicker-custom.css'
+
+// export default function EnquiryBox() {
+//     const [departureDate, setDepartureDate] = useState(null);
+//     const [guestCount, setGuestCount] = useState('');
+//     const [number, setNumber] = useState('');
+//     const [fullName, setFullName] = useState('');
+//     const [email, setEmail] = useState('');
+//     const [accomodation, setAccomodation] = useState('');
+//     const [captcha, setCaptcha] = useState('');
+//     const [isOpen, setIsOpen] = useState(false);
+//     const datePickerRef = useRef(null);
+
+//     return (
+//         <div className="bg-white px-4 py-6 rounded-xl shadow-md w-full">
+//             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+//                 {/* Date Picker Field */}
+//                 <div
+//                     onClick={() => setIsOpen(true)}
+//                     className="relative border border-primary rounded-md px-4 py-2 hover:border-secondary flex items-center focus-within:ring-1 focus-within:ring-primary-hover"
+//                 >
+//                     {/* <DatePicker
+//                         ref={datePickerRef}
+//                         selected={departureDate}
+//                         onChange={(date) => {
+//                             setDepartureDate(date);
+//                             datePickerRef.current?.setOpen(false); // ← force close
+//                         }}
+//                         placeholderText="Departure Date"
+//                         className="w-full bg-transparent outline-none text-sm"
+//                         shouldCloseOnSelect={true}
+//                     /> */}
+//                     <DatePicker
+//                         ref={datePickerRef}
+
+//                         selected={departureDate}
+//                         onChange={(date) => {
+//                             setDepartureDate(date);
+//                             setIsOpen(false);
+//                         }}
+//                         onClickOutside={() => setIsOpen(false)} // ✅ close when clicking outside
+//                         open={isOpen}
+//                         placeholderText="Departure Date"
+//                         className="w-full bg-transparent outline-none text-sm"
+//                         dateFormat="dd/MM/yyyy"
+
+//                     />
+
+//                     <img
+//                         src="/svg/Departure Date SVG.svg"
+//                         alt="calendar"
+//                         className="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 pointer-events-none"
+//                         onClick={() => datePickerRef.current.setFocus()}
+//                     />
+//                 </div>
+
+//                 {/* Guests */}
+//                 <div className="relative border border-primary rounded-md px-4 py-2 hover:border-secondary flex items-center focus-within:ring-1 focus-within:ring-primary-hover">
+//                     <input
+//                         type="number"
+//                         value={guestCount}
+//                         min={1}
+//                         onChange={(e) => setGuestCount(e.target.value)}
+//                         placeholder="Guests"
+//                         className="w-full bg-transparent outline-none text-sm"
+//                     />
+//                     <img
+//                         src="/svg/Guests SVG.svg"
+//                         alt="guests"
+//                         className="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 pointer-events-none"
+//                     />
+//                 </div>
+
+//                 {/* Phone Number */}
+//                 <div className="relative border border-primary rounded-md px-4 py-2 hover:border-secondary flex items-center focus-within:ring-1 focus-within:ring-primary-hover">
+//                     <input
+//                         type="tel"
+//                         value={number}
+//                         onChange={(e) => setNumber(e.target.value)}
+//                         placeholder="Phone Number"
+//                         className="w-full bg-transparent outline-none text-sm"
+//                     />
+//                     <img
+//                         src="/svg/Phone Number SVG.svg"
+//                         alt="phone"
+//                         className="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 pointer-events-none"
+//                     />
+//                 </div>
+
+//                 {/* Full Name */}
+//                 <div className="relative border border-primary rounded-md px-4 py-2 hover:border-secondary flex items-center focus-within:ring-1 focus-within:ring-primary-hover">
+//                     <input
+//                         type="text"
+//                         value={fullName}
+//                         onChange={(e) => setFullName(e.target.value)}
+//                         placeholder="Full Name"
+//                         className="w-full bg-transparent outline-none text-sm"
+//                     />
+//                     <img
+//                         src="/svg/Name SVG.svg"
+//                         alt="name"
+//                         className="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 pointer-events-none"
+//                     />
+//                 </div>
+//                 <div className="relative border border-primary rounded-md px-4 py-2 hover:border-secondary flex items-center focus-within:ring-1 focus-within:ring-primary-hover">
+//                     <input
+//                         type="email"
+//                         value={email}
+//                         onChange={(e) => setEmail(e.target.value)}
+//                         placeholder="Email"
+//                         className="w-full bg-transparent outline-none text-sm"
+//                     />
+//                     <img
+//                         src="/svg/Email SVG.svg"
+//                         alt="name"
+//                         className="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 pointer-events-none"
+//                     />
+//                 </div>
+//                 <div className="relative border border-primary rounded-md px-4 py-2 hover:border-secondary flex items-center focus-within:ring-1 focus-within:ring-primary-hover">
+//                     <input
+//                         type='option'
+//                         value={accomodation}
+//                         onChange={(e) => setAccomodation(e.target.value)}
+//                         placeholder="Accomodation"
+//                         className="w-full bg-transparent outline-none text-sm"
+//                     />
+//                     <img
+//                         src="/svg/Email SVG.svg"
+//                         alt="name"
+//                         className="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 pointer-events-none"
+//                     />
+//                 </div>
+//                 <div className="relative border border-primary rounded-md px-4 py-2 hover:border-secondary flex items-center focus-within:ring-1 focus-within:ring-primary-hover">
+//                     <input
+//                         type="number"
+//                         value={captcha}
+//                         onChange={(e) => setCaptcha(e.target.value)}
+//                         placeholder="Captcha"
+//                         className="w-full bg-transparent outline-none text-sm"
+//                     />
+//                     <span
+//                         className="bg-white text-secondary pr-1 absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 pointer-events-none"
+//                     >
+//                         5+8
+//                     </span>
+//                 </div>
+//                 <button type='submit' className='flex justify-center cursor-pointer items-center gap-2 text-white font-semibold bg-secondary rounded-lg text-[22px]' >
+//                     <span>Submit</span>
+//                     <img src="/svg/SubmitArrow.svg" alt="" className='w-7 h-7' />
+//                 </button>
+//             </div>
+//         </div>
+//     );
+// }
+
+
 import React, { useRef, useState } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import '../../CSS/datepicker-custom.css'
+import '../../CSS/datepicker-custom.css';
 
 export default function EnquiryBox() {
     const [departureDate, setDepartureDate] = useState(null);
@@ -9,46 +168,80 @@ export default function EnquiryBox() {
     const [number, setNumber] = useState('');
     const [fullName, setFullName] = useState('');
     const [email, setEmail] = useState('');
-    const [accomodation, setAccomodation] = useState('');
+    const [accommodation, setAccommodation] = useState('');
     const [captcha, setCaptcha] = useState('');
     const [isOpen, setIsOpen] = useState(false);
     const datePickerRef = useRef(null);
 
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        if (parseInt(captcha) !== 13) {
+            alert("Captcha incorrect!");
+            return;
+        }
+
+        const payload = {
+            name: fullName,
+            email,
+            contact: number,
+            contactDetail: {
+                departureDate: departureDate ? departureDate.toISOString().split("T")[0] : null,
+                guestCount,
+                guestAccommodation: accommodation,
+                formType: "enquiry",
+            },
+        };
+
+        try {
+            const response = await fetch("/sendEmail", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(payload),
+            });
+
+            if (!response.ok) throw new Error("Failed to send enquiry");
+
+            alert("Enquiry submitted successfully ✅");
+            setDepartureDate(null);
+            setGuestCount('');
+            setNumber('');
+            setFullName('');
+            setEmail('');
+            setAccommodation('');
+            setCaptcha('');
+        } catch (error) {
+            console.error(error);
+            alert("Something went wrong ❌");
+        }
+    };
+
     return (
-        <div className="bg-white px-4 py-6 rounded-xl shadow-md w-full">
+        <form
+            onSubmit={handleSubmit}
+            className="bg-white px-4 py-6 rounded-xl shadow-md w-full font-Montserrat"
+        >
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                {/* Date Picker Field */}
+
+                {/* Date Picker */}
                 <div
                     onClick={() => setIsOpen(true)}
                     className="relative border border-primary rounded-md px-4 py-2 hover:border-secondary flex items-center focus-within:ring-1 focus-within:ring-primary-hover"
                 >
-                    {/* <DatePicker
-                        ref={datePickerRef}
-                        selected={departureDate}
-                        onChange={(date) => {
-                            setDepartureDate(date);
-                            datePickerRef.current?.setOpen(false); // ← force close
-                        }}
-                        placeholderText="Departure Date"
-                        className="w-full bg-transparent outline-none text-sm"
-                        shouldCloseOnSelect={true}
-                    /> */}
                     <DatePicker
                         ref={datePickerRef}
-
                         selected={departureDate}
                         onChange={(date) => {
                             setDepartureDate(date);
-                            setIsOpen(false);
                         }}
-                        onClickOutside={() => setIsOpen(false)} // ✅ close when clicking outside
+                        onClickOutside={() => setIsOpen(false)}
                         open={isOpen}
                         placeholderText="Departure Date"
                         className="w-full bg-transparent outline-none text-sm"
                         dateFormat="dd/MM/yyyy"
-
+                        minDate={new Date()}
+                        shouldCloseOnSelect={true}
                     />
-
                     <img
                         src="/svg/Departure Date SVG.svg"
                         alt="calendar"
@@ -67,14 +260,10 @@ export default function EnquiryBox() {
                         placeholder="Guests"
                         className="w-full bg-transparent outline-none text-sm"
                     />
-                    <img
-                        src="/svg/Guests SVG.svg"
-                        alt="guests"
-                        className="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 pointer-events-none"
-                    />
+                    <img src="/svg/Guests SVG.svg" alt="guests" className="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 pointer-events-none" />
                 </div>
 
-                {/* Phone Number */}
+                {/* Phone */}
                 <div className="relative border border-primary rounded-md px-4 py-2 hover:border-secondary flex items-center focus-within:ring-1 focus-within:ring-primary-hover">
                     <input
                         type="tel"
@@ -83,11 +272,7 @@ export default function EnquiryBox() {
                         placeholder="Phone Number"
                         className="w-full bg-transparent outline-none text-sm"
                     />
-                    <img
-                        src="/svg/Phone Number SVG.svg"
-                        alt="phone"
-                        className="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 pointer-events-none"
-                    />
+                    <img src="/svg/Phone Number SVG.svg" alt="phone" className="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 pointer-events-none" />
                 </div>
 
                 {/* Full Name */}
@@ -99,12 +284,10 @@ export default function EnquiryBox() {
                         placeholder="Full Name"
                         className="w-full bg-transparent outline-none text-sm"
                     />
-                    <img
-                        src="/svg/Name SVG.svg"
-                        alt="name"
-                        className="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 pointer-events-none"
-                    />
+                    <img src="/svg/Name SVG.svg" alt="name" className="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 pointer-events-none" />
                 </div>
+
+                {/* Email */}
                 <div className="relative border border-primary rounded-md px-4 py-2 hover:border-secondary flex items-center focus-within:ring-1 focus-within:ring-primary-hover">
                     <input
                         type="email"
@@ -113,26 +296,24 @@ export default function EnquiryBox() {
                         placeholder="Email"
                         className="w-full bg-transparent outline-none text-sm"
                     />
-                    <img
-                        src="/svg/Email SVG.svg"
-                        alt="name"
-                        className="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 pointer-events-none"
-                    />
+                    <img src="/svg/Email SVG.svg" alt="email" className="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 pointer-events-none" />
                 </div>
+
+                {/* Accommodation (select instead of invalid input) */}
                 <div className="relative border border-primary rounded-md px-4 py-2 hover:border-secondary flex items-center focus-within:ring-1 focus-within:ring-primary-hover">
-                    <input
-                        type='option'
-                        value={accomodation}
-                        onChange={(e) => setAccomodation(e.target.value)}
-                        placeholder="Accomodation"
+                    <select
+                        value={accommodation}
+                        onChange={(e) => setAccommodation(e.target.value)}
                         className="w-full bg-transparent outline-none text-sm"
-                    />
-                    <img
-                        src="/svg/Email SVG.svg"
-                        alt="name"
-                        className="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 pointer-events-none"
-                    />
+                    >
+                        <option value="">Accommodation</option>
+                        <option value="hotel">Hotel</option>
+                        <option value="apartment">Apartment</option>
+                        <option value="villa">Villa</option>
+                    </select>
                 </div>
+
+                {/* Captcha */}
                 <div className="relative border border-primary rounded-md px-4 py-2 hover:border-secondary flex items-center focus-within:ring-1 focus-within:ring-primary-hover">
                     <input
                         type="number"
@@ -141,17 +322,20 @@ export default function EnquiryBox() {
                         placeholder="Captcha"
                         className="w-full bg-transparent outline-none text-sm"
                     />
-                    <span
-                        className="bg-white text-secondary pr-1 absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 pointer-events-none"
-                    >
+                    <span className="bg-white text-secondary pr-1 absolute right-3 top-1/2 transform -translate-y-1/2">
                         5+8
                     </span>
                 </div>
-                <button type='submit' className='flex justify-center cursor-pointer items-center gap-2 text-white font-semibold bg-secondary rounded-lg text-[22px]' >
+
+                {/* Submit */}
+                <button
+                    type="submit"
+                    className="flex justify-center items-center gap-2 text-white font-semibold bg-secondary rounded-lg text-[22px] px-4 py-2"
+                >
                     <span>Submit</span>
-                    <img src="/svg/SubmitArrow.svg" alt="" className='w-7 h-7' />
+                    <img src="/svg/SubmitArrow.svg" alt="submit" className="w-7 h-7" />
                 </button>
             </div>
-        </div>
+        </form>
     );
 }

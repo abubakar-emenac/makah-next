@@ -4,6 +4,7 @@ import data from '../../data/dummyData.json';
 import PackageCard from '../../Components/CommonComponents/PackageCard';
 import ViewAllButton from '../../Components/CommonComponents/ViewAllButton';
 import ScrollDetail from '../../Components/CommonComponents/ScrollDetail';
+import FAQSection from '../../Components/CommonComponents/FAQSection';
 
 export default function SpecificCategoryUmrah() {
     const [visibleCount, setVisibleCount] = useState(9);
@@ -55,6 +56,7 @@ export default function SpecificCategoryUmrah() {
             <div className="w-full max-w-[75%] mx-auto">
                 <ScrollDetail description={description} />
             </div>
+            <FAQSection />
         </div>
     );
 }
