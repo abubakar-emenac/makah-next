@@ -9,6 +9,8 @@ import UmrahPackageStar from "./Pages/UmrahPages/UmrahPackageStar"
 import UmrahDetail from "./Pages/UmrahPages/UmrahDetail"
 import CustomizationForm from "./Components/CommonComponents/CustomizationForm"
 import HajjPackage from "./Pages/HajjPackages/HajjPackage"
+import { Toaster } from "react-hot-toast";
+import VisaPage from "./Pages/CommonPages/VisaPage"
 
 function App() {
 
@@ -19,6 +21,10 @@ function App() {
         <Route
           path="/"
           element={<Home />}
+        />
+        <Route
+          path="/visa"
+          element={<VisaPage />}
         />
         <Route
           path="/customization"
@@ -53,6 +59,40 @@ function App() {
 
       </Routes>
       <Footer />
+      <Toaster
+        position="top-right"
+        reverseOrder={false}
+        toastOptions={{
+          // Global default styles
+          style: {
+            fontFamily: "Montserrat, sans-serif",
+            fontSize: "14px",
+            borderRadius: "12px",
+            background: "#1f2937", // dark gray
+            color: "#fff",
+          },
+          success: {
+            style: {
+              background: "#16a34a", // green
+              color: "#fff",
+            },
+            iconTheme: {
+              primary: "#fff",
+              secondary: "#16a34a",
+            },
+          },
+          error: {
+            style: {
+              background: "#dc2626", // red
+              color: "#fff",
+            },
+            iconTheme: {
+              primary: "#fff",
+              secondary: "#dc2626",
+            },
+          },
+        }}
+      />
     </>
   )
 }

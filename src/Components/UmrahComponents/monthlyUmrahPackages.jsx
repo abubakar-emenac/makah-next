@@ -6,8 +6,9 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import data from '../../data/dummyData.json';
 
-export default function MonthlyUmrahPackages({ title = ' December Umrah Deals', subtitle = `Makkah Travel is here to help you visit religious places and make Umrah trips that connect with your soul. We're experts at creating meaningful journeys. `, button = 'on', carperrow = 4 }) {
+export default function MonthlyUmrahPackages({ pageData }) {
     const sliderRef = useRef(null);
+    const widgetData = pageData?.section_2_widget?.[0];
     // const [currentSlide, setCurrentSlide] = useState(0);
 
 
@@ -111,16 +112,16 @@ export default function MonthlyUmrahPackages({ title = ' December Umrah Deals', 
                 <div className="w-full lg:w-[45%] flex flex-col justify-start">
                     <img src="/svg/crown-black.svg" alt="Crown" className="w-16 sm:w-18 md:w-20 mb-3 sm:mb-4" />
                     <h2 className="text-[28px] sm:text-[32px] md:text-[36px] font-abril leading-tight mb-3 sm:mb-4">
-                        {title}
+                        {widgetData.heading}
                     </h2>
                     <span className="font-Montserrat text-[14px] sm:text-[15px] md:text-[16px] leading-relaxed text-black max-w-md">
-                        {subtitle}
+                        {widgetData.subheading}
                     </span>
                 </div>
 
                 <div className="w-full lg:w-[45%] flex justify-start lg:justify-end">
                     <div className="flex items-center gap-3 flex-wrap">
-                        <ViewAllButton color="primary" slug="/" size="md" />
+                        <ViewAllButton color="primary" slug={widgetData.button_link} label={widgetData.button_text} size="md" />
                         <div className="flex items-center gap-3">
                             <span
                                 onClick={handlePrev}

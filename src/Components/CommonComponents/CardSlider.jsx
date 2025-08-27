@@ -13,6 +13,7 @@ const CARDS_PER_SLIDE = 3;
 export default function CardSlider({ pageData }) {
   const [currentSlide, setCurrentSlide] = useState(0);
   const sliderRef = useRef(null);
+  const widgetData = pageData?.section_1_widget?.[0];
 
   // Create slides of 3 cards each
   const slides = [];
@@ -39,7 +40,7 @@ export default function CardSlider({ pageData }) {
     speed: 700,
     slidesToShow: 1,
     slidesToScroll: 1,
-    autoplay: true, // We handle autoplay manually
+    autoplay: true,
     autoplaySpeed: 3000,
     arrows: false,
     beforeChange: (current, next) => setCurrentSlide(next),
@@ -109,24 +110,15 @@ export default function CardSlider({ pageData }) {
           <div className="flex flex-col justify-center">
             <div className="flex flex-col text-white text-[28px] sm:text-[36px] md:text-[40px] font-abril leading-tight">
               <img src="/svg/crown.svg" alt="Crown" className="w-14 sm:w-20 md:w-24 mb-4" />
-              <h2>Our Best Umrah</h2>
-              <h2>Deals 2025–2026</h2>
+              <h2>{widgetData.heading}</h2>
             </div>
 
             <span className="block text-white text-[14px] mt-6 font-Montserrat leading-relaxed">
-              Makkah Travel is here to help you visit
-              <br />
-              religious places and make Umrah trips
-              <br />
-              that connect with your soul. We're experts
-              <br />
-              at creating meaningful journeys, so it isn't
-              <br />
-              just a trip but a transformative experience.
+              {widgetData.subheading}
             </span>
 
             <div className="mt-8 flex items-center gap-3">
-              <ViewAllButton color="secondary" slug="/" size="sm" />
+              <ViewAllButton color="secondary" slug={widgetData.button_link} size="sm" label={widgetData.button_text} />
               <span
                 onClick={handlePrev}
                 className="bg-white cursor-pointer rounded-full p-2 shadow-md hover:scale-105 transition"

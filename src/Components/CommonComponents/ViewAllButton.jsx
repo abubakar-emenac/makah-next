@@ -57,7 +57,7 @@ const ViewAllButton = ({
       <span className={`rounded-full flex items-center justify-center ${iconWrapper}`}>
         {icon ? (
           typeof icon === "string" ? (
-            <img src={icon} alt="icon" className={iconSize} />
+            <img src={icon} alt="icon" className={iconSize} fetchPriority="high" />
           ) : (
             icon
           )

@@ -43,11 +43,17 @@ export default function Home() {
     return (
         <>
             <HeroSection pageData={homeData} />
-            <CardSlider pageData={homeData} />
-            <MonthlyUmrahPackages pageData={homeData} />
+            {homeData?.section_1_widget?.length > 0 && (
+                <CardSlider pageData={homeData} />
+            )}
+            {homeData?.section_2_widget?.length > 0 && (
+                <MonthlyUmrahPackages pageData={homeData} />
+            )}
             <WhyChoose pageData={homeData} />
             <CustomzieYpurPackage pageData={homeData} />
-            <HajjDeals pageData={homeData} />
+            {homeData?.section_3_widget?.length > 0 && (
+                <HajjDeals pageData={homeData} />
+            )}
             <Testmonials pageData={homeData} />
             <BlogSection pageData={homeData} />
             <div className="w-full lg:max-w-[75%] mx-auto">

@@ -1,19 +1,25 @@
 import { useState } from "react";
 import { ChevronDown, ChevronUp } from "lucide-react";
+import { BASE_URL_IMG } from "../../Helpers/apiEndpoints";
 
 export default function FAQSection({ pageData }) {
     const [openId, setOpenId] = useState(1);
     const faqs = pageData?.faqs ?? [];
+    const faqImageSrc = pageData?.faq_image_url;
+    const faqImageAlt = pageData?.faq_image_alt;
+    const faqHeading = pageData?.faqs_heading;
+    const faqSubheading = pageData?.faqs_subheading;
+    const fullImageUrl = faqImageSrc ? `${BASE_URL_IMG}/${faqImageSrc}` : null;
     return (
         <>
             <div className="w-full max-w-[82%] mx-auto mt-8 sm:mt-12 md:mt-20 px-4 sm:px-6 md:px-9 font-sans mb-20 relative">
                 <div className="w-full lg:w-[48%] mb-12 sm:mb-16">
                     <img src="/svg/crown-black.svg" alt="Crown" className="w-16 sm:w-18 md:w-24 mb-3 sm:mb-4" />
                     <h2 className="text-[28px] sm:text-[32px] md:text-[36px] font-abril leading-tight mb-3 sm:mb-4">
-                        What Our Clients Say
+                        {faqHeading}
                     </h2>
                     <p className="font-Montserrat text-[14px] sm:text-[15px] md:text-[16px] leading-relaxed text-black">
-                        Makkah Travel is here to help you visit religious places and make Umrah trips that connect with your soul.
+                        {faqSubheading}
                     </p>
                 </div>
                 <div className="w-full flex flex-col lg:flex-row gap-8">
@@ -21,8 +27,8 @@ export default function FAQSection({ pageData }) {
                     <div className="lg:w-1/2 flex flex-col justify-center">
                         <div className="w-full flex justify-center">
                             <img
-                                src="/svg/faq-illustration.svg"
-                                alt="FAQ Illustration"
+                                src={fullImageUrl}
+                                alt={faqImageAlt}
                                 className="w-full"
                             />
                         </div>

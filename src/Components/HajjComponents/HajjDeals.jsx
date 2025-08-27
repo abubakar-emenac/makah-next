@@ -175,7 +175,7 @@ import "slick-carousel/slick/slick-theme.css";
 import data from '../../data/dummyData.json';
 import PackageCard from '../CommonComponents/PackageCard';
 
-const HajjCards = () => {
+const HajjCards = ({ Packagedata }) => {
     const sliderRef = useRef(null);
     const [currentSlide, setCurrentSlide] = useState(0);
 
@@ -184,7 +184,7 @@ const HajjCards = () => {
     const pillsPerPage = 5;
     const [pillPage, setPillPage] = useState(0);
 
-
+    const cardData = Packagedata
 
     // const slickSettings = {
     //     dots: false,
@@ -268,16 +268,16 @@ const HajjCards = () => {
                 <div className="w-full lg:w-[45%]">
                     <img src="/svg/crown-black.svg" alt="Crown" className="w-16 mb-3" />
                     <h2 className="text-[24px] sm:text-[32px] md:text-[36px] font-abril mb-3 leading-tight">
-                        Best Hajj Deals 2025
+                        {cardData.heading}
                     </h2>
                     <p className="text-[14px] sm:text-[15px] md:text-[16px] font-Montserrat max-w-md leading-relaxed">
-                        Makkah Travel is here to help you visit religious places and make Umrah trips that connect with your soul. We're experts at creating meaningful journeys.
+                        {cardData.subheading}
                     </p>
                 </div>
 
                 <div className="w-full lg:w-[45%] flex justify-start lg:justify-end mt-4 lg:mt-0">
                     <div className="flex items-center gap-3 flex-wrap">
-                        <ViewAllButton color="primary" slug="/" size="md" />
+                        <ViewAllButton color="primary" slug={cardData.button_link} size="md" label={cardData.button_text} />
                         <div className="flex items-center gap-3">
                             <span onClick={handlePrev} className="p-2 bg-white border border-gray-200 rounded-full shadow cursor-pointer hover:scale-105 transition">
                                 <img src="/svg/arrow-left.svg" alt="Prev" className="w-5 h-5 sm:w-6 sm:h-6" />
@@ -333,11 +333,12 @@ const HajjCards = () => {
 
 
 
-export default function HajjDeals() {
+export default function HajjDeals({ pageData }) {
+    const widgetData = pageData?.section_3_widget?.[0];
     return (
         <div className="w-full mt-8 sm:mt-12 md:mt-16 md:px-9 flex flex-col lg:flex-row lg:justify-between gap-8">
             <div className="w-full lg:w-[72%]">
-                <HajjCards />
+                <HajjCards Packagedata={widgetData} />
             </div>
 
             {/* Illustration (hidden on small screens) */}

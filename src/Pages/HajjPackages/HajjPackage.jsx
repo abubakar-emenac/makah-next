@@ -125,10 +125,12 @@
 //     )
 // }
 
-import React, { useRef } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import HeroSection from '../../Components/CommonComponents/HeroSection';
 import PackageCard from '../../Components/CommonComponents/PackageCard';
 import Slider from 'react-slick';
+import axios from 'axios';
+import { endpoints } from '../../Helpers/apiEndpoints';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import hajjDummyData from '../../data/hajjDummyData.json';
@@ -136,9 +138,30 @@ import ScrollDetail from '../../Components/CommonComponents/ScrollDetail';
 import FAQSection from '../../Components/CommonComponents/FAQSection';
 
 export default function HajjPackage() {
-    const description =
-        '<h2><span style="color:hsl(312,81%,25%);">Search Your Desired Holidays</span>&nbsp;&nbsp;<br><span style="color:hsl(287,61%,26%);">Cheap Holidays 2025-26</span></h2><p class="w-full mt-3 mb-4 text-sm sm:text-base text-gray-700"><span style="color:hsl(0,0%,0%);">Travelers always look for comfort on their air trips to the places. Travelers always look for comfort on their air trips to the customers over their budgets. Travelers always look for comfort on their air trips to the customers over their budgets.</span></p><h2><span style="color:hsl(312,81%,25%);">Search Your Desired Holidays</span>&nbsp;&nbsp;<br><span style="color:hsl(287,61%,26%);">Cheap Holidays 2025-26</span></h2><p class="w-full mt-3 mb-4 text-sm sm:text-base text-gray-700"><span style="color:hsl(0,0%,0%);">Travelers always look for comfort on their air trips to the places. Travelers always look for comfort on their air trips to the customers over their budgets. Travelers always look for comfort on their air trips to the customers over their budgets.</span></p><h2><span style="color:hsl(312,81%,25%);">Search Your Desired Holidays</span>&nbsp;&nbsp;<br><span style="color:hsl(287,61%,26%);">Cheap Holidays 2025-26</span></h2><p class="w-full mt-3 mb-4 text-sm sm:text-base text-gray-700"><span style="color:hsl(0,0%,0%);">Travelers always look for comfort on their air trips to the places. Travelers always look for comfort on their air trips to the customers over their budgets. Travelers always look for comfort on their air trips to the customers over their budgets.</span></p><h2><span style="color:hsl(312,81%,25%);">Search Your Desired Holidays</span>&nbsp;&nbsp;<br><span style="color:hsl(287,61%,26%);">Cheap Holidays 2025-26</span></h2><p class="w-full mt-3 mb-4 text-sm sm:text-base text-gray-700"><span style="color:hsl(0,0%,0%);">Travelers always look for comfort on their air trips to the places. Travelers always look for comfort on their air trips to the customers over their budgets. Travelers always look for comfort on their air trips to the customers over their budgets.</span></p><h2><span style="color:hsl(312,81%,25%);">Search Your Desired Holidays</span>&nbsp;&nbsp;<br><span style="color:hsl(287,61%,26%);">Cheap Holidays 2025-26</span></h2><p class="w-full mt-3 mb-4 text-sm sm:text-base text-gray-700"><span style="color:hsl(0,0%,0%);">Travelers always look for comfort on their air trips to the places. Travelers always look for comfort on their air trips to the customers over their budgets. Travelers always look for comfort on their air trips to the customers over their budgets.</span></p><h2><span style="color:hsl(312,81%,25%);">Search Your Desired Holidays</span>&nbsp;&nbsp;<br><span style="color:hsl(287,61%,26%);">Cheap Holidays 2025-26</span></h2><p class="w-full mt-3 mb-4 text-sm sm:text-base text-gray-700"><span style="color:hsl(0,0%,0%);">Travelers always look for comfort on their air trips to the places. Travelers always look for comfort on their air trips to the customers over their budgets. Travelers always look for comfort on their air trips to the customers over their budgets.</span></p><h2><span style="color:hsl(312,81%,25%);">Search Your Desired Holidays</span>&nbsp;&nbsp;<br><span style="color:hsl(287,61%,26%);">Cheap Holidays 2025-26</span></h2><p class="w-full mt-3 mb-4 text-sm sm:text-base text-gray-700"><span style="color:hsl(0,0%,0%);">Travelers always look for comfort on their air trips to the places. Travelers always look for comfort on their air trips to the customers over their budgets. Travelers always look for comfort on their air trips to the customers over their budgets.</span></p><h2><span style="color:hsl(312,81%,25%);">Search Your Desired Holidays</span>&nbsp;&nbsp;<br><span style="color:hsl(287,61%,26%);">Cheap Holidays 2025-26</span></h2><p class="w-full mt-3 mb-4 text-sm sm:text-base text-gray-700"><span style="color:hsl(0,0%,0%);">Travelers always look for comfort on their air trips to the places. Travelers always look for comfort on their air trips to the customers over their budgets. Travelers always look for comfort on their air trips to the customers over their budgets.</span></p><h2><span style="color:hsl(312,81%,25%);">Search Your Desired Holidays</span>&nbsp;&nbsp;<br><span style="color:hsl(287,61%,26%);">Cheap Holidays 2025-26</span></h2><p class="w-full mt-3 mb-4 text-sm sm:text-base text-gray-700"><span style="color:hsl(0,0%,0%);">Travelers always look for comfort on their air trips to the places. Travelers always look for comfort on their air trips to the customers over their budgets. Travelers always look for comfort on their air trips to the customers over their budgets.</span></p>'
+    const [hajjData, setHajjData] = useState({});
 
+    useEffect(() => {
+        const fetchPageData = async () => {
+            try {
+                const res = await axios.get(endpoints.getPageUrl("hajj"));
+                console.log("API full response:", res.data);
+
+
+                if (res.data?.status === 1) {
+                    console.log("Result object:", res.data?.result);
+                    setHajjData(res.data.result);
+
+                    if (res.data.result?.browser_title) {
+                        document.title = res.data.result.browser_title;
+                    }
+                }
+            } catch (err) {
+                console.error("Error fetching page data:", err);
+            }
+        };
+
+        fetchPageData();
+    }, []);
 
     const sliderRefShifting = useRef(null);
     const sliderRefNonShifting = useRef(null);
@@ -206,13 +229,13 @@ export default function HajjPackage() {
 
     return (
         <div className=''>
-            <HeroSection />
+            <HeroSection pageData={hajjData} />
             {renderPackageSection("All Shifting Packages", shiftingPackages, sliderRefShifting)}
             {renderPackageSection("All Non-Shifting Packages", nonShiftingPackages, sliderRefNonShifting)}
             <div className="w-full lg:max-w-[75%] mx-auto my-5 mb-7">
-                <ScrollDetail description={description} />
+                <ScrollDetail pageData={hajjData} />
             </div>
-            <FAQSection />
+            <FAQSection pageData={hajjData} />
         </div>
     );
 }
