@@ -4,27 +4,28 @@ on:
   push:
     branches:
       - main   # or your deployment branch
+  workflow_dispatch:
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Code
+      - name: 🧾 Checkout Code
         uses: actions/checkout@v3
 
-      - name: Setup Node.js
+      - name: 🛠 Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 18
 
-      - name: Install Dependencies
+      - name: 📦 Install Dependencies
         run: npm install
 
-      - name: Build React App
+      - name: 🔨 Build React App
         run: npm run build
 
-      - name: Deploy React build to S3
+      - name: 🚀 Deploy React build to S3
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -32,7 +33,7 @@ jobs:
         run: |
           aws s3 sync dist/ s3://${{ secrets.S3_BUCKET_NAME }} --delete
 
-      - name: Fetch and Upload Root Sitemap
+      - name: 🌐 Fetch and Upload Root Sitemap
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -42,17 +43,17 @@ jobs:
           aws s3 cp sitemap.xml s3://${{ secrets.S3_BUCKET_NAME }}/sitemap.xml \
             --content-type "application/xml"
 
-      - name: Fetch and Upload Blog Post Sitemap
+      - name: 🌐 Fetch and Upload Blog Post Sitemap
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_REGION: ${{ secrets.AWS_REGION }}
         run: |
-          curl -s https://makkahtravel.co.uk/administrator/api/generate-sitemap?type=blog > post-sitemap.xml
+          curl -s https://makkahtravel.co.uk/administrator/api/generate-post-sitemap > post-sitemap.xml
           aws s3 cp post-sitemap.xml s3://${{ secrets.S3_BUCKET_NAME }}/blog/post-sitemap.xml \
             --content-type "application/xml"
 
-      - name: Invalidate CloudFront Cache
+      - name: ⚡ Invalidate CloudFront Cache
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -60,5 +61,5 @@ jobs:
           CLOUDFRONT_DISTRIBUTION_ID: ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }}
         run: |
           aws cloudfront create-invalidation \
-            --distribution-id $CLOUDFRONT_DISTRIBUTION_ID \
+            --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} \
             --paths "/sitemap.xml" "/blog/post-sitemap.xml"
