@@ -31,7 +31,7 @@ jobs:
 
       - name: 🌐 Download post-sitemap.xml from Laravel API
         run: |
-          mkdir -p dist/blog
+        
           curl -s -H "Accept: application/xml" https://makkahtravel.co.uk/administrator/api/generate-post-sitemap -o blog/post-sitemap.xml
 
       - name: 🚀 Upload React build + sitemaps to S3
