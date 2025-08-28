@@ -38,7 +38,7 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_REGION: ${{ secrets.AWS_REGION }}
         run: |
-          curl -s https://admin.emenactravel.co.uk/api/generate-sitemap > sitemap.xml
+          curl -s https://makkahtravel.co.uk/administrator/api/generate-sitemap > sitemap.xml
           aws s3 cp sitemap.xml s3://${{ secrets.S3_BUCKET_NAME }}/sitemap.xml \
             --content-type "application/xml"
 
@@ -48,7 +48,7 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_REGION: ${{ secrets.AWS_REGION }}
         run: |
-          curl -s https://admin.emenactravel.co.uk/api/generate-sitemap?type=blog > post-sitemap.xml
+          curl -s https://makkahtravel.co.uk/administrator/api/generate-sitemap?type=blog > post-sitemap.xml
           aws s3 cp post-sitemap.xml s3://${{ secrets.S3_BUCKET_NAME }}/blog/post-sitemap.xml \
             --content-type "application/xml"
 
