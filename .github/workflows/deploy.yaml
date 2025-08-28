@@ -1,55 +1,58 @@
-name: Build & Deploy React
+name: Deploy React + Dynamic Sitemaps
 
 on:
   push:
     branches:
-      - main
-  workflow_dispatch:
+      - main   # or your deployment branch
 
 jobs:
-  build-and-deploy:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: 🧾 Checkout code
+      - name: Checkout Code
         uses: actions/checkout@v3
 
-      - name: 🛠 Setup Node.js
-        uses: actions/setup-node@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
         with:
-          node-version: '22'
+          node-version: 18
 
-      - name: 📦 Install dependencies
+      - name: Install Dependencies
         run: npm install
 
-      - name: 🔨 Build the Vite app
+      - name: Build React App
         run: npm run build
 
-      # ✅ Sitemap.xml should stay at root
-      - name: 🌐 Download sitemap.xml from Laravel API
-        run: |
-          curl -s -H "Accept: application/xml" https://makkahtravel.co.uk/administrator/api/generate-sitemap -o sitemap.xml
-
-      # ✅ Post sitemap should go inside blog/
-      - name: 🌐 Download post-sitemap.xml from Laravel API
-        run: |
-          mkdir -p dist/blog
-          curl -s -H "Accept: application/xml" https://makkahtravel.co.uk/administrator/api/generate-post-sitemap -o dist/blog/post-sitemap.xml
-
-      - name: 🚀 Upload React build + sitemaps to S3
+      - name: Deploy React build to S3
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_REGION: ${{ secrets.AWS_REGION }}
         run: |
-          # Upload React build
           aws s3 sync dist/ s3://${{ secrets.S3_BUCKET_NAME }} --delete
-          
-          # Upload root sitemap.xml
-          aws s3 cp sitemap.xml s3://${{ secrets.S3_BUCKET_NAME }}/sitemap.xml
 
-      - name: ⚡ Invalidate CloudFront cache
-        if: ${{ env.CLOUDFRONT_DISTRIBUTION_ID != '' }}
+      - name: Fetch and Upload Root Sitemap
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: ${{ secrets.AWS_REGION }}
+        run: |
+          curl -s https://admin.emenactravel.co.uk/api/generate-sitemap > sitemap.xml
+          aws s3 cp sitemap.xml s3://${{ secrets.S3_BUCKET_NAME }}/sitemap.xml \
+            --content-type "application/xml"
+
+      - name: Fetch and Upload Blog Post Sitemap
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: ${{ secrets.AWS_REGION }}
+        run: |
+          curl -s https://admin.emenactravel.co.uk/api/generate-sitemap?type=blog > post-sitemap.xml
+          aws s3 cp post-sitemap.xml s3://${{ secrets.S3_BUCKET_NAME }}/blog/post-sitemap.xml \
+            --content-type "application/xml"
+
+      - name: Invalidate CloudFront Cache
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -58,4 +61,4 @@ jobs:
         run: |
           aws cloudfront create-invalidation \
             --distribution-id $CLOUDFRONT_DISTRIBUTION_ID \
-            --paths "/*"
+            --paths "/sitemap.xml" "/blog/post-sitemap.xml"
