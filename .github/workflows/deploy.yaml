@@ -3,8 +3,8 @@ name: Build & Deploy React
 on:
   push:
     branches:
-      - main           # Trigger on code push to main
-  workflow_dispatch:   # Allow manual deployment
+      - main
+  workflow_dispatch:
 
 jobs:
   build-and-deploy:
@@ -25,7 +25,16 @@ jobs:
       - name: 🔨 Build the Vite app
         run: npm run build
 
-      - name: 🚀 Upload React build to S3
+      - name: 🌐 Download sitemap.xml from Laravel API
+        run: |
+          curl -s -H "Accept: application/xml" https://makkahtravel.co.uk/administrator/api/generate-sitemap -o dist/sitemap.xml
+
+      - name: 🌐 Download post-sitemap.xml from Laravel API
+        run: |
+          mkdir -p dist/blog
+          curl -s -H "Accept: application/xml" https://makkahtravel.co.uk/administrator/api/generate-post-sitemap -o dist/blog/post-sitemap.xml
+
+      - name: 🚀 Upload React build + sitemaps to S3
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
