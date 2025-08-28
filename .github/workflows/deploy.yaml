@@ -25,15 +25,16 @@ jobs:
       - name: 🔨 Build the Vite app
         run: npm run build
 
+      # ✅ Sitemap.xml should stay at root
       - name: 🌐 Download sitemap.xml from Laravel API
         run: |
           curl -s -H "Accept: application/xml" https://makkahtravel.co.uk/administrator/api/generate-sitemap -o sitemap.xml
 
+      # ✅ Post sitemap should go inside blog/
       - name: 🌐 Download post-sitemap.xml from Laravel API
         run: |
-          mkdir -p blog
-          curl -s -H "Accept: application/xml" https://makkahtravel.co.uk/administrator/api/generate-post-sitemap -o blog/post-sitemap.xml
-
+          mkdir -p dist/blog
+          curl -s -H "Accept: application/xml" https://makkahtravel.co.uk/administrator/api/generate-post-sitemap -o dist/blog/post-sitemap.xml
 
       - name: 🚀 Upload React build + sitemaps to S3
         env:
@@ -41,7 +42,11 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_REGION: ${{ secrets.AWS_REGION }}
         run: |
+          # Upload React build
           aws s3 sync dist/ s3://${{ secrets.S3_BUCKET_NAME }} --delete
+          
+          # Upload root sitemap.xml
+          aws s3 cp sitemap.xml s3://${{ secrets.S3_BUCKET_NAME }}/sitemap.xml
 
       - name: ⚡ Invalidate CloudFront cache
         if: ${{ env.CLOUDFRONT_DISTRIBUTION_ID != '' }}
