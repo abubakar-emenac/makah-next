@@ -1,223 +1,4 @@
-// import React from 'react'
-// import Navbar from '../../Components/CommonComponents/NavBar'
-// import ImageGallery from '../CommonPages/ImageGallery'
-// import ImageSlider from '../../Components/CommonComponents/ImageSlider'
-// import Testmonials from '../../Components/CommonComponents/Testmonials'
-// import MonthlyUmrahPackages from '../../Components/UmrahComponents/monthlyUmrahPackages'
-// import NeedHelp from '../../Components/CommonComponents/NeedHelp'
-
-// export default function UmrahDetail() {
-//     const button = [
-//         {
-//             title: 'Call Now!',
-//             info: '(0208) - 000 - 000',
-//             icon: '/svg/callNow.svg'
-//         },
-//         {
-//             title: 'Send Email!',
-//             info: 'info@makkahtravel.co.uk',
-//             icon: '/svg/sendMail.svg'
-//         },
-//         {
-//             title: 'WhatsApp Chat!',
-//             info: '(0208) - 000 - 000',
-//             icon: '/svg/whatsappMsg.svg'
-//         }
-//     ]
-//     const icon = [
-//         {
-//             icon: '/svg/flight.svg',
-//             label: 'Flight'
-//         },
-//         {
-//             icon: '/svg/hotel.svg',
-//             label: 'Hotel'
-//         },
-//         {
-//             icon: '/svg/visa.svg',
-//             label: 'Visa'
-//         },
-//         {
-//             icon: '/svg/transport.svg',
-//             label: 'Transport'
-//         },
-//         {
-//             icon: '/svg/dinner.svg',
-//             label: 'Half-Board'
-//         },
-//     ]
-//     return (
-//         <div>
-//         <div className='flex flex-col w-full max-w-[75%] mx-auto'>
-//             <Navbar />
-//             <div className='flex flex-col w-full'>
-//                 <div className='flex justify-between items-center'>
-//                         <div className="w-full md:w-3/4 lg:w-[55%]">
-//                         <img src="/svg/filledStar.svg" alt="" className='w-8' />
-//                         <h1 className='font-Montserrat font-bold text-2xl'>4 Star 10 Nights December Umrah Package 4 Star 10 Nights December Umrah Package</h1>
-//                     </div>
-//                     <div className="hidden lg:block w-px h-16 bg-secondary" />
-//                     <div className="text-center flex items-end gap-1">
-//                         <span className="text-[12px] md:text-[14px] mb-[6px]">from</span>
-//                         <span className="text-[32px] md:text-[40px] text-primary font-bold font-abril">£1200</span>
-//                         <span className="text-[30px] font-bold text-primary font-abril">.00</span>
-//                         <span className="text-[12px] md:text-[14px] mb-[6px]">/pp</span>
-//                     </div>
-
-//                 </div>
-
-
-//                 <div className='flex w-full mt-5 justify-between'>
-//                     {/* slider */}
-//                     <div className='w-full max-w-2/3'>
-//                         <ImageGallery />
-//                     </div>
-
-
-//                     <div className='flex flex-col w-full max-w-[30%]'>
-//                         <div className='flex flex-col justify-between gap-y-6 items-end w-full'>
-//                             {[
-//                                 {
-//                                     nights: '05',
-//                                     title: 'Makkah Hotel Nights',
-//                                     subtitle: 'Makarem Ajeyad Hotel',
-//                                 },
-//                                 {
-//                                     nights: '05',
-//                                     title: 'Madinah Hotel Nights',
-//                                     subtitle: 'Makarem Ajeyad Hotel',
-//                                 },
-//                             ].map((item, idx) => (
-//                                 <div
-//                                     key={idx}
-//                                     className='flex items-center justify-end w-full gap-x-10'
-//                                 >
-//                                     {/* Number */}
-//                                     <div className='w-12 text-center'>
-//                                         <span className='text-secondary font-Montserrat text-3xl font-semibold'>
-//                                             {item.nights}
-//                                         </span>
-//                                     </div>
-
-//                                     {/* Divider */}
-//                                     <div className='hidden lg:block w-[2px] h-12 bg-secondary' />
-
-//                                     {/* Text */}
-//                                     <div className='flex flex-col text-end font-Montserrat overflow-hidden'>
-//                                         <h3 className='text-2xl whitespace-nowrap overflow-hidden text-ellipsis'>
-//                                             {item.title}
-//                                         </h3>
-//                                         <span className='text-secondary whitespace-nowrap overflow-hidden text-ellipsis'>
-//                                             {item.subtitle}
-//                                         </span>
-//                                     </div>
-//                                 </div>
-//                             ))}
-//                         </div>
-
-//                             <div className='flex flex-col mt-7 gap-y-4 w-full items-end'>
-//                                 {button.map((btn, i) => (
-//                                     <div key={i} className='flex items-center gap-2'>
-//                                         <button
-//                                             className='flex flex-col cursor-pointer text-end w-[330px] px-8 py-1 bg-primary text-white font-abril text-lg leading-tight'
-//                                         >
-//                                             {btn.title}
-//                                             <br />
-//                                             {btn.info}
-//                                         </button>
-//                                         <div className='bg-white p-2 rounded-full shadow-sm flex items-center justify-center'>
-//                                             <img src={btn.icon} alt={btn.title} className='w-10 h-10 object-contain' />
-//                                         </div>
-//                                     </div>
-//                                 ))}
-//                             </div>
-
-
-
-//                             <div className='flex w-full justify-end items-center mt-9 gap-x-8'>
-//                                 <img src="/svg/atol.svg" alt="" />
-//                                 <div className='hidden lg:block w-[2px] h-12 bg-black' />
-//                                 <img src="/svg/iata.svg" alt="" />
-//                             </div>
-//                         </div>
-//                     </div>
-//                 </div>
-//                 <div className='flex flex-col w-full'>
-//                     <h2 className='text-3xl font-Montserrat font-semibold'>PACKAGE DETAILS </h2>
-//                     <div className="w-full flex justify-between items-center mt-6">
-//                         {icon.map((item, i) => (
-//                             <React.Fragment key={i}>
-//                                 {/* Icon Box */}
-//                                 <div className="flex flex-col items-center gap-2 font-Montserrat">
-//                                     <div className="w-14 h-14 flex items-center justify-center rounded">
-//                                         <img src={item.icon} alt={item.label} className="w-12 h-12 object-contain items-end" />
-//                                     </div>
-//                                     <span className="text-xs text-center text-[#222]">{item.label}</span>
-//                                 </div>
-
-//                                 {/* Vertical Divider - only between items */}
-//                                 {i !== icon.length - 1 && (
-//                                     <div className="h-10 w-px bg-secondary mx-4 mb-2" />
-//                                 )}
-//                             </React.Fragment>
-//                         ))}
-//                     </div>
-
-
-
-
-
-//                 </div>
-//                 <div className='my-12 flex flex-col'>
-//                     <h2 className='text-3xl font-Montserrat font-semibold'>HOTEL DETAILS: </h2>
-//                     <div className='w-full flex justify-end my-3'>
-//                         <div className='flex flex-col my-12 w-full max-w-[42%] mx-3'>
-//                             <div className="flex justify-end">
-//                                 <img src="/svg/filledStar.svg" alt="" className='w-7' />
-//                             </div>
-//                             <h2 className='text-3xl font-abril text-end'>Hotel Makeram Ajyad</h2>
-//                             <span className='text-secondary font-Montserrat text-end'>Hotel in Makkah</span>
-//                             <p className='font-Montserrat py-1.5 text-end'>
-//                                 This hotel half Km is away from the Masjid E Haram and offer the 24/7 room services with the delicious food on-site restaurant. The rooms are well-decorated and furnished with luxury facilities such as minibar and separate washroom. They offer the traditional dishes of Arab like Shawarma and grilled chicken to the customers. There is no complimentary breakfast and no shuttle services are available at this 4-star hotel.
-//                             </p>
-//                         </div>
-//                         <div>
-//                             <ImageSlider />
-//                         </div>
-//                     </div>
-//                     <div className='w-full flex'>
-//                         <div>
-//                             <ImageSlider />
-//                         </div>
-//                         <div className='flex flex-col my-12 w-full max-w-[42%] mx-3'>
-
-//                             <div className="flex">
-//                                 <img src="/svg/filledStar.svg" alt="" className='w-7' />
-//                             </div>
-//                             <h2 className='text-3xl font-abril text-start'>Hotel Makeram Ajyad</h2>
-//                             <span className='text-secondary font-Montserrat text-start'>Hotel in Makkah</span>
-//                             <p className='font-Montserrat py-1.5 text-start'>
-//                                 This hotel half Km is away from the Masjid E Haram and offer the 24/7 room services with the delicious food on-site restaurant. The rooms are well-decorated and furnished with luxury facilities such as minibar and separate washroom. They offer the traditional dishes of Arab like Shawarma and grilled chicken to the customers. There is no complimentary breakfast and no shuttle services are available at this 4-star hotel.
-//                             </p>
-//                         </div>
-
-//                     </div>
-
-//                 </div>
-
-//             </div>
-//             <Testmonials />
-//             <div className='w-full max-w-[75%] mx-auto my-5'>
-//                 <MonthlyUmrahPackages title='More Relevant Packages' subtitle='Makkah Travel is here to help you visit religious places and make Umrah trips that connect with your soul. We are experts at creating.' button='off' carperrow={3} />
-//             </div>
-
-//             <NeedHelp />
-
-//         </div>
-//     )
-// }
-
-import React from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import Navbar from '../../Components/CommonComponents/NavBar'
 import ImageGallery from '../CommonPages/ImageGallery'
 import ImageSlider from '../../Components/CommonComponents/ImageSlider'
@@ -225,8 +6,90 @@ import Testmonials from '../../Components/CommonComponents/Testmonials'
 import MonthlyUmrahPackages from '../../Components/UmrahComponents/monthlyUmrahPackages'
 import NeedHelp from '../../Components/CommonComponents/NeedHelp'
 import CustomizeUmrahPopup from '../../Components/UmrahComponents/CustomizeUmrahPopup'
+import { useParams, useLocation } from 'react-router-dom'
+import { endpoints, BASE_URL_IMG, BASE_URL_SVG } from '../../Helpers/apiEndpoints'
+import axios from 'axios'
+
 
 export default function UmrahDetail() {
+    const { slug } = useParams();
+    const location = useLocation();
+    const [packageData, setPackageData] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+    const abortControllerRef = useRef(null);
+    const isMountedRef = useRef(true);
+    console.log("Render caused by:", {
+        slug,
+        pathname: location.pathname,
+        key: location.key
+    });
+    useEffect(() => {
+        console.log("Route changed to:", location.pathname);
+    }, [location.pathname]);
+
+    useEffect(() => {
+        isMountedRef.current = true;
+        console.log("UmrahDetail component mounted!");
+
+        return () => {
+            isMountedRef.current = false;
+            console.log("UmrahDetail component unmounted!");
+            // Cancel any ongoing API request
+            if (abortControllerRef.current) {
+                abortControllerRef.current.abort();
+            }
+        };
+    }, []);
+
+    console.log("The slug of package is", slug)
+    console.log("The current package data is:", packageData);
+    useEffect(() => {
+        const fetchPageData = async () => {
+            if (abortControllerRef.current) {
+                abortControllerRef.current.abort();
+            }
+            abortControllerRef.current = new AbortController();
+
+            setLoading(true);
+            setError(null);
+            try {
+                const res = await axios.get(endpoints.umrahByslug(slug), {
+                    signal: abortControllerRef.current.signal,
+                });
+                console.log("Umrah detail full response:", res.data);
+
+                if (isMountedRef.current && res.data?.status === 1) {
+                    console.log("Result object:", res.data?.result);
+                    setPackageData(res.data.result);
+
+                    if (res.data.result?.browser_title) {
+                        document.title = res.data.result.browser_title;
+                    }
+                }
+            } catch (err) {
+                if (isMountedRef.current) {
+                    console.error("Error fetching page data:", err);
+                    setError("Failed to load package data");
+                }
+            } finally {
+                if (isMountedRef.current) {
+                    setLoading(false);
+                }
+            }
+        };
+
+        if (slug) {
+            fetchPageData();
+        }
+        return () => {
+            if (abortControllerRef.current) {
+                abortControllerRef.current.abort();
+            }
+        };
+    }, [slug]);
+
+
     const button = [
         {
             title: 'Call Now!',
@@ -243,20 +106,51 @@ export default function UmrahDetail() {
             info: '(0208) - 000 - 000',
             icon: '/svg/whatsappMsg.svg'
         }
-    ]
+    ];
+    const services = {
+        flight: packageData?.flight,
+        accomodation: packageData?.accomodation,
+        visa: packageData?.visa,
+        transfer: packageData?.transfer,
+        breakfast: packageData?.breakfast,
+    };
+
     const icon = [
-        { icon: '/svg/flight.svg', label: 'Flight' },
-        { icon: '/svg/hotel.svg', label: 'Hotel' },
-        { icon: '/svg/visa.svg', label: 'Visa' },
-        { icon: '/svg/transport.svg', label: 'Transport' },
-        { icon: '/svg/dinner.svg', label: 'Half-Board' },
-    ]
-    const includes = [
-        "Umrah Visa", "3 Nights in Makkah 3 Star Hotel", "All Packages Are Based On Quad Sharing", "Direct Flights Can Be Arranged On Special Request", "Return Flights", "2 Nights in Madinah 3 Star Hotel", "Ground Transfers Can Be Included On Extra Cost"
-    ]
+        { key: 'flight', icon: '/svg/flight.svg', label: 'Flight' },
+        { key: 'accomodation', icon: '/svg/hotel.svg', label: 'Hotel' },
+        { key: 'visa', icon: '/svg/visa.svg', label: 'Visa' },
+        { key: 'transfer', icon: '/svg/transport.svg', label: 'Transport' },
+        { key: 'breakfast', icon: '/svg/dinner.svg', label: 'Half-Board' },
+    ];
+    const activeIcons = icon.filter(item => services[item.key] === 1);
+    if (loading) {
+        return (
+            <div className="flex justify-center items-center h-64">
+                <div>Loading...</div>
+            </div>
+        );
+    }
+    if (error) {
+        return (
+            <div className="flex justify-center items-center h-64">
+                <div>{error}</div>
+            </div>
+        );
+    }
+
+    if (!packageData) {
+        return (
+            <div className="flex justify-center items-center h-64">
+                <div>Package not found.</div>
+            </div>
+        );
+    }
 
     return (
         <div>
+            <div style={{ position: 'fixed', top: 0, left: 0, background: 'red', color: 'white', padding: '10px', zIndex: 9999 }}>
+                DEBUG: UmrahDetail rendering - slug: {slug}
+            </div>
             <div className="flex flex-col w-full max-w-[95%] md:max-w-[85%] lg:max-w-[80%] mx-auto px-4">
                 <Navbar />
 
@@ -265,13 +159,13 @@ export default function UmrahDetail() {
                     <div className="w-full md:w-3/4 lg:w-[55%]">
                         <img src="/svg/filledStar.svg" alt="" className="w-6 sm:w-7 lg:w-8" />
                         <h1 className="font-Montserrat font-bold text-xl sm:text-2xl lg:text-4xl leading-tight">
-                            4 Star 10 Nights December Umrah Package 4 Star 10 Nights December Umrah Package
+                            {packageData?.title}
                         </h1>
                     </div>
                     <div className="hidden lg:block w-px h-16 bg-secondary" />
                     <div className="text-center flex items-end gap-1">
                         <span className="text-xs md:text-sm mb-[6px]">from</span>
-                        <span className="text-2xl md:text-4xl text-primary font-bold font-abril">£1200</span>
+                        <span className="text-2xl md:text-4xl text-primary font-bold font-abril">£{packageData?.price}</span>
                         <span className="text-xl md:text-3xl font-bold text-primary font-abril">.00</span>
                         <span className="text-xs md:text-sm mb-[6px]">/pp</span>
                     </div>
@@ -280,15 +174,15 @@ export default function UmrahDetail() {
                 {/* Image Gallery + Hotel Nights */}
                 <div className="flex flex-col lg:flex-row w-full mt-5 gap-6">
                     <div className="w-full lg:w-2/3">
-                        <ImageGallery />
+                        <ImageGallery images={packageData?.images || []} />
                     </div>
 
                     <div className="flex flex-col w-full lg:w-1/3">
                         {/* Nights Info */}
                         <div className="flex flex-col justify-between gap-y-6 items-end w-full">
                             {[
-                                { nights: '05', title: 'Makkah Hotel Nights', subtitle: 'Makarem Ajeyad Hotel' },
-                                { nights: '05', title: 'Madinah Hotel Nights', subtitle: 'Makarem Ajeyad Hotel' },
+                                { nights: packageData?.makkah_night, title: 'Makkah Hotel Nights', subtitle: packageData?.makkah_hotel?.name },
+                                { nights: packageData?.madinah_night, title: 'Madinah Hotel Nights', subtitle: packageData?.madinah_hotel?.name },
                             ].map((item, idx) => (
                                 <div key={idx} className="flex items-center justify-end w-full gap-x-6">
                                     <div className="w-12 text-center">
@@ -338,7 +232,7 @@ export default function UmrahDetail() {
                 <div className="flex flex-col w-full mt-8">
                     <h2 className="text-2xl md:text-3xl font-Montserrat font-semibold">PACKAGE DETAILS</h2>
                     <div className="w-full flex flex-wrap justify-center md:justify-between items-center gap-4 mt-6">
-                        {icon.map((item, i) => (
+                        {/* {icon.map((item, i) => (
                             <React.Fragment key={i}>
                                 <div className="flex flex-col items-center gap-2 font-Montserrat">
                                     <div className="w-14 h-14 flex items-center justify-center rounded">
@@ -348,14 +242,35 @@ export default function UmrahDetail() {
                                 </div>
                                 {i !== icon.length - 1 && <div className="hidden md:block h-10 w-px bg-secondary mx-4 mb-2" />}
                             </React.Fragment>
+                        ))} */}
+                        {activeIcons.map((item, i) => (
+                            <React.Fragment key={i}>
+                                <div className="flex flex-col items-center gap-2 font-Montserrat">
+                                    <div className="w-14 h-14 flex items-center justify-center rounded">
+                                        <img
+                                            src={item.icon}
+                                            alt={item.label}
+                                            className="w-10 sm:w-12 h-10 sm:h-12 object-contain"
+                                        />
+                                    </div>
+                                    <span className="text-xs sm:text-sm text-center text-[#222]">
+                                        {item.label}
+                                    </span>
+                                </div>
+                                {i !== activeIcons.length - 1 && (
+                                    <div className="hidden md:block h-10 w-px bg-secondary mx-4 mb-2" />
+                                )}
+                            </React.Fragment>
                         ))}
                     </div>
                 </div>
                 <div className="w-full flex flex-col lg:flex-row justify-between gap-6 mt-10">
                     {/* Left (2/3 width on lg+, full width on mobile) */}
                     <div className="w-full lg:w-3/4 font-Montserrat text-[16px]">
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3 bg-[rgba(219,158,48,0.08)] p-7">
-                            {includes.slice(0, 8).map((item, idx) => (
+                        <div
+                            dangerouslySetInnerHTML={packageData?.description ? { __html: packageData.description } : undefined}
+                            className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3 bg-[rgba(219,158,48,0.08)] p-7">
+                            {/* {includes.slice(0, 8).map((item, idx) => (
                                 <div key={idx} className="flex items-start">
                                     <img
                                         src="/svg/bullet.svg"
@@ -364,7 +279,7 @@ export default function UmrahDetail() {
                                     />
                                     <span className="text-sm leading-snug">{item}</span>
                                 </div>
-                            ))}
+                            ))} */}
                         </div>
                     </div>
 
@@ -393,30 +308,36 @@ export default function UmrahDetail() {
                             <div className="flex justify-end">
                                 <img src="/svg/filledStar.svg" alt="" className="w-6 sm:w-7" />
                             </div>
-                            <h2 className="text-xl sm:text-2xl lg:text-3xl font-abril text-end">Hotel Makeram Ajyad</h2>
+                            <h2 className="text-xl sm:text-2xl lg:text-3xl font-abril text-end">{packageData?.makkah_hotel?.name}</h2>
                             <span className="text-secondary font-Montserrat text-end">Hotel in Makkah</span>
-                            <p className="font-Montserrat py-1.5 text-end text-sm sm:text-base">
-                                This hotel half Km is away from the Masjid E Haram and offer the 24/7 room services with the delicious food on-site restaurant. The rooms are well-decorated and furnished with luxury facilities such as minibar and separate washroom. They offer the traditional dishes of Arab like Shawarma and grilled chicken to the customers. There is no complimentary breakfast and no shuttle services are available at this 4-star hotel.
+                            <p className="font-Montserrat py-1.5 text-end text-sm sm:text-base"
+                                dangerouslySetInnerHTML={{
+                                    __html: packageData?.makkah_hotel?.description || ""
+                                }}
+                            >
                             </p>
                         </div>
                         <div className="order-1 lg:order-2 w-full lg:w-auto">
-                            <ImageSlider />
+                            <ImageSlider images={packageData?.makkah_hotel?.images || []} />
                         </div>
                     </div>
 
                     {/* Second Hotel */}
                     <div className="flex flex-col lg:flex-row items-center lg:items-start">
                         <div className="w-full lg:w-auto">
-                            <ImageSlider />
+                            <ImageSlider images={packageData?.madinah_hotel?.images || []} />
                         </div>
                         <div className="flex flex-col w-full lg:w-[42%] bg-[#F4F4F4] mt-14 pl-5">
                             <div className="flex">
                                 <img src="/svg/filledStar.svg" alt="" className="w-6 sm:w-7" />
                             </div>
-                            <h2 className="text-xl sm:text-2xl lg:text-3xl font-abril text-start">Hotel Makeram Ajyad</h2>
+                            <h2 className="text-xl sm:text-2xl lg:text-3xl font-abril text-start">{packageData?.madinah_hotel?.name}</h2>
                             <span className="text-secondary font-Montserrat text-start">Hotel in Makkah</span>
-                            <p className="font-Montserrat py-1.5 text-start text-sm sm:text-base ">
-                                This hotel half Km is away from the Masjid E Haram and offer the 24/7 room services with the delicious food on-site restaurant. The rooms are well-decorated and furnished with luxury facilities such as minibar and separate washroom. They offer the traditional dishes of Arab like Shawarma and grilled chicken to the customers. There is no complimentary breakfast and no shuttle services are available at this 4-star hotel.
+                            <p className="font-Montserrat py-1.5 text-start text-sm sm:text-base "
+                                dangerouslySetInnerHTML={{
+                                    __html: packageData?.madinah_hotel?.description || ""
+                                }}
+                            >
                             </p>
                         </div>
                     </div>
@@ -438,4 +359,6 @@ export default function UmrahDetail() {
             <CustomizeUmrahPopup />
         </div>
     )
+
+
 }
