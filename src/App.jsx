@@ -11,15 +11,11 @@ import CustomizationForm from "./Components/CommonComponents/CustomizationForm"
 import HajjPackage from "./Pages/HajjPackages/HajjPackage"
 import { Toaster } from "react-hot-toast";
 import VisaPage from "./Pages/CommonPages/VisaPage"
-
 import AnalyticsInjector from "./Hooks/AnalyticsInjector";
 import useSeoScripts from "./Hooks/useSeoScripts";
 import useFaviconInjector from "./Hooks/useFaviconInjector";
 import useGlobalSettingsInjector from "./Hooks/useGlobalSettingsInjector";
 import HajjDetail from "./Pages/HajjPackages/HajjDetail "
-
-
-import HajjDetail from "./Pages/HajjPackages/HajjDetail"
 import Bloghome from "./Pages/BlogComponents/Bloghome"
 import BlogDetails from "./Pages/BlogComponents/BlogDetails"
 
