@@ -12,12 +12,12 @@ jobs:
     steps:
       - name: 🔽 Download sitemap.xml from Laravel API
         run: |
-          curl -s -H "Accept: application/xml" https://makkahtravel.co.uk/administrator/api/generate-sitemap -o sitemap.xml
+          curl -s -H "Accept: application/xml" https://admin.makkahtravel.co.uk/api/generate-sitemap -o sitemap.xml
 
       - name: 🔽 Download post-sitemap.xml from Laravel API
         run: |
           mkdir -p blog
-          curl -s -H "Accept: application/xml" https://makkahtravel.co.uk/administrator/api/generate-post-sitemap -o blog/post-sitemap.xml
+          curl -s -H "Accept: application/xml" https://admin.makkahtravel.co.uk/api/generate-post-sitemap -o blog/post-sitemap.xml
 
       - name: ⚙️ Configure AWS CLI
         uses: aws-actions/configure-aws-credentials@v2
