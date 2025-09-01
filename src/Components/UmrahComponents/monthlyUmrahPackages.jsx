@@ -1,16 +1,84 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import ViewAllButton from '../CommonComponents/ViewAllButton';
 import PackageCard from '../CommonComponents/PackageCard';
 import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import data from '../../data/dummyData.json';
-
+import { endpoints } from '../../Helpers/apiEndpoints';
+import axios from 'axios';
 export default function MonthlyUmrahPackages({ pageData }) {
     const sliderRef = useRef(null);
+    const [packages, setPackages] = useState([]);
+    const [type, setType] = useState();
     const widgetData = pageData?.section_2_widget?.[0];
     // const [currentSlide, setCurrentSlide] = useState(0);
+    useEffect(() => {
+        const fetchPackages = async () => {
+            try {
+                let response;
+                console.log("🔍 widgetData:", widgetData);
 
+                if (widgetData?.umrah_type !== undefined) {
+                    setType("umrah")
+                    console.log("📌 Detected: Umrah branch");
+                    if (widgetData?.umrah_package_ids) {
+                        console.log("➡️ Calling Umrah by ID:", widgetData.umrah_package_ids);
+                        response = await axios.get(
+                            endpoints.umrahById(widgetData.umrah_package_ids)
+                        );
+                    } else if (widgetData?.star && Number(widgetData.star) > 0) {
+                        const stars = Number(widgetData.star);
+                        const type = Number(widgetData.umrah_type);
+                        console.log("➡️ Calling Umrah by Stars:", stars, "Type:", type);
+                        response = await axios.get(endpoints.umrahByStar(stars, type));
+                    }
+                    else if (widgetData?.umrah_type) {
+                        console.log("➡️ Calling Umrah by Type:", widgetData.umrah_type);
+                        response = await axios.get(
+                            endpoints.umrahByType(widgetData.umrah_type)
+                        );
+                    } else {
+                        console.log("➡️ Calling Default Umrah Packages");
+                        response = await axios.get(endpoints.getUmrah);
+                    }
+                }
+                else if (widgetData?.hajj_type !== undefined) {
+                    setType("hajj")
+                    console.log("📌 Detected: Hajj branch");
+                    if (widgetData?.hajj_package_ids) {
+                        console.log("➡️ Calling Hajj by ID:", widgetData.hajj_package_ids);
+                        response = await axios.get(
+                            endpoints.hajjById(widgetData.hajj_package_ids)
+                        );
+                    } else if (widgetData?.star && Number(widgetData.star) > 0) {
+                        const stars = Number(widgetData.star);
+                        const type = Number(widgetData.hajj_type);
+                        console.log("➡️ Calling hajj by Stars:", stars, "Type:", type);
+                        response = await axios.get(endpoints.hajjByStar(stars, type));
+                    }
+                    else if (widgetData?.hajj_type) {
+                        console.log("➡️ Calling Hajj by Type:", widgetData.hajj_type);
+                        response = await axios.get(
+                            endpoints.hajjByType(widgetData.hajj_type)
+                        );
+                    } else {
+                        console.log("➡️ Calling Default Hajj Packages");
+                        response = await axios.get(endpoints.getHajj);
+                    }
+                }
+                else {
+                    console.log("⚠️ No umrah_type or hajj_type → fallback to Umrah");
+                    response = await axios.get(endpoints.getUmrah);
+                }
+
+                setPackages(response.data?.result?.data || []);
+            } catch (error) {
+                console.error("Error fetching packages:", error);
+            }
+        };
+
+        fetchPackages();
+    }, [widgetData]);
 
     const handleNext = () => {
         if (sliderRef.current) {
@@ -82,7 +150,7 @@ export default function MonthlyUmrahPackages({ pageData }) {
             {
                 breakpoint: 1024, // ≤ 1024px
                 settings: {
-                    slidesToShow: 2.5,
+                    slidesToShow: 2,
                     slidesToScroll: 1,
                 }
             },
@@ -145,14 +213,9 @@ export default function MonthlyUmrahPackages({ pageData }) {
             {/* Slider Section */}
             <div className="mt-6 sm:mt-7 md:mt-8">
                 <Slider {...slickSettings} ref={sliderRef} className="w-full">
-                    {data.map((item, index) => (
+                    {packages.map((item, index) => (
                         <div key={index} className="px-2">
-                            <PackageCard
-                                description={item.description}
-                                night={item.night}
-                                star={item.star}
-                                price={item.price}
-                            />
+                            <PackageCard pkg={item} p_type={type} />
                         </div>
                     ))}
                 </Slider>

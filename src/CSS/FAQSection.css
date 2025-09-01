@@ -1,0 +1,59 @@
+/* FAQSection.css */
+
+:root {
+    --primary: #DB9E30;
+    /* your primary */
+    --primary-alpha: rgba(219, 158, 48, 0.1);
+    /* 10% opacity */
+  }
+  
+  .faq-scroll-container {
+    /* Set the fixed height for the container */
+    height: 550px;
+    /* Enable vertical scrollbar when content overflows */
+    overflow-y: auto;
+    overflow-x: hidden;
+    /* Direction: rtl places scrollbar on the left */
+    direction: rtl; 
+    -webkit-overflow-scrolling: touch;
+    
+    /* Add padding to the container to create spacing on the right and prevent content from touching the scrollbar */
+    padding-left: 1rem; /* Adjust as needed */
+    padding-right: 1.5rem; /* This creates the margin on the right */
+  
+    /* Firefox styling */
+    scrollbar-width: thin; 
+    scrollbar-color: var(--primary) var(--primary-alpha); 
+  }
+  
+  /* Reset the direction for the content inside */
+  .faq-scroll-container > div {
+    direction: ltr;
+  }
+  
+  /* WebKit scrollbar styling */
+  .faq-scroll-container::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  .faq-scroll-container::-webkit-scrollbar-track {
+    background: var(--primary-alpha);
+    border-radius: 999px;
+    padding: 8px 0;
+    background-clip: content-box;
+  }
+  
+  .faq-scroll-container::-webkit-scrollbar-thumb {
+    background-color: var(--primary);
+    border-radius: 999px;
+    min-height: 20px;
+    max-height: 40px; 
+    background-clip: padding-box; 
+    border-right: 2px solid transparent; 
+    border-left: 2px solid transparent; 
+  }
+  
+  /* Hover effect */
+  .faq-scroll-container::-webkit-scrollbar-thumb:hover {
+    background-color: #c48725;
+  }
