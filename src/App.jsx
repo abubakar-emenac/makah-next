@@ -11,10 +11,22 @@ import CustomizationForm from "./Components/CommonComponents/CustomizationForm"
 import HajjPackage from "./Pages/HajjPackages/HajjPackage"
 import { Toaster } from "react-hot-toast";
 import VisaPage from "./Pages/CommonPages/VisaPage"
+import Bloghome from "./Pages/BlogComponents/Bloghome";
+import BlogDetails from "./Pages/BlogComponents/BlogDetails";
+import AnalyticsInjector from "./Hooks/AnalyticsInjector";
+import useGlobalSettingsInjector from "./Hooks/useGlobalSettingsInjector";
+import useSeoScripts from "./Hooks/useSeoScripts";
+import useFaviconInjector from "./Hooks/useFaviconInjector";
+
 
 function App() {
 
 
+    useGlobalSettingsInjector();
+  // usePageMetaInjector();
+  AnalyticsInjector();
+  useSeoScripts();
+  useFaviconInjector();
   return (
     <>
       <Routes>
@@ -54,8 +66,12 @@ function App() {
           path="/umrah/umrah-detail"
           element={<UmrahDetail />}
         />
+            <Route path="/blog" element={<Bloghome />} />
+            <Route path="/blog/:page_url" element={<BlogDetails />} />
         <Route path="/not-found" element={<NotFound />} />
         <Route path="*" element={<Navigate to="/not-found" replace />} />
+   
+
 
       </Routes>
       <Footer />
