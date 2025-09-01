@@ -12,6 +12,7 @@ import HajjPackage from "./Pages/HajjPackages/HajjPackage"
 import { Toaster } from "react-hot-toast";
 import VisaPage from "./Pages/CommonPages/VisaPage"
 import HajjDetail from "./Pages/HajjPackages/HajjDetail"
+import UmrahDetail from "./Pages/UmrahPages/UmrahDetail"
 function App() {
 
 
@@ -47,8 +48,7 @@ function App() {
           element={<UmrahPackageStar />}
         />
         <Route
-          path="/umrah/:slug"
-          element={< UmrahLayout key="umrah-detail" />}
+          path="/umrah/:slug" element={< UmrahDetail />}
         />
         <Route
           path="/hajj/:slug"

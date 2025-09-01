@@ -804,7 +804,7 @@ const Navbar = ({ textColor = "black" }) => {
               >
                 <Link
                   to={item.link}
-                  className="hover:text-green-600 cursor-pointer flex items-center gap-21"
+                  className="hover:text-green-600 cursor-pointer flex items-center gap-2"
                 >
                   {item.label}
                   {item.hasDropdown && <span className="text-[10px]">▾</span>}
@@ -813,7 +813,7 @@ const Navbar = ({ textColor = "black" }) => {
                 {/* DROPDOWN */}
                 {item.hasDropdown && (
                   <div
-                    className={`absolute left-1/2 top-full -translate-x-1/2 mt-2 min-w-[160px] bg-white text-black rounded-md shadow-lg border transition-all duration-200 ${activeDropdown === item.label ? "opacity-100 visible" : "opacity-0 invisible"
+                    className={`absolute left-1/2 top-full -translate-x-1/2 mt-2 min-w-[190px] max-w-[290px] bg-white text-black rounded-md shadow-lg border transition-all duration-200 ${activeDropdown === item.label ? "opacity-100 visible" : "opacity-0 invisible"
                       }`}
                   >
                     <ul className="py-2 text-xs md:text-sm">

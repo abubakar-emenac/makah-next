@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect } from 'react'
 import Navbar from '../../Components/CommonComponents/NavBar'
 import ImageGallery from '../CommonPages/ImageGallery'
 import ImageSlider from '../../Components/CommonComponents/ImageSlider'
@@ -8,6 +8,7 @@ import NeedHelp from '../../Components/CommonComponents/NeedHelp'
 import CustomizeUmrahPopup from '../../Components/UmrahComponents/CustomizeUmrahPopup'
 import { useParams, useLocation } from 'react-router-dom'
 import { endpoints, BASE_URL_IMG, BASE_URL_SVG } from '../../Helpers/apiEndpoints'
+import parse from "html-react-parser";
 import axios from 'axios'
 
 
@@ -17,8 +18,6 @@ export default function UmrahDetail() {
     const [packageData, setPackageData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const abortControllerRef = useRef(null);
-    const isMountedRef = useRef(true);
     console.log("Render caused by:", {
         slug,
         pathname: location.pathname,
@@ -27,39 +26,15 @@ export default function UmrahDetail() {
     useEffect(() => {
         console.log("Route changed to:", location.pathname);
     }, [location.pathname]);
-
-    useEffect(() => {
-        isMountedRef.current = true;
-        console.log("UmrahDetail component mounted!");
-
-        return () => {
-            isMountedRef.current = false;
-            console.log("UmrahDetail component unmounted!");
-            // Cancel any ongoing API request
-            if (abortControllerRef.current) {
-                abortControllerRef.current.abort();
-            }
-        };
-    }, []);
-
     console.log("The slug of package is", slug)
     console.log("The current package data is:", packageData);
     useEffect(() => {
         const fetchPageData = async () => {
-            if (abortControllerRef.current) {
-                abortControllerRef.current.abort();
-            }
-            abortControllerRef.current = new AbortController();
-
             setLoading(true);
             setError(null);
             try {
-                const res = await axios.get(endpoints.umrahByslug(slug), {
-                    signal: abortControllerRef.current.signal,
-                });
-                console.log("Umrah detail full response:", res.data);
-
-                if (isMountedRef.current && res.data?.status === 1) {
+                const res = await axios.get(endpoints.umrahByslug(slug));
+                if (res.data?.status === 1) {
                     console.log("Result object:", res.data?.result);
                     setPackageData(res.data.result);
 
@@ -67,41 +42,37 @@ export default function UmrahDetail() {
                         document.title = res.data.result.browser_title;
                     }
                 }
-            } catch (err) {
-                if (isMountedRef.current) {
-                    console.error("Error fetching page data:", err);
+                else {
                     setError("Failed to load package data");
                 }
+            } catch (err) {
+
+                console.error("Error fetching page data:", err);
+                setError("Failed to load package data");
             } finally {
-                if (isMountedRef.current) {
-                    setLoading(false);
-                }
+                setLoading(false);
             }
         };
 
-        if (slug) {
-            fetchPageData();
-        }
-        return () => {
-            if (abortControllerRef.current) {
-                abortControllerRef.current.abort();
-            }
-        };
+        fetchPageData();
     }, [slug]);
 
 
     const button = [
         {
+            id: 1,
             title: 'Call Now!',
             info: '(0208) - 000 - 000',
             icon: '/svg/callNow.svg'
         },
         {
+            id: 2,
             title: 'Send Email!',
             info: 'info@makkahtravel.co.uk',
             icon: '/svg/sendMail.svg'
         },
         {
+            id: 3,
             title: 'WhatsApp Chat!',
             info: '(0208) - 000 - 000',
             icon: '/svg/whatsappMsg.svg'
@@ -148,16 +119,23 @@ export default function UmrahDetail() {
 
     return (
         <div>
-            <div style={{ position: 'fixed', top: 0, left: 0, background: 'red', color: 'white', padding: '10px', zIndex: 9999 }}>
-                DEBUG: UmrahDetail rendering - slug: {slug}
-            </div>
             <div className="flex flex-col w-full max-w-[95%] md:max-w-[85%] lg:max-w-[80%] mx-auto px-4">
                 <Navbar />
 
                 {/* Package Title + Price */}
                 <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mt-4">
                     <div className="w-full md:w-3/4 lg:w-[55%]">
-                        <img src="/svg/filledStar.svg" alt="" className="w-6 sm:w-7 lg:w-8" />
+                        {/* <img src="/svg/filledStar.svg" alt="" className="w-6 sm:w-7 lg:w-8" /> */}
+                        <div className="flex items-center gap-1">
+                            {Array.from({ length: 5 }).map((_, index) => (
+                                <img
+                                    key={index}
+                                    src="/svg/filledStar.svg"
+                                    alt="star"
+                                    className={`w-6 sm:w-7 lg:w-8 ${index >= Number(packageData?.package_star) ? 'opacity-30' : ''}`}
+                                />
+                            ))}
+                        </div>
                         <h1 className="font-Montserrat font-bold text-xl sm:text-2xl lg:text-4xl leading-tight">
                             {packageData?.title}
                         </h1>
@@ -174,6 +152,7 @@ export default function UmrahDetail() {
                 {/* Image Gallery + Hotel Nights */}
                 <div className="flex flex-col lg:flex-row w-full mt-5 gap-6">
                     <div className="w-full lg:w-2/3">
+
                         <ImageGallery images={packageData?.images || []} />
                     </div>
 
@@ -181,8 +160,14 @@ export default function UmrahDetail() {
                         {/* Nights Info */}
                         <div className="flex flex-col justify-between gap-y-6 items-end w-full">
                             {[
-                                { nights: packageData?.makkah_night, title: 'Makkah Hotel Nights', subtitle: packageData?.makkah_hotel?.name },
-                                { nights: packageData?.madinah_night, title: 'Madinah Hotel Nights', subtitle: packageData?.madinah_hotel?.name },
+                                {
+                                    nights: packageData?.makkah_night, title: 'Makkah Hotel Nights', subtitle:
+                                        packageData?.makkah_hotel?.name
+                                },
+                                {
+                                    nights: packageData?.madinah_night, title: 'Madinah Hotel Nights', subtitle:
+                                        packageData?.madinah_hotel?.name
+                                },
                             ].map((item, idx) => (
                                 <div key={idx} className="flex items-center justify-end w-full gap-x-6">
                                     <div className="w-12 text-center">
@@ -195,7 +180,8 @@ export default function UmrahDetail() {
                                         <h3 className="text-lg md:text-2xl whitespace-nowrap overflow-hidden text-ellipsis">
                                             {item.title}
                                         </h3>
-                                        <span className="text-secondary text-sm md:text-base whitespace-nowrap overflow-hidden text-ellipsis">
+                                        <span
+                                            className="text-secondary text-sm md:text-base whitespace-nowrap overflow-hidden text-ellipsis">
                                             {item.subtitle}
                                         </span>
                                     </div>
@@ -205,9 +191,10 @@ export default function UmrahDetail() {
 
                         {/* Action Buttons */}
                         <div className="flex flex-col mt-7 gap-y-4 w-full items-end">
-                            {button.map((btn, i) => (
-                                <div key={i} className="flex flex-col sm:flex-row items-center gap-2 justify-end">
-                                    <button className="flex flex-col cursor-pointer text-end w-full sm:w-[330px] px-4 sm:px-8 py-2 bg-primary text-white font-abril text-base sm:text-lg leading-tight">
+                            {button.map((btn) => (
+                                <div key={btn.id} className="flex flex-col sm:flex-row items-center gap-2 justify-end">
+                                    <button
+                                        className="flex flex-col cursor-pointer text-end w-full sm:w-[330px] px-4 sm:px-8 py-2 bg-primary text-white font-abril text-base sm:text-lg leading-tight">
                                         {btn.title}
                                         <br />
                                         {btn.info}
@@ -232,32 +219,18 @@ export default function UmrahDetail() {
                 <div className="flex flex-col w-full mt-8">
                     <h2 className="text-2xl md:text-3xl font-Montserrat font-semibold">PACKAGE DETAILS</h2>
                     <div className="w-full flex flex-wrap justify-center md:justify-between items-center gap-4 mt-6">
-                        {/* {icon.map((item, i) => (
-                            <React.Fragment key={i}>
+                        {activeIcons.map((item) => (
+                            <React.Fragment key={item.key}>
                                 <div className="flex flex-col items-center gap-2 font-Montserrat">
                                     <div className="w-14 h-14 flex items-center justify-center rounded">
-                                        <img src={item.icon} alt={item.label} className="w-10 sm:w-12 h-10 sm:h-12 object-contain" />
-                                    </div>
-                                    <span className="text-xs sm:text-sm text-center text-[#222]">{item.label}</span>
-                                </div>
-                                {i !== icon.length - 1 && <div className="hidden md:block h-10 w-px bg-secondary mx-4 mb-2" />}
-                            </React.Fragment>
-                        ))} */}
-                        {activeIcons.map((item, i) => (
-                            <React.Fragment key={i}>
-                                <div className="flex flex-col items-center gap-2 font-Montserrat">
-                                    <div className="w-14 h-14 flex items-center justify-center rounded">
-                                        <img
-                                            src={item.icon}
-                                            alt={item.label}
-                                            className="w-10 sm:w-12 h-10 sm:h-12 object-contain"
-                                        />
+                                        <img src={item.icon} alt={item.label}
+                                            className="w-10 sm:w-12 h-10 sm:h-12 object-contain" />
                                     </div>
                                     <span className="text-xs sm:text-sm text-center text-[#222]">
                                         {item.label}
                                     </span>
                                 </div>
-                                {i !== activeIcons.length - 1 && (
+                                {item.key !== activeIcons.length - 1 && (
                                     <div className="hidden md:block h-10 w-px bg-secondary mx-4 mb-2" />
                                 )}
                             </React.Fragment>
@@ -267,30 +240,23 @@ export default function UmrahDetail() {
                 <div className="w-full flex flex-col lg:flex-row justify-between gap-6 mt-10">
                     {/* Left (2/3 width on lg+, full width on mobile) */}
                     <div className="w-full lg:w-3/4 font-Montserrat text-[16px]">
-                        <div
-                            dangerouslySetInnerHTML={packageData?.description ? { __html: packageData.description } : undefined}
-                            className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3 bg-[rgba(219,158,48,0.08)] p-7">
-                            {/* {includes.slice(0, 8).map((item, idx) => (
-                                <div key={idx} className="flex items-start">
-                                    <img
-                                        src="/svg/bullet.svg"
-                                        alt=""
-                                        className="w-4 h-4 mt-1 mr-3 shrink-0"
-                                    />
-                                    <span className="text-sm leading-snug">{item}</span>
-                                </div>
-                            ))} */}
-                        </div>
+                        {packageData?.description && (
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3 bg-[rgba(219,158,48,0.08)] p-7">
+                                {parse(packageData.description)}
+                            </div>
+                        )}
                     </div>
 
                     {/* Right (1/3 width on lg+, full width on mobile) */}
                     <div className="w-full lg:w-[23%] flex flex-col items-end gap-y-4">
-                        <button className="w-full border border-secondary text-primary font-semibold text-2xl font-Montserrat flex justify-between items-center py-4 pl-7 pr-5 cursor-pointer">
+                        <button
+                            className="w-full border border-secondary text-primary font-semibold text-2xl font-Montserrat flex justify-between items-center py-4 pl-7 pr-5 cursor-pointer">
                             Book This Package
                             <img src="/svg/arrow-bg-gray.svg" alt="button" />
                         </button>
 
-                        <button className="w-full text-2xl text-white font-semibold font-Montserrat flex justify-between items-center bg-primary p-4 cursor-pointer">
+                        <button
+                            className="w-full text-2xl text-white font-semibold font-Montserrat flex justify-between items-center bg-primary p-4 cursor-pointer">
                             Customize My Package
                             <img src="/svg/arrow-bg-white.svg" alt="button" />
                         </button>
@@ -305,16 +271,23 @@ export default function UmrahDetail() {
                     {/* First Hotel */}
                     <div className="flex flex-col lg:flex-row justify-end items-center lg:items-start">
                         <div className="flex flex-col w-full lg:w-[42%] order-2 lg:order-1 bg-[#F4F4F4] mt-14 pr-5">
-                            <div className="flex justify-end">
-                                <img src="/svg/filledStar.svg" alt="" className="w-6 sm:w-7" />
+                            <div className="flex justify-end gap-1">
+                                {Array.from({ length: Number(packageData?.makkah_hotel?.hotel_star || 0) }).map((_, idx) => (
+                                    <img
+                                        key={idx}
+                                        src="/svg/filledStar.svg"
+                                        alt="Star"
+                                        className="w-6 sm:w-7"
+                                    />
+                                ))}
                             </div>
-                            <h2 className="text-xl sm:text-2xl lg:text-3xl font-abril text-end">{packageData?.makkah_hotel?.name}</h2>
+
+                            <h2 className="text-xl sm:text-2xl lg:text-3xl font-abril text-end">
+                                {packageData?.makkah_hotel?.name}</h2>
                             <span className="text-secondary font-Montserrat text-end">Hotel in Makkah</span>
-                            <p className="font-Montserrat py-1.5 text-end text-sm sm:text-base"
-                                dangerouslySetInnerHTML={{
-                                    __html: packageData?.makkah_hotel?.description || ""
-                                }}
-                            >
+                            <p className="font-Montserrat py-1.5 text-end text-sm sm:text-base" dangerouslySetInnerHTML={{
+                                __html: packageData?.makkah_hotel?.description || ""
+                            }}>
                             </p>
                         </div>
                         <div className="order-1 lg:order-2 w-full lg:w-auto">
@@ -325,19 +298,26 @@ export default function UmrahDetail() {
                     {/* Second Hotel */}
                     <div className="flex flex-col lg:flex-row items-center lg:items-start">
                         <div className="w-full lg:w-auto">
+
                             <ImageSlider images={packageData?.madinah_hotel?.images || []} />
                         </div>
                         <div className="flex flex-col w-full lg:w-[42%] bg-[#F4F4F4] mt-14 pl-5">
-                            <div className="flex">
-                                <img src="/svg/filledStar.svg" alt="" className="w-6 sm:w-7" />
+                            <div className="flex gap-1">
+                                {Array.from({ length: Number(packageData?.madinah_hotel?.hotel_star || 0) }).map((_, idx) => (
+                                    <img
+                                        key={idx}
+                                        src="/svg/filledStar.svg"
+                                        alt="Star"
+                                        className="w-6 sm:w-7"
+                                    />
+                                ))}
                             </div>
-                            <h2 className="text-xl sm:text-2xl lg:text-3xl font-abril text-start">{packageData?.madinah_hotel?.name}</h2>
-                            <span className="text-secondary font-Montserrat text-start">Hotel in Makkah</span>
-                            <p className="font-Montserrat py-1.5 text-start text-sm sm:text-base "
-                                dangerouslySetInnerHTML={{
-                                    __html: packageData?.madinah_hotel?.description || ""
-                                }}
-                            >
+                            <h2 className="text-xl sm:text-2xl lg:text-3xl font-abril text-start">
+                                {packageData?.madinah_hotel?.name}</h2>
+                            <span className="text-secondary font-Montserrat text-start">Hotel in Madinah</span>
+                            <p className="font-Montserrat py-1.5 text-start text-sm sm:text-base " dangerouslySetInnerHTML={{
+                                __html: packageData?.madinah_hotel?.description || ""
+                            }}>
                             </p>
                         </div>
                     </div>
@@ -346,19 +326,18 @@ export default function UmrahDetail() {
 
             <Testmonials />
 
-            <div className="w-full  md:max-w-[85%] lg:max-w-[80%] mx-auto my-5 md:px-4">
-                <MonthlyUmrahPackages
-                    title="More Relevant Packages"
-                    subtitle="Makkah Travel is here to help you visit religious places..."
-                    button="off"
-                    carperrow={3}
-                />
-            </div>
+            {packageData?.section_2_widget && packageData.section_2_widget.length > 0 && (
+                <div className="w-full md:max-w-[85%] lg:max-w-[80%] mx-auto my-5 md:px-4">
+                    <MonthlyUmrahPackages pageData={packageData} />
+                </div>
+            )}
+
 
             <NeedHelp />
             <CustomizeUmrahPopup />
         </div>
     )
+
 
 
 }

@@ -49,7 +49,7 @@ export default function ImageGallery({ images = [] }) {
                 <img
                     src={`${BASE_URL_SVG}/${images[currentIndex].url}`}
                     alt={images[currentIndex]?.alt || `Slide ${currentIndex + 1}`}
-                    className="w-full h-full object-cover transition-all duration-500 ease-in-out"
+                    className="w-full h-full object-cover transition-transform duration-700 ease-in-out"
                 />
 
                 {/* Navigation Arrows */}
@@ -78,7 +78,7 @@ export default function ImageGallery({ images = [] }) {
                         return (
                             <img
                                 key={actualIndex}
-                                src={img}
+                                src={`${BASE_URL_SVG}/${img.url}`}
                                 onClick={() => handleThumbnailClick(actualIndex)}
                                 className={`w-48 object-cover cursor-pointer border-2 transition-all duration-300 ${currentIndex === actualIndex
                                     ? 'border-primary ring-2 ring-primary'
