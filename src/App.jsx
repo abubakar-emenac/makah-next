@@ -6,7 +6,7 @@ import SpecificCategoryUmrah from "./Pages/UmrahPages/SpecificCategoryUmrah"
 import AboutPage from "./Pages/CommonPages/AboutPage"
 import BestUmrahDeals from "./Pages/UmrahPages/BestUmrahDeals"
 import UmrahPackageStar from "./Pages/UmrahPages/UmrahPackageStar"
-import UmrahLayout from "./Pages/UmrahPages/UmrahLayout "
+import UmrahLayout from "./Pages/UmrahPages/UmrahLayout"
 import CustomizationForm from "./Components/CommonComponents/CustomizationForm"
 import HajjPackage from "./Pages/HajjPackages/HajjPackage"
 import { Toaster } from "react-hot-toast";
@@ -15,7 +15,7 @@ import AnalyticsInjector from "./Hooks/AnalyticsInjector";
 import useSeoScripts from "./Hooks/useSeoScripts";
 import useFaviconInjector from "./Hooks/useFaviconInjector";
 import useGlobalSettingsInjector from "./Hooks/useGlobalSettingsInjector";
-import HajjDetail from "./Pages/HajjPackages/HajjDetail "
+import HajjDetail from "./Pages/HajjPackages/HajjDetail"
 import Bloghome from "./Pages/BlogComponents/Bloghome"
 import BlogDetails from "./Pages/BlogComponents/BlogDetails"
 
