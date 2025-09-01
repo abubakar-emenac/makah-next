@@ -7,6 +7,7 @@ const BASE_URL = "https://admin.makkahtravel.co.uk/api";
 const BASE_URL_IMG = "https://admin.makkahtravel.co.uk/media";
 const BASE_URL_SVG = "https://admin.makkahtravel.co.uk/";
 
+const BASE_URL_Front = "https://makkahtravel.co.uk/";
 const endpoints = {
   getPage: `${BASE_URL}/get-page`,
   getPageUrl: (page_url) => `${BASE_URL}/get-page?page_url=${page_url}`,
@@ -33,4 +34,4 @@ blogdeatilsgpage: (page_url) => `${BASE_URL}/get-makkah-blog?page_url=${page_url
 
 };
 
-export { BASE_URL, endpoints, BASE_URL_IMG, BASE_URL_SVG };
+export { BASE_URL, endpoints, BASE_URL_IMG, BASE_URL_SVG, BASE_URL_Front};
