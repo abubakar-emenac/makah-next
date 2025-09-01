@@ -1,24 +1,19 @@
-<<<<<<< Updated upstream
-// const BASE_URL = 'http://makkah-travel-uk-admin.test/public/api'
-const BASE_URL = "https://admin.makkahtravel.co.uk/api";
-const BASE_URL_IMG = "https://admin.makkahtravel.co.uk/media";
-const BASE_URL_SVG = "https://admin.makkahtravel.co.uk/";
 
-=======
+
 // const BASE_URL = "http://makkah-travel-uk-admin.test/public/api";
 // const BASE_URL_IMG = "http://makkah-travel-uk-admin.test/public/media";
 // const BASE_URL_SVG = "http://makkah-travel-uk-admin.test/public/";
 const BASE_URL = "https://admin.makkahtravel.co.uk/api";
 const BASE_URL_IMG = "https://admin.makkahtravel.co.uk/media";
 const BASE_URL_SVG = "https://admin.makkahtravel.co.uk/";
->>>>>>> Stashed changes
+
 const endpoints = {
   getPage: `${BASE_URL}/get-page`,
   getPageUrl: (page_url) => `${BASE_URL}/get-page?page_url=${page_url}`,
   sendEmail: `${BASE_URL}/send-email`,
   generalSettings: `${BASE_URL}/general-setting`,
-<<<<<<< Updated upstream
-=======
+
+
   getUmrah: `${BASE_URL}/umrah-packages`,
   getHajj: `${BASE_URL}/hajj-packages`,
   umrahByType: (type) => `${BASE_URL}/umrah-packages?type=${type}`,
@@ -35,7 +30,7 @@ const endpoints = {
 blogdeatilsgpage: (page_url) => `${BASE_URL}/get-makkah-blog?page_url=${page_url}`,
 
 
->>>>>>> Stashed changes
+
 };
 
 export { BASE_URL, endpoints, BASE_URL_IMG, BASE_URL_SVG };
