@@ -1,62 +1,48 @@
-.arabic-text {
-    font-family: 'Arial Unicode MS', 'Tahoma', sans-serif;
-    direction: rtl;
-    unicode-bidi: bidi-override;
+/* ScrollDetail.css */
+:root {
+  --primary: #DB9E30;
+  --primary-alpha: rgba(219, 158, 48, 0.1);
+}
+.custom-scrollbar {
+  /* This is the key part for scrollbar placement */
+  direction: rtl;
+  /* This enables vertical scrolling and hides horizontal */
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 100%;
+    /* Take up the full height of the parent div */
+    -webkit-overflow-scrolling: touch;
+  
+    /* Firefox styling */
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary) var(--primary-alpha);
+  }
+.custom-scrollbar>* {
+  /* This is crucial to reset the text direction inside */
+  direction: ltr;
+}
+/* For WebKit browsers (Chrome, Safari, Edge) */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 10px;
   }
   
-  /* Custom Scrollbar Styles */
-  .scrollbar-thin::-webkit-scrollbar {
-    width: 1px;
+  .custom-scrollbar::-webkit-scrollbar-track {
+  background: var(--primary-alpha);
+    border-radius: 999px;
+    padding: 8px 0;
+    background-clip: content-box;
   }
   
-  .scrollbar-thin::-webkit-scrollbar-thumb {
-    background-color: #DB9E30;
-    border-radius: 6px;
-    box-shadow: 0 0 0 2px #DB9E30;
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: var(--primary);
+    border-radius: 999px;
+    min-height: 20px;
+    max-height: 40px;
+    background-clip: padding-box;
+    border-right: 2px solid transparent;
+    border-left: 2px solid transparent;
   }
   
-  .scrollbar-thin::-webkit-scrollbar-track {
-    background-color: #57A68F;
-      width: 13px;
-    border-radius: 6px;
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: #c48725;
   }
-    .custom-scrollbar {
-      direction: rtl;
-      /* moves scrollbar to the left */
-    }
-  
-    .custom-scrollbar>* {
-      direction: ltr;
-      /* reset children text back to normal */
-    }
-  
-    .custom-scrollbar::-webkit-scrollbar {
-      width: 8px;
-      /* overall scrollbar thickness */
-    }
-  
-    .custom-scrollbar::-webkit-scrollbar-track {
-      background: #f3f3f3;
-      /* light gray rail */
-      margin-top: 10px;
-      /* spacing at top */
-      margin-bottom: 10px;
-      /* spacing at bottom */
-      border-radius: 10px;
-  
-      /* make the track visually thinner than the thumb */
-      box-shadow: inset 2px 0 0 0 white, inset -2px 0 0 0 white;
-    }
-  
-    .custom-scrollbar::-webkit-scrollbar-thumb {
-      background-color: #DB9E30;
-      /* thumb color */
-      border-radius: 10px;
-      min-height: 30px;
-      /* prevents tiny thumb */
-    }
-  
-    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-      background-color: #DB9E30;
-    }
-  

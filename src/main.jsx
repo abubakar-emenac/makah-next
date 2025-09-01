@@ -1,13 +1,13 @@
-import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
 import { BrowserRouter } from "react-router-dom";
+import { GlobalDataProvider } from './Helpers/GlobalDataProvider.jsx';
 
 createRoot(document.getElementById('root')).render(
-  <StrictMode>
     <BrowserRouter>
+    <GlobalDataProvider>
       <App />
-    </BrowserRouter>
-  </StrictMode>,
+    </GlobalDataProvider>
+  </BrowserRouter>
 )

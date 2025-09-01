@@ -6,12 +6,12 @@ import SpecificCategoryUmrah from "./Pages/UmrahPages/SpecificCategoryUmrah"
 import AboutPage from "./Pages/CommonPages/AboutPage"
 import BestUmrahDeals from "./Pages/UmrahPages/BestUmrahDeals"
 import UmrahPackageStar from "./Pages/UmrahPages/UmrahPackageStar"
-import UmrahDetail from "./Pages/UmrahPages/UmrahDetail"
+import UmrahLayout from "./Pages/UmrahPages/UmrahLayout "
 import CustomizationForm from "./Components/CommonComponents/CustomizationForm"
 import HajjPackage from "./Pages/HajjPackages/HajjPackage"
 import { Toaster } from "react-hot-toast";
 import VisaPage from "./Pages/CommonPages/VisaPage"
-
+import HajjDetail from "./Pages/HajjPackages/HajjDetail"
 function App() {
 
 
@@ -43,16 +43,16 @@ function App() {
           element={<AboutPage />}
         />
         <Route
-          path="/umrah/best-umrah-deals"
-          element={<BestUmrahDeals />}
-        />
-        <Route
           path="/umrah/3-star-umrah-packages"
           element={<UmrahPackageStar />}
         />
         <Route
-          path="/umrah/umrah-detail"
-          element={<UmrahDetail />}
+          path="/umrah/:slug"
+          element={< UmrahLayout key="umrah-detail" />}
+        />
+        <Route
+          path="/hajj/:slug"
+          element={<HajjDetail />}
         />
         <Route path="/not-found" element={<NotFound />} />
         <Route path="*" element={<Navigate to="/not-found" replace />} />
