@@ -3,6 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import axios from "axios";
 import { BASE_URL_IMG, endpoints } from "../../Helpers/apiEndpoints";
 import HeroSectionblog from "../../Components/CommonComponents/HeroSectionblog";
+import NeedHelp from '../../Components/CommonComponents/NeedHelp'
 
 const BlogDetails = () => {
   const { page_url } = useParams();
@@ -99,6 +100,8 @@ const BlogDetails = () => {
   </div>
 </aside>
       </div>
+        {/* ✅ Need Help Section at the end */}
+            <NeedHelp />
     </div>
   );
 };

@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react"; 
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { BASE_URL_IMG, endpoints } from "../../Helpers/apiEndpoints";
 import HeroSectionblog from "../../Components/CommonComponents/HeroSectionblog";
+import NeedHelp from '../../Components/CommonComponents/NeedHelp'
 
 const BlogHome = () => {
   const [featuredBlogs, setFeaturedBlogs] = useState([]);
@@ -169,6 +170,9 @@ const BlogHome = () => {
           ))}
         </div>
       </div>
+
+      {/* ✅ Need Help Section at the end */}
+      <NeedHelp />
     </div>
   );
 };
