@@ -31,7 +31,7 @@ jobs:
           aws s3 cp sitemap.xml s3://${{ secrets.S3_BUCKET_NAME }}/sitemap.xml --content-type "application/xml"
           aws s3 cp blog/post-sitemap.xml s3://${{ secrets.S3_BUCKET_NAME }}/blog/post-sitemap.xml --content-type "application/xml"
 
-      - name: 🚀 Invalidate CloudFront Cache
+      - name: ⚡ Invalidate CloudFront Cache (sitemaps only)
         run: |
           aws cloudfront create-invalidation \
             --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} \
