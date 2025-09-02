@@ -7,7 +7,8 @@ import HeroSectionblog from "../../Components/CommonComponents/HeroSectionblog";
 const BlogHome = () => {
   const [featuredBlogs, setFeaturedBlogs] = useState([]);
   const [latestBlogs, setLatestBlogs] = useState([]);
-  const [pageData, setPageData] = useState(null); // ✅ page data for HeroSection
+  const [pageData, setPageData] = useState(null);
+  const [widgets, setWidgets] = useState([]);
   const [loading, setLoading] = useState(true);
 
   // Pagination state
@@ -22,10 +23,22 @@ const BlogHome = () => {
         setFeaturedBlogs(resBlogs.data.featured_blogs || []);
         setLatestBlogs(resBlogs.data.latest_blogs || []);
 
-        // ✅ Fetch page data from API endpoints file
+        // ✅ Fetch page data
         const resPage = await axios.get(endpoints.getPageUrl("blog"));
         if (resPage.data.status === 1) {
-          setPageData(resPage.data.result);
+          const result = resPage.data.result;
+          setPageData(result);
+
+          // ✅ Parse widgets_content into usable sections
+          if (result.widgets_content) {
+            const widgetRegex = /\{\{Blog section \d+ ?heading="([^"]+)" sub_heading="([^"]+)"\}\}/g;
+            const sections = [];
+            let match;
+            while ((match = widgetRegex.exec(result.widgets_content)) !== null) {
+              sections.push({ heading: match[1], sub_heading: match[2] });
+            }
+            setWidgets(sections);
+          }
         }
       } catch (error) {
         console.error("Error fetching blogs or page data:", error);
@@ -56,19 +69,23 @@ const BlogHome = () => {
       {/* ✅ Hero Section */}
       {pageData && <HeroSectionblog pageData={pageData} />}
 
-      {/* ✅ Blogs Content */}
       <div className="container mx-auto px-4 py-12">
-        {/* Featured Blogs */}
-        <div className="w-full lg:w-[48%] mb-12 sm:mb-16">
-          <img src="/svg/crown-black.svg" alt="Crown" className="w-16 sm:w-18 md:w-24 mb-3 sm:mb-4" />
-          <h2 className="text-[28px] sm:text-[32px] md:text-[36px] font-abril leading-tight mb-3 sm:mb-4">
-            Featured Posts
-          </h2>
-          <p className="font-Montserrat text-[14px] sm:text-[15px] md:text-[16px] leading-relaxed text-black">
-            Explore handpicked blogs about Hajj, Umrah, and Islamic journeys.
-          </p>
-        </div>
-
+        {/* ✅ Section 1 → Featured Blogs */}
+        {widgets[0] && (
+          <div className="w-full mb-12 sm:mb-16">
+            <img
+              src="/svg/crown-black.svg"
+              alt="Crown"
+              className="w-16 sm:w-18 md:w-24 mb-3 sm:mb-4"
+            />
+            <h2 className="text-[28px] sm:text-[32px] md:text-[36px] font-abril leading-tight mb-3 sm:mb-4">
+              {widgets[0].heading}
+            </h2>
+            <p className="font-Montserrat text-[14px] sm:text-[15px] md:text-[16px] leading-relaxed text-black">
+              {widgets[0].sub_heading}
+            </p>
+          </div>
+        )}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
           {featuredBlogs.map((blog) => (
             <Link
@@ -76,11 +93,11 @@ const BlogHome = () => {
               to={`/blog/${blog.page_url}`}
               className="rounded-2xl overflow-hidden shadow hover:shadow-lg transition block"
             >
-             <img
-  src={`${BASE_URL_IMG}/${blog.image_url}`}
-  alt={blog.image_alt || blog.title}
-  className="w-full h-64 object-cover rounded-xl"
-/>
+              <img
+                src={`${BASE_URL_IMG}/${blog.image_url}`}
+                alt={blog.image_alt || blog.title}
+                className="w-full h-56 object-cover rounded-xl"
+              />
               <div className="p-5">
                 <h3 className="text-xl font-abril mb-2">{blog.title}</h3>
                 <p className="text-sm font-Montserrat text-gray-600 mb-3 line-clamp-3">
@@ -94,17 +111,22 @@ const BlogHome = () => {
           ))}
         </div>
 
-        {/* Latest Blogs */}
-        <div className="w-full lg:w-[48%] mb-12 sm:mb-16">
-          <img src="/svg/crown-black.svg" alt="Crown" className="w-16 sm:w-18 md:w-24 mb-3 sm:mb-4" />
-          <h2 className="text-[28px] sm:text-[32px] md:text-[36px] font-abril leading-tight mb-3 sm:mb-4">
-            Latest Posts
-          </h2>
-          <p className="font-Montserrat text-[14px] sm:text-[15px] md:text-[16px] leading-relaxed text-black">
-            Find the newest blogs, updates, and travel tips for Hajj and Umrah.
-          </p>
-        </div>
-
+        {/* ✅ Section 2 → Latest Blogs */}
+        {widgets[1] && (
+          <div className="w-full mb-12 sm:mb-16">
+            <img
+              src="/svg/crown-black.svg"
+              alt="Crown"
+              className="w-16 sm:w-18 md:w-24 mb-3 sm:mb-4"
+            />
+            <h2 className="text-[28px] sm:text-[32px] md:text-[36px] font-abril leading-tight mb-3 sm:mb-4">
+              {widgets[1].heading}
+            </h2>
+            <p className="font-Montserrat text-[14px] sm:text-[15px] md:text-[16px] leading-relaxed text-black">
+              {widgets[1].sub_heading}
+            </p>
+          </div>
+        )}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {currentBlogs.map((blog) => (
             <Link
@@ -112,11 +134,11 @@ const BlogHome = () => {
               to={`/blog/${blog.page_url}`}
               className="rounded-2xl overflow-hidden shadow hover:shadow-lg transition block"
             >
-            <img
-  src={`${BASE_URL_IMG}/${blog.image_url}`}
-  alt={blog.image_alt || blog.title}
-  className="w-full h-64 object-cover rounded-xl"
-/>
+              <img
+                src={`${BASE_URL_IMG}/${blog.image_url}`}
+                alt={blog.image_alt || blog.title}
+                className="w-full h-56 object-cover rounded-xl"
+              />
               <div className="p-5">
                 <h3 className="text-xl font-abril mb-2">{blog.title}</h3>
                 <p className="text-sm font-Montserrat text-gray-600 mb-3 line-clamp-3">
@@ -130,7 +152,7 @@ const BlogHome = () => {
           ))}
         </div>
 
-        {/* Pagination */}
+        {/* ✅ Pagination under latest blogs */}
         <div className="flex justify-center mt-8 gap-2">
           {Array.from({ length: totalPages }, (_, i) => (
             <button
