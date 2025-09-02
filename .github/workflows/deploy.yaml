@@ -32,7 +32,7 @@ jobs:
           AWS_REGION: ${{ secrets.AWS_REGION }}
         run: |
           # If you use Vite → change build/ to dist/
-          aws s3 sync build/ s3://${{ secrets.S3_BUCKET_NAME }} --delete \
+          aws s3 sync dist/ s3://${{ secrets.S3_BUCKET_NAME }} --delete \
             --exclude "sitemap.xml" \
             --exclude "blog/post-sitemap.xml" \
             --exclude "robots.txt"
