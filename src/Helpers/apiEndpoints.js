@@ -1,8 +1,9 @@
-const BASE_URL = "http://makkah-travel-uk-admin.test/public/api";
-const BASE_URL_IMG = "http://makkah-travel-uk-admin.test/public/media";
-const BASE_URL_SVG = "http://makkah-travel-uk-admin.test/public/";
-// const BASE_URL = "https://admin.makkahtravel.co.uk/api";
-// const BASE_URL_IMG = "https://admin.makkahtravel.co.uk/api/media";
+// const BASE_URL = "http://makkah-travel-uk-admin.test/public/api";
+// const BASE_URL_IMG = "http://makkah-travel-uk-admin.test/public/media";
+// const BASE_URL_SVG = "http://makkah-travel-uk-admin.test/public/";
+const BASE_URL = "https://admin.makkahtravel.co.uk/api";
+const BASE_URL_IMG = "https://admin.makkahtravel.co.uk/media";
+const BASE_URL_SVG = "https://admin.makkahtravel.co.uk/media";
 const endpoints = {
   getPage: `${BASE_URL}/get-page`,
   getPageUrl: (page_url) => `${BASE_URL}/get-page?page_url=${page_url}`,
