@@ -83,6 +83,12 @@ export default function PageNavigator() {
         if (hasSection1 && hasSection2 && hasSection3) {
             return <UmrahPackageStar pageData={pageData} />;
         }
+        if (hasSection1 && hasSection2) {
+            return <UmrahPackageStar pageData={pageData} />;
+        }
+        if (hasSection2 && hasSection3) {
+            return <UmrahPackageStar pageData={pageData} />;
+        }
 
         if (hasSection1 && !hasSection2 && !hasSection3) {
             return <SpecificCategoryUmrah pageData={pageData} />;
