@@ -64,6 +64,7 @@ export default function PackageCard({ pkg, p_type }) {
         makkah_night,
 
     } = pkg || {};
+    console.log("The umrah packages of this specific page :", pkg)
     const cleanedUrl = image_url ? `${BASE_URL_IMG}/${image_url}` : "/fallback.jpg";
     const handleCardClick = () => {
         if (p_type === "umrah") {

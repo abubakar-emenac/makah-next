@@ -5,57 +5,86 @@ import ViewAllButton from "../../Components/CommonComponents/ViewAllButton";
 import ScrollDetail from "../../Components/CommonComponents/ScrollDetail";
 import FAQSection from "../../Components/CommonComponents/FAQSection";
 import { BASE_URL_SVG, endpoints } from "../../Helpers/apiEndpoints";
+import axios from "axios";
 
 export default function SpecificCategoryUmrah({ pageData }) {
-    const { section_1_widget, section_2_widget, section_3_widget } = pageData;
+    const { section_1_widget } = pageData;
 
     useEffect(() => {
         document.title = pageData.browser_title;
     }, [pageData.browser_title]);
 
     const sections = useMemo(
-        () => [
-            ...(section_1_widget || []),
-            ...(section_2_widget || []),
-            ...(section_3_widget || []),
-        ],
-        [section_1_widget, section_2_widget, section_3_widget]
+        () => [...(section_1_widget || [])],
+        [section_1_widget]
     );
 
     const [visibleCount, setVisibleCount] = useState(9);
     const [packagesData, setPackagesData] = useState([]);
 
+    const fetchPackages = async (widget) => {
+        try {
+            if (widget.umrah_package_ids) {
+                const ids = widget.umrah_package_ids
+                    .split(",")
+                    .map((id) => id.trim())
+                    .filter(Boolean);
+
+                if (!ids.length) return [];
+
+                try {
+                    const res = await axios.get(endpoints.umrahById(ids.join(",")));
+                    console.log("Umrah by IDs response:", res.data);
+
+                    // Response shape: result.data
+                    if (Array.isArray(res.data?.result?.data)) {
+                        return res.data.result.data;
+                    }
+                    return [];
+                } catch (err) {
+                    console.error("Error fetching Umrah by IDs:", err);
+                    return [];
+                }
+            }
+
+
+            if (widget.star && widget.star !== "0") {
+                const res = await axios.get(endpoints.umrahByStar(widget.star, widget.umrah_type));
+                return Array.isArray(res.data?.result?.packages?.data)
+                    ? res.data.result.packages.data
+                    : [];
+            }
+
+            if (widget.umrah_type) {
+                const res = await axios.get(endpoints.umrahByType(Number(widget.umrah_type)));
+                return Array.isArray(res.data?.result?.packages?.data)
+                    ? res.data.result.packages.data
+                    : [];
+            }
+
+            return [];
+        } catch (err) {
+            console.error("Error fetching Umrah packages:", err);
+            return [];
+        }
+    };
+
+
     useEffect(() => {
-        async function fetchPackages() {
+        async function loadPackages() {
             const results = await Promise.all(
                 sections.map(async (widget) => {
-                    const { umrah_type, umrah_package_ids, star } = widget;
-
-                    let url = "";
-                    if (umrah_package_ids) {
-                        url = endpoints.umrahById(umrah_package_ids);
-                    } else if (star && star !== "0") {
-                        url = endpoints.umrahByStar(star, umrah_type);
-                    } else {
-                        url = endpoints.umrahByType(umrah_type);
-                    }
-
-                    const res = await fetch(url);
-                    const data = await res.json();
-
-                    const packages = data?.result?.packages?.data || [];
-
+                    const packages = await fetchPackages(widget);
                     return { ...widget, packages };
                 })
             );
-
-            // flatten all package arrays into a single array
+            // flatten all packages
             const flattened = results.flatMap((section) => section.packages);
             setPackagesData(flattened);
         }
 
         if (sections.length > 0) {
-            fetchPackages();
+            loadPackages();
         }
     }, [sections]);
 

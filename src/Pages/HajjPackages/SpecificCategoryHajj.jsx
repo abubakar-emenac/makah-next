@@ -22,12 +22,22 @@ export default function SpecificCategoryHajj({ pageData }) {
                     .split(',')
                     .map((id) => Number(id.trim()))
                     .filter(Boolean);
+
                 if (!ids.length) return [];
-                const res = await axios.get(endpoints.hajjById(ids.join(',')));
-                return Array.isArray(res.data?.result?.packages?.data)
-                    ? res.data.result.packages.data
-                    : [];
+
+                try {
+                    const res = await axios.get(endpoints.hajjById(ids.join(',')));
+
+                    // ✅ Correct response shape
+                    return Array.isArray(res.data?.result?.data)
+                        ? res.data.result.data
+                        : [];
+                } catch (err) {
+                    console.error("Error fetching Hajj packages:", err);
+                    return [];
+                }
             }
+
 
             if (widget.hajj_type) {
                 const res = await axios.get(endpoints.hajjByType(Number(widget.hajj_type)));
