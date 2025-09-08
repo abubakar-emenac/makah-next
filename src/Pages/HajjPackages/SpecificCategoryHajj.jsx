@@ -40,11 +40,18 @@ export default function SpecificCategoryHajj({ pageData }) {
 
 
             if (widget.hajj_type) {
-                const res = await axios.get(endpoints.hajjByType(Number(widget.hajj_type)));
-                return Array.isArray(res.data?.result?.packages?.data)
-                    ? res.data.result.packages.data
-                    : [];
+                try {
+                    const res = await axios.get(endpoints.hajjByType(Number(widget.hajj_type)));
+
+                    return Array.isArray(res.data?.result?.data)
+                        ? res.data.result.data
+                        : [];
+                } catch (err) {
+                    console.error("Error fetching Hajj packages:", err);
+                    return [];
+                }
             }
+
 
             return [];
         } catch (err) {
