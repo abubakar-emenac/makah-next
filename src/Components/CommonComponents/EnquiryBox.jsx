@@ -50,7 +50,7 @@
 //                     />
 
 //                     <img
-//                         src="/svg/Departure Date SVG.svg"
+//                         src="/svgs/Departure Date SVG.svg"
 //                         alt="calendar"
 //                         className="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 pointer-events-none"
 //                         onClick={() => datePickerRef.current.setFocus()}
@@ -68,7 +68,7 @@
 //                         className="w-full bg-transparent outline-none text-sm"
 //                     />
 //                     <img
-//                         src="/svg/Guests SVG.svg"
+//                         src="/svgs/Guests SVG.svg"
 //                         alt="guests"
 //                         className="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 pointer-events-none"
 //                     />
@@ -84,7 +84,7 @@
 //                         className="w-full bg-transparent outline-none text-sm"
 //                     />
 //                     <img
-//                         src="/svg/Phone Number SVG.svg"
+//                         src="/svgs/Phone Number SVG.svg"
 //                         alt="phone"
 //                         className="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 pointer-events-none"
 //                     />
@@ -100,7 +100,7 @@
 //                         className="w-full bg-transparent outline-none text-sm"
 //                     />
 //                     <img
-//                         src="/svg/Name SVG.svg"
+//                         src="/svgs/Name SVG.svg"
 //                         alt="name"
 //                         className="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 pointer-events-none"
 //                     />
@@ -114,7 +114,7 @@
 //                         className="w-full bg-transparent outline-none text-sm"
 //                     />
 //                     <img
-//                         src="/svg/Email SVG.svg"
+//                         src="/svgs/Email SVG.svg"
 //                         alt="name"
 //                         className="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 pointer-events-none"
 //                     />
@@ -128,7 +128,7 @@
 //                         className="w-full bg-transparent outline-none text-sm"
 //                     />
 //                     <img
-//                         src="/svg/Email SVG.svg"
+//                         src="/svgs/Email SVG.svg"
 //                         alt="name"
 //                         className="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 pointer-events-none"
 //                     />
@@ -149,7 +149,7 @@
 //                 </div>
 //                 <button type='submit' className='flex justify-center cursor-pointer items-center gap-2 text-white font-semibold bg-secondary rounded-lg text-[22px]' >
 //                     <span>Submit</span>
-//                     <img src="/svg/SubmitArrow.svg" alt="" className='w-7 h-7' />
+//                     <img src="/svgs/SubmitArrow.svg" alt="" className='w-7 h-7' />
 //                 </button>
 //             </div>
 //         </div>
@@ -161,7 +161,7 @@ import React, { useRef, useState } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import '../../CSS/datepicker-custom.css';
-import { endpoints } from '../../Helpers/apiEndpoints'
+import { BASE_URL_SVG, endpoints } from '../../Helpers/apiEndpoints'
 import Loader from './Loader';
 import toast from 'react-hot-toast';
 
@@ -264,7 +264,7 @@ export default function EnquiryBox() {
                         shouldCloseOnSelect={true}
                     />
                     <img
-                        src="/svg/Departure Date SVG.svg"
+                        src={`${BASE_URL_SVG}/assets/svgs/Departure Date SVG.svg`}
                         alt="calendar"
                         className="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 pointer-events-none"
                         onClick={() => datePickerRef.current.setFocus()}
@@ -281,7 +281,7 @@ export default function EnquiryBox() {
                         placeholder="Guests"
                         className="w-full bg-transparent outline-none text-sm"
                     />
-                    <img src="/svg/Guests SVG.svg" alt="guests" className="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 pointer-events-none" />
+                    <img src={`${BASE_URL_SVG}/assets/svgs/Guests SVG.svg`} alt="guests" className="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 pointer-events-none" />
                 </div>
 
                 {/* Phone */}
@@ -296,7 +296,7 @@ export default function EnquiryBox() {
                         placeholder="Phone Number"
                         className="w-full bg-transparent outline-none text-sm"
                     />
-                    <img src="/svg/Phone Number SVG.svg" alt="phone" className="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 pointer-events-none" />
+                    <img src={`${BASE_URL_SVG}/assets/svgs/Phone Number SVG.svg`} alt="phone" className="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 pointer-events-none" />
                 </div>
 
                 {/* Full Name */}
@@ -308,7 +308,7 @@ export default function EnquiryBox() {
                         placeholder="Full Name"
                         className="w-full bg-transparent outline-none text-sm"
                     />
-                    <img src="/svg/Name SVG.svg" alt="name" className="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 pointer-events-none" />
+                    <img src={`${BASE_URL_SVG}/assets/svgs/Name SVG.svg`} alt="name" className="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 pointer-events-none" />
                 </div>
 
                 {/* Email */}
@@ -320,7 +320,7 @@ export default function EnquiryBox() {
                         placeholder="Email"
                         className="w-full bg-transparent outline-none text-sm"
                     />
-                    <img src="/svg/Email SVG.svg" alt="email" className="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 pointer-events-none" />
+                    <img src={`${BASE_URL_SVG}/assets/svgs/Email SVG.svg`} alt="email" className="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 pointer-events-none" />
                 </div>
 
                 {/* Accommodation (select instead of invalid input) */}
@@ -330,10 +330,11 @@ export default function EnquiryBox() {
                         onChange={(e) => setAccommodation(e.target.value)}
                         className="w-full bg-transparent outline-none text-sm"
                     >
-                        <option value="">Accommodation</option>
-                        <option value="hotel">Hotel</option>
-                        <option value="apartment">Apartment</option>
-                        <option value="villa">Villa</option>
+                        <option disabled value="">Accommodation</option>
+                        <option value="3-Star">3 star</option>
+                        <option value="4-Star">4 Star</option>
+                        <option value="5-Star">5 Star</option>
+                        <option value="Any">Any</option>
                     </select>
                 </div>
 
@@ -363,7 +364,7 @@ export default function EnquiryBox() {
                     ) : (
                         <>
                                 <span>Submit</span>
-                                <img src="/svg/SubmitArrow.svg" alt="submit" className="w-7 h-7" />
+                                <img src={`${BASE_URL_SVG}/assets/svgs/SubmitArrow.svg`} alt="submit" className="w-7 h-7" />
                         </>
                     )}
                 </button>

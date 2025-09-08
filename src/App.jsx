@@ -19,6 +19,8 @@ import HajjDetail from "./Pages/HajjPackages/HajjDetail"
 import UmrahDetail from "./Pages/UmrahPages/UmrahDetail"
 import Bloghome from "./Pages/BlogComponents/Bloghome"
 import BlogDetails from "./Pages/BlogComponents/BlogDetails"
+import ContactUS from "./Pages/CommonPages/ContactUs"
+import PageNavigator from "./Hooks/PageNavigator"
 
 function App() {
 
@@ -36,6 +38,10 @@ function App() {
           element={<Home />}
         />
         <Route
+          path="/:slug"
+          element={<PageNavigator />}
+        />
+        <Route
           path="/visa"
           element={<VisaPage />}
         />
@@ -43,17 +49,21 @@ function App() {
           path="/customization"
           element={<CustomizationForm />}
         />
-        <Route
+        {/* <Route
           path="/umrah"
           element={<SpecificCategoryUmrah />}
-        />
-        <Route
+        /> */}
+        {/* <Route
           path="/hajj"
           element={<HajjPackage />}
-        />
+        /> */}
         <Route
           path="/about-us"
           element={<AboutPage />}
+        />
+        <Route
+          path="/contact-us"
+          element={< ContactUS />}
         />
         <Route
           path="/umrah/3-star-umrah-packages"

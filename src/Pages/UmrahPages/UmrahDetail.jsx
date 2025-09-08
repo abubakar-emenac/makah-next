@@ -63,19 +63,19 @@ export default function UmrahDetail() {
             id: 1,
             title: 'Call Now!',
             info: '(0208) - 000 - 000',
-            icon: '/svg/callNow.svg'
+            icon: '/svgs/callNow.svg'
         },
         {
             id: 2,
             title: 'Send Email!',
             info: 'info@makkahtravel.co.uk',
-            icon: '/svg/sendMail.svg'
+            icon: '/svgs/sendMail.svg'
         },
         {
             id: 3,
             title: 'WhatsApp Chat!',
             info: '(0208) - 000 - 000',
-            icon: '/svg/whatsappMsg.svg'
+            icon: '/svgs/whatsappMsg.svg'
         }
     ];
     const services = {
@@ -87,11 +87,11 @@ export default function UmrahDetail() {
     };
 
     const icon = [
-        { key: 'flight', icon: '/svg/flight.svg', label: 'Flight' },
-        { key: 'accomodation', icon: '/svg/hotel.svg', label: 'Hotel' },
-        { key: 'visa', icon: '/svg/visa.svg', label: 'Visa' },
-        { key: 'transfer', icon: '/svg/transport.svg', label: 'Transport' },
-        { key: 'breakfast', icon: '/svg/dinner.svg', label: 'Half-Board' },
+        { key: 'flight', icon: '/svgs/flight.svg', label: 'Flight' },
+        { key: 'accomodation', icon: '/svgs/hotel.svg', label: 'Hotel' },
+        { key: 'visa', icon: '/svgs/visa.svg', label: 'Visa' },
+        { key: 'transfer', icon: '/svgs/transport.svg', label: 'Transport' },
+        { key: 'breakfast', icon: '/svgs/dinner.svg', label: 'Half-Board' },
     ];
     const activeIcons = icon.filter(item => services[item.key] === 1);
     if (loading) {
@@ -125,12 +125,12 @@ export default function UmrahDetail() {
                 {/* Package Title + Price */}
                 <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mt-4">
                     <div className="w-full md:w-3/4 lg:w-[55%]">
-                        {/* <img src="/svg/filledStar.svg" alt="" className="w-6 sm:w-7 lg:w-8" /> */}
+                        {/* <img src="/svgs/filledStar.svg" alt="" className="w-6 sm:w-7 lg:w-8" /> */}
                         <div className="flex items-center gap-1">
                             {Array.from({ length: 5 }).map((_, index) => (
                                 <img
                                     key={index}
-                                    src="/svg/filledStar.svg"
+                                    src="/svgs/filledStar.svg"
                                     alt="star"
                                     className={`w-6 sm:w-7 lg:w-8 ${index >= Number(packageData?.package_star) ? 'opacity-30' : ''}`}
                                 />
@@ -200,7 +200,7 @@ export default function UmrahDetail() {
                                         {btn.info}
                                     </button>
                                     <div className="bg-white p-2 rounded-full shadow-sm flex items-center justify-center">
-                                        <img src={btn.icon} alt={btn.title} className="w-8 sm:w-10 h-8 sm:h-10 object-contain" />
+                                        <img src={`${BASE_URL_SVG}/assets/${btn.icon}`} alt={btn.title} className="w-8 sm:w-10 h-8 sm:h-10 object-contain" />
                                     </div>
                                 </div>
                             ))}
@@ -208,9 +208,9 @@ export default function UmrahDetail() {
 
                         {/* Certifications */}
                         <div className="flex flex-wrap justify-center lg:justify-end items-center mt-9 gap-x-8 gap-y-4">
-                            <img src="/svg/atol.svg" alt="" className="w-20" />
+                            <img src={`${BASE_URL_SVG}/assets/svgs/atol.svg`} alt="" className="w-20" />
                             <div className="hidden lg:block w-[2px] h-12 bg-black" />
-                            <img src="/svg/iata.svg" alt="" className="w-20" />
+                            <img src={`${BASE_URL_SVG}/assets/svgs/iata.svg`} alt="" className="w-20" />
                         </div>
                     </div>
                 </div>
@@ -223,7 +223,7 @@ export default function UmrahDetail() {
                             <React.Fragment key={item.key}>
                                 <div className="flex flex-col items-center gap-2 font-Montserrat">
                                     <div className="w-14 h-14 flex items-center justify-center rounded">
-                                        <img src={item.icon} alt={item.label}
+                                        <img src={`${BASE_URL_SVG}/assets/${item.icon}`} alt={item.label}
                                             className="w-10 sm:w-12 h-10 sm:h-12 object-contain" />
                                     </div>
                                     <span className="text-xs sm:text-sm text-center text-[#222]">
@@ -252,13 +252,13 @@ export default function UmrahDetail() {
                         <button
                             className="w-full border border-secondary text-primary font-semibold text-2xl font-Montserrat flex justify-between items-center py-4 pl-7 pr-5 cursor-pointer">
                             Book This Package
-                            <img src="/svg/arrow-bg-gray.svg" alt="button" />
+                            <img src="/svgs/arrow-bg-gray.svg" alt="button" />
                         </button>
 
                         <button
                             className="w-full text-2xl text-white font-semibold font-Montserrat flex justify-between items-center bg-primary p-4 cursor-pointer">
                             Customize My Package
-                            <img src="/svg/arrow-bg-white.svg" alt="button" />
+                            <img src="/svgs/arrow-bg-white.svg" alt="button" />
                         </button>
                     </div>
 
@@ -275,7 +275,7 @@ export default function UmrahDetail() {
                                 {Array.from({ length: Number(packageData?.makkah_hotel?.hotel_star || 0) }).map((_, idx) => (
                                     <img
                                         key={idx}
-                                        src="/svg/filledStar.svg"
+                                        src={`${BASE_URL_SVG}/assets/svgs/filledStar.svg`}
                                         alt="Star"
                                         className="w-6 sm:w-7"
                                     />
@@ -306,7 +306,7 @@ export default function UmrahDetail() {
                                 {Array.from({ length: Number(packageData?.madinah_hotel?.hotel_star || 0) }).map((_, idx) => (
                                     <img
                                         key={idx}
-                                        src="/svg/filledStar.svg"
+                                        src={`${BASE_URL_SVG}/assets/svgs/filledStar.svg`}
                                         alt="Star"
                                         className="w-6 sm:w-7"
                                     />

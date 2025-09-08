@@ -102,7 +102,7 @@
 
 //             {/* WhatsApp icon floated outside pill */}
 //             <div className="absolute right-0 translate-x-1/2 top-1/2 -translate-y-1/2 w-8 h-8 bg-white rounded-full shadow-md flex items-center justify-center p-[2px]">
-//               <img src="/svg/wa.svg" alt="" />
+//               <img src="/svgs/wa.svg" alt="" />
 //             </div>
 //           </div>
 //         </div>
@@ -298,7 +298,7 @@
 //               <span className="text-gray-800">0203 - 970 - 0002</span>
 //             </div>
 //             <div className="w-6 h-6">
-//               <img src="/svg/wa.svg" alt="whatsapp" />
+//               <img src="/svgs/wa.svg" alt="whatsapp" />
 //             </div>
 //           </div>
 //         </div>
@@ -432,7 +432,7 @@
 //               <span className="text-gray-800">0203 - 970 - 0002</span>
 //             </div>
 //             <div className="absolute right-0 translate-x-1/2 top-1/2 -translate-y-1/2 w-8 h-8 bg-white rounded-full shadow-md flex items-center justify-center">
-//               <img src="/svg/wa.svg" alt="whatsapp" className="w-5 h-5" />
+//               <img src="/svgs/wa.svg" alt="whatsapp" className="w-5 h-5" />
 //             </div>
 //           </div>
 //         </div>
@@ -511,7 +511,7 @@
 //               <span className="text-gray-800">0203 - 970 - 0002</span>
 //             </div>
 //             <div className="w-8 h-8">
-//               <img src="/svg/wa.svg" alt="whatsapp" />
+//               <img src="/svgs/wa.svg" alt="whatsapp" />
 //             </div>
 //           </div>
 //         </div>
@@ -648,7 +648,7 @@
 //               <span className="text-gray-800">0203 - 970 - 0002</span>
 //             </div>
 //             <div className="absolute right-0 translate-x-1/2 top-1/2 -translate-y-1/2 w-7 h-7 md:w-8 md:h-8 bg-white rounded-full shadow-md flex items-center justify-center">
-//               <img src="/svg/wa.svg" alt="whatsapp" className="w-4 h-4 md:w-5 md:h-5" />
+//               <img src="/svgs/wa.svg" alt="whatsapp" className="w-4 h-4 md:w-5 md:h-5" />
 //             </div>
 //           </div>
 //         </div>
@@ -729,7 +729,7 @@
 //               <span className="text-gray-800">0203 - 970 - 0002</span>
 //             </div>
 //             <div className="w-8 h-8">
-//               <img src="/svg/wa.svg" alt="whatsapp" />
+//               <img src="/svgs/wa.svg" alt="whatsapp" />
 //             </div>
 //           </div>
 //         </div>
@@ -744,6 +744,7 @@
 import React, { useState, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { useGlobalData } from "../../Helpers/useGlobalData";
+import { BASE_URL_SVG } from "../../Helpers/apiEndpoints";
 
 const Navbar = ({ textColor = "black" }) => {
   const { globalData } = useGlobalData();
@@ -783,7 +784,7 @@ const Navbar = ({ textColor = "black" }) => {
   };
 
   return (
-    <nav className={`sticky top-0 left-0 w-full z-50 ${textColorClass}`}>
+    <nav className={`sticky top-0 left-0 w-full font-Montserrat z-50 ${textColorClass}`}>
       <div className="w-full max-w-[90%] sm:max-w-[95%] md:max-w-[88%] lg:max-w-[85%] xl:max-w-[70%] mx-auto px-3 md:px-6 lg:px-8 py-2 md:py-3 flex justify-between items-center">
 
         {/* LOGO */}
@@ -813,7 +814,7 @@ const Navbar = ({ textColor = "black" }) => {
                 {/* DROPDOWN */}
                 {item.hasDropdown && (
                   <div
-                    className={`absolute left-1/2 top-full -translate-x-1/2 mt-2 min-w-[190px] max-w-[290px] bg-white text-black rounded-md shadow-lg border transition-all duration-200 ${activeDropdown === item.label ? "opacity-100 visible" : "opacity-0 invisible"
+                    className={`absolute left-1/2 top-full -translate-x-1/2 mt-2 min-w-[200px] max-w-[290px] bg-white text-black rounded-md shadow-lg border transition-all duration-200 ${activeDropdown === item.label ? "opacity-100 visible" : "opacity-0 invisible"
                       }`}
                   >
                     <ul className="py-2 text-xs md:text-sm">
@@ -841,7 +842,7 @@ const Navbar = ({ textColor = "black" }) => {
             </div>
             <div className="absolute right-0 translate-x-1/2 top-1/2 -translate-y-1/2 w-7 h-7 md:w-8 md:h-8 bg-white rounded-full shadow-md flex items-center justify-center">
               <img
-                src="/svg/wa.svg"
+                src={`${BASE_URL_SVG}/assets/svgs/wa.svg`}
                 alt="whatsapp"
                 className="w-4 h-4 md:w-5 md:h-5"
               />
@@ -920,7 +921,7 @@ const Navbar = ({ textColor = "black" }) => {
               <span className="text-gray-800">0203 - 970 - 0002</span>
             </div>
             <div className="w-8 h-8">
-              <img src="/svg/wa.svg" alt="whatsapp" />
+              <img src={`${BASE_URL_SVG}/assets/svgs/wa.svg`} alt="whatsapp" />
             </div>
           </div>
         </div>

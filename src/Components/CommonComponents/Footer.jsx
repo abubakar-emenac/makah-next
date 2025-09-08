@@ -3,15 +3,15 @@
 
 // export default function Footer() {
 //     const logo = [
-//         { icon: '/svg/yt.svg', label: 'Youtube' },
-//         { icon: '/svg/fb.svg', label: 'Facebook' },
-//         { icon: '/svg/ig.svg', label: 'Instagram' },
+//         { icon: '/svgs/yt.svg', label: 'Youtube' },
+//         { icon: '/svgs/fb.svg', label: 'Facebook' },
+//         { icon: '/svgs/ig.svg', label: 'Instagram' },
 //     ];
 
 //     return (
 //         <footer
 //             style={{
-//                 backgroundImage: `url('/svg/footerbg.svg')`,
+//                 backgroundImage: `url('/svgs/footerbg.svg')`,
 //                 backgroundSize: 'cover',
 //                 backgroundPosition: 'center',
 //             }}
@@ -34,7 +34,7 @@
 
 //                 {/* Row 2: Bank Logos */}
 //                 <div className="flex w-full">
-//                     <img src="/svg/banks.svg" alt="Bank Logos" className="w-full" />
+//                     <img src="/svgs/banks.svg" alt="Bank Logos" className="w-full" />
 //                 </div>
 
 //                 {/* Row 3: Quick Links + Our Terms */}
@@ -70,7 +70,7 @@
 //                 <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-8 px-9">
 //                     {/* Call Us */}
 //                     <a href="tel:0208000000" className="flex items-start gap-4 hover:underline">
-//                         <img src="/svg/Need Help Section (Call) SVG.svg" alt="Call" className="w-10 sm:w-12" />
+//                         <img src="/svgs/Need Help Section (Call) SVG.svg" alt="Call" className="w-10 sm:w-12" />
 //                         <div>
 //                             <p className="text-primary font-semibold font-Montserrat">CALL US</p>
 //                             <p className="font-Montserrat text-lg">(0208) - 000 - 000</p>
@@ -79,7 +79,7 @@
 
 //                     {/* Write To Us */}
 //                     <a href="mailto:info@makkahtravel.co.uk" className="flex items-start gap-4 hover:underline">
-//                         <img src="/svg/Need Help Section (Call) SVG.svg" alt="Email" className="w-10 sm:w-12" />
+//                         <img src="/svgs/Need Help Section (Call) SVG.svg" alt="Email" className="w-10 sm:w-12" />
 //                         <div>
 //                             <p className="text-primary font-semibold font-Montserrat">WRITE TO US</p>
 //                             <p className="font-Montserrat text-lg">info@makkahtravel.co.uk</p>
@@ -182,7 +182,7 @@ export default function Footer() {
     return (
         <footer
             style={{
-                backgroundImage: `url('/svg/footerbg.svg')`,
+                backgroundImage: `url(${BASE_URL_SVG}/assets/svgs/footerbg.svg)`,
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
             }}
@@ -233,7 +233,7 @@ export default function Footer() {
                             ))}
                         </div>
                         <div>
-                            <img src="/svg/banks.svg" alt="Bank Logos" className="w-full max-w-[200px]" />
+                            <img src={`${BASE_URL_SVG}/assets/svgs/banks.svg`} alt="Bank Logos" className="w-full max-w-[200px]" />
                         </div>
                     </div>
                 </div>
@@ -261,7 +261,7 @@ export default function Footer() {
 
                     {/* Row 2: Bank Logos */}
                     <div className="flex w-full">
-                        <img src="/svg/banks.svg" alt="Bank Logos" className="w-full" />
+                        <img src={`${BASE_URL_SVG}/assets/svgs/banks.svg`} alt="Bank Logos" className="w-full" />
                     </div>
 
                     {/* Row 3: Quick Links + Our Terms */}
@@ -297,7 +297,7 @@ export default function Footer() {
                 <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-8 px-9">
                     {/* Call Us */}
                     <a href={`tel:${footerItems.contents.footer_phone || '0207-043-4343'}`} className="flex items-start gap-4 hover:underline">
-                        <img src="/svg/Need Help Section (Call) SVG.svg" alt="Call" className="w-10 sm:w-12" />
+                        <img src={`${BASE_URL_SVG}/assets/svgs/Need Help Section (Call) SVG.svg`} alt="Call" className="w-10 sm:w-12" />
                         <div>
                             <p className="text-primary font-semibold font-Montserrat">CALL US</p>
                             <p className="font-Montserrat text-lg">{footerItems.contents.footer_phone || '(0208) - 000 - 000'}</p>
@@ -306,7 +306,7 @@ export default function Footer() {
 
                     {/* Write To Us */}
                     <a href={`mailto:${footerItems.contents.footer_email || 'info@makkahtravel.co.uk'}`} className="flex items-start gap-4 hover:underline">
-                        <img src="/svg/Need Help Section (Call) SVG.svg" alt="Email" className="w-10 sm:w-12" />
+                        <img src={`${BASE_URL_SVG}/assets/svgs/Need Help Section (Call) SVG.svg`} alt="Email" className="w-10 sm:w-12" />
                         <div>
                             <p className="text-primary font-semibold font-Montserrat">WRITE TO US</p>
                             <p className="font-Montserrat text-lg">{footerItems.contents.footer_email || 'info@makkahtravel.co.uk'}</p>

@@ -1,5 +1,6 @@
 import React from 'react';
 import ViewAllButton from './ViewAllButton';
+import { BASE_URL_SVG } from '../../Helpers/apiEndpoints';
 
 export default function BlogSection() {
     const blog = [
@@ -22,7 +23,7 @@ export default function BlogSection() {
             {/* Heading Section */}
             <div className="w-full mb-10 sm:mb-12 md:mb-16">
                 <img
-                    src="/svg/crown-black.svg"
+                    src={`${BASE_URL_SVG}/assets/svgs/crown-black.svg`}
                     alt="Crown"
                     className="w-12 sm:w-16 md:w-20 mb-3 sm:mb-4"
                 />
@@ -73,7 +74,7 @@ export default function BlogSection() {
                                 </h5>
                                 <button className="text-secondary flex gap-2 text-[12px] md:text-[14px] lg:text-[16px] items-center mt-2">
                                     Read More
-                                    <img src="/svg/grayarrow.svg" alt="arrow" />
+                                    <img src={`${BASE_URL_SVG}/assets/svgs/grayarrow.svg`} alt="arrow" />
                                 </button>
                                 {index < blog.length - 1 && <hr className="m-5 w-20 mx-auto" />}
                             </div>

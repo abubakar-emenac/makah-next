@@ -13,7 +13,7 @@
 //             stars.push(
 //                 <img
 //                     key={i}
-//                     src={i < numStars ? '/svg/filledStar.svg' : '/svg/emptyStar.svg'}
+//                     src={i < numStars ? '/svgs/filledStar.svg' : '/svgs/emptyStar.svg'}
 //                     alt={i < numStars ? 'Filled Star' : 'Empty Star'}
 //                     className="w-5 h-5"
 //                     loading="lazy"
@@ -32,7 +32,7 @@
 //                     src={avatar}
 //                     alt={name}
 //                     className="w-24 h-24 rounded-full object-cover border-4 border-white shadow-lg"
-//                     onError={(e) => { e.target.onerror = null; e.target.src = "/svg/user.svg"; }}
+//                     onError={(e) => { e.target.onerror = null; e.target.src = "/svgs/user.svg"; }}
 //                 />
 //             </div>
 //             <div className="mt-16 text-start font-Montserrat text-black leading-relaxed">
@@ -72,42 +72,42 @@
 // export default function Testimonials() {
 //     const reviews = [
 //         {
-//             avatar: '/svg/user.svg', // Placeholder for /svg/user.svg
+//             avatar: '/svgs/user.svg', // Placeholder for /svgs/user.svg
 //             reviews: 'Makkah Travel is here to help you visit religious places and make Umrah trips that connect with your soul Makkah Travel is here to help you visit religious places and make Umrah trips that connect with your soul.Makkah Travel is here to help you visit religious places and make Umrah trips that connect with your soul.Makkah Travel is here to help you visit religious places and make Umrah trips that connect.',
 //             name: 'Abdullah',
 //             location: 'london',
 //             star: 4
 //         },
 //         {
-//             avatar: '/svg/user.svg',
+//             avatar: '/svgs/user.svg',
 //             reviews: 'Makkah Travel is here to help you visit religious places and make Umrah trips that connect with your soul Makkah Travel is here to help you visit religious places and make Umrah trips that connect with your soul.Makkah Travel is here to help you visit religious places and make Umrah trips that connect with your soul.Makkah Travel is here to help you visit religious places and make Umrah trips that connect.',
 //             name: 'Aisha',
 //             location: 'Dubai',
 //             star: 5
 //         },
 //         {
-//             avatar: '/svg/user.svg',
+//             avatar: '/svgs/user.svg',
 //             reviews: 'Makkah Travel is here to help you visit religious places and make Umrah trips that connect with your soul Makkah Travel is here to help you visit religious places and make Umrah trips that connect with your soul.Makkah Travel is here to help you visit religious places and make Umrah trips that connect with your soul.Makkah Travel is here to help you visit religious places and make Umrah trips that connect.',
 //             name: 'Fatima',
 //             location: 'Cairo',
 //             star: 3
 //         },
 //         {
-//             avatar: '/svg/user.svg',
+//             avatar: '/svgs/user.svg',
 //             reviews: 'Makkah Travel is here to help you visit religious places and make Umrah trips that connect with your soul Makkah Travel is here to help you visit religious places and make Umrah trips that connect with your soul.Makkah Travel is here to help you visit religious places and make Umrah trips that connect with your soul.Makkah Travel is here to help you visit religious places and make Umrah trips that connect.',
 //             name: 'Ahmed',
 //             location: 'New York',
 //             star: 5
 //         },
 //         {
-//             avatar: '/svg/user.svg',
+//             avatar: '/svgs/user.svg',
 //             reviews: 'Makkah Travel is here to help you visit religious places and make Umrah trips that connect with your soul Makkah Travel is here to help you visit religious places and make Umrah trips that connect with your soul.Makkah Travel is here to help you visit religious places and make Umrah trips that connect with your soul.Makkah Travel is here to help you visit religious places and make Umrah trips that connect.',
 //             name: 'Zainab',
 //             location: 'Paris',
 //             star: 4
 //         },
 //         {
-//             avatar: '/svg/user.svg',
+//             avatar: '/svgs/user.svg',
 //             reviews: 'Makkah Travel is here to help you visit religious places and make Umrah trips that connect with your soul Makkah Travel is here to help you visit religious places and make Umrah trips that connect with your soul.Makkah Travel is here to help you visit religious places and make Umrah trips that connect with your soul.Makkah Travel is here to help you visit religious places and make Umrah trips that connect.',
 //             name: 'Omar',
 //             location: 'Berlin',
@@ -130,7 +130,7 @@
 //         <div className="w-full max-w-[82%] mx-auto mt-8 sm:mt-12 md:mt-28 px-4 sm:px-6 md:px-9 font-sans mb-10">
 //             {/* Header */}
 //             <div className="w-full lg:w-[48%] mb-24 pl-16 ">
-//                 <img src="/svg/crown-black.svg" alt="Crown" className="w-16 sm:w-18 md:w-24 mb-3 sm:mb-4" />
+//                 <img src="/svgs/crown-black.svg" alt="Crown" className="w-16 sm:w-18 md:w-24 mb-3 sm:mb-4" />
 //                 <h2 className="text-[28px] sm:text-[32px] md:text-[36px] font-abril leading-tight mb-3 sm:mb-4">
 //                     What Our Clients Say
 //                 </h2>
@@ -206,7 +206,7 @@
 //             stars.push(
 //                 <img
 //                     key={i}
-//                     src={i < numStars ? '/svg/filledStar.svg' : '/svg/emptyStar.svg'}
+//                     src={i < numStars ? '/svgs/filledStar.svg' : '/svgs/emptyStar.svg'}
 //                     alt={i < numStars ? 'Filled Star' : 'Empty Star'}
 //                     className="w-5 h-5"
 //                     loading="lazy"
@@ -227,7 +227,7 @@
 //                     className="w-24 h-24 rounded-full object-cover border-4 border-white shadow-lg"
 //                     onError={(e) => {
 //                         e.target.onerror = null;
-//                         e.target.src = '/svg/user.svg';
+//                         e.target.src = '/svgs/user.svg';
 //                     }}
 //                 />
 //             </div>
@@ -260,42 +260,42 @@
 // export default function Testimonials() {
 //     const reviews = [
 //         {
-//             avatar: '/svg/user.svg',
+//             avatar: '/svgs/user.svg',
 //             reviews: 'Makkah Travel is here to help you visit religious places and make Umrah trips that connect with your soul.',
 //             name: 'Abdullah',
 //             location: 'London',
 //             star: 4,
 //         },
 //         {
-//             avatar: '/svg/user.svg',
+//             avatar: '/svgs/user.svg',
 //             reviews: 'Makkah Travel helped me experience peace through an organized Umrah trip.',
 //             name: 'Aisha',
 //             location: 'Dubai',
 //             star: 5,
 //         },
 //         {
-//             avatar: '/svg/user.svg',
+//             avatar: '/svgs/user.svg',
 //             reviews: 'The service was amazing, and the trip was very spiritual.',
 //             name: 'Fatima',
 //             location: 'Cairo',
 //             star: 3,
 //         },
 //         {
-//             avatar: '/svg/user.svg',
+//             avatar: '/svgs/user.svg',
 //             reviews: 'Will definitely recommend Makkah Travel to friends and family.',
 //             name: 'Ahmed',
 //             location: 'New York',
 //             star: 5,
 //         },
 //         {
-//             avatar: '/svg/user.svg',
+//             avatar: '/svgs/user.svg',
 //             reviews: 'Everything went smoothly. Very happy with the team.',
 //             name: 'Zainab',
 //             location: 'Paris',
 //             star: 4,
 //         },
 //         {
-//             avatar: '/svg/user.svg',
+//             avatar: '/svgs/user.svg',
 //             reviews: 'A memorable spiritual experience with all arrangements done professionally.',
 //             name: 'Omar',
 //             location: 'Berlin',
@@ -342,7 +342,7 @@
 //         <div className="w-full max-w-[90%] mx-auto mt-10 px-4 font-sans mb-12">
 //             {/* Header */}
 //             <div className="w-full lg:w-[48%] mb-12 pl-0 md:pl-8">
-//                 <img src="/svg/crown-black.svg" alt="Crown" className="w-16 sm:w-18 md:w-24 mb-3" />
+//                 <img src="/svgs/crown-black.svg" alt="Crown" className="w-16 sm:w-18 md:w-24 mb-3" />
 //                 <h2 className="text-[26px] sm:text-[32px] md:text-[36px] font-abril leading-tight mb-3">
 //                     What Our Clients Says
 //                 </h2>
@@ -375,6 +375,7 @@ import React, { useRef, useState } from 'react';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Slider from 'react-slick';
+import { BASE_URL_IMG, BASE_URL_SVG } from '../../Helpers/apiEndpoints';
 
 const TestimonialCard = ({ avatar, name, location, rating, text }) => {
     const [showFullText, setShowFullText] = useState(false);
@@ -383,7 +384,10 @@ const TestimonialCard = ({ avatar, name, location, rating, text }) => {
         return Array.from({ length: 5 }).map((_, i) => (
             <img
                 key={i}
-                src={i < numStars ? '/svg/filledStar.svg' : '/svg/emptyStar.svg'}
+                src={i < numStars
+                    ? `${BASE_URL_SVG}/assets/svgs/filledStar.svg`
+                    : `${BASE_URL_SVG}/assets/svgs/emptyStar.svg`
+                }
                 alt={i < numStars ? 'Filled Star' : 'Empty Star'}
                 className="w-5 h-5"
                 loading="lazy"
@@ -399,7 +403,7 @@ const TestimonialCard = ({ avatar, name, location, rating, text }) => {
         <div className="relative shadow-md p-6 w-full flex flex-col items-center bg-gray-100 rounded-lg">
             <div className="absolute -top-8">
                 <img
-                    src={avatar}
+                    src={`${BASE_URL_SVG}/${avatar}`}
                     alt={name}
                     className="w-24 h-24 rounded-full object-cover border-4 border-white shadow-lg"
                 />
@@ -430,12 +434,12 @@ const TestimonialCard = ({ avatar, name, location, rating, text }) => {
 
 export default function Testimonials() {
     const reviews = [
-        { avatar: '/svg/user.svg', reviews: 'Makkah Travel is here to help you visit religious places and make Umrah trips that connect with your soul. '.repeat(3), name: 'Abdullah', location: 'London', star: 4 },
-        { avatar: '/svg/user.svg', reviews: 'Makkah Travel is here to help you visit religious places and make Umrah trips that connect with your soul. '.repeat(3), name: 'Aisha', location: 'Dubai', star: 5 },
-        { avatar: '/svg/user.svg', reviews: 'Makkah Travel is here to help you visit religious places and make Umrah trips that connect with your soul. '.repeat(3), name: 'Fatima', location: 'Cairo', star: 3 },
-        { avatar: '/svg/user.svg', reviews: 'Makkah Travel is here to help you visit religious places and make Umrah trips that connect with your soul. '.repeat(3), name: 'Ahmed', location: 'New York', star: 5 },
-        { avatar: '/svg/user.svg', reviews: 'Makkah Travel is here to help you visit religious places and make Umrah trips that connect with your soul. '.repeat(3), name: 'Zainab', location: 'Paris', star: 4 },
-        { avatar: '/svg/user.svg', reviews: 'Makkah Travel is here to help you visit religious places and make Umrah trips that connect with your soul. '.repeat(3), name: 'Omar', location: 'Berlin', star: 5 },
+        { avatar: 'assets/svgs/user.svg', reviews: 'Makkah Travel is here to help you visit religious places and make Umrah trips that connect with your soul. '.repeat(3), name: 'Abdullah', location: 'London', star: 4 },
+        { avatar: 'assets/svgs/user.svg', reviews: 'Makkah Travel is here to help you visit religious places and make Umrah trips that connect with your soul. '.repeat(3), name: 'Aisha', location: 'Dubai', star: 5 },
+        { avatar: 'assets/svgs/user.svg', reviews: 'Makkah Travel is here to help you visit religious places and make Umrah trips that connect with your soul. '.repeat(3), name: 'Fatima', location: 'Cairo', star: 3 },
+        { avatar: 'assets/svgs/user.svg', reviews: 'Makkah Travel is here to help you visit religious places and make Umrah trips that connect with your soul. '.repeat(3), name: 'Ahmed', location: 'New York', star: 5 },
+        { avatar: 'assets/svgs/user.svg', reviews: 'Makkah Travel is here to help you visit religious places and make Umrah trips that connect with your soul. '.repeat(3), name: 'Zainab', location: 'Paris', star: 4 },
+        { avatar: 'assets/svgs/user.svg', reviews: 'Makkah Travel is here to help you visit religious places and make Umrah trips that connect with your soul. '.repeat(3), name: 'Omar', location: 'Berlin', star: 5 },
     ];
 
     const sliderRef = useRef(null);
@@ -462,7 +466,7 @@ export default function Testimonials() {
         <div className="w-full max-w-[82%] mx-auto mt-8 sm:mt-12 md:mt-28 px-4 sm:px-6 md:px-9 font-sans mb-10 relative">
             {/* Header */}
             <div className="w-full lg:w-[48%] mb-12 sm:mb-16">
-                <img src="/svg/crown-black.svg" alt="Crown" className="w-16 sm:w-18 md:w-24 mb-3 sm:mb-4" />
+                <img src={`${BASE_URL_SVG}/assets/svgs/crown-black.svg`} alt="Crown" className="w-16 sm:w-18 md:w-24 mb-3 sm:mb-4" />
                 <h2 className="text-[28px] sm:text-[32px] md:text-[36px] font-abril leading-tight mb-3 sm:mb-4">
                     What Our Clients Say
                 </h2>
@@ -477,7 +481,7 @@ export default function Testimonials() {
                 className="hidden md:flex absolute -left-6 top-1/2 -translate-y-1/2 bg-white cursor-pointer rounded-full p-2 shadow-md hover:scale-105 transition border border-gray-200 z-10"
                 aria-label="Previous Slide"
             >
-                <img src="/svg/arrow-left.svg" alt="Left Arrow" className="w-5 h-5 sm:w-6 sm:h-6" />
+                <img src={`${BASE_URL_SVG}/assets/svgs/arrow-left.svg`} alt="Left Arrow" className="w-5 h-5 sm:w-6 sm:h-6" />
             </span>
 
             <span
@@ -485,7 +489,7 @@ export default function Testimonials() {
                 className="hidden md:flex absolute -right-6 top-1/2 -translate-y-1/2 bg-white cursor-pointer rounded-full p-2 shadow-md hover:scale-105 transition border border-gray-200 z-10"
                 aria-label="Next Slide"
             >
-                <img src="/svg/arrow-right.svg" alt="Right Arrow" className="w-5 h-5 sm:w-6 sm:h-6" />
+                <img src={`${BASE_URL_SVG}/assets/svgs/arrow-right.svg`} alt="Right Arrow" className="w-5 h-5 sm:w-6 sm:h-6" />
             </span>
 
             {/* Slider */}
@@ -510,14 +514,14 @@ export default function Testimonials() {
                     className="bg-white cursor-pointer rounded-full p-2 shadow-md hover:scale-105 transition border border-gray-200"
                     aria-label="Previous Slide"
                 >
-                    <img src="/svg/arrow-left.svg" alt="Left Arrow" className="w-5 h-5 sm:w-6 sm:h-6" />
+                    <img src="/svgs/arrow-left.svg" alt="Left Arrow" className="w-5 h-5 sm:w-6 sm:h-6" />
                 </span>
                 <span
                     onClick={() => sliderRef.current.slickNext()}
                     className="bg-white cursor-pointer rounded-full p-2 shadow-md hover:scale-105 transition border border-gray-200"
                     aria-label="Next Slide"
                 >
-                    <img src="/svg/arrow-right.svg" alt="Right Arrow" className="w-5 h-5 sm:w-6 sm:h-6" />
+                    <img src="/svgs/arrow-right.svg" alt="Right Arrow" className="w-5 h-5 sm:w-6 sm:h-6" />
                 </span>
             </div>
         </div>

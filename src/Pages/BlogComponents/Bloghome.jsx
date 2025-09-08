@@ -75,7 +75,7 @@ const BlogHome = () => {
         {widgets[0] && (
           <div className="w-full mb-12 sm:mb-16">
             <img
-              src="/svg/crown-black.svg"
+              src="/svgs/crown-black.svg"
               alt="Crown"
               className="w-16 sm:w-18 md:w-24 mb-3 sm:mb-4"
             />
@@ -116,7 +116,7 @@ const BlogHome = () => {
         {widgets[1] && (
           <div className="w-full mb-12 sm:mb-16">
             <img
-              src="/svg/crown-black.svg"
+              src="/svgs/crown-black.svg"
               alt="Crown"
               className="w-16 sm:w-18 md:w-24 mb-3 sm:mb-4"
             />

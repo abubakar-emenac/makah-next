@@ -60,7 +60,7 @@
 //       className="w-full flex bg-no-repeat bg-left items-center"
 //       style={{
 //         backgroundImage: `
-//             url('/svg/orange-overlay.svg'),
+//             url('/svgs/orange-overlay.svg'),
 //             url('/images/iStock-1001687846.png')
 //           `,
 //         backgroundSize: 'clamp(250px, 40vw, 500px), clamp(250px, 40vw, 500px)',
@@ -71,7 +71,7 @@
 //       <div className="w-full flex flex-col md:flex-row items-start sm:w-[90%] md:w-[85%] ml-6 sm:ml-10 md:ml-12 mt-10 sm:mt-12 md:mt-14 gap-8">
 //         {/* <div className="w-full md:w-[33%] ">
 //           <div className="flex flex-col text-white text-[28px] sm:text-[36px] md:text-[40px] font-abril leading-tight">
-//             <img src="/svg/crown.svg" alt="Crown" className="w-14 sm:w-20 md:w-24 mb-4" />
+//             <img src="/svgs/crown.svg" alt="Crown" className="w-14 sm:w-20 md:w-24 mb-4" />
 //             <h2>Our Best Umrah</h2>
 //             <h2>Deals 2025–2026</h2>
 //           </div>
@@ -95,21 +95,21 @@
 //               className="bg-white cursor-pointer rounded-full p-2 shadow-md hover:scale-105 transition"
 //               aria-label="Previous Slide"
 //             >
-//               <img src="/svg/arrow-left.svg" alt="Left Arrow" className="w-5 h-5 sm:w-6 sm:h-6" />
+//               <img src="/svgs/arrow-left.svg" alt="Left Arrow" className="w-5 h-5 sm:w-6 sm:h-6" />
 //             </span>
 //             <span
 //               onClick={handleNext}
 //               className="bg-white cursor-pointer rounded-full p-2 shadow-md hover:scale-105 transition"
 //               aria-label="Next Slide"
 //             >
-//               <img src="/svg/arrow-right.svg" alt="Right Arrow" className="w-5 h-5 sm:w-6 sm:h-6" />
+//               <img src="/svgs/arrow-right.svg" alt="Right Arrow" className="w-5 h-5 sm:w-6 sm:h-6" />
 //             </span>
 //           </div>
 //         </div> */}
 //         <div className="w-full md:w-[33%] flex items-center">
 //           <div className="flex flex-col justify-center">
 //             <div className="flex flex-col text-white text-[28px] sm:text-[36px] md:text-[40px] font-abril leading-tight">
-//               <img src="/svg/crown.svg" alt="Crown" className="w-14 sm:w-20 md:w-24 mb-4" />
+//               <img src="/svgs/crown.svg" alt="Crown" className="w-14 sm:w-20 md:w-24 mb-4" />
 //               <h2>{widgetData.heading}</h2>
 //             </div>
 
@@ -124,14 +124,14 @@
 //                 className="bg-white cursor-pointer rounded-full p-2 shadow-md hover:scale-105 transition"
 //                 aria-label="Previous Slide"
 //               >
-//                 <img src="/svg/arrow-left.svg" alt="Left Arrow" className="w-5 h-5 sm:w-6 sm:h-6" />
+//                 <img src="/svgs/arrow-left.svg" alt="Left Arrow" className="w-5 h-5 sm:w-6 sm:h-6" />
 //               </span>
 //               <span
 //                 onClick={handleNext}
 //                 className="bg-white cursor-pointer rounded-full p-2 shadow-md hover:scale-105 transition"
 //                 aria-label="Next Slide"
 //               >
-//                 <img src="/svg/arrow-right.svg" alt="Right Arrow" className="w-5 h-5 sm:w-6 sm:h-6" />
+//                 <img src="/svgs/arrow-right.svg" alt="Right Arrow" className="w-5 h-5 sm:w-6 sm:h-6" />
 //               </span>
 //             </div>
 //           </div>
@@ -249,7 +249,7 @@
 //     <div className="w-full bg-cover bg-no-repeat bg-left-top"
 //       style={{
 //         backgroundImage: `
-//           url('/svg/orange-overlay.svg'),
+//           url('/svgs/orange-overlay.svg'),
 //           url('/images/iStock-1001687846.png')
 //         `,
 //         backgroundSize: 'contain, contain',
@@ -259,7 +259,7 @@
 //     >
 //       {/* Top orange content section */}
 //       <div className="w-full flex flex-col  px-4 pt-10 pb-6 sm:px-6 md:px-12 md:pt-14 md:pb-10">
-//         <img src="/svg/crown.svg" alt="Crown" className="w-24 sm:w-24 md:w-24 mb-4" />
+//         <img src="/svgs/crown.svg" alt="Crown" className="w-24 sm:w-24 md:w-24 mb-4" />
 //         <div className="text-white text-[32px] sm:text-[32px] md:text-[40px] font-abril text-start leading-tight">
 //           <h2>Our Best Umrah</h2>
 //           <h2>Deals 2025–2026</h2>
@@ -272,10 +272,10 @@
 //         <div className="mt-6 flex items-center gap-3">
 //           <ViewAllButton color="secondary" slug="/" size="sm" />
 //           <button onClick={handlePrev} className="bg-white p-2 rounded-full shadow hover:scale-105 transition">
-//             <img src="/svg/arrow-left.svg" alt="Previous" className="w-5 h-5" />
+//             <img src="/svgs/arrow-left.svg" alt="Previous" className="w-5 h-5" />
 //           </button>
 //           <button onClick={handleNext} className="bg-white p-2 rounded-full shadow hover:scale-105 transition">
-//             <img src="/svg/arrow-right.svg" alt="Next" className="w-5 h-5" />
+//             <img src="/svgs/arrow-right.svg" alt="Next" className="w-5 h-5" />
 //           </button>
 //         </div>
 //       </div>
@@ -329,7 +329,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import Slider from 'react-slick';
 import ViewAllButton from './ViewAllButton';
 import PackageCard from './PackageCard';
-import { endpoints } from '../../Helpers/apiEndpoints';
+import { BASE_URL_SVG, endpoints } from '../../Helpers/apiEndpoints';
 import axios from 'axios';
 
 import "slick-carousel/slick/slick.css";
@@ -455,7 +455,7 @@ export default function CardSlider({ pageData }) {
     <div className="w-full flex bg-no-repeat bg-left items-center"
       style={{
         backgroundImage: `
-          url('/svg/orange-overlay.svg'),
+          url(${BASE_URL_SVG}/assets/svgs/orange-overlay.svg),
           url('/images/iStock-1001687846.png')
         `,
         backgroundSize: 'clamp(250px, 40vw, 500px), clamp(250px, 40vw, 500px)',
@@ -468,7 +468,7 @@ export default function CardSlider({ pageData }) {
         <div className="w-full md:w-[33%] flex items-center">
           <div className="flex flex-col justify-center">
             <div className="flex flex-col text-white text-[28px] sm:text-[36px] md:text-[40px] font-abril leading-tight">
-              <img src="/svg/crown.svg" alt="Crown" className="w-14 sm:w-20 md:w-24 mb-4" />
+              <img src={`${BASE_URL_SVG}/assets/svgs/crown.svg`} alt="Crown" className="w-14 sm:w-20 md:w-24 mb-4" />
               <h2>{widgetData?.heading}</h2>
             </div>
 
@@ -484,10 +484,10 @@ export default function CardSlider({ pageData }) {
                 label={widgetData?.button_text}
               />
               <span onClick={handlePrev} className="bg-white cursor-pointer rounded-full p-2 shadow-md">
-                <img src="/svg/arrow-left.svg" alt="Left Arrow" className="w-5 h-5 sm:w-6 sm:h-6" />
+                <img src={`${BASE_URL_SVG}/assets/svgs/arrow-left.svg`} alt="Left Arrow" className="w-5 h-5 sm:w-6 sm:h-6" />
               </span>
               <span onClick={handleNext} className="bg-white cursor-pointer rounded-full p-2 shadow-md">
-                <img src="/svg/arrow-right.svg" alt="Right Arrow" className="w-5 h-5 sm:w-6 sm:h-6" />
+                <img src={`${BASE_URL_SVG}/assets/svgs/arrow-right.svg`} alt="Right Arrow" className="w-5 h-5 sm:w-6 sm:h-6" />
               </span>
             </div>
           </div>

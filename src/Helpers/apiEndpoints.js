@@ -3,12 +3,15 @@
 // const BASE_URL_SVG = "http://makkah-travel-uk-admin.test/public/";
 const BASE_URL = "https://admin.makkahtravel.co.uk/api";
 const BASE_URL_IMG = "https://admin.makkahtravel.co.uk/media";
-const BASE_URL_SVG = "https://admin.makkahtravel.co.uk/media";
+const BASE_URL_SVG = "https://admin.makkahtravel.co.uk/";
+
+const BASE_URL_Front = "https://makkahtravel.co.uk/";
 const endpoints = {
   getPage: `${BASE_URL}/get-page`,
   getPageUrl: (page_url) => `${BASE_URL}/get-page?page_url=${page_url}`,
   sendEmail: `${BASE_URL}/send-email`,
   generalSettings: `${BASE_URL}/general-setting`,
+
   getUmrah: `${BASE_URL}/umrah-packages`,
   getHajj: `${BASE_URL}/hajj-packages`,
   umrahByType: (type) => `${BASE_URL}/umrah-packages?type=${type}`,
@@ -21,6 +24,9 @@ const endpoints = {
   hajjById: (id) => `${BASE_URL}/hajj-packages?package_ids=${id}`,
   hajjByStar: (stars, type) =>
     `${BASE_URL}/hajj-packages?type=${type}&stars=${stars}`,
+  blogpage: `${BASE_URL}/get-makkah-blog`,
+  blogdeatilsgpage: (page_url) =>
+    `${BASE_URL}/get-makkah-blog?page_url=${page_url}`,
 };
 
-export { BASE_URL, endpoints, BASE_URL_IMG, BASE_URL_SVG };
+export { BASE_URL, endpoints, BASE_URL_IMG, BASE_URL_SVG, BASE_URL_Front };

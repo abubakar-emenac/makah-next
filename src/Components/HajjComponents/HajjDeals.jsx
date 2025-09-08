@@ -99,7 +99,7 @@
 //             {/* Header */}
 //             <div className="flex flex-col sm:flex-row lg:flex-row items-start px-7 lg:items-center justify-between gap-6 lg:gap-0">
 //                 <div className="w-full lg:w-[45%]">
-//                     <img src="/svg/crown-black.svg" alt="Crown" className="w-16 mb-3" />
+//                     <img src="/svgs/crown-black.svg" alt="Crown" className="w-16 mb-3" />
 //                     <h2 className="text-[24px] sm:text-[32px] md:text-[36px] font-abril mb-3 leading-tight">
 //                         {cardData.heading}
 //                     </h2>
@@ -113,10 +113,10 @@
 //                         <ViewAllButton color="primary" slug={cardData.button_link} size="md" label={cardData.button_text} />
 //                         <div className="flex items-center gap-3">
 //                             <span onClick={handlePrev} className="p-2 bg-white border border-gray-200 rounded-full shadow cursor-pointer hover:scale-105 transition">
-//                                 <img src="/svg/arrow-left.svg" alt="Prev" className="w-5 h-5 sm:w-6 sm:h-6" />
+//                                 <img src="/svgs/arrow-left.svg" alt="Prev" className="w-5 h-5 sm:w-6 sm:h-6" />
 //                             </span>
 //                             <span onClick={handleNext} className="p-2 bg-white border border-gray-200 rounded-full shadow cursor-pointer hover:scale-105 transition">
-//                                 <img src="/svg/arrow-right.svg" alt="Next" className="w-5 h-5 sm:w-6 sm:h-6" />
+//                                 <img src="/svgs/arrow-right.svg" alt="Next" className="w-5 h-5 sm:w-6 sm:h-6" />
 //                             </span>
 //                         </div>
 //                     </div>
@@ -216,7 +216,7 @@
 //             {/* Illustration (hidden on small screens) */}
 //             <div className="hidden lg:flex w-full lg:w-[28%] justify-center items-center mt-32">
 //                 <img
-//                     src='/svg/hajj_element.svg'
+//                     src='/svgs/hajj_element.svg'
 //                     alt='Illustration of Hajj Journey'
 //                     className='w-[673.47px] h-[551.75px]'
 //                 />
@@ -232,7 +232,7 @@ import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import axios from 'axios';
-import { endpoints } from '../../Helpers/apiEndpoints';
+import { BASE_URL_SVG, endpoints } from '../../Helpers/apiEndpoints';
 import PackageCard from '../CommonComponents/PackageCard';
 
 const HajjCards = ({ Packagedata, packages, loading, c_type }) => {
@@ -269,7 +269,7 @@ const HajjCards = ({ Packagedata, packages, loading, c_type }) => {
             {/* Header */}
             <div className="flex flex-col sm:flex-row lg:flex-row items-start px-7 lg:items-center justify-between gap-6 lg:gap-0">
                 <div className="w-full lg:w-[45%]">
-                    <img src="/svg/crown-black.svg" alt="Crown" className="w-16 mb-3" />
+                    <img src="/svgs/crown-black.svg" alt="Crown" className="w-16 mb-3" />
                     <h2 className="text-[24px] sm:text-[32px] md:text-[36px] font-abril mb-3 leading-tight">
                         {Packagedata?.heading}
                     </h2>
@@ -283,10 +283,10 @@ const HajjCards = ({ Packagedata, packages, loading, c_type }) => {
                         <ViewAllButton color="primary" slug={Packagedata?.button_link} size="md" label={Packagedata?.button_text} />
                         <div className="flex items-center gap-3">
                             <span onClick={handlePrev} className="p-2 bg-white border border-gray-200 rounded-full shadow cursor-pointer hover:scale-105 transition">
-                                <img src="/svg/arrow-left.svg" alt="Prev" className="w-5 h-5 sm:w-6 sm:h-6" />
+                                <img src="/svgs/arrow-left.svg" alt="Prev" className="w-5 h-5 sm:w-6 sm:h-6" />
                             </span>
                             <span onClick={handleNext} className="p-2 bg-white border border-gray-200 rounded-full shadow cursor-pointer hover:scale-105 transition">
-                                <img src="/svg/arrow-right.svg" alt="Next" className="w-5 h-5 sm:w-6 sm:h-6" />
+                                <img src="/svgs/arrow-right.svg" alt="Next" className="w-5 h-5 sm:w-6 sm:h-6" />
                             </span>
                         </div>
                     </div>
@@ -407,7 +407,7 @@ export default function HajjDeals({ pageData }) {
             {/* Illustration (hidden on small screens) */}
             <div className="hidden lg:flex w-full lg:w-[28%] justify-center items-center mt-32">
                 <img
-                    src='/svg/hajj_element.svg'
+                    src={`${BASE_URL_SVG}/assets/svgs/hajj_element.svg`}
                     alt='Illustration of Hajj Journey'
                     className='w-[673.47px] h-[551.75px]'
                 />

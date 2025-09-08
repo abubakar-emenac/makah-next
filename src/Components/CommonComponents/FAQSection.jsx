@@ -14,7 +14,7 @@
 //         <>
 //             <div className="w-full max-w-[82%] mx-auto mt-8 sm:mt-12 md:mt-20 px-4 sm:px-6 md:px-9 font-sans mb-20 relative">
 //                 <div className="w-full lg:w-[48%] mb-12 sm:mb-16">
-//                     <img src="/svg/crown-black.svg" alt="Crown" className="w-16 sm:w-18 md:w-24 mb-3 sm:mb-4" />
+//                     <img src="/svgs/crown-black.svg" alt="Crown" className="w-16 sm:w-18 md:w-24 mb-3 sm:mb-4" />
 //                     <h2 className="text-[28px] sm:text-[32px] md:text-[36px] font-abril leading-tight mb-3 sm:mb-4">
 //                         {faqHeading}
 //                     </h2>
@@ -43,9 +43,9 @@
 //                                     onClick={() => setOpenId(openId === index ? null : index)}
 //                                 >
 //                                     {openId === index ? (
-//                                         <img src="/svg/chevronUp.svg" alt="up" className="rotate-180" />
+//                                         <img src="/svgs/chevronUp.svg" alt="up" className="rotate-180" />
 //                                     ) : (
-//                                         <img src="/svg/chevronDown.svg" alt="down" />
+//                                         <img src="/svgs/chevronDown.svg" alt="down" />
 //                                     )}
 //                                     <h3 className="font-semibold text-black text-[18px] text-end">
 //                                         {faq.question}
@@ -68,7 +68,7 @@
 
 import { useState } from "react";
 import { ChevronDown, ChevronUp } from "lucide-react";
-import { BASE_URL_IMG } from "../../Helpers/apiEndpoints";
+import { BASE_URL_IMG, BASE_URL_SVG } from "../../Helpers/apiEndpoints";
 import "../../CSS/FAQSection.css"; 
 
 export default function FAQSection({ pageData }) {
@@ -87,7 +87,7 @@ export default function FAQSection({ pageData }) {
                 {/* Left side: Heading, Subheading, and Image */}
                 <div className="lg:w-1/2 flex flex-col">
                     <div className="mb-8"> {/* Container for heading and subheading */}
-                        <img src="/svg/crown-black.svg" alt="Crown" className="w-16 sm:w-18 md:w-24 mb-3 sm:mb-4" />
+                        <img src={`${BASE_URL_SVG}/assets/svgs/crown-black.svg`} alt="Crown" className="w-16 sm:w-18 md:w-24 mb-3 sm:mb-4" />
                         <h2 className="text-[28px] sm:text-[32px] md:text-[36px] font-abril leading-tight mb-3 sm:mb-4">
                             {faqHeading}
                         </h2>
@@ -113,9 +113,9 @@ export default function FAQSection({ pageData }) {
                                 onClick={() => setOpenId(openId === index ? null : index)}
                             >
                                 {openId === index ? (
-                                    <img src="/svg/chevronUp.svg" alt="up" className="rotate-180" />
+                                    <img src={`${BASE_URL_SVG}/assets/svgs/chevronUp.svg`} alt="up" className="rotate-180" />
                                 ) : (
-                                    <img src="/svg/chevronDown.svg" alt="down" />
+                                        <img src={`${BASE_URL_SVG}/assets/svgs/chevronDown.svg`} alt="down" />
                                 )}
                                 <h3 className="font-semibold text-black text-[18px] text-end">
                                     {faq.question}

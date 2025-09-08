@@ -70,7 +70,7 @@ export default function CustomizeUmrahPopup() {
                             className={inputClass}
                         />
                         <img
-                            src="/svg/plane.svg"
+                            src="/svgs/plane.svg"
                             alt="plane"
                             className="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 pointer-events-none"
                         />
@@ -119,7 +119,7 @@ export default function CustomizeUmrahPopup() {
                         dateFormat="dd/MM/yyyy"
                     />
                     <img
-                        src="/svg/Departure Date SVG.svg"
+                        src="/svgs/Departure Date SVG.svg"
                         alt="calendar"
                         className="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 pointer-events-none"
                     />
@@ -230,7 +230,7 @@ export default function CustomizeUmrahPopup() {
                         className={inputClass}
                     />
                     <img
-                        src="/svg/Name SVG.svg"
+                        src="/svgs/Name SVG.svg"
                         alt="name"
                         className="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 pointer-events-none"
                     />
@@ -246,7 +246,7 @@ export default function CustomizeUmrahPopup() {
                         className={inputClass}
                     />
                     <img
-                        src="/svg/Phone SVG.svg"
+                        src="/svgs/Phone SVG.svg"
                         alt="phone"
                         className="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 pointer-events-none"
                     />
@@ -262,7 +262,7 @@ export default function CustomizeUmrahPopup() {
                         className={inputClass}
                     />
                     <img
-                        src="/svg/Email SVG.svg"
+                        src="/svgs/Email SVG.svg"
                         alt="email"
                         className="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 pointer-events-none"
                     />
@@ -277,7 +277,7 @@ export default function CustomizeUmrahPopup() {
                         className={inputClass}
                     />
                     <img
-                        src="/svg/Email SVG.svg"
+                        src="/svgs/Email SVG.svg"
                         alt="email"
                         className="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 pointer-events-none"
                     />
@@ -304,7 +304,7 @@ export default function CustomizeUmrahPopup() {
                     className="flex justify-center items-center gap-2 text-white font-semibold bg-secondary rounded-lg text-[22px] py-2"
                 >
                     <span>Submit</span>
-                    <img src="/svg/SubmitArrow.svg" alt="" className="w-7 h-7" />
+                    <img src="/svgs/SubmitArrow.svg" alt="" className="w-7 h-7" />
                 </button>
             </div>
         </div>

@@ -4,7 +4,7 @@ import PackageCard from '../CommonComponents/PackageCard';
 import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { endpoints } from '../../Helpers/apiEndpoints';
+import { BASE_URL_SVG, endpoints } from '../../Helpers/apiEndpoints';
 import axios from 'axios';
 export default function MonthlyUmrahPackages({ pageData }) {
     const sliderRef = useRef(null);
@@ -178,7 +178,7 @@ export default function MonthlyUmrahPackages({ pageData }) {
             {/* Header Section */}
             <div className="flex flex-col px-2 lg:flex-row items-start lg:items-center justify-between gap-6 lg:gap-0">
                 <div className="w-full lg:w-[45%] flex flex-col justify-start">
-                    <img src="/svg/crown-black.svg" alt="Crown" className="w-16 sm:w-18 md:w-20 mb-3 sm:mb-4" />
+                    <img src={`${BASE_URL_SVG}/assets/svgs/crown-black.svg`} alt="Crown" className="w-16 sm:w-18 md:w-20 mb-3 sm:mb-4" />
                     <h2 className="text-[28px] sm:text-[32px] md:text-[36px] font-abril leading-tight mb-3 sm:mb-4">
                         {widgetData.heading}
                     </h2>
@@ -196,14 +196,14 @@ export default function MonthlyUmrahPackages({ pageData }) {
                                 className="bg-white cursor-pointer rounded-full p-2 shadow-md hover:scale-105 transition border border-gray-200"
                                 aria-label="Previous Slide"
                             >
-                                <img src="/svg/arrow-left.svg" alt="Left Arrow" className="w-5 h-5 sm:w-6 sm:h-6" />
+                                <img src={`${BASE_URL_SVG}/assets/svgs/arrow-left.svg`} alt="Left Arrow" className="w-5 h-5 sm:w-6 sm:h-6" />
                             </span>
                             <span
                                 onClick={handleNext}
                                 className="bg-white cursor-pointer rounded-full p-2 shadow-md hover:scale-105 transition border border-gray-200"
                                 aria-label="Next Slide"
                             >
-                                <img src="/svg/arrow-right.svg" alt="Right Arrow" className="w-5 h-5 sm:w-6 sm:h-6" />
+                                <img src={`${BASE_URL_SVG}/assets/svgs/arrow-right.svg`} alt="Right Arrow" className="w-5 h-5 sm:w-6 sm:h-6" />
                             </span>
                         </div>
                     </div>

@@ -8,7 +8,7 @@
 // //         <div
 // //             className="flex flex-col w-full"
 // //             style={{
-// //                 backgroundImage: `url('/svg/HeroBg.png')`,
+// //                 backgroundImage: `url('/svgs/HeroBg.png')`,
 // //                 backgroundSize: 'cover',
 // //                 backgroundPosition: 'center',
 // //             }}
@@ -53,7 +53,7 @@
 //         <div
 //             className="flex flex-col w-full"
 //             style={{
-//                 backgroundImage: `url('/svg/HeroBg.png')`,
+//                 backgroundImage: `url('/svgs/HeroBg.png')`,
 //                 backgroundSize: 'cover',
 //                 backgroundPosition: 'center',
 //             }}

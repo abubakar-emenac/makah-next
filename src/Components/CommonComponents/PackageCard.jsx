@@ -1,6 +1,6 @@
 import React from 'react'
 import { useNavigate } from "react-router-dom";
-import { BASE_URL_IMG } from '../../Helpers/apiEndpoints';
+import { BASE_URL_IMG, BASE_URL_SVG } from '../../Helpers/apiEndpoints';
 
 
 export const MoonIcon = () => (
@@ -109,12 +109,12 @@ export default function PackageCard({ pkg, p_type }) {
                 {/* Hotel Info */}
                 <div className="flex flex-row sm:flex-row font-Montserrat justify-around items-center gap-2 sm:gap-0">
                     <div className="flex flex-col items-center gap-1">
-                        <img src="/svg/kaba.svg" alt="kaba" />
+                        <img src={`${BASE_URL_SVG}/assets/svgs/kaba.svg`} alt="kaba" />
                         <span className="text-black font-semibold text-[13px] md:text-[12px] lg:text-[15px]">{makkah_night} Nights</span>
                         <span className="text-[13px] md:text-[10px] lg:text-[12px]">{pkg?.makkah_hotel?.name}</span>
                     </div>
                     <div className="flex flex-col items-center gap-1">
-                        <img src="/svg/madina.svg" alt="madina" />
+                        <img src={`${BASE_URL_SVG}/assets/svgs/madina.svg`} alt="madina" />
                         <span className="text-black font-semibold text-[13px] md:text-[12px] lg:text-[15px]">{madinah_night} Nights</span>
                         <span className="text-[13px] md:text-[10px] lg:text-[12px]">{pkg?.madinah_hotel?.name}</span>
                     </div>
@@ -125,7 +125,7 @@ export default function PackageCard({ pkg, p_type }) {
                     {availableServices.map((service, index) => (
                         <div key={index} className="flex items-center justify-center gap-5">
                             <div className="flex flex-col items-center">
-                                <img src={`/svg/${service.icon}`} alt={service.label} className="w-10 h-10" />
+                                <img src={`${BASE_URL_SVG}/assets/svgs/${service.icon}`} alt={service.label} className="w-10 h-10" />
                             </div>
                             {/* + Icon – only between */}
                             {index < availableServices.length - 1 && (
@@ -138,7 +138,7 @@ export default function PackageCard({ pkg, p_type }) {
                 {/* Price and Decoration */}
                 <div className="flex justify-between items-center w-full ">
                     {/* Left Decorative Element */}
-                    <img src="/svg/Card_Element.svg" alt="element" className="w-20 sm:w-12 lg:w-16" />
+                    <img src={`${BASE_URL_SVG}/assets/svgs/Card_Element.svg`} alt="element" className="w-20 sm:w-12 lg:w-16" />
 
                     {/* Price Info Centered in Its Area */}
                     <div className="flex flex-col font-abril">
@@ -149,7 +149,7 @@ export default function PackageCard({ pkg, p_type }) {
 
                     {/* Right Decorative Element */}
                     <img
-                        src="/svg/Card_Element.svg"
+                        src={`${BASE_URL_SVG}/assets/svgs/Card_Element.svg`}
                         alt="element"
                         className="w-20 sm:w-12 lg:w-16 transform rotate-y-180"
                     />

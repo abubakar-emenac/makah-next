@@ -70,7 +70,7 @@
 //             {/* Header */}
 //             <div className="w-full lg:w-[45%] flex flex-col justify-start mb-6">
 //                 <img
-//                     src="/svg/crown-black.svg"
+//                     src="/svgs/crown-black.svg"
 //                     alt="Crown"
 //                     className="w-20 sm:w-16 md:w-20 mb-3 sm:mb-4"
 //                 />
@@ -197,7 +197,7 @@ export default function WhyChoose() {
             <div className="w-full sm:w-[80%] md:w-[60%] lg:w-[45%] flex flex-col justify-start mb-6">
 
                 <img
-                    src="/svg/crown-black.svg"
+                    src={`${BASE_URL_SVG}/assets/svgs/crown-black.svg`}
                     alt="Crown"
                     className="w-20 sm:w-16 md:w-20 mb-3 sm:mb-4"
                 />
