@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import Navbar from '../../Components/CommonComponents/NavBar'
+import { motion, AnimatePresence } from "framer-motion";
+import CustomizeUmrahPopup from '../../Components/UmrahComponents/CustomizeUmrahPopup';
 import ImageGallery from '../CommonPages/ImageGallery'
 import ImageSlider from '../../Components/CommonComponents/ImageSlider'
 import Testmonials from '../../Components/CommonComponents/Testmonials'
 import MonthlyUmrahPackages from '../../Components/UmrahComponents/monthlyUmrahPackages'
 import NeedHelp from '../../Components/CommonComponents/NeedHelp'
-import CustomizeUmrahPopup from '../../Components/UmrahComponents/CustomizeUmrahPopup'
 import { useParams, useLocation } from 'react-router-dom'
 import { endpoints, BASE_URL_IMG, BASE_URL_SVG } from '../../Helpers/apiEndpoints'
 import parse from "html-react-parser";
@@ -18,6 +19,23 @@ export default function UmrahDetail() {
     const [packageData, setPackageData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [isOpen, setIsOpen] = useState(false);
+    const modalRef = useRef(null);
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (modalRef.current && !modalRef.current.contains(event.target)) {
+                setIsOpen(false);
+            }
+        };
+        if (isOpen) {
+            document.addEventListener("mousedown", handleClickOutside);
+        }
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, [isOpen]);
+
+
     console.log("Render caused by:", {
         slug,
         pathname: location.pathname,
@@ -119,18 +137,18 @@ export default function UmrahDetail() {
 
     return (
         <div>
-            <div className="flex flex-col w-full max-w-[95%] md:max-w-[85%] lg:max-w-[80%] mx-auto px-4">
-                <Navbar />
+            <Navbar />
+            <div className="flex flex-col w-full max-w-[97%] md:max-w-[85%] lg:max-w-[80%] mx-auto px-4">
 
                 {/* Package Title + Price */}
-                <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mt-4">
+                <div className="flex flex-col md:flex-row flex-wrap justify-between items-start md:items-center gap-4 mt-4">
                     <div className="w-full md:w-3/4 lg:w-[55%]">
                         {/* <img src="/svgs/filledStar.svg" alt="" className="w-6 sm:w-7 lg:w-8" /> */}
                         <div className="flex items-center gap-1">
                             {Array.from({ length: 5 }).map((_, index) => (
                                 <img
                                     key={index}
-                                    src="/svgs/filledStar.svg"
+                                    src={`${BASE_URL_SVG}/assets/svgs/filledStar.svg`}
                                     alt="star"
                                     className={`w-6 sm:w-7 lg:w-8 ${index >= Number(packageData?.package_star) ? 'opacity-30' : ''}`}
                                 />
@@ -177,11 +195,10 @@ export default function UmrahDetail() {
                                     </div>
                                     <div className="hidden lg:block w-[2px] h-12 bg-secondary" />
                                     <div className="flex flex-col text-end font-Montserrat overflow-hidden">
-                                        <h3 className="text-lg md:text-2xl whitespace-nowrap overflow-hidden text-ellipsis">
+                                        <h3 className="text-base sm:text-lg md:text-2xl whitespace-normal md:whitespace-nowrap">
                                             {item.title}
                                         </h3>
-                                        <span
-                                            className="text-secondary text-sm md:text-base whitespace-nowrap overflow-hidden text-ellipsis">
+                                        <span className="text-secondary text-xs sm:text-sm md:text-base whitespace-normal md:whitespace-nowrap">
                                             {item.subtitle}
                                         </span>
                                     </div>
@@ -250,15 +267,16 @@ export default function UmrahDetail() {
                     {/* Right (1/3 width on lg+, full width on mobile) */}
                     <div className="w-full lg:w-[23%] flex flex-col items-end gap-y-4">
                         <button
+                            onClick={() => setIsOpen(true)}
                             className="w-full border border-secondary text-primary font-semibold text-2xl font-Montserrat flex justify-between items-center py-4 pl-7 pr-5 cursor-pointer">
                             Book This Package
-                            <img src="/svgs/arrow-bg-gray.svg" alt="button" />
+                            <img src={`${BASE_URL_SVG}/assets/svgs/arrow-bg-gray.svg`} alt="button" />
                         </button>
 
                         <button
                             className="w-full text-2xl text-white font-semibold font-Montserrat flex justify-between items-center bg-primary p-4 cursor-pointer">
                             Customize My Package
-                            <img src="/svgs/arrow-bg-white.svg" alt="button" />
+                            <img src={`${BASE_URL_SVG}/assets/svgs/arrow-bg-white.svg`} alt="button" />
                         </button>
                     </div>
 
@@ -334,7 +352,42 @@ export default function UmrahDetail() {
 
 
             <NeedHelp />
-            <CustomizeUmrahPopup />
+            <AnimatePresence>
+                {isOpen && (
+                    <>
+                        {/* Overlay */}
+                        <motion.div
+                            className="fixed inset-0 bg-black/50 z-40"
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                        />
+
+                        {/* Popup */}
+                        <motion.div
+                            ref={modalRef}
+                            className="fixed inset-0 z-50 flex justify-center items-center"
+                            initial={{ opacity: 0, scale: 0.8, y: 50 }}
+                            animate={{ opacity: 1, scale: 1, y: 0 }}
+                            exit={{ opacity: 0, scale: 0.8, y: 50 }}
+                            transition={{ duration: 0.3, ease: "easeInOut" }}
+                        >
+                            <div className="relative bg-white shadow-lg max-w-[80%] w-full ">
+                                <div className="flex justify-end p-3">
+                                    <button
+                                        onClick={() => setIsOpen(false)}
+                                        className="absolute -top-4 -right-4  rounded-full"
+                                    >
+                                        <img src="/svgs/cross.svg" alt="crosee" className=' cursor-pointer' />
+                                    </button>
+                                </div>
+                                <CustomizeUmrahPopup />
+                            </div>
+                        </motion.div>
+                    </>
+                )}
+            </AnimatePresence>
+
         </div>
     )
 

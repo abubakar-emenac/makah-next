@@ -27,6 +27,7 @@ const endpoints = {
   blogpage: `${BASE_URL}/get-makkah-blog`,
   blogdeatilsgpage: (page_url) =>
     `${BASE_URL}/get-makkah-blog?page_url=${page_url}`,
+  getAirport: `${BASE_URL}/airports`,
 };
 
 export { BASE_URL, endpoints, BASE_URL_IMG, BASE_URL_SVG, BASE_URL_Front };

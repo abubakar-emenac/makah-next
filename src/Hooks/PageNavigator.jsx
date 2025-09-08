@@ -59,7 +59,7 @@ export default function PageNavigator() {
         return <div className="text-center py-10">No valid Hajj section found</div>;
     }
 
-    
+
 
 
 
@@ -67,21 +67,21 @@ export default function PageNavigator() {
         const hasSection1 = section_1_widget?.length > 0;
         const hasSection2 = section_2_widget?.length > 0;
         const hasSection3 = section_3_widget?.length > 0;
-      
+
         if (hasSection1 && hasSection2 && hasSection3) {
-          // All three sections present → show UmrahPackageStar
-          return <UmrahPackageStar pageData={pageData}/>;
+            // All three sections present → show UmrahPackageStar
+            return <UmrahPackageStar pageData={pageData} />;
         }
-      
+
         if (hasSection1 && !hasSection2 && !hasSection3) {
-          // Only section_1_widget present → show SpecificCategoryUmrah
-          return <SpecificCategoryUmrah pageData={pageData}/>;
+            // Only section_1_widget present → show SpecificCategoryUmrah
+            return <SpecificCategoryUmrah pageData={pageData} />;
         }
-      
+
         // Optional: if you want a fallback for other cases
         return <div>No matching Umrah flow</div>;
-      }
-      
+    }
+
 
     return <div className="text-center py-10">No matching handler</div>;
 }

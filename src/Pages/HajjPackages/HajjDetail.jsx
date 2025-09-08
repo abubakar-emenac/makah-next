@@ -130,7 +130,7 @@ export default function HajjDetail() {
                             {Array.from({ length: 5 }).map((_, index) => (
                                 <img
                                     key={index}
-                                    src="/svgs/filledStar.svg"
+                                    src={`${BASE_URL_SVG}/assets/svgs/filledStar.svg`}
                                     alt="star"
                                     className={`w-6 sm:w-7 lg:w-8 ${index >= Number(packageData?.package_star) ? 'opacity-30' : ''}`}
                                 />
