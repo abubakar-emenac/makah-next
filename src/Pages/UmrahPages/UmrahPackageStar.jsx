@@ -7,7 +7,7 @@ import PackageCardUmrah from "../../Components/UmrahComponents/PackageCardUmrah"
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-
+import axios from "axios";
 const UmrahStarSection = ({ packages = [], section }) => {
     const sliderRef = useRef(null);
 
@@ -125,24 +125,38 @@ export default function UmrahPackageStar({ pageData }) {
         async function fetchPackages() {
             const results = await Promise.all(
                 sections.map(async (widget) => {
-                    const { umrah_type, umrah_package_ids, star } = widget;
+                    try {
+                        let packages = [];
 
-                    let url = "";
-                    if (umrah_package_ids) {
-                        url = endpoints.umrahById(umrah_package_ids);
-                    } else if (star && star !== "0") {
-                        url = endpoints.umrahByStar(star, umrah_type);
-                    } else {
-                        url = endpoints.umrahByType(umrah_type);
+                        if (widget.umrah_package_ids) {
+                            const ids = widget.umrah_package_ids
+                                .split(",")
+                                .map((id) => id.trim())
+                                .filter(Boolean);
+
+                            if (ids.length > 0) {
+                                const res = await axios.get(endpoints.umrahById(ids.join(",")));
+                                packages = Array.isArray(res.data?.result?.data)
+                                    ? res.data.result.data
+                                    : [];
+                            }
+                        } else if (widget.star && widget.star !== "0") {
+                            const res = await axios.get(endpoints.umrahByStar(widget.star, widget.umrah_type));
+                            packages = Array.isArray(res.data?.result?.packages?.data)
+                                ? res.data.result.packages.data
+                                : [];
+                        } else if (widget.umrah_type) {
+                            const res = await axios.get(endpoints.umrahByType(widget.umrah_type));
+                            packages = Array.isArray(res.data?.result?.packages?.data)
+                                ? res.data.result.packages.data
+                                : [];
+                        }
+
+                        return { ...widget, packages };
+                    } catch (err) {
+                        console.error("Error fetching packages for widget:", widget, err);
+                        return { ...widget, packages: [] };
                     }
-
-                    const res = await fetch(url);
-                    const data = await res.json();
-
-                    // ✅ safely pick packages
-                    const packages = data?.result?.packages?.data || [];
-
-                    return { ...widget, packages };
                 })
             );
 
@@ -153,6 +167,7 @@ export default function UmrahPackageStar({ pageData }) {
             fetchPackages();
         }
     }, [sections]);
+
 
     return (
         <div className="flex flex-col w-full">
