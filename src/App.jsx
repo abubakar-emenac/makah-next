@@ -20,7 +20,11 @@ import UmrahDetail from "./Pages/UmrahPages/UmrahDetail"
 import Bloghome from "./Pages/BlogComponents/Bloghome"
 import BlogDetails from "./Pages/BlogComponents/BlogDetails"
 import ContactUS from "./Pages/CommonPages/ContactUs"
+import './App.css'
 import PageNavigator from "./Hooks/PageNavigator"
+import TnCpage from "./Pages/CommonPages/T&CPage"
+import PrivacyPolicy from "./Pages/CommonPages/PrivacyPolicy"
+import CookiePolicy from "./Pages/CommonPages/CookiesPolicy"
 
 function App() {
 
@@ -38,10 +42,6 @@ function App() {
           element={<Home />}
         />
         <Route
-          path="/:slug"
-          element={<PageNavigator />}
-        />
-        <Route
           path="/visa"
           element={<VisaPage />}
         />
@@ -49,25 +49,29 @@ function App() {
           path="/customization"
           element={<CustomizationForm />}
         />
-        {/* <Route
-          path="/umrah"
-          element={<SpecificCategoryUmrah />}
-        /> */}
-        {/* <Route
-          path="/hajj"
-          element={<HajjPackage />}
-        /> */}
         <Route
           path="/about-us"
           element={<AboutPage />}
+        />
+        <Route
+          path="/terms-and-conditions"
+          element={<TnCpage />}
+        />
+        <Route
+          path="/privacy-policy"
+          element={<PrivacyPolicy />}
+        />
+        <Route
+          path="/cookies-policy"
+          element={<CookiePolicy />}
         />
         <Route
           path="/contact-us"
           element={< ContactUS />}
         />
         <Route
-          path="/umrah/3-star-umrah-packages"
-          element={<UmrahPackageStar />}
+          path="/:slug"
+          element={<PageNavigator />}
         />
         <Route
           path="/umrah/:slug" element={< UmrahDetail />}

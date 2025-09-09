@@ -276,11 +276,13 @@
 //                         </div>
 //                 )}
 //             </div>
+//             </div>
 //         </div>
 //     );
 // }
 
 import React, { useEffect, useState } from "react";
+import parse from "html-react-parser";
 import "../../CSS/ScrollDetail.css"; // Ensure this path is correct
 
 export default function ScrollDetail({ pageData }) {
@@ -326,9 +328,10 @@ export default function ScrollDetail({ pageData }) {
             {/* Scrollable description */}
             <div className="w-full sm:px-6 md:px-1 mt-6 h-[500px] max-h-full">
                 <div
-                    className="custom-scrollbar p-3"
-                    dangerouslySetInnerHTML={{ __html: filteredDescription }}
-                />
+                    className="custom-scrollbar prose font-Montserrat p-3"
+                >
+                    {parse(filteredDescription)}
+                </div>
             </div>
         </div>
     );

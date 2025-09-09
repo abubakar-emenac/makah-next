@@ -2,6 +2,7 @@
 // const BASE_URL_IMG = "http://makkah-travel-uk-admin.test/public/media";
 // const BASE_URL_SVG = "http://makkah-travel-uk-admin.test/public/";
 const BASE_URL = "https://admin.makkahtravel.co.uk/api";
+const WEB_URL = "https://admin.makkahtravel.co.uk";
 const BASE_URL_IMG = "https://admin.makkahtravel.co.uk/media";
 const BASE_URL_SVG = "https://admin.makkahtravel.co.uk/";
 
@@ -30,4 +31,11 @@ const endpoints = {
   getAirport: `${BASE_URL}/airports`,
 };
 
-export { BASE_URL, endpoints, BASE_URL_IMG, BASE_URL_SVG, BASE_URL_Front };
+export {
+  BASE_URL,
+  endpoints,
+  BASE_URL_IMG,
+  BASE_URL_SVG,
+  BASE_URL_Front,
+  WEB_URL,
+};

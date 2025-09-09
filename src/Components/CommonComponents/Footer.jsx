@@ -130,10 +130,15 @@
 import React, { useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { useGlobalData } from "../../Helpers/useGlobalData";
-import { BASE_URL_SVG } from '../../Helpers/apiEndpoints';
+import { BASE_URL_SVG, WEB_URL } from '../../Helpers/apiEndpoints';
 export default function Footer() {
     const { globalData } = useGlobalData();
     const currentYear = new Date().getFullYear();
+    const settings = globalData?.result?.settings || [];
+    const logoSetting = settings.find(
+        (item) => item.ref_name === "Website Logo"
+    );
+    const logo = logoSetting?.contents?.footer_logo;
 
     const footerItems = useMemo(() => {
         if (!globalData?.result?.footer_setting) return null;
@@ -192,13 +197,13 @@ export default function Footer() {
                 {/* Top Section - Desktop/Laptop */}
                 <div className="hidden lg:flex items-start justify-between px-3 gap-8">
                     {/* Logo */}
-                    <div className="font-Montserrat text-[26px] flex-shrink-0">
+                    <Link to={'/'} className="font-Montserrat text-[26px] flex-shrink-0 w-3xs h-10">
                         {footerItems.logo ? (
-                            <img src={footerItems.logo} alt="Company Logo" className="h-10" />
+                            <img src={`${WEB_URL}/${logo}`} alt="Company Logo" className="object-cover" />
                         ) : (
                             "Makkah Travel"
                         )}
-                    </div>
+                    </Link>
 
                     {/* Quick Links */}
                     <div className="flex-1">
