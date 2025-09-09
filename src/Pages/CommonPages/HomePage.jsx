@@ -38,8 +38,6 @@ export default function Home() {
         fetchPageData();
     }, []);
 
-
-
     return (
         <>
             <HeroSection pageData={homeData} />

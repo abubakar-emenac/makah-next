@@ -32,7 +32,7 @@ export default function AboutPage() {
         fetchPageData();
     }, []);
     return (
-        <div className='flex flex-col mt-8 w-full ma-w-[75%] mx-auto'>
+        <div className='flex flex-col mt-8 w-full max-w-[75%] mx-auto'>
             <Navbar textColor='black' />
             <div className='max-w-[75%] mx-auto mt-8 parseData'>
                 {parse(aboutData?.content ?? "")}
