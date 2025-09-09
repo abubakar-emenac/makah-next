@@ -12,6 +12,21 @@ const Navbar = ({ textColor = "black" }) => {
   const logoSetting = settings.find(
     (item) => item.ref_name === "Website Logo"
   );
+  // Fetch phone number from global_variables
+  const phoneNumberObj = globalData?.result?.global_variables?.find(
+    (item) => item.code === "[%PHONENUMBER%]"
+  );
+  const phoneNumber = phoneNumberObj?.code_value || "";
+
+  // Fetch WhatsApp number from global_variables
+  const whatsappObj = globalData?.result?.global_variables?.find(
+    (item) => item.code === "[%WHATSAPP%]"
+  );
+  const whatsappNumber = whatsappObj?.code_value || "";
+
+  // Construct WhatsApp link
+  const whatsappLink = whatsappNumber ? `https://wa.me/${whatsappNumber}` : "#";
+
   const logo = logoSetting?.contents?.main_logo;
   const textColorClass = textColor === "white" ? "text-white" : "text-black";
   const navItems = useMemo(() => {
@@ -97,18 +112,23 @@ const Navbar = ({ textColor = "black" }) => {
               </div>
             ))}
           </div>
-          <div className="relative flex items-center text-xs md:text-sm font-medium ml-4">
-            <div className="bg-white rounded-l-3xl pl-3 md:pl-4 pr-10 md:pr-12 py-1.5 md:py-[2px] flex flex-col items-end shadow-md">
+          <div className="relative rounded-l-3xl flex items-center text-xs md:text-sm font-medium ml-4 bg-white">
+            <div className="  pl-3 md:pl-4 py-1.5 md:py-[2px] flex flex-col items-end">
               <span className="text-yellow-500 leading-tight">Call Now:</span>
-              <span className="text-gray-800">0203 - 970 - 0002</span>
+              <span className="text-gray-800">{phoneNumber}</span>
             </div>
-            <div className="absolute right-0 translate-x-1/2 top-1/2 -translate-y-1/2 w-7 h-7 md:w-8 md:h-8 bg-white rounded-full shadow-md flex items-center justify-center">
+            <div>
+              <img src={`${BASE_URL_SVG}/assets/svgs/phone.svg`} alt="" />
+            </div>
+            {/* <div className="absolute right-0 translate-x-1/2 top-1/2 -translate-y-1/2 w-10 h-7 md:w-8 md:h-8 rounded-full shadow-md flex items-center justify-center"> */}
+            <a href={whatsappLink} target="_blank" rel="noopener noreferrer">
               <img
                 src={`${BASE_URL_SVG}/assets/svgs/wa.svg`}
                 alt="whatsapp"
-                className="w-4 h-4 md:w-5 md:h-5"
+                className="w-10 h-10 md:w-10 md:h-10"
               />
-            </div>
+            </a>
+            {/* </div> */}
           </div>
         </div>
 
@@ -177,15 +197,25 @@ const Navbar = ({ textColor = "black" }) => {
           ))}
 
           {/* CALL NOW */}
-          <div className="flex items-center justify-between pt-4 text-sm font-medium">
-            <div className="flex flex-col">
-              <span className="text-yellow-500">Call Now:</span>
-              <span className="text-gray-800">0203 - 970 - 0002</span>
+          <div className="relative flex items-center text-xs md:text-sm font-medium ml-4">
+            <div className="bg-white rounded-l-3xl pl-3 md:pl-4 pr-10 md:pr-12 py-1.5 md:py-[2px] flex flex-col items-end shadow-md">
+              <span className="text-yellow-500 leading-tight">Call Now:</span>
+              <span className="text-gray-800">{phoneNumber}</span>
             </div>
-            <div className="w-8 h-8">
-              <img src={`${BASE_URL_SVG}/assets/svgs/wa.svg`} alt="whatsapp" />
+            <div>
+              <img src="/svgs/phone.svg" alt="" />
+            </div>
+            <div className="absolute right-0 translate-x-1/2 top-1/2 -translate-y-1/2 w-7 h-7 md:w-8 md:h-8 bg-white rounded-full shadow-md flex items-center justify-center">
+              <a href={whatsappLink} target="_blank" rel="noopener noreferrer">
+                <img
+                  src={`${BASE_URL_SVG}/assets/svgs/wa.svg`}
+                  alt="whatsapp"
+                  className="w-4 h-4 md:w-5 md:h-5"
+                />
+              </a>
             </div>
           </div>
+
         </div>
       )}
     </nav>

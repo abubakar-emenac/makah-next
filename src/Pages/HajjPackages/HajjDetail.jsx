@@ -119,8 +119,8 @@ export default function HajjDetail() {
 
     return (
         <div>
+            <Navbar />
             <div className="flex flex-col w-full max-w-[95%] md:max-w-[85%] lg:max-w-[80%] mx-auto px-4">
-                <Navbar />
 
                 {/* Package Title + Price */}
                 <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mt-4">
@@ -223,7 +223,7 @@ export default function HajjDetail() {
                             <React.Fragment key={item.key}>
                                 <div className="flex flex-col items-center gap-2 font-Montserrat">
                                     <div className="w-14 h-14 flex items-center justify-center rounded">
-                                        <img src={`${BASE_URL_SVG}/assets/item.icon`} alt={item.label}
+                                        <img src={`${BASE_URL_SVG}/assets/${item.icon}`} alt={item.label}
                                             className="w-10 sm:w-12 h-10 sm:h-12 object-contain" />
                                     </div>
                                     <span className="text-xs sm:text-sm text-center text-[#222]">

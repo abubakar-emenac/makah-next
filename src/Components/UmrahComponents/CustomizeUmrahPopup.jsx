@@ -158,7 +158,7 @@ export default function CustomizeUmrahPopup() {
         <form
             onSubmit={handleSubmit}
             className="bg-white px-4 py-6 rounded-xl shadow-md w-full font-Montserrat">
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
 
                 {/* Departure Airport */}
                 <div className="relative" ref={airportRef}>

@@ -195,18 +195,22 @@ export default function Footer() {
         >
             <div className="w-full max-w-screen-xl mx-auto space-y-10">
                 {/* Top Section - Desktop/Laptop */}
-                <div className="hidden lg:flex items-start justify-between px-3 gap-8">
+                <div className="hidden lg:grid grid-cols-4 items-start px-3 gap-8">
                     {/* Logo */}
-                    <Link to={'/'} className="font-Montserrat text-[26px] flex-shrink-0 w-3xs h-10">
+                    <Link to={'/'} className="font-Montserrat text-[26px] w-48 h-10">
                         {footerItems.logo ? (
-                            <img src={`${WEB_URL}/${logo}`} alt="Company Logo" className="object-cover" />
+                            <img
+                                src={`${WEB_URL}/${logo}`}
+                                alt="Company Logo"
+                                className="object-contain w-auto"
+                            />
                         ) : (
                             "Makkah Travel"
                         )}
                     </Link>
 
                     {/* Quick Links */}
-                    <div className="flex-1">
+                    <div>
                         <h3 className="font-Montserrat text-primary text-xl font-semibold mb-3">
                             {footerItems.contents.link_1_heading || "Quick Links"}
                         </h3>
@@ -217,7 +221,7 @@ export default function Footer() {
                     </div>
 
                     {/* Terms */}
-                    <div className="flex-1">
+                    <div>
                         <h3 className="font-Montserrat text-primary text-xl font-semibold mb-3">
                             {footerItems.contents.link_2_heading || "Our Terms"}
                         </h3>
@@ -232,28 +236,41 @@ export default function Footer() {
                         <div className="flex gap-6">
                             {footerItems.socialIcons.map((item, index) => (
                                 <div key={index} className="flex flex-col items-center gap-1">
-                                    <img src={`${BASE_URL_SVG}/${item.icon}`} alt={item.alt} className="w-11" />
+                                    <img
+                                        src={`${BASE_URL_SVG}/${item.icon}`}
+                                        alt={item.alt}
+                                        className="w-11 sm:w-12 object-contain"
+                                    />
                                     <span className="text-xs">{item.label}</span>
                                 </div>
                             ))}
                         </div>
                         <div>
-                            <img src={`${BASE_URL_SVG}/assets/svgs/banks.svg`} alt="Bank Logos" className="w-full max-w-[200px]" />
+                            <img
+                                src={`${BASE_URL_SVG}/assets/svgs/banks.svg`}
+                                alt="Bank Logos"
+                                className="w-full max-w-[200px]"
+                            />
                         </div>
                     </div>
                 </div>
+
 
                 {/* Tablet/Mobile version */}
                 <div className="lg:hidden space-y-10">
                     {/* Row 1: Logo + Social Icons */}
                     <div className="flex flex-row sm:flex-row items-center justify-between px-3">
-                        <div className="font-Montserrat text-[26px]">
+                        <Link to={'/'} className="font-Montserrat text-[26px] w-48 h-10">
                             {footerItems.logo ? (
-                                <img src={footerItems.logo} alt="Company Logo" className="h-10" />
+                                <img
+                                    src={`${WEB_URL}/${logo}`}
+                                    alt="Company Logo"
+                                    className="object-contain w-auto"
+                                />
                             ) : (
                                 "Makkah Travel"
                             )}
-                        </div>
+                        </Link>
                         <div className="flex gap-6">
                             {footerItems.socialIcons.map((item, index) => (
                                 <div key={index} className="flex flex-col items-center gap-1">
@@ -299,40 +316,63 @@ export default function Footer() {
                 <hr className="border-white" />
 
                 {/* Contact Info */}
-                <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-8 px-9">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-9">
                     {/* Call Us */}
-                    <a href={`tel:${footerItems.contents.footer_phone || '0207-043-4343'}`} className="flex items-start gap-4 hover:underline">
-                        <img src={`${BASE_URL_SVG}/assets/svgs/Need Help Section (Call) SVG.svg`} alt="Call" className="w-10 sm:w-12" />
+                    <a
+                        href={`tel:${footerItems.contents.footer_phone || '0207-043-4343'}`}
+                        className="flex items-start gap-4 hover:underline"
+                    >
+                        <img
+                            src={`${BASE_URL_SVG}/assets/svgs/Need Help Section (Call) SVG.svg`}
+                            alt="Call"
+                            className="w-10 sm:w-12"
+                        />
                         <div>
                             <p className="text-primary font-semibold font-Montserrat">CALL US</p>
-                            <p className="font-Montserrat text-lg">{footerItems.contents.footer_phone || '(0208) - 000 - 000'}</p>
+                            <p className="font-Montserrat text-lg">
+                                {footerItems.contents.footer_phone || '(0208) - 000 - 000'}
+                            </p>
                         </div>
                     </a>
 
                     {/* Write To Us */}
-                    <a href={`mailto:${footerItems.contents.footer_email || 'info@makkahtravel.co.uk'}`} className="flex items-start gap-4 hover:underline">
-                        <img src={`${BASE_URL_SVG}/assets/svgs/Need Help Section (Call) SVG.svg`} alt="Email" className="w-10 sm:w-12" />
+                    <a
+                        href={`mailto:${footerItems.contents.footer_email || 'info@makkahtravel.co.uk'}`}
+                        className="flex items-start gap-4 hover:underline"
+                    >
+                        <img
+                            src={`${BASE_URL_SVG}/assets/svgs/Need Help Section (Call) SVG.svg`}
+                            alt="Email"
+                            className="w-10 sm:w-12"
+                        />
                         <div>
                             <p className="text-primary font-semibold font-Montserrat">WRITE TO US</p>
-                            <p className="font-Montserrat text-lg">{footerItems.contents.footer_email || 'info@makkahtravel.co.uk'}</p>
+                            <p className="font-Montserrat text-lg">
+                                {footerItems.contents.footer_email || 'info@makkahtravel.co.uk'}
+                            </p>
                         </div>
                     </a>
 
                     {/* Address */}
                     <a
-                        href={`https://www.google.com/maps?q=${encodeURIComponent(footerItems.contents.footer_address || 'Suite No.5, The Old Dispensary, 30 Romford Road, Stratford London, England, E15 4BZ, United Kingdom')}`}
+                        href={`https://www.google.com/maps?q=${encodeURIComponent(
+                            footerItems.contents.footer_address ||
+                            'Suite No.5, The Old Dispensary, 30 Romford Road, Stratford London, England, E15 4BZ, United Kingdom'
+                        )}`}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="hover:underline"
                     >
                         <p className="text-primary font-semibold font-Montserrat">ADDRESS</p>
                         <p className="font-Montserrat text-sm leading-snug">
-                            {footerItems.contents.footer_address || `Suite No.5, The Old Dispensary, 30 Romford Road,
-                            Stratford London, England, E15 4BZ,
-                            United Kingdom`}
+                            {footerItems.contents.footer_address ||
+                                `Suite No.5, The Old Dispensary, 30 Romford Road,
+                Stratford London, England, E15 4BZ,
+                United Kingdom`}
                         </p>
                     </a>
                 </div>
+
 
                 {/* Divider */}
                 <hr className="border-white" />

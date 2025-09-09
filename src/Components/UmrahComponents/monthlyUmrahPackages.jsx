@@ -137,7 +137,8 @@ export default function MonthlyUmrahPackages({ pageData }) {
         speed: 700,
         slidesToShow: 4, // desktop default
         slidesToScroll: 1,
-        autoplay: false,
+        autoplay: true,
+        autoplaySpeed: 3000,
         arrows: false,
         responsive: [
             {
