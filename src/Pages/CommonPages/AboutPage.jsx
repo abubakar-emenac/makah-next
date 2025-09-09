@@ -6,7 +6,7 @@ import NeedHelp from '../../Components/CommonComponents/NeedHelp'
 
 export default function AboutPage() {
     return (
-        <div className='flex flex-col mt-8 w-full ma-w-[75%] mx-auto'>
+        <div className='flex flex-col mt-8 w-full max-w-[75%] mx-auto'>
             <Navbar textColor='black' />
             About us
             <WhyChoose />

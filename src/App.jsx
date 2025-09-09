@@ -9,6 +9,7 @@ import UmrahPackageStar from "./Pages/UmrahPages/UmrahPackageStar"
 import UmrahDetail from "./Pages/UmrahPages/UmrahDetail"
 import CustomizationForm from "./Components/CommonComponents/CustomizationForm"
 import HajjPackage from "./Pages/HajjPackages/HajjPackage"
+import ContactPage from "./Components/CommonComponents/ContactPage"
 
 function App() {
 
@@ -35,6 +36,10 @@ function App() {
         <Route
           path="/about-us"
           element={<AboutPage />}
+        />
+        <Route
+          path="/contact-us"
+          element={<ContactPage />}
         />
         <Route
           path="/umrah/best-umrah-deals"
