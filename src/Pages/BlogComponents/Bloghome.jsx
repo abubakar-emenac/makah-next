@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"; 
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { BASE_URL_IMG, endpoints } from "../../Helpers/apiEndpoints";
@@ -11,6 +11,7 @@ const BlogHome = () => {
   const [pageData, setPageData] = useState(null);
   const [widgets, setWidgets] = useState([]);
   const [loading, setLoading] = useState(true);
+  // console.log(pageData)
 
   // Pagination state
   const [currentPage, setCurrentPage] = useState(1);
@@ -59,6 +60,15 @@ const BlogHome = () => {
     );
   }
 
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString("en-GB", {
+      day: "2-digit",
+      month: "short",
+      year: "2-digit",
+    });
+  };
+
   // Pagination calculations
   const indexOfLastBlog = currentPage * blogsPerPage;
   const indexOfFirstBlog = indexOfLastBlog - blogsPerPage;
@@ -73,13 +83,13 @@ const BlogHome = () => {
       <div className="container mx-auto px-4 py-12">
         {/* ✅ Section 1 → Featured Blogs */}
         {widgets[0] && (
-          <div className="w-full mb-12 sm:mb-16">
+          <div className="w-full mb-8">
             <img
               src="/svgs/crown-black.svg"
               alt="Crown"
-              className="w-16 sm:w-18 md:w-24 mb-3 sm:mb-4"
+              className="w-16 sm:w-18 md:w-24 mb-3 sm:mb-2"
             />
-            <h2 className="text-[28px] sm:text-[32px] md:text-[36px] font-abril leading-tight mb-3 sm:mb-4">
+            <h2 className="text-[28px] sm:text-[32px] md:text-[36px] font-abril leading-tight mb-2 ">
               {widgets[0].heading}
             </h2>
             <p className="font-Montserrat text-[14px] sm:text-[15px] md:text-[16px] leading-relaxed text-black">
@@ -100,13 +110,18 @@ const BlogHome = () => {
                 className="w-full h-56 object-cover rounded-xl"
               />
               <div className="p-5">
-                <h3 className="text-xl font-abril mb-2">{blog.title}</h3>
+                <h3 className="text-xl font-Montserrat font-semibold mb-2">{blog.title}</h3>
                 <p className="text-sm font-Montserrat text-gray-600 mb-3 line-clamp-3">
                   {blog.short_description || "Read more about this featured post."}
                 </p>
-                <span className="text-primary font-semibold hover:underline">
+                <div className="flex items-center space-x-2 text-sm text-gray-700  font-Montserrat">
+                  <span className="font-medium">{blog?.author}</span>
+                  <span className="w-2 h-2 bg-green-500 rounded-full ml-6"></span>
+                  <span>{formatDate(blog?.created_at)}</span>
+                </div>
+                {/* <span className="text-primary font-semibold hover:underline">
                   Read More →
-                </span>
+                </span> */}
               </div>
             </Link>
           ))}
@@ -114,13 +129,13 @@ const BlogHome = () => {
 
         {/* ✅ Section 2 → Latest Blogs */}
         {widgets[1] && (
-          <div className="w-full mb-12 sm:mb-16">
+          <div className="w-full mb-8">
             <img
               src="/svgs/crown-black.svg"
               alt="Crown"
-              className="w-16 sm:w-18 md:w-24 mb-3 sm:mb-4"
+              className="w-16 sm:w-18 md:w-24 mb-2"
             />
-            <h2 className="text-[28px] sm:text-[32px] md:text-[36px] font-abril leading-tight mb-3 sm:mb-4">
+            <h2 className="text-[28px] sm:text-[32px] md:text-[36px] font-abril leading-tight mb-2">
               {widgets[1].heading}
             </h2>
             <p className="font-Montserrat text-[14px] sm:text-[15px] md:text-[16px] leading-relaxed text-black">
@@ -129,7 +144,7 @@ const BlogHome = () => {
           </div>
         )}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {currentBlogs.map((blog) => (
+          {currentBlogs?.map((blog) => (
             <Link
               key={blog.id}
               to={`/blog/${blog.page_url}`}
@@ -141,13 +156,18 @@ const BlogHome = () => {
                 className="w-full h-56 object-cover rounded-xl"
               />
               <div className="p-5">
-                <h3 className="text-xl font-abril mb-2">{blog.title}</h3>
+                <h3 className="text-xl font-Montserrat font-semibold mb-2">{blog.title}</h3>
                 <p className="text-sm font-Montserrat text-gray-600 mb-3 line-clamp-3">
                   {blog.short_description || "Read more about this post."}
                 </p>
-                <span className="text-primary font-semibold hover:underline">
+                <div className="flex items-center space-x-2 text-sm text-gray-700  font-Montserrat">
+                  <span className="font-medium">{blog?.author}</span>
+                  <span className="w-2 h-2 bg-green-500 rounded-full ml-6"></span>
+                  <span>{formatDate(blog?.created_at)}</span>
+                </div>
+                {/* <span className="text-primary font-semibold hover:underline">
                   Read More →
-                </span>
+                </span> */}
               </div>
             </Link>
           ))}
@@ -159,11 +179,10 @@ const BlogHome = () => {
             <button
               key={i + 1}
               onClick={() => setCurrentPage(i + 1)}
-              className={`px-4 py-2 rounded-md font-semibold transition ${
-                currentPage === i + 1
-                  ? "bg-primary text-white"
-                  : "bg-gray-200 text-gray-700 hover:bg-gray-300"
-              }`}
+              className={`px-4 py-2 rounded-md font-semibold transition ${currentPage === i + 1
+                ? "bg-primary text-white"
+                : "bg-gray-200 text-gray-700 hover:bg-gray-300"
+                }`}
             >
               {i + 1}
             </button>

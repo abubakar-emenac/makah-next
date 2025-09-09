@@ -22,15 +22,16 @@ import Bloghome from "./Pages/BlogComponents/Bloghome"
 import BlogDetails from "./Pages/BlogComponents/BlogDetails"
 import ContactUS from "./Pages/CommonPages/ContactUs"
 import PageNavigator from "./Hooks/PageNavigator"
+import CustomizePackageForm from "./Components/CommonComponents/CustomizePackageForm"
 
 function App() {
 
-
-    useGlobalSettingsInjector();
+  useGlobalSettingsInjector();
   // usePageMetaInjector();
   AnalyticsInjector();
   useSeoScripts();
   useFaviconInjector();
+
   return (
     <>
       <Routes>
@@ -64,7 +65,11 @@ function App() {
         />
         <Route
           path="/contact-us"
-          element={< ContactUS />}
+          element={<ContactUS />}
+        />
+         <Route
+          path="/customize-form"
+          element={<CustomizePackageForm />}
         />
         <Route
           path="/umrah/3-star-umrah-packages"
@@ -77,30 +82,27 @@ function App() {
           path="/hajj/:slug"
           element={<HajjDetail />}
         />
-            <Route path="/blog" element={<Bloghome />} />
-            <Route path="/blog/:page_url" element={<BlogDetails />} />
+        <Route path="/blog" element={<Bloghome />} />
+        <Route path="/blog/:page_url" element={<BlogDetails />} />
         <Route path="/not-found" element={<NotFound />} />
         <Route path="*" element={<Navigate to="/not-found" replace />} />
-   
-
-
       </Routes>
       <Footer />
+
       <Toaster
         position="top-right"
         reverseOrder={false}
         toastOptions={{
-          // Global default styles
           style: {
             fontFamily: "Montserrat, sans-serif",
             fontSize: "14px",
             borderRadius: "12px",
-            background: "#1f2937", // dark gray
+            background: "#1f2937",
             color: "#fff",
           },
           success: {
             style: {
-              background: "#16a34a", // green
+              background: "#16a34a",
               color: "#fff",
             },
             iconTheme: {
@@ -110,7 +112,7 @@ function App() {
           },
           error: {
             style: {
-              background: "#dc2626", // red
+              background: "#dc2626",
               color: "#fff",
             },
             iconTheme: {

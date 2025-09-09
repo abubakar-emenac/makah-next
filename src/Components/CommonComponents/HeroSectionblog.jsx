@@ -39,7 +39,7 @@ export default function HeroSection({ pageData }) {
 
             {/* CONTENT CONTAINER */}
             <div className="w-full max-w-[90%] lg:max-w-[80%] mx-auto px-4 sm:px-6 md:px-8 h-full flex flex-col justify-center">
-                
+
                 {/* HEADING */}
                 <h1 className="text-white font-abril leading-tight 
                     text-[22px] sm:text-[30px] md:text-[38px] lg:text-[44px] 

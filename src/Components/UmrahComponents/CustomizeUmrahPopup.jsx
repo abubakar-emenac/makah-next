@@ -188,20 +188,20 @@ export default function CustomizeUmrahPopup() {
                             ).length > 0 ? (
                                 airportList
                                     .filter((airport) =>
-            airport.name.toLowerCase().includes(departureAirport.toLowerCase())
-        )
-                                        .map((airport) => (
-                                            <li
-                key={airport.id}
-                className="px-3 py-2 cursor-pointer hover:bg-gray-300"
-                onClick={() => {
-                    setDepartureAirport(airport.name);
-                    setShowAirportList(false);
-                }}
-            >
-                {airport.name}
-            </li>
-        ))
+                                        airport.name.toLowerCase().includes(departureAirport.toLowerCase())
+                                    )
+                                    .map((airport) => (
+                                        <li
+                                            key={airport.id}
+                                            className="px-3 py-2 cursor-pointer hover:bg-gray-300"
+                                            onClick={() => {
+                                                setDepartureAirport(airport.name);
+                                                setShowAirportList(false);
+                                            }}
+                                        >
+                                            {airport.name}
+                                        </li>
+                                    ))
                             ) : (
                                 <li className="px-3 py-2 text-gray-500 italic">No airport available</li>
                             )}
@@ -420,7 +420,7 @@ export default function CustomizeUmrahPopup() {
                         <Loader />
                     ) : (
                         <>
-                                <span>Submit</span>
+                            <span>Submit</span>
                             <img src={`${BASE_URL_SVG}/assets/svgs/SubmitArrow.svg`} alt="submit" className="w-7 h-7" />
                         </>
                     )}

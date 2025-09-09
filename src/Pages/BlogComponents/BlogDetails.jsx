@@ -11,6 +11,15 @@ const BlogDetails = () => {
   const [latestBlogs, setLatestBlogs] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString("en-GB", {
+      day: "2-digit",
+      month: "short",
+      year: "2-digit",
+    });
+  };
+
   useEffect(() => {
     const fetchBlogDetails = async () => {
       try {
@@ -30,7 +39,7 @@ const BlogDetails = () => {
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-[40vh]">
-        <p className="text-lg font-Montserrat">Loading blog...</p>
+        <p className="text-lg font-Montserrat">Loading Blog...</p>
       </div>
     );
   }
@@ -38,7 +47,7 @@ const BlogDetails = () => {
   if (!blog) {
     return (
       <div className="flex items-center justify-center min-h-[40vh]">
-        <p className="text-lg font-Montserrat">Blog not found.</p>
+        <p className="text-lg font-Montserrat">Blog not Found.</p>
       </div>
     );
   }
@@ -59,7 +68,7 @@ const BlogDetails = () => {
       <div className="max-w-6xl mx-auto px-4 py-12 flex flex-col md:flex-row gap-10">
         {/* Left - Blog Content */}
         <main className="w-full md:w-2/3 order-1 md:order-1">
-          
+
           <p className="text-gray-600 text-sm mb-6 font-Montserrat">
             By {blog.author || "Admin"} on{" "}
             {new Date(blog.created_at).toLocaleDateString()}
@@ -72,36 +81,40 @@ const BlogDetails = () => {
 
 
         {/* Right - Latest Posts Sidebar */}
-<aside className="w-full md:w-1/3 mb-8 md:mb-0 hidden md:block">
-  <h2 className="text-lg font-semibold mb-4">Latest Posts</h2>
-<div className="grid grid-cols-1 gap-4 max-h-[95vh] overflow-y-auto pr-1">
-    {latestBlogs.map((item) => (
-      <Link
-        key={item.id}
-        to={`/blog/${item.page_url}`}
-        className="rounded-xl overflow-hidden hover:shadow-md transition block"
-      >
-        <div className="w-full h-28 object-cover rounded-lg"
-
->
-          <img
-            src={`${BASE_URL_IMG}/${item.image_url}`}
-            alt={item.image_alt || item.title}
-            className="w-full h-full object-cover"
-          />
-        </div>
-        <div className="p-3">
-          <h3 className="text-sm font-semibold line-clamp-2">
-            {item.title}
-          </h3>
-        </div>
-      </Link>
-    ))}
-  </div>
-</aside>
+        <aside className="w-full md:w-1/3 mb-8 md:mb-0 hidden md:block">
+          <h2 className="text-lg font-semibold font-Montserrat mb-4">Latest Posts</h2>
+          <div className="grid grid-cols-1 gap-4 max-h-[95vh] overflow-y-auto pr-1">
+            {latestBlogs.map((item) => (
+              <Link
+                key={item.id}
+                to={`/blog/${item.page_url}`}
+                className="rounded-xl overflow-hidden hover:shadow-md transition block"
+              >
+                <div className="w-full h-28 object-cover rounded-lg"
+                >
+                  <img
+                    src={`${BASE_URL_IMG}/${item.image_url}`}
+                    alt={item.image_alt || item.title}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className="p-3">
+                  <h3 className="text-md font-semibold font-Montserrat line-clamp-2">
+                    {item.title}
+                  </h3>
+                  <div className="flex items-center space-x-2 text-sm text-gray-700  font-Montserrat mt-4">
+                    <span className="font-medium">{item?.author}</span>
+                    <span className="w-2 h-2 bg-green-500 rounded-full ml-6"></span>
+                    <span>{formatDate(item?.created_at)}</span>
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </aside>
       </div>
-        {/* ✅ Need Help Section at the end */}
-            <NeedHelp />
+      {/* ✅ Need Help Section at the end */}
+      <NeedHelp />
     </div>
   );
 };

@@ -403,8 +403,8 @@ export default function ContactUS() {
                     </div>
                 </div>
 
-            <NeedHelp />
-        </div>
+                <NeedHelp />
+            </div>
         </>
     );
 

@@ -141,6 +141,7 @@
 import React from 'react';
 import ViewAllButton from './ViewAllButton';
 import { BASE_URL_IMG } from '../../Helpers/apiEndpoints';
+import { Link } from 'react-router-dom';
 
 export default function CustomizeYourPackage({ pageData }) {
     if (!pageData) return null;
@@ -185,7 +186,9 @@ export default function CustomizeYourPackage({ pageData }) {
                     <p className="text-white font-Montserrat text-[14px] sm:text-[14px] lg:text-[13px] xl:text-[15px] leading-relaxed mb-4 lg:mb-4">
                         Makkah Travel is here to help you visit religious places and make Umrah trips that connect with your soul Makkah Travel is here to help you visit religious places and make Umrah trips that connect with your soul.
                     </p>
+                    <Link to='/customize-form'>
                     <ViewAllButton label="Start Customization" color="primary" size="md" />
+                    </Link>
                 </div>
             </div>
         </div>
