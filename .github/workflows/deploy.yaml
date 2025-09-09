@@ -1,46 +1,59 @@
-name: Build & Deploy React
+name: Deploy React + Dynamic Sitemaps
 
 on:
   push:
     branches:
-      - main           # Trigger on code push to main
-  workflow_dispatch:   # Allow manual deployment
+      - main   # or your deployment branch
+  workflow_dispatch:
 
 jobs:
-  build-and-deploy:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: 🧾 Checkout code
+      - name: 🧾 Checkout Code
         uses: actions/checkout@v3
 
       - name: 🛠 Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v3
         with:
-          node-version: '22'
+          node-version: 18
 
-      - name: 📦 Install dependencies
+      - name: 📦 Install Dependencies
         run: npm install
 
-      - name: 🔨 Build the Vite app
+      - name: 🔨 Build React App
         run: npm run build
 
-      - name: 🚀 Upload React build to S3
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_REGION: ${{ secrets.AWS_REGION }}
-        run: |
-          aws s3 sync dist/ s3://${{ secrets.S3_BUCKET_NAME }} --delete
+      - name: ⚙️ Configure AWS CLI
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
 
-      - name: ⚡ Invalidate CloudFront cache
-        if: ${{ env.CLOUDFRONT_DISTRIBUTION_ID != '' }}
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_REGION: ${{ secrets.AWS_REGION }}
-          CLOUDFRONT_DISTRIBUTION_ID: ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }}
+      - name: 🚀 Deploy React build to S3
+        run: |
+          # CRA uses build/, Vite uses dist/
+          aws s3 sync dist/ s3://${{ secrets.S3_BUCKET_NAME }} --delete \
+            --exclude "sitemap.xml" \
+            --exclude "blog/post-sitemap.xml" \
+            --exclude "robots.txt"
+
+      - name: 🌐 Fetch and Upload Root Sitemap
+        run: |
+          curl -s https://admin.makkahtravel.co.uk/api/generate-sitemap > sitemap.xml
+          aws s3 cp sitemap.xml s3://${{ secrets.S3_BUCKET_NAME }}/sitemap.xml \
+            --content-type "application/xml"
+
+      - name: 🌐 Fetch and Upload Blog Post Sitemap
+        run: |
+          curl -s https://admin.makkahtravel.co.uk/api/generate-post-sitemap > post-sitemap.xml
+          aws s3 cp post-sitemap.xml s3://${{ secrets.S3_BUCKET_NAME }}/blog/post-sitemap.xml \
+            --content-type "application/xml"
+
+      - name: ⚡ Invalidate CloudFront Cache
         run: |
           aws cloudfront create-invalidation \
-            --distribution-id $CLOUDFRONT_DISTRIBUTION_ID \
+            --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} \
             --paths "/*"

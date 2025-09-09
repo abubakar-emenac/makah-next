@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Navbar from "./NavBar";
+import { BASE_URL_SVG } from "../../Helpers/apiEndpoints";
 
 export default function CustomizationForm({
     rightImageUrl,
@@ -21,7 +22,7 @@ export default function CustomizationForm({
 
                     {/* Package Type Buttons */}
                     <div className="mb-6 flex gap-4">
-                    <img src="/svg/crown-black.svg" />
+                        <img src={`${BASE_URL_SVG}/assets/svgs/crown-black.svg`} />
                     <h1 className="text-2xl sm:text-3xl md:text-4xl font-abril text-black mb-6 flex items-center gap-2">
                         Customize Your Package
                     </h1>
@@ -72,7 +73,7 @@ export default function CustomizationForm({
                         ))}
                         <button className="col-span-full sm:col-span-2 lg:col-span-1 bg-green-600 text-white px-6 py-2 rounded-md flex items-center justify-center gap-2 hover:bg-green-700 transition">
                             SUBMIT
-                            <img src="/svg/arrow-right.svg" alt="Submit Arrow" className="w-4 h-4" />
+                            <img src={`${BASE_URL_SVG}/assets/svgs/arrow-right.svg`} alt="Submit Arrow" className="w-4 h-4" />
                         </button>
                     </div>
                 </div>

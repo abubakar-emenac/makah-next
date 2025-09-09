@@ -1,15 +1,84 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import ViewAllButton from '../CommonComponents/ViewAllButton';
 import PackageCard from '../CommonComponents/PackageCard';
 import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import data from '../../data/dummyData.json';
-
-export default function MonthlyUmrahPackages({ title = ' December Umrah Deals', subtitle = `Makkah Travel is here to help you visit religious places and make Umrah trips that connect with your soul. We're experts at creating meaningful journeys. `, button = 'on', carperrow = 4 }) {
+import { BASE_URL_SVG, endpoints } from '../../Helpers/apiEndpoints';
+import axios from 'axios';
+export default function MonthlyUmrahPackages({ pageData }) {
     const sliderRef = useRef(null);
+    const [packages, setPackages] = useState([]);
+    const [type, setType] = useState();
+    const widgetData = pageData?.section_2_widget?.[0];
     // const [currentSlide, setCurrentSlide] = useState(0);
+    useEffect(() => {
+        const fetchPackages = async () => {
+            try {
+                let response;
+                console.log("🔍 widgetData:", widgetData);
 
+                if (widgetData?.umrah_type !== undefined) {
+                    setType("umrah")
+                    console.log("📌 Detected: Umrah branch");
+                    if (widgetData?.umrah_package_ids) {
+                        console.log("➡️ Calling Umrah by ID:", widgetData.umrah_package_ids);
+                        response = await axios.get(
+                            endpoints.umrahById(widgetData.umrah_package_ids)
+                        );
+                    } else if (widgetData?.star && Number(widgetData.star) > 0) {
+                        const stars = Number(widgetData.star);
+                        const type = Number(widgetData.umrah_type);
+                        console.log("➡️ Calling Umrah by Stars:", stars, "Type:", type);
+                        response = await axios.get(endpoints.umrahByStar(stars, type));
+                    }
+                    else if (widgetData?.umrah_type) {
+                        console.log("➡️ Calling Umrah by Type:", widgetData.umrah_type);
+                        response = await axios.get(
+                            endpoints.umrahByType(widgetData.umrah_type)
+                        );
+                    } else {
+                        console.log("➡️ Calling Default Umrah Packages");
+                        response = await axios.get(endpoints.getUmrah);
+                    }
+                }
+                else if (widgetData?.hajj_type !== undefined) {
+                    setType("hajj")
+                    console.log("📌 Detected: Hajj branch");
+                    if (widgetData?.hajj_package_ids) {
+                        console.log("➡️ Calling Hajj by ID:", widgetData.hajj_package_ids);
+                        response = await axios.get(
+                            endpoints.hajjById(widgetData.hajj_package_ids)
+                        );
+                    } else if (widgetData?.star && Number(widgetData.star) > 0) {
+                        const stars = Number(widgetData.star);
+                        const type = Number(widgetData.hajj_type);
+                        console.log("➡️ Calling hajj by Stars:", stars, "Type:", type);
+                        response = await axios.get(endpoints.hajjByStar(stars, type));
+                    }
+                    else if (widgetData?.hajj_type) {
+                        console.log("➡️ Calling Hajj by Type:", widgetData.hajj_type);
+                        response = await axios.get(
+                            endpoints.hajjByType(widgetData.hajj_type)
+                        );
+                    } else {
+                        console.log("➡️ Calling Default Hajj Packages");
+                        response = await axios.get(endpoints.getHajj);
+                    }
+                }
+                else {
+                    console.log("⚠️ No umrah_type or hajj_type → fallback to Umrah");
+                    response = await axios.get(endpoints.getUmrah);
+                }
+
+                setPackages(response.data?.result?.data || []);
+            } catch (error) {
+                console.error("Error fetching packages:", error);
+            }
+        };
+
+        fetchPackages();
+    }, [widgetData]);
 
     const handleNext = () => {
         if (sliderRef.current) {
@@ -81,7 +150,7 @@ export default function MonthlyUmrahPackages({ title = ' December Umrah Deals', 
             {
                 breakpoint: 1024, // ≤ 1024px
                 settings: {
-                    slidesToShow: 2.5,
+                    slidesToShow: 2,
                     slidesToScroll: 1,
                 }
             },
@@ -109,32 +178,32 @@ export default function MonthlyUmrahPackages({ title = ' December Umrah Deals', 
             {/* Header Section */}
             <div className="flex flex-col px-2 lg:flex-row items-start lg:items-center justify-between gap-6 lg:gap-0">
                 <div className="w-full lg:w-[45%] flex flex-col justify-start">
-                    <img src="/svg/crown-black.svg" alt="Crown" className="w-16 sm:w-18 md:w-20 mb-3 sm:mb-4" />
+                    <img src={`${BASE_URL_SVG}/assets/svgs/crown-black.svg`} alt="Crown" className="w-16 sm:w-18 md:w-20 mb-3 sm:mb-4" />
                     <h2 className="text-[28px] sm:text-[32px] md:text-[36px] font-abril leading-tight mb-3 sm:mb-4">
-                        {title}
+                        {widgetData.heading}
                     </h2>
                     <span className="font-Montserrat text-[14px] sm:text-[15px] md:text-[16px] leading-relaxed text-black max-w-md">
-                        {subtitle}
+                        {widgetData.subheading}
                     </span>
                 </div>
 
                 <div className="w-full lg:w-[45%] flex justify-start lg:justify-end">
                     <div className="flex items-center gap-3 flex-wrap">
-                        <ViewAllButton color="primary" slug="/" size="md" />
+                        <ViewAllButton color="primary" slug={widgetData.button_link} label={widgetData.button_text} size="md" />
                         <div className="flex items-center gap-3">
                             <span
                                 onClick={handlePrev}
                                 className="bg-white cursor-pointer rounded-full p-2 shadow-md hover:scale-105 transition border border-gray-200"
                                 aria-label="Previous Slide"
                             >
-                                <img src="/svg/arrow-left.svg" alt="Left Arrow" className="w-5 h-5 sm:w-6 sm:h-6" />
+                                <img src={`${BASE_URL_SVG}/assets/svgs/arrow-left.svg`} alt="Left Arrow" className="w-5 h-5 sm:w-6 sm:h-6" />
                             </span>
                             <span
                                 onClick={handleNext}
                                 className="bg-white cursor-pointer rounded-full p-2 shadow-md hover:scale-105 transition border border-gray-200"
                                 aria-label="Next Slide"
                             >
-                                <img src="/svg/arrow-right.svg" alt="Right Arrow" className="w-5 h-5 sm:w-6 sm:h-6" />
+                                <img src={`${BASE_URL_SVG}/assets/svgs/arrow-right.svg`} alt="Right Arrow" className="w-5 h-5 sm:w-6 sm:h-6" />
                             </span>
                         </div>
                     </div>
@@ -144,14 +213,9 @@ export default function MonthlyUmrahPackages({ title = ' December Umrah Deals', 
             {/* Slider Section */}
             <div className="mt-6 sm:mt-7 md:mt-8">
                 <Slider {...slickSettings} ref={sliderRef} className="w-full">
-                    {data.map((item, index) => (
+                    {packages.map((item, index) => (
                         <div key={index} className="px-2">
-                            <PackageCard
-                                description={item.description}
-                                night={item.night}
-                                star={item.star}
-                                price={item.price}
-                            />
+                            <PackageCard pkg={item} p_type={type} />
                         </div>
                     ))}
                 </Slider>

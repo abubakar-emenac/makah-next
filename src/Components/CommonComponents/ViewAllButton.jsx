@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { BASE_URL_SVG } from "../../Helpers/apiEndpoints";
 
 const colorClasses = {
   primary: "bg-[#DB9E30] text-white",
@@ -30,7 +31,7 @@ const sizeClasses = {
 const ViewAllButton = ({
   label = "View All Packages",
   color = "secondary",
-  icon = "/svg/(View All Packages) Arrow SVG.svg",
+  icon = "/svgs/(View All Packages) Arrow SVG.svg",
   slug,
   textColor = 'white',
   size = "md",
@@ -43,7 +44,7 @@ const ViewAllButton = ({
     if (typeof onClick === "function") {
       onClick();
     } else if (slug) {
-      navigate(slug);
+      navigate(`/${slug}`);
     }
   };
 
@@ -57,7 +58,7 @@ const ViewAllButton = ({
       <span className={`rounded-full flex items-center justify-center ${iconWrapper}`}>
         {icon ? (
           typeof icon === "string" ? (
-            <img src={icon} alt="icon" className={iconSize} />
+            <img src={`${BASE_URL_SVG}/assets/${icon}`} alt="icon" className={iconSize} fetchPriority="high" />
           ) : (
             icon
           )

@@ -207,33 +207,108 @@
 
 
 
+// import React, { useEffect, useState } from "react";
+// import "../../CSS/ScrollDetail.css";
+
+// export default function ScrollDetail({ pageData }) {
+//     const [topImageUrl, setTopImageUrl] = useState(null);
+//     const [filteredDescription, setFilteredDescription] = useState("");
+
+//     const decodeHtml = (html) => {
+//         const txt = document.createElement("textarea");
+//         txt.innerHTML = html;
+//         return txt.value;
+//     };
+
+//     useEffect(() => {
+//         if (!pageData) return;
+
+//         // Prefer scroll_description, fallback to description
+//         const rawHtml =
+//             pageData.scroll_description || pageData.description || "";
+
+//         if (!rawHtml) return;
+//         const decodedHtml = decodeHtml(rawHtml);
+
+//         const parser = new DOMParser();
+//         const doc = parser.parseFromString(decodedHtml, "text/html");
+
+//         // Handle <figure> image if present
+//         const figureImg = doc.querySelector("figure img");
+//         if (figureImg?.getAttribute("src")) {
+//             setTopImageUrl(figureImg.getAttribute("src"));
+//             figureImg.closest("figure")?.remove(); // remove figure
+//         }
+
+//         // Save clean innerHTML
+//         setFilteredDescription(doc.body.innerHTML);
+//     }, [pageData]);
+
+//     return (
+//         <div className="w-full flex flex-col font-quicksand">
+//             {/* Top Image */}
+//             <div className="w-full">
+//                 <img
+//                     src={topImageUrl || "/images/Layer 0.png"}
+//                     alt="Content illustration"
+//                     className="w-full h-auto max-h-[250px] sm:max-h-[350px] object-cover"
+//                 />
+//             </div>
+
+//             <div className="w-full sm:px-6 md:px-1 mt-6 h-[500px] max-h-full overflow-y-scroll">
+//                 {pageData.scroll_description ? (
+//                     <div
+//                         className="prose max-w-none"
+//                         dangerouslySetInnerHTML={{ __html: filteredDescription }}
+//                     />
+//                 ) : (
+//                     <div className="bg-white h-[400px] sm:h-[500px] overflow-hidden">
+//                         <div
+//                                 className="h-full overflow-y-auto scrollbar-thin"
+//                                 style={{ direction: "rtl" }}
+//                             >
+//                                 <div
+//                                     style={{ direction: "ltr" }}
+//                                     className=" prose max-w-none"
+//                                     dangerouslySetInnerHTML={{ __html: filteredDescription }}
+//                                 />
+//                             </div>
+//                         </div>
+//                 )}
+//             </div>
+//         </div>
+//     );
+// }
+
 import React, { useEffect, useState } from "react";
-import "../../CSS/ScrollDetail.css";
+import "../../CSS/ScrollDetail.css"; // Ensure this path is correct
 
 export default function ScrollDetail({ pageData }) {
     const [topImageUrl, setTopImageUrl] = useState(null);
     const [filteredDescription, setFilteredDescription] = useState("");
 
+    const decodeHtml = (html) => {
+        const txt = document.createElement("textarea");
+        txt.innerHTML = html;
+        return txt.value;
+    };
+
     useEffect(() => {
         if (!pageData) return;
 
-        // Prefer scroll_description, fallback to description
-        const rawHtml =
-            pageData.scroll_description || pageData.description || "";
-
+        const rawHtml = pageData.scroll_description || pageData.description || "";
         if (!rawHtml) return;
 
+        const decodedHtml = decodeHtml(rawHtml);
         const parser = new DOMParser();
-        const doc = parser.parseFromString(rawHtml, "text/html");
+        const doc = parser.parseFromString(decodedHtml, "text/html");
 
-        // Handle <figure> image if present
         const figureImg = doc.querySelector("figure img");
         if (figureImg?.getAttribute("src")) {
             setTopImageUrl(figureImg.getAttribute("src"));
-            figureImg.closest("figure")?.remove(); // remove figure
+            figureImg.closest("figure")?.remove();
         }
 
-        // Save clean innerHTML
         setFilteredDescription(doc.body.innerHTML);
     }, [pageData]);
 
@@ -248,30 +323,13 @@ export default function ScrollDetail({ pageData }) {
                 />
             </div>
 
-            {/* If backend already sends scrollable div (scroll_description), just render it */}
-            <div className="w-full sm:px-6 md:px-1 mt-6">
-                {pageData.scroll_description ? (
-                    <div
-                        className="prose max-w-none"
-                        dangerouslySetInnerHTML={{ __html: filteredDescription }}
-                    />
-                ) : (
-                    <div className="bg-white h-[400px] sm:h-[500px] overflow-hidden">
-                        <div
-                                className="h-full overflow-y-auto scrollbar-thin"
-                                style={{ direction: "rtl" }}
-                            >
-                                <div
-                                    style={{ direction: "ltr" }}
-                                    className=" prose max-w-none"
-                                    dangerouslySetInnerHTML={{ __html: filteredDescription }}
-                                />
-                            </div>
-                        </div>
-                )}
+            {/* Scrollable description */}
+            <div className="w-full sm:px-6 md:px-1 mt-6 h-[500px] max-h-full">
+                <div
+                    className="custom-scrollbar p-3"
+                    dangerouslySetInnerHTML={{ __html: filteredDescription }}
+                />
             </div>
         </div>
     );
 }
-
-

@@ -1,4 +1,5 @@
 import React from 'react';
+import { BASE_URL_SVG } from '../../Helpers/apiEndpoints';
 
 export default function NeedHelp() {
     return (
@@ -11,7 +12,7 @@ export default function NeedHelp() {
                         <span className="capitalize font-Montserrat font-semibold text-xl sm:text-2xl md:text-3xl">CALL US NOW!</span>
                         <span className="text-primary font-abril text-2xl sm:text-3xl md:text-4xl">0203 - 970 - 0002</span>
                     </div>
-                    <img src="/svg/Need Help Section (Call) SVG.svg" alt="" className="w-12 sm:w-16" />
+                    <img src={`${BASE_URL_SVG}/assets/svgs/Need Help Section (Call) SVG.svg`} alt="" className="w-12 sm:w-16" />
                 </div>
 
                 {/* Request a Callback */}
@@ -20,7 +21,7 @@ export default function NeedHelp() {
                         <span className="capitalize font-Montserrat font-semibold text-xl sm:text-2xl md:text-3xl">REQUEST A CALL BACK!</span>
                         <span className="text-primary font-abril text-2xl sm:text-3xl md:text-4xl">TOO BUSY TO TALK?</span>
                     </div>
-                    <img src="/svg/Need Help Section (Call Back) SVG.svg" alt="" className="w-12 sm:w-16" />
+                    <img src={`${BASE_URL_SVG}/assets/svgs/Need Help Section (Call Back) SVG.svg`} alt="" className="w-12 sm:w-16" />
                 </div>
             </div>
 
@@ -34,7 +35,7 @@ export default function NeedHelp() {
                         your soul. We're experts at creating
                     </p>
                 </div>
-                <img src="/svg/Need Help.svg" alt="" className=" w-44 sm:w-44 lg:max-w-md" />
+                <img src={`${BASE_URL_SVG}/assets/svgs/Need Help.svg`} alt="" className=" w-44 sm:w-44 lg:max-w-md" />
             </div>
         </div>
     );

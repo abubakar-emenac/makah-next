@@ -1,5 +1,7 @@
 import React from 'react'
 import { useNavigate } from "react-router-dom";
+import { BASE_URL_IMG, BASE_URL_SVG } from '../../Helpers/apiEndpoints';
+
 
 export const MoonIcon = () => (
     <svg id="Group_46" data- name="Group 46" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20.442" height="20.437" viewBox="0 0 20.442 20.437" >
@@ -50,187 +52,84 @@ export const EmptyStar = () => (
 
 );
 
-// export default function PackageCard({ img = '/svg/umrah.svg', description = '10 Nights 4 Star Ramadan Umrah Package 2025', night = '10 Nights', star = '03', price = '1250', slug }) {
-//     const safeStar = Math.min(Math.max(Number(star), 0), 5);
-//     const navigate = useNavigate();
-//     const services = [
-//         {
-//             label: "Flight",
-//             icon: "flight.svg"
-//         },
-//         {
-//             label: "Flight",
-//             icon: "flight.svg"
-//         },
-//         {
-//             label: "Flight",
-//             icon: "flight.svg"
-//         },
-//         {
-//             label: "Flight",
-//             icon: "flight.svg"
-//         }
-//     ]
-//     return (
-//         <div
-//             onClick={() => navigate(slug)}
-//             className="w-full max-w-[95%] sm:max-w-[360px] md:max-w-[400px] lg:max-w-[550px] max-h-[600px] md:max-h-[630px] lg:max-h-[653px] cursor-pointer flex flex-col overflow-hidden mx-auto sm:mx-0"
-//         >
-//             <img src={img} alt="package_image" className="w-full h-[180px] md:h-[200px] lg:h-[215px] object-cover" />
-
-//             <div className="p-3 md:p-4 bg-white flex flex-col gap-3 border hover:border-secondary border-primary w-full h-full">
-//                 {/* Title */}
-//                 <span className="text-start font-semibold text-sm md:text-base lg:text-[18px] line-clamp-2 pl-2">
-//                     {description}
-//                 </span>
-//                 <div className="flex flex-col sm:flex-row justify-around items-center text-[16px] md:text-[18px] lg:text-[20px] font-semibold gap-2 sm:gap-0">
-//                     <div className="flex items-center gap-2 text-secondary text-[20px] md:text-[22px] lg:text-[24px]">
-//                         {night} Nights <MoonIcon />
-//                     </div>
-
-//                     <div className="flex items-center gap-0.5">
-//                         <div className="gap-1 flex items-center text-[20px] md:text-[22px] lg:text-[24px]">
-//                             <span className="text-secondary">{star}</span> <span className='text-secondary'>Star</span>
-//                         </div>
-//                         {[...Array(5)].map((_, i) =>
-//                             i < safeStar ? <FilledStar key={i} /> : <EmptyStar key={i} />
-//                         )}
-//                     </div>
-//                 </div>
-//                 <div className="flex flex-col sm:flex-row justify-around items-center gap-2 sm:gap-0">
-//                     <div className="flex flex-col items-center gap-1">
-//                         <img src="/svg/kaba.svg" alt="kaba" />
-//                         <span className="text-Black font-semibold text-[10px] md:text-[12px] lg:text-[15px]">4 Nights in Makkah</span>
-//                         <span className='text-[8px] md:text-[10px] lg:text-[12px]'>Al Kiswah Towers</span>
-//                     </div>
-
-//                     <div className="flex flex-col items-center gap-1">
-//                         <img src="/svg/madina.svg" alt="madina" />
-//                         <span className="text-Black font-semibold text-[10px] md:text-[12px] lg:text-[15px]">4 Nights in Madina</span>
-//                         <span className='text-[8px] md:text-[10px] lg:text-[12px]'>Emaar Taiba Hotel</span>
-//                     </div>
-//                 </div>
-//                 <div className="flex flex-wrap justify-center flex-grid-row-5 items-center gap-3">
-//                     {services.map((service, index) => (
-//                         <div key={index} className="flex items-center justify-center gap-5">
-//                             <div className="flex flex-col items-center">
-//                                 <img
-//                                     src={`/svg/${service.icon}`}
-//                                     alt={service.label}
-//                                     className="w-10 h-10"
-//                                 />
-//                                 <span className="text-[10px] md:text-[12px] lg:text-[14px] text-center">
-//                                     {service.label}
-//                                 </span>
-//                             </div>
-
-//                             {/* + Icon — only between items */}
-//                             {index < services.length - 1 && (
-//                                 <span className="text-xl font-bold self-center">+</span>
-//                             )}
-//                         </div>
-//                     ))}
-//                 </div>
-
-//                 <div className='flex gap-2 justify-between items-center'>
-//                     <div className="flex gap-3 justify-between mt-auto">
-//                         <img src="/svg/Card_Element.svg" alt="element" className='w-12' />
-//                     </div>
-//                     <div className="text-center">
-//                         <span className="text-[10px] md:text-[12px] lg:text-[14px] relative bottom-4 md:bottom-5">
-//                             from
-//                         </span>
-//                         <span className="text-[26px] md:text-[34px] lg:text-[40px] font-bold mx-2">£{price}</span>
-//                         <span className="text-[10px] md:text-[12px] lg:text-[14px]">/pp</span>
-//                     </div>
-
-//                     {/* Decorative Images */}
-//                     <div className="flex gap-3 justify-between mt-auto">
-
-//                         <img src="/svg/Card_Element.svg" alt="element" className="rotate-y-180 w-12" />
-//                     </div>
-//                 </div>
-//             </div>
-//         </div >
-
-//     );
-// }
-export default function PackageCard({
-    img = '/svg/umrah.svg',
-    description = '10 Nights 4 Star Ramadan Umrah Package 2025',
-    night = '10 Nights',
-    star = '03',
-    price = '1250',
-    slug,
-}) {
-    const safeStar = Math.min(Math.max(Number(star), 0), 5);
+export default function PackageCard({ pkg, p_type }) {
     const navigate = useNavigate();
 
+    const {
+        image_url,
+        image_alt,
+        title,
+        price,
+        madinah_night,
+        makkah_night,
+
+    } = pkg || {};
+    console.log("The umrah packages of this specific page :", pkg)
+    const cleanedUrl = image_url ? `${BASE_URL_IMG}/${image_url}` : "/fallback.jpg";
+    const handleCardClick = () => {
+        if (p_type === "umrah") {
+            console.log("Navigating to Umrah:", pkg.page_url);
+            navigate(`/umrah/${pkg.page_url}`);
+        } else if (p_type === 'hajj') {
+            console.log("Navigating to Hajj:", pkg.page_url);
+            navigate(`/hajj/${pkg.page_url}`);
+        } else {
+            console.log("Navigating to generic package:", pkg.page_url);
+            navigate(`/package/${pkg.page_url}`);
+        }
+    };
+
+
+
     const services = [
-        { label: 'Flight', icon: 'flight.svg' },
-        { label: 'Visa', icon: 'visa.svg' },
-        { label: 'Hotel', icon: 'hotel.svg' },
-        { label: 'Transfer', icon: 'transfer.svg' },
+        { label: 'Flight', icon: 'flight.svg', key: 'flight' },
+        { label: 'Visa', icon: 'visa.svg', key: 'visa' },
+        { label: 'Hotel', icon: 'hotel.svg', key: 'accomodation' }, // Note: matches your pkg property name
+        { label: 'Transfer', icon: 'transfer.svg', key: 'transfer' },
     ];
+    const availableServices = services.filter(
+        (service) => String(pkg?.[service.key]) == 1
+    );
 
     return (
         <div
-            onClick={() => navigate(slug)}
+            onClick={handleCardClick}
             className="w-full max-w-[95%] sm:max-w-[360px] md:max-w-[400px] lg:max-w-[550px] max-h-[650px] cursor-pointer flex flex-col overflow-hidden mx-auto sm:mx-0"
         >
             {/* Image */}
             <img
-                src={img}
-                alt="package_image"
+                src={cleanedUrl}
+                alt={image_alt || "package_image"}
                 className="w-full h-[180px] md:h-[200px] lg:h-[215px] object-cover"
             />
 
-            {/* Content Box */}
             <div className="p-3 md:p-4 bg-white flex flex-col gap-3 border hover:border-secondary border-primary w-full h-full">
-                {/* Title */}
                 <span className="text-start font-Montserrat text-[18px] md:text-base lg:text-[18px] line-clamp-2 pl-2">
-                    {description}
+                    {title}
                 </span>
-
-                {/* Nights & Stars */}
-                <div className="flex font-Montserrat flex-row sm:flex-row justify-around items-center text-[16px] md:text-[18px] lg:text-[20px] font-semibold gap-2 sm:gap-0">
-                    <div className="flex items-center gap-2 text-secondary text-[20px] md:text-[22px] lg:text-[24px]">
-                        {night} Nights <MoonIcon />
-                    </div>
-                    <div className="flex items-center gap-1 text-secondary text-[20px] md:text-[22px] lg:text-[24px]">
-                        <span>{star}</span> <span>Star</span>
-                        {[...Array(5)].map((_, i) =>
-                            i < safeStar ? <FilledStar key={i} /> : <EmptyStar key={i} />
-                        )}
-                    </div>
-                </div>
-
                 {/* Hotel Info */}
                 <div className="flex flex-row sm:flex-row font-Montserrat justify-around items-center gap-2 sm:gap-0">
                     <div className="flex flex-col items-center gap-1">
-                        <img src="/svg/kaba.svg" alt="kaba" />
-                        <span className="text-black font-semibold text-[13px] md:text-[12px] lg:text-[15px]">4 Nights in Makkah</span>
-                        <span className="text-[13px] md:text-[10px] lg:text-[12px]">Al Kiswah Towers</span>
+                        <img src={`${BASE_URL_SVG}/assets/svgs/kaba.svg`} alt="kaba" />
+                        <span className="text-black font-semibold text-[13px] md:text-[12px] lg:text-[15px]">{makkah_night} Nights</span>
+                        <span className="text-[13px] md:text-[10px] lg:text-[12px]">{pkg?.makkah_hotel?.name}</span>
                     </div>
                     <div className="flex flex-col items-center gap-1">
-                        <img src="/svg/madina.svg" alt="madina" />
-                        <span className="text-black font-semibold text-[13px] md:text-[12px] lg:text-[15px]">4 Nights in Madina</span>
-                        <span className="text-[13px] md:text-[10px] lg:text-[12px]">Emaar Taiba Hotel</span>
+                        <img src={`${BASE_URL_SVG}/assets/svgs/madina.svg`} alt="madina" />
+                        <span className="text-black font-semibold text-[13px] md:text-[12px] lg:text-[15px]">{madinah_night} Nights</span>
+                        <span className="text-[13px] md:text-[10px] lg:text-[12px]">{pkg?.madinah_hotel?.name}</span>
                     </div>
                 </div>
 
-                {/* Services */}
+
                 <div className="flex flex-wrap justify-center items-center gap-3">
-                    {services.map((service, index) => (
+                    {availableServices.map((service, index) => (
                         <div key={index} className="flex items-center justify-center gap-5">
                             <div className="flex flex-col items-center">
-                                <img src={`/svg/${service.icon}`} alt={service.label} className="w-10 h-10" />
-                                <span className="text-[10px] md:text-[12px] lg:text-[14px] text-center">
-                                    {service.label}
-                                </span>
+                                <img src={`${BASE_URL_SVG}/assets/svgs/${service.icon}`} alt={service.label} className="w-10 h-10" />
                             </div>
                             {/* + Icon – only between */}
-                            {index < services.length - 1 && (
+                            {index < availableServices.length - 1 && (
                                 <span className="text-xl font-bold self-center">+</span>
                             )}
                         </div>
@@ -240,7 +139,7 @@ export default function PackageCard({
                 {/* Price and Decoration */}
                 <div className="flex justify-between items-center w-full ">
                     {/* Left Decorative Element */}
-                    <img src="/svg/Card_Element.svg" alt="element" className="w-20 sm:w-12 lg:w-16" />
+                    <img src={`${BASE_URL_SVG}/assets/svgs/Card_Element.svg`} alt="element" className="w-20 sm:w-12 lg:w-16" />
 
                     {/* Price Info Centered in Its Area */}
                     <div className="flex flex-col font-abril">
@@ -251,7 +150,7 @@ export default function PackageCard({
 
                     {/* Right Decorative Element */}
                     <img
-                        src="/svg/Card_Element.svg"
+                        src={`${BASE_URL_SVG}/assets/svgs/Card_Element.svg`}
                         alt="element"
                         className="w-20 sm:w-12 lg:w-16 transform rotate-y-180"
                     />

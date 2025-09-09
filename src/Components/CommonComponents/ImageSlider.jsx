@@ -1,17 +1,18 @@
 import React, { useState } from 'react';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { BASE_URL_SVG } from '../../Helpers/apiEndpoints';
 
-const images = [
-    '/svg/umrah.svg',
-    '/svg/umrah.svg',
-    '/svg/umrah.svg',
-    '/svg/umrah.svg',
-    '/svg/umrah.svg',
-    '/svg/umrah.svg',
-];
 
-export default function ImageSlider() {
+export default function ImageSlider({ images = [] }) {
     const [currentIndex, setCurrentIndex] = useState(0);
+    if (!images || images.length === 0) {
+        return (
+            <div className="w-full max-w-5xl mx-auto flex flex-col items-center pb-20 relative">
+                <div className="relative w-full h-[400px] bg-gray-200 flex items-center justify-center">
+                    <span className="text-gray-500">No images available</span>
+                </div>
+            </div>
+        );
+    }
 
     const goToNext = () => {
         setCurrentIndex((prev) => (prev + 1) % images.length);
@@ -30,8 +31,8 @@ export default function ImageSlider() {
             {/* Main Image */}
             <div className="relative w-full h-[200px] md:h-[300px] lg:h-[280px] overflow-visible">
                 <img
-                    src={images[currentIndex]}
-                    alt={`Slide ${currentIndex + 1}`}
+                    src={`${BASE_URL_SVG}/${images[currentIndex].url}`}
+                    alt={images[currentIndex]?.alt || `Slide ${currentIndex + 1}`}
                     className="w-full h-full object-cover transition-all duration-500 ease-in-out"
                 />
 
@@ -48,7 +49,7 @@ export default function ImageSlider() {
                         className="bg-white cursor-pointer rounded-full p-2 shadow-md hover:scale-105 transition border border-gray-200"
                         aria-label="Next Slide"
                     >
-                        <img src="/svg/arrow-left.svg" alt="Right Arrow" className="w-5 h-5 sm:w-6 sm:h-6" />
+                        <img src={`${BASE_URL_SVG}/assets/svgs/arrow-left.svg`} alt="Right Arrow" className="w-5 h-5 sm:w-6 sm:h-6" />
                     </span>
 
                     <span
@@ -56,7 +57,7 @@ export default function ImageSlider() {
                         className="bg-white cursor-pointer rounded-full p-2 shadow-md hover:scale-105 transition border border-gray-200"
                         aria-label="Next Slide"
                     >
-                        <img src="/svg/arrow-right.svg" alt="Right Arrow" className="w-5 h-5 sm:w-6 sm:h-6" />
+                        <img src={`${BASE_URL_SVG}/assets/svgs/arrow-right.svg`} alt="Right Arrow" className="w-5 h-5 sm:w-6 sm:h-6" />
                     </span>
                 </div>
             </div>

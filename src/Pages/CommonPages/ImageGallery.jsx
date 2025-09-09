@@ -1,17 +1,22 @@
 import React, { useState } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { BASE_URL_SVG } from '../../Helpers/apiEndpoints';
 
-const images = [
-    '/svg/umrah.svg',
-    '/svg/img2.svg',
-    '/svg/umrah.svg',
-    '/svg/img2.svg',
-    '/svg/umrah.svg',
-    '/svg/img2.svg',
-];
 
-export default function ImageGallery() {
+export default function ImageGallery({ images = [] }) {
     const [currentIndex, setCurrentIndex] = useState(0);
+    if (!images || images.length === 0) {
+        return (
+            <div className="w-full max-w-5xl mx-auto flex flex-col items-center pb-20 relative">
+                <div className="relative w-full h-[400px] bg-gray-200 flex items-center justify-center">
+                    <span className="text-gray-500">No images available</span>
+                </div>
+            </div>
+        );
+    }
+    if (images.length === 0) {
+        return <div className="text-center text-gray-500">No images available</div>;
+    }
 
     const goToNext = () => {
         setCurrentIndex((prev) => (prev + 1) % images.length);
@@ -42,9 +47,9 @@ export default function ImageGallery() {
             {/* Main Image */}
             <div className="relative w-full h-[400px] overflow-visible">
                 <img
-                    src={images[currentIndex]}
-                    alt={`Slide ${currentIndex + 1}`}
-                    className="w-full h-full object-cover transition-all duration-500 ease-in-out"
+                    src={`${BASE_URL_SVG}/${images[currentIndex].url}`}
+                    alt={images[currentIndex]?.alt || `Slide ${currentIndex + 1}`}
+                    className="w-full h-full object-cover transition-transform duration-700 ease-in-out"
                 />
 
                 {/* Navigation Arrows */}
@@ -73,7 +78,7 @@ export default function ImageGallery() {
                         return (
                             <img
                                 key={actualIndex}
-                                src={img}
+                                src={`${BASE_URL_SVG}/${img.url}`}
                                 onClick={() => handleThumbnailClick(actualIndex)}
                                 className={`w-48 object-cover cursor-pointer border-2 transition-all duration-300 ${currentIndex === actualIndex
                                     ? 'border-primary ring-2 ring-primary'
