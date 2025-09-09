@@ -89,7 +89,7 @@ export default function BlogSection() {
             />
           </Link>
           <span className="text-black mt-4 block font-Montserrat text-[14px] sm:text-[15px] md:text-[16px]">
-            {firstBlog.created_at}
+            {firstBlog.publish_date}
           </span>
           <h4 className="text-[22px] sm:text-[28px] md:text-[32px] font-abril leading-tight mt-2 mb-3">
             {firstBlog.title}
@@ -110,7 +110,7 @@ export default function BlogSection() {
             <div key={item.id} className="w-full pt-3">
               <div className="cursor-pointer">
                 <span className="text-black font-Montserrat text-[14px] sm:text-[15px] md:text-[16px]">
-                  {item.created_at}
+                  {item.publish_date}
                 </span>
                 <Link to={`/blog/${item.page_url}`}>
                   <h5 className="text-[18px] sm:text-[20px] md:text-[18px] lg:text-[22px] font-Montserrat font-semibold text-black hover:text-primary-hover transition-all">
