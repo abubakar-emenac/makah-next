@@ -335,7 +335,6 @@ import axios from 'axios';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-const CARDS_PER_SLIDE = 3;
 
 export default function CardSlider({ pageData }) {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -344,6 +343,8 @@ export default function CardSlider({ pageData }) {
   const sliderRef = useRef(null);
 
   const widgetData = pageData?.section_1_widget?.[0];
+  const CARDS_PER_SLIDE = 1;
+
 
   useEffect(() => {
     const fetchPackages = async () => {
@@ -414,43 +415,32 @@ export default function CardSlider({ pageData }) {
     dots: false,
     infinite: true,
     speed: 700,
-    slidesToShow: 1,
-    slidesToScroll: 1,
+    slidesToShow: 3,  // how many visible
+    slidesToScroll: 1, // always move 1
     autoplay: true,
     autoplaySpeed: 3000,
     arrows: false,
     beforeChange: (_, next) => setCurrentSlide(next),
     responsive: [
       {
-        breakpoint: 1280, // ≤ 1280px
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 1,
-        }
+        breakpoint: 1280,
+        settings: { slidesToShow: 3, slidesToScroll: 1 }
       },
       {
-        breakpoint: 1024, // ≤ 1024px
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1,
-        }
+        breakpoint: 1024,
+        settings: { slidesToShow: 2, slidesToScroll: 1 }
       },
       {
-        breakpoint: 768, // ≤ 768px
-        settings: {
-          slidesToShow: 1.7,
-          slidesToScroll: 1,
-        }
+        breakpoint: 768,
+        settings: { slidesToShow: 1.7, slidesToScroll: 1 }
       },
       {
-        breakpoint: 480, // ≤ 480px
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        }
+        breakpoint: 480,
+        settings: { slidesToShow: 1, slidesToScroll: 1 }
       }
     ],
   };
+
   return (
     <div className="w-full flex bg-no-repeat bg-left items-center"
       style={{
@@ -495,19 +485,12 @@ export default function CardSlider({ pageData }) {
 
         <div className="w-full flex flex-col items-center overflow-hidden">
           <Slider {...slickSettings} ref={sliderRef} className="w-full">
-            {slides.map((slide, index) => (
-              <div key={index} className="w-full">
-                <div className="flex justify-between px-1">
-                  {slide.map((item, i) => (
-                    <div key={i} className="w-full sm:w-1/2 lg:w-1/3 px-2">
-                      <PackageCard pkg={item} p_type={type} />
-                    </div>
-                  ))}
-                </div>
+            {packages.map((item, i) => (
+              <div key={i} className="px-2">
+                <PackageCard pkg={item} p_type={type} />
               </div>
             ))}
           </Slider>
-
           {/* Pagination Dots */}
           <div className="flex mt-6 gap-2">
             {slides.map((_, index) => (

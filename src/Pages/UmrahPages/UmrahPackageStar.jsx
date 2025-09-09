@@ -8,6 +8,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import axios from "axios";
+import ScrollDetail from "../../Components/CommonComponents/ScrollDetail";
 const UmrahStarSection = ({ packages = [], section }) => {
     const sliderRef = useRef(null);
 
@@ -173,7 +174,7 @@ export default function UmrahPackageStar({ pageData }) {
         <div className="flex flex-col w-full">
             <HeroSection pageData={pageData} />
 
-            <div className="flex flex-col my-8 w-full max-w-[75%] mx-auto">
+            <div className="flex flex-col my-8 w-full max-w-[85%] mx-auto">
                 {packagesData.map((section, idx) => (
                     <UmrahStarSection
                         key={idx}
@@ -182,7 +183,11 @@ export default function UmrahPackageStar({ pageData }) {
                     />
                 ))}
             </div>
-
+            {pageData?.scroll_description && (
+                <div className="flex flex-col my-8 w-full max-w-[75%] mx-auto">
+                    <ScrollDetail pageData={pageData} />
+                </div>
+            )}
             <FAQSection pageData={pageData} />
         </div>
     );

@@ -129,7 +129,7 @@ import React, { useRef, useState, useEffect } from 'react';
 import HeroSection from '../../Components/CommonComponents/HeroSection';
 import Slider from 'react-slick';
 import axios from 'axios';
-import { endpoints } from '../../Helpers/apiEndpoints';
+import { BASE_URL_SVG, endpoints } from '../../Helpers/apiEndpoints';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import ScrollDetail from '../../Components/CommonComponents/ScrollDetail';
@@ -212,7 +212,7 @@ export default function HajjPackage({ pageData }) {
                     {/* Title & Subtitle */}
                     <div className="w-full lg:w-[45%] flex flex-col justify-start">
                         <img
-                            src="/svgs/crown-black.svg"
+                            src={`${BASE_URL_SVG}/assets/svgs/crown-black.svg`}
                             alt="Crown"
                             className="w-14 sm:w-16 md:w-20 mb-2 sm:mb-3"
                         />

@@ -75,7 +75,7 @@ export default function PackageCardUmrah({ data }) {
         { label: 'Flight', icon: 'flight.svg', key: 'flight' },
         { label: 'Visa', icon: 'visa.svg', key: 'visa' },
         { label: 'Hotel', icon: 'hotel.svg', key: 'accomodation' }, // Note: matches your pkg property name
-        { label: 'Transfer', icon: 'transfer.svg', key: 'transfer' },
+        { label: 'Transfer', icon: 'transport.svg', key: 'transfer' },
     ];
     const availableServices = services.filter(
         (service) => String(data?.[service.key]) == 1

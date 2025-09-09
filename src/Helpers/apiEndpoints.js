@@ -29,6 +29,7 @@ const endpoints = {
   blogdeatilsgpage: (page_url) =>
     `${BASE_URL}/get-makkah-blog?page_url=${page_url}`,
   getAirport: `${BASE_URL}/airports`,
+  getReviews: (ids) => `${BASE_URL}/reviews?review_ids=${ids}`,
 };
 
 export {

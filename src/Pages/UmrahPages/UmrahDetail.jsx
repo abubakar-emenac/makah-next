@@ -378,7 +378,7 @@ export default function UmrahDetail() {
                                         onClick={() => setIsOpen(false)}
                                         className="absolute -top-4 -right-4  rounded-full"
                                     >
-                                        <img src="/svgs/cross.svg" alt="crosee" className=' cursor-pointer' />
+                                        <img src={`${BASE_URL_SVG}/assets/svgs/cross.svg`} alt="crosee" className=' cursor-pointer' />
                                     </button>
                                 </div>
                                 <CustomizeUmrahPopup />
