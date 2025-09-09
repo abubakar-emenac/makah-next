@@ -341,7 +341,7 @@ const CustomizePackageForm = () => {
             </div>
             <div className="w-full max-w-[90%] mx-auto mt-10 mb-15">
                 <img
-                    src="/svg/Crown.svg"
+                    src={`${BASE_URL_SVG}/assets/svgs/crown-black.svg`}
                     alt="Crown"
                     className="w-12 sm:w-16 md:w-35"
                 />
@@ -432,7 +432,7 @@ const CustomizePackageForm = () => {
                                         minDate={new Date()}
                                     />
                                     <img src={`${BASE_URL_SVG}/assets/svgs/Departure Date SVG.svg`}
-                                        alt="Departure Date" className="ml-2 w-5 h-5" />
+                                        alt="Departure Date" className="ml-auto w-5 h-5" />
                                 </div>
 
                                 {activeTab === "umrah" && (
@@ -482,7 +482,8 @@ const CustomizePackageForm = () => {
                                             value={selectedAccomodation}
                                             className="w-full outline-none font-Montserrat font-medium text-[14px] text-gray-600"
                                         />
-                                        <img src={`/svg/Accomodation.svg`}
+                                        <img
+                                            src={`${BASE_URL_SVG}/assets/svgs/Accomodation.svg`}
                                             alt="Accomodation" className="ml-2" />
                                     </div>
 
@@ -518,7 +519,7 @@ const CustomizePackageForm = () => {
                                                     value={selectedRoomType}
                                                     className="w-full outline-none font-Montserrat font-medium text-[14px] text-gray-600"
                                                 />
-                                                <img src={`/svg/Accomodation.svg`}
+                                                <img src={`${BASE_URL_SVG}/assets/svgs/Accomodation.svg`}
                                                     alt="Accomodation" className="ml-2" />
                                             </div>
 
@@ -552,7 +553,7 @@ const CustomizePackageForm = () => {
                                                     value={selectedMealType}
                                                     className="w-full outline-none font-Montserrat font-medium text-[14px] text-gray-600"
                                                 />
-                                                <img src={`/svg/Accomodation.svg`}
+                                                <img src={`${BASE_URL_SVG}/assets/svgs/Accomodation.svg`}
                                                     alt="Accomodation" className="ml-2" />
                                             </div>
 
@@ -586,7 +587,7 @@ const CustomizePackageForm = () => {
                                                     value={selectedDistanceType}
                                                     className="w-full outline-none font-Montserrat font-medium text-[14px] text-gray-600"
                                                 />
-                                                <img src={`/svg/Accomodation.svg`}
+                                                <img src={`${BASE_URL_SVG}/assets/svgs/Accomodation.svg`}
                                                     alt="Accomodation" className="ml-2" />
                                             </div>
 
@@ -632,7 +633,7 @@ const CustomizePackageForm = () => {
                                             className="w-full outline-none font-Montserrat font-medium 
                                             text-[14px] text-gray-600"
                                         />
-                                        <img src={`/svg/Accomodation.svg`} className="ml-2" alt="Passengers" />
+                                        <img src={`${BASE_URL_SVG}/assets/svgs/Accomodation.svg`} className="ml-2" alt="Passengers" />
                                     </div>
 
                                     {/* Dropdown */}
@@ -710,7 +711,7 @@ const CustomizePackageForm = () => {
                                                     value={selectedHajjType}
                                                     className="w-full outline-none font-Montserrat font-medium text-[14px] text-gray-600"
                                                 />
-                                                <img src={`/svg/Accomodation.svg`}
+                                                <img src={`${BASE_URL_SVG}/assets/svgs/Accomodation.svg`}
                                                     alt="Accomodation" className="ml-2" />
                                             </div>
 
@@ -764,7 +765,7 @@ const CustomizePackageForm = () => {
                                         className="w-full outline-none font-Montserrat font-medium text-[14px] text-gray-600"
                                     />
                                     <img
-                                        src={`svg/Phone.svg`}
+                                        src={`${BASE_URL_SVG}/assets/svgs/Phone Number SVG.svg`}
                                         alt="phone"
                                         className="ml-2 w-5 h-5"
                                     />
@@ -843,7 +844,7 @@ const CustomizePackageForm = () => {
 
                     {/* Side Image */}
                     <div className="w-full max-w-[30%] flex justify-center items-center">
-                        <img src={`/svg/FormImg.svg`} alt="submit" className="" />
+                        <img src={`${BASE_URL_SVG}/assets/svgs/FormImg.svg`} alt="submit" className="" />
                     </div>
                 </div>
             </div>
