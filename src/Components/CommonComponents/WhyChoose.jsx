@@ -129,7 +129,7 @@ import Slider from "react-slick";
 import { useGlobalData } from "../../Helpers/useGlobalData";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { BASE_URL_SVG } from "../../Helpers/apiEndpoints";
+import { BASE_URL_IMG, BASE_URL_SVG } from "../../Helpers/apiEndpoints";
 
 export default function WhyChoose() {
     const { globalData } = useGlobalData();
@@ -231,7 +231,7 @@ export default function WhyChoose() {
                         <div key={index} className="flex flex-col items-center text-center px-4">
                             <div className="flex justify-center w-full mb-3">
                                 <img
-                                    src={item.icon}
+                                    src={`${BASE_URL_IMG}/${item.icon}`}
                                     alt={item.heading}
                                     className="w-24 sm:w-28 h-auto object-contain"
                                 />

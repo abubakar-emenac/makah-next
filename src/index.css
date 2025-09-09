@@ -77,3 +77,62 @@
   z-index: 0;
   pointer-events: none;
 }
+html {
+  scroll-behavior: smooth;
+}
+
+
+@layer utilities {
+  strong {
+    @apply text-secondary
+  }
+
+  .parseData {
+    @apply font-Montserrat
+  }
+
+  .parseData h1 {
+    @apply text-3xl font-bold my-4 text-secondary;
+  }
+
+  .parseData h2 {
+    @apply text-3xl font-semibold my-3 text-secondary;
+  }
+
+  .parseData h3 {
+    @apply text-2xl font-semibold my-2 text-secondary;
+  }
+
+  .parseData h4 {
+    @apply text-2xl font-semibold my-2 text-secondary;
+  }
+
+  .parseData p {
+    @apply text-base leading-relaxed my-2;
+  }
+
+  .parseData ul {
+    @apply list-disc list-inside my-3;
+  }
+
+  .parseData a {
+    @apply text-blue-600 underline hover:text-blue-800;
+  }
+
+  /* --- Table styling --- */
+  .parseData table {
+    @apply w-full border border-gray-300 border-collapse my-4 text-sm;
+  }
+
+  .parseData th {
+    @apply bg-gray-100 font-semibold text-left border border-gray-300 px-3 py-2;
+  }
+
+  .parseData td {
+    @apply border border-gray-300 px-3 py-2;
+  }
+
+  .parseData tr:nth-child(even) {
+    @apply bg-gray-50;
+  }
+}

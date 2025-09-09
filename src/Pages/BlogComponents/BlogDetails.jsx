@@ -71,7 +71,7 @@ const BlogDetails = () => {
 
           <p className="text-gray-600 text-sm mb-6 font-Montserrat">
             By {blog.author || "Admin"} on{" "}
-            {new Date(blog.created_at).toLocaleDateString()}
+            {new Date(blog.publish_date).toLocaleDateString()}
           </p>
           <div
             className="prose prose-lg font-Montserrat text-gray-800"
