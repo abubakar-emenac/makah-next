@@ -563,7 +563,7 @@ const TestimonialCard = ({ avatar, name, location, rating, text }) => {
         : text;
 
     return (
-        <div className="px-3">
+        <div className="">
             <div className="relative w-full">
                 {/* Avatar */}
                 <div className="absolute -top-12 left-1/2 transform -translate-x-1/2 z-10">
@@ -651,7 +651,7 @@ export default function Testimonials({ pageData }) {
     };
 
     return (
-        <div className="w-full max-w-[82%] mx-auto mt-8 sm:mt-12 md:mt-28 px-4 sm:px-6 md:px-9 font-sans mb-10 relative">
+        <div className="w-full max-w-[82%] mx-auto mt-8 sm:mt-12 md:mt-28 sm:px-2 md:px-9 font-sans mb-10 relative">
             {/* Header */}
             <div className="w-full lg:w-[48%] mb-12 sm:mb-16">
                 <img src={`${BASE_URL_SVG}/assets/svgs/crown-black.svg`} alt="Crown" className="w-16 sm:w-18 md:w-24 mb-3 sm:mb-4" />

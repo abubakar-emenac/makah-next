@@ -247,8 +247,6 @@ export default function HeroSection({ pageData }) {
             }}
         >
 
-            <Navbar />
-
             {/* CONTENT CONTAINER - This container now holds the rest of the hero content */}
             <div className="w-full max-w-[98%] sm:max-w-[95%] md:max-w-[90%] lg:max-w-[85%] xl:max-w-[75%] mx-auto px-3 sm:px-4 md:px-6 mt-4 sm:mt-6 md:mt-8">
 

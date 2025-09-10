@@ -72,7 +72,7 @@ export default function BlogSection() {
           {widgets[1]?.heading || "Our Latest News"}
         </h3>
         <p className="font-Montserrat text-[14px] sm:text-[15px] md:text-[16px] leading-relaxed text-black">
-          {widgets[0]?.sub_heading ||
+          {widgets[1]?.sub_heading ||
             "Makkah Travel is here to help you visit religious places and make Umrah trips that connect with your soul."}
         </p>
       </div>

@@ -284,7 +284,9 @@ export default function HajjPackage({ pageData }) {
                 <ScrollDetail pageData={pageData} />
             </div>
 
-            <FAQSection pageData={pageData} />
+            {Array.isArray(pageData?.faqs) && pageData.faqs.length > 0 && (
+                <FAQSection pageData={pageData} />
+            )}
         </div>
     );
 }

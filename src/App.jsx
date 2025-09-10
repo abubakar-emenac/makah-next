@@ -27,6 +27,9 @@ import CustomizePackageForm from "./Components/CommonComponents/CustomizePackage
 import TnCpage from "./Pages/CommonPages/T&CPage"
 import PrivacyPolicy from "./Pages/CommonPages/PrivacyPolicy"
 import CookiePolicy from "./Pages/CommonPages/CookiesPolicy"
+import ThankYou from "./Pages/CommonPages/ThankYouPage"
+import Navbar from "./Components/CommonComponents/NavBar"
+import ScrollToTopButton from "./Components/CommonComponents/ScrollToTopButton"
 
 function App() {
 
@@ -38,13 +41,16 @@ function App() {
 
   return (
     <>
+      <ScrollToTopButton />
+      <Navbar />
       <Routes>
         <Route
           path="/"
           element={<Home />}
         />
+        <Route path="/home" element={<Navigate to="/" replace />} />
         <Route
-          path="/visa"
+          path="/hajj-and-umrah-visa"
           element={<VisaPage />}
         />
         <Route
@@ -86,10 +92,14 @@ function App() {
           path="/hajj/:slug"
           element={<HajjDetail />}
         />
+        <Route
+          path="/thank-you"
+          element={<ThankYou />}
+        />
         <Route path="/blog" element={<Bloghome />} />
         <Route path="/blog/:page_url" element={<BlogDetails />} />
-        <Route path="/not-found" element={<NotFound />} />
-        <Route path="*" element={<Navigate to="/not-found" replace />} />
+        <Route path="*" element={<NotFound />} />
+
       </Routes>
       <Footer />
 

@@ -260,7 +260,8 @@ const HajjCards = ({ Packagedata, packages, loading, c_type }) => {
         responsive: [
             { breakpoint: 1440, settings: { slidesToShow: 4, slidesToScroll: 1 } },
             { breakpoint: 1024, settings: { slidesToShow: 3, slidesToScroll: 1 } },
-            { breakpoint: 768, settings: { slidesToShow: 1, slidesToScroll: 1 } }
+            { breakpoint: 768, settings: { slidesToShow: 2, slidesToScroll: 1 } },
+            { breakpoint: 720, settings: { slidesToShow: 1, slidesToScroll: 1 } }
         ]
     };
 
@@ -294,7 +295,7 @@ const HajjCards = ({ Packagedata, packages, loading, c_type }) => {
             </div>
 
             {/* Slider / Skeleton */}
-            <div className="mt-6 sm:mt-7 md:mt-8 overflow-hidden w-full px-5">
+            <div className="mt-6 sm:mt-7 md:mt-8 overflow-hidden w-full px-2">
                 {loading ? (
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                         {[...Array(3)].map((_, idx) => (
@@ -398,7 +399,7 @@ export default function HajjDeals({ pageData }) {
     if (!loading && packages.length === 0) return null;
 
     return (
-        <div className="w-full mt-8 sm:mt-12 md:mt-16 md:px-9 flex flex-col lg:flex-row lg:justify-between gap-8">
+        <div className="w-full mt-8 sm:mt-12 md:mt-16 md:px-5 flex flex-col lg:flex-row lg:justify-between gap-8">
             <div className="w-full lg:w-[72%]">
                 <HajjCards Packagedata={widgetData} packages={packages} loading={loading} c_type={type} />
             </div>

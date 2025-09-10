@@ -128,12 +128,15 @@ export default function SpecificCategoryUmrah({ pageData }) {
                     </div>
                 )}
             </div>
-
+            {pageData?.scroll_description && (
             <div className="w-full max-w-[75%] mx-auto">
                 <ScrollDetail pageData={pageData} />
             </div>
+            )}
 
-            <FAQSection pageData={pageData} />
+            {Array.isArray(pageData?.faqs) && pageData.faqs.length > 0 && (
+                <FAQSection pageData={pageData} />
+            )}
         </div>
     );
 }

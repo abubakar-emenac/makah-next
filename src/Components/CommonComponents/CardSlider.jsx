@@ -428,11 +428,11 @@ export default function CardSlider({ pageData }) {
       },
       {
         breakpoint: 1024,
-        settings: { slidesToShow: 2, slidesToScroll: 1 }
+        settings: { slidesToShow: 1, slidesToScroll: 1 }
       },
       {
         breakpoint: 768,
-        settings: { slidesToShow: 1.7, slidesToScroll: 1 }
+        settings: { slidesToShow: 1, slidesToScroll: 1 }
       },
       {
         breakpoint: 480,
@@ -442,71 +442,80 @@ export default function CardSlider({ pageData }) {
   };
 
   return (
-    <div className="w-full flex bg-no-repeat bg-left items-center"
-      style={{
-        backgroundImage: `
-          url(${BASE_URL_SVG}/assets/svgs/orange-overlay.svg),
-          url('/images/iStock-1001687846.png')
-        `,
-        backgroundSize: 'clamp(250px, 40vw, 500px), clamp(250px, 40vw, 500px)',
-        backgroundRepeat: 'no-repeat, no-repeat',
-        backgroundPosition: 'left, left',
-      }}
-    >
-      <div className="w-full flex flex-col md:flex-row items-start sm:w-[90%] md:w-[85%] ml-6 sm:ml-10 md:ml-12 mt-10 sm:mt-12 md:mt-14 gap-8">
-
-        <div className="w-full md:w-[33%] flex items-center">
-          <div className="flex flex-col justify-center">
-            <div className="flex flex-col text-white text-[28px] sm:text-[36px] md:text-[40px] font-abril leading-tight">
-              <img src={`${BASE_URL_SVG}/assets/svgs/crown.svg`} alt="Crown" className="w-14 sm:w-20 md:w-24 mb-4" />
-              <h2>{widgetData?.heading}</h2>
-            </div>
-
-            <span className="block text-white text-[14px] mt-6 font-Montserrat leading-relaxed">
-              {widgetData?.subheading}
+    <div className="w-full flex flex-col md:flex-row bg-white">
+      {/* 🔶 Orange Section */}
+      <div className="w-full md:w-2/5 lg:w-1/4 bg-[#dfa844] flex items-center justify-center px-6 py-10">
+        <div className="flex flex-col justify-center text-center md:text-left">
+          <img
+            src={`${BASE_URL_SVG}/assets/svgs/crown.svg`}
+            alt="Crown"
+            className="w-14 sm:w-20 md:w-24 mb-4 mx-auto md:mx-0"
+          />
+          <h2 className="text-white text-[28px] sm:text-[36px] md:text-[40px] font-abril leading-tight">
+            {widgetData?.heading}
+          </h2>
+          <span className="block text-white text-[14px] mt-6 font-Montserrat leading-relaxed">
+            {widgetData?.subheading}
+          </span>
+          <div className="mt-8 flex items-center justify-center md:justify-start gap-3">
+            <ViewAllButton
+              color="secondary"
+              slug={widgetData?.button_link}
+              size="sm"
+              label={widgetData?.button_text}
+            />
+            <span
+              onClick={handlePrev}
+              className="bg-white cursor-pointer rounded-full p-2 shadow-md"
+            >
+              <img
+                src={`${BASE_URL_SVG}/assets/svgs/arrow-left.svg`}
+                alt="Left Arrow"
+                className="w-5 h-5 sm:w-6 sm:h-6"
+              />
             </span>
-
-            <div className="mt-8 flex items-center gap-3">
-              <ViewAllButton
-                color="secondary"
-                slug={widgetData?.button_link}
-                size="sm"
-                label={widgetData?.button_text}
+            <span
+              onClick={handleNext}
+              className="bg-white cursor-pointer rounded-full p-2 shadow-md"
+            >
+              <img
+                src={`${BASE_URL_SVG}/assets/svgs/arrow-right.svg`}
+                alt="Right Arrow"
+                className="w-5 h-5 sm:w-6 sm:h-6"
               />
-              <span onClick={handlePrev} className="bg-white cursor-pointer rounded-full p-2 shadow-md">
-                <img src={`${BASE_URL_SVG}/assets/svgs/arrow-left.svg`} alt="Left Arrow" className="w-5 h-5 sm:w-6 sm:h-6" />
-              </span>
-              <span onClick={handleNext} className="bg-white cursor-pointer rounded-full p-2 shadow-md">
-                <img src={`${BASE_URL_SVG}/assets/svgs/arrow-right.svg`} alt="Right Arrow" className="w-5 h-5 sm:w-6 sm:h-6" />
-              </span>
-            </div>
-          </div>
-        </div>
-
-        <div className="w-full flex flex-col items-center overflow-hidden">
-          <Slider {...slickSettings} ref={sliderRef} className="w-full">
-            {packages.map((item, i) => (
-              <div key={i} className="px-2">
-                <PackageCard pkg={item} p_type={type} />
-              </div>
-            ))}
-          </Slider>
-          {/* Pagination Dots */}
-          <div className="flex mt-6 gap-2">
-            {slides.map((_, index) => (
-              <span
-                key={index}
-                onClick={() => {
-                  setCurrentSlide(index);
-                  sliderRef.current?.slickGoTo(index);
-                }}
-                className={`h-2 cursor-pointer rounded-full transition-all duration-300 ${currentSlide === index ? 'w-20 bg-primary h-1' : 'w-10 bg-secondary h-1'
-                  }`}
-              />
-            ))}
+            </span>
           </div>
         </div>
       </div>
+
+      {/* 🎴 Slider Section */}
+      <div className="w-full md:w-3/5 lg:w-3/4 flex flex-col items-center px-4 py-10 -mt-14 md:mt-0 md:-ml-10 relative z-20">
+        <Slider {...slickSettings} ref={sliderRef} className="w-full">
+          {packages.map((item, i) => (
+            <div key={i} className="px-2">
+              <PackageCard pkg={item} p_type={type} />
+            </div>
+          ))}
+        </Slider>
+
+        {/* Pagination Dots */}
+        <div className="flex mt-6 gap-2">
+          {slides.map((_, index) => (
+            <span
+              key={index}
+              onClick={() => {
+                setCurrentSlide(index);
+                sliderRef.current?.slickGoTo(index);
+              }}
+              className={`h-2 cursor-pointer rounded-full transition-all duration-300 ${currentSlide === index
+                ? "w-20 bg-primary h-1"
+                : "w-10 bg-secondary h-1"
+                }`}
+            />
+          ))}
+        </div>
+      </div>
     </div>
+
   );
 }

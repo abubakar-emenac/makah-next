@@ -336,8 +336,7 @@ const CustomizePackageForm = () => {
 
     return (
         <>
-            <div className=" w-[85%] mx-auto mb-10">
-                <Navbar textColor="black" />
+            <div className=" w-[85%] mx-auto mb-10 mt-30">
             </div>
             <div className="w-full max-w-[90%] mx-auto mt-10 mb-15">
                 <img
@@ -411,7 +410,7 @@ const CustomizePackageForm = () => {
                                                         setOriginLabel(item);
                                                         setOriginSuggestions([]);
                                                     }}
-                                                    className="px-2 py-2 cursor-pointer font-Montserrat hover:bg-[#57A68F] hover:text-white text-md hover:font-semibold hover:text-white"
+                                                    className="px-2 py-2 cursor-pointer font-Montserrat hover:bg-[#57A68F]  text-md hover:font-semibold hover:text-white"
                                                 >
                                                     {item}
                                                 </li>

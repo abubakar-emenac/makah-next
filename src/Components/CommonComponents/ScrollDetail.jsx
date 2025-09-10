@@ -294,12 +294,17 @@ export default function ScrollDetail({ pageData }) {
         txt.innerHTML = html;
         return txt.value;
     };
+    const isMeaningfulContent = (html) => {
+        // Remove HTML tags, whitespace, and non-breaking spaces
+        const text = html.replace(/<[^>]*>/g, "").replace(/&nbsp;/g, "").trim();
+        return text.length > 0;
+    };
 
     useEffect(() => {
         if (!pageData) return;
 
         const rawHtml = pageData.scroll_description || pageData.description || "";
-        if (!rawHtml) return;
+        if (!rawHtml.trim()) return;
 
         const decodedHtml = decodeHtml(rawHtml);
         const parser = new DOMParser();
@@ -311,11 +316,17 @@ export default function ScrollDetail({ pageData }) {
             figureImg.closest("figure")?.remove();
         }
 
-        setFilteredDescription(doc.body.innerHTML);
+        const cleanHtml = doc.body.innerHTML.trim();
+        if (isMeaningfulContent(cleanHtml)) {
+            setFilteredDescription(cleanHtml);
+        }
     }, [pageData]);
+    if (!filteredDescription) {
+        return null;
+    }
 
     return (
-        <div className="w-full flex flex-col font-quicksand">
+        <div className="w-full max-w-[75%] mx-auto flex flex-col font-quicksand">
             {/* Top Image */}
             <div className="w-full">
                 <img

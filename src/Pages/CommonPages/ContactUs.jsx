@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import Navbar from "../../Components/CommonComponents/NavBar";
 import NeedHelp from "../../Components/CommonComponents/NeedHelp";
 import axios from "axios";
@@ -13,6 +14,8 @@ import { motion } from "framer-motion";
 import { Helmet } from "react-helmet";
 
 export default function ContactUS() {
+    const navigate = useNavigate();
+
     const { globalData } = useGlobalData();
     const [contactData, setContactData] = useState({});
     const [fullName, setFullName] = useState('');
@@ -202,6 +205,7 @@ export default function ContactUS() {
 
             if (data.status === 1 && data.message.includes("Email sent successfully")) {
                 toast.success("Enquiry submitted successfully ✅");
+                navigate("/thank-you")
 
                 // Reset form
                 setFullName('');
@@ -252,7 +256,7 @@ export default function ContactUS() {
                 {/* Canonical */}
                 <link rel="canonical" href={window.location.href} />
             </Helmet>
-            <div className=" w-[85%] mx-auto mb-10">
+            <div className=" w-[85%] mx-auto mb-10 mt-30">
                 <Navbar textColor="black" />
             </div>
             <div className="flex flex-col w-full max-w-[90%] lg:max-w-[75%] mx-auto font-Montserrat">
@@ -370,7 +374,7 @@ export default function ContactUS() {
                                         className="w-full bg-transparent outline-none text-sm sm:text-base py-2 placeholder:text-base"
                                     />
                                     <img
-                                        src="/svgs/Name SVG.svg"
+                                        src={`${BASE_URL_SVG}assets/svgs/Name SVG.svg`}
                                         alt="name"
                                         className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5"
                                     />
@@ -387,7 +391,7 @@ export default function ContactUS() {
                                         className="w-full bg-transparent outline-none text-sm sm:text-base py-2 placeholder:text-base"
                                     />
                                     <img
-                                        src="/svgs/Guests SVG.svg"
+                                        src={`${BASE_URL_SVG}assets/svgs/Guests SVG.svg`}
                                         alt="guests"
                                         className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5"
                                     />
@@ -405,7 +409,7 @@ export default function ContactUS() {
                                         className="w-full bg-transparent outline-none text-sm sm:text-base py-2 placeholder:text-base"
                                     />
                                     <img
-                                        src="/svgs/Phone Number SVG.svg"
+                                        src={`${BASE_URL_SVG}assets/svgs/Phone Number SVG.svg`}
                                         alt="phone"
                                         className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5"
                                     />
@@ -421,7 +425,7 @@ export default function ContactUS() {
                                         className="w-full bg-transparent outline-none text-sm sm:text-base py-2 placeholder:text-base"
                                     />
                                     <img
-                                        src="/svgs/Email SVG.svg"
+                                        src={`${BASE_URL_SVG}assets/svgs/Email SVG.svg`}
                                         alt="email"
                                         className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5"
                                     />
@@ -466,7 +470,7 @@ export default function ContactUS() {
                                         <>
                                             <span>Submit</span>
                                             <img
-                                                src="/svgs/SubmitArrow.svg"
+                                                    src={`${BASE_URL_SVG}assets/svgs/SubmitArrow.svg`}
                                                 alt="submit"
                                                 className="w-6 h-6 sm:w-7 sm:h-7"
                                             />
