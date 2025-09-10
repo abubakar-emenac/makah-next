@@ -123,8 +123,8 @@ const Navbar = ({ textColor = "black" }) => {
               </div>
             ))}
           </div>
-          <div className="relative rounded-l-3xl flex items-center text-xs md:text-sm font-medium ml-4 bg-white">
-            <div className="  pl-3 md:pl-4 py-1.5 md:py-[2px] flex flex-col items-end">
+          <div className="relative rounded-l-3xl rounded-r-lg flex items-center text-xs md:text-sm font-medium ml-4 bg-white">
+            <div className="  pl-3 md:pl-4 py-1.5 md:py-[1.5px] flex flex-col items-end">
               <span className="text-yellow-500 leading-tight">Call Now:</span>
               <span className="text-gray-800">{phoneNumber}</span>
             </div>
@@ -205,45 +205,45 @@ const Navbar = ({ textColor = "black" }) => {
                 >
                   {/* Parent Link */}
                   <div
-              className="flex justify-between items-center py-2 px-3 rounded-lg hover:bg-green-50 transition-all cursor-pointer"
-              onClick={() => item.hasDropdown && toggleDropdown(item.label)}
-            >
-              <Link
-                to={item.link}
-                className="text-base md:text-lg font-semibold"
-                onClick={handleMobileNavClick}
-              >
-                {item.label}
-              </Link>
-              {item.hasDropdown && (
-                <span className="ml-2 text-sm">{activeDropdown === item.label ? "▲" : "▼"}</span>
-              )}
-            </div>
-
-            {/* Dropdown */}
-            {item.hasDropdown && activeDropdown === item.label && (
-              <motion.ul
-                initial={{ opacity: 0, height: 0 }}
-                animate={{ opacity: 1, height: "auto" }}
-                exit={{ opacity: 0, height: 0 }}
-                transition={{ duration: 0.3 }}
-                className="pl-6 mt-2 space-y-2 overflow-hidden"
-              >
-                {item.dropdown.map((child) => (
-                  <li key={child.id}>
+                    className="flex justify-between items-center py-2 px-3 rounded-lg hover:bg-green-50 transition-all cursor-pointer"
+                    onClick={() => item.hasDropdown && toggleDropdown(item.label)}
+                  >
                     <Link
-                      to={child.link}
+                      to={item.link}
+                      className="text-base md:text-lg font-semibold"
                       onClick={handleMobileNavClick}
-                      className="block py-2 px-2 rounded-md hover:bg-green-100 transition-all text-base md:text-[16px]"
                     >
-                      {child.label}
+                      {item.label}
                     </Link>
-                  </li>
-                ))}
-              </motion.ul>
-            )}
-          </motion.div>
-        ))}
+                    {item.hasDropdown && (
+                      <span className="ml-2 text-sm">{activeDropdown === item.label ? "▲" : "▼"}</span>
+                    )}
+                  </div>
+
+                  {/* Dropdown */}
+                  {item.hasDropdown && activeDropdown === item.label && (
+                    <motion.ul
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: "auto" }}
+                      exit={{ opacity: 0, height: 0 }}
+                      transition={{ duration: 0.3 }}
+                      className="pl-6 mt-2 space-y-2 overflow-hidden"
+                    >
+                      {item.dropdown.map((child) => (
+                        <li key={child.id}>
+                          <Link
+                            to={child.link}
+                            onClick={handleMobileNavClick}
+                            className="block py-2 px-2 rounded-md hover:bg-green-100 transition-all text-base md:text-[16px]"
+                          >
+                            {child.label}
+                          </Link>
+                        </li>
+                      ))}
+                    </motion.ul>
+                  )}
+                </motion.div>
+              ))}
 
               {/* Call Now Section */}
               <motion.div
@@ -256,7 +256,7 @@ const Navbar = ({ textColor = "black" }) => {
                   <span className="text-yellow-600 font-bold text-sm md:text-base">Call Now:</span>
                   <span className="text-gray-800 font-medium text-sm md:text-base">{phoneNumber}</span>
                 </div>
-                <img src="/svgs/phone.svg" alt="" className="ml-4 w-6 h-6 md:w-7 md:h-7" />
+                <img src={`${BASE_URL_SVG}/assets/svgs/phone.svg`} alt="" className="ml-4 w-6 h-6 md:w-7 md:h-7" />
                 <div className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 rounded-full bg-green-500 flex items-center justify-center shadow-md hover:bg-green-600 transition-colors">
                   <a href={whatsappLink} target="_blank" rel="noopener noreferrer">
                     <img
@@ -270,7 +270,7 @@ const Navbar = ({ textColor = "black" }) => {
             </motion.div>
           </>
         )}
-</AnimatePresence>
+      </AnimatePresence>
 
 
     </nav>
