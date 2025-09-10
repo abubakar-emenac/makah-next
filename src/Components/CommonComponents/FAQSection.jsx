@@ -81,11 +81,11 @@ export default function FAQSection({ pageData }) {
     const fullImageUrl = faqImageSrc ? `${BASE_URL_IMG}/${faqImageSrc}` : null;
 
     return (
-        <div className="w-full max-w-[82%] mx-auto mt-8 sm:mt-12 md:mt-20 px-4 sm:px-6 md:px-9 font-sans mb-20">
+        <div className="w-full max-w-[78%] mx-auto mt-8 sm:mt-12 md:mt-20 px-4 sm:px-6 md:px-9 font-sans mb-20">
             <div className="w-full flex flex-col lg:flex-row gap-8">
 
                 {/* Left side: Heading, Subheading, and Image */}
-                <div className="lg:w-1/2 flex flex-col">
+                <div className="lg:w-[45%] flex flex-col">
                     <div className="mb-8"> {/* Container for heading and subheading */}
                         <img src={`${BASE_URL_SVG}/assets/svgs/crown-black.svg`} alt="Crown" className="w-16 sm:w-18 md:w-24 mb-3 sm:mb-4" />
                         <h2 className="text-[28px] sm:text-[32px] md:text-[36px] font-abril leading-tight mb-3 sm:mb-4">
@@ -105,7 +105,7 @@ export default function FAQSection({ pageData }) {
                 </div>
 
                 {/* Right side: FAQs with custom scrollbar */}
-                <div className="lg:w-[40%] faq-scroll-container mt-16">
+                <div className="lg:w-[55%] faq-scroll-container mt-16">
                     {faqs.map((faq, index) => (
                         <div key={index} className="border-b py-4 font-Montserrat">
                             <button
