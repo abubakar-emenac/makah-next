@@ -18,16 +18,16 @@ export default function HajjDetail() {
     const [packageData, setPackageData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    console.log("Render caused by:", {
-        slug,
-        pathname: location.pathname,
-        key: location.key
-    });
+    // console.log("Render caused by:", {
+    //     slug,
+    //     pathname: location.pathname,
+    //     key: location.key
+    // });
     useEffect(() => {
-        console.log("Route changed to:", location.pathname);
+        // console.log("Route changed to:", location.pathname);
     }, [location.pathname]);
-    console.log("The slug of package is", slug)
-    console.log("The current package data is:", packageData);
+    // console.log("The slug of package is", slug)
+    // console.log("The current package data is:", packageData);
     useEffect(() => {
         const fetchPageData = async () => {
             setLoading(true);
@@ -35,12 +35,67 @@ export default function HajjDetail() {
             try {
                 const res = await axios.get(endpoints.hajjByslug(slug));
                 if (res.data?.status === 1) {
-                    console.log("Result object:", res.data?.result);
+                    // console.log("Result object:", res.data?.result);
                     setPackageData(res.data.result);
 
                     if (res.data.result?.browser_title) {
                         document.title = res.data.result.browser_title;
                     }
+
+                    // Set Meta Description
+                    const desc = document.querySelector('meta[name="description"]') || document.createElement("meta");
+                    desc.setAttribute("name", "description");
+                    desc.setAttribute("content", res.data.result.meta_description || "");
+                    if (!desc.parentNode) document.head.appendChild(desc);
+
+                    // Set meta keywords
+                    const keywords = document.querySelector('meta[name="keywords"]') || document.createElement("meta");
+                    keywords.setAttribute("name", "keywords");
+                    keywords.setAttribute("content", res.data.result.meta_keywords);
+                    if (!keywords.parentNode) document.head.appendChild(keywords);
+
+                    // OG Title
+                    const ogTitle = document.querySelector('meta[property="og:title"]') || document.createElement("meta");
+                    ogTitle.setAttribute("property", "og:title");
+                    ogTitle.setAttribute("content", res.data.result.browser_title);
+                    if (!ogTitle.parentNode) document.head.appendChild(ogTitle);
+
+                    // OG Description
+                    const ogDescription = document.querySelector('meta[property="og:description"]') || document.createElement("meta");
+                    ogDescription.setAttribute("property", "og:description");
+                    ogDescription.setAttribute("content", res.data.result.meta_description || "");
+                    if (!ogDescription.parentNode) document.head.appendChild(ogDescription);
+
+                    // OG Image (dynamic from banner_img[0])
+                    const imageUrl = res.data.result.image_url
+                        ? `${BASE_URL_IMG}/${res.data.result.image_url}`
+                        : '';
+                    // console.log(imageUrl)
+                    const ogImage = document.querySelector('meta[property="og:image"]') || document.createElement("meta");
+                    ogImage.setAttribute("property", "og:image");
+                    ogImage.setAttribute("content", imageUrl);
+                    if (!ogImage.parentNode) document.head.appendChild(ogImage);
+
+                    // OG URL (current page URL)
+                    const ogUrl = document.querySelector('meta[property="og:url"]') || document.createElement("meta");
+                    ogUrl.setAttribute("property", "og:url");
+                    ogUrl.setAttribute("content", window.location.href);
+                    if (!ogUrl.parentNode) document.head.appendChild(ogUrl);
+
+                    // OG Type (always set to "Travels & Tours")
+                    const ogType = document.querySelector('meta[property="og:type"]') || document.createElement("meta");
+                    ogType.setAttribute("property", "og:type");
+                    ogType.setAttribute("content", "Travels & Tours");
+                    if (!ogType.parentNode) document.head.appendChild(ogType);
+
+                    // Canonical Link
+                    let canonicalLink = document.querySelector('link[rel="canonical"]');
+                    if (!canonicalLink) {
+                        canonicalLink = document.createElement("link");
+                        canonicalLink.setAttribute("rel", "canonical");
+                        document.head.appendChild(canonicalLink);
+                    }
+                    canonicalLink.setAttribute("href", window.location.href);
                 }
                 else {
                     setError("Failed to load package data");

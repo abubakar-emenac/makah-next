@@ -302,15 +302,14 @@ const HajjCards = ({ Packagedata, packages, loading, c_type }) => {
                         ))}
                     </div>
                 ) : (
-                        <Slider {...slickSettings} ref={sliderRef} className="w-full">
-                            {packages.map((item, index) => (
-                                <div key={index} className="px-2">
-                                    <PackageCard pkg={item} p_type={c_type} />
-                                </div>
-                            ))}
-                        </Slider>
+                    <Slider {...slickSettings} ref={sliderRef} className="w-full">
+                        {packages.map((item, index) => (
+                            <div key={index} className="px-2">
+                                <PackageCard pkg={item} p_type={c_type} />
+                            </div>
+                        ))}
+                    </Slider>
                 )}
-
                 {/* Custom Dots */}
                 {!loading && packages.length > 0 && (
                     <div className="flex mt-6 gap-2 w-full justify-center">
@@ -403,7 +402,6 @@ export default function HajjDeals({ pageData }) {
             <div className="w-full lg:w-[72%]">
                 <HajjCards Packagedata={widgetData} packages={packages} loading={loading} c_type={type} />
             </div>
-
             {/* Illustration (hidden on small screens) */}
             <div className="hidden lg:flex w-full lg:w-[28%] justify-center items-center mt-32">
                 <img

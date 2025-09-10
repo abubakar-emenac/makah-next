@@ -346,8 +346,8 @@ const CustomizePackageForm = () => {
                     className="w-12 sm:w-16 md:w-35"
                 />
                 <div className='flex'>
-                    <div className='w-full max-w-[70%] mx-auto'>
-                        <div className="flex justify-between font-Montserrat items-center">
+                    <div className='w-full md:max-w-[70%] mx-auto'>
+                        <div className="flex flex-col xl:flex-row justify-between font-Montserrat items-start xl:items-center gap-6">
                             <h1 className="font-abril text-2xl sm:text-3xl md:text-4xl">
                                 Customize Your Package
                             </h1>
@@ -373,11 +373,11 @@ const CustomizePackageForm = () => {
                             </div>
                         </div>
                         <div className="border-[1.5px] border-gray-400 mt-5 p-5">
-                            <div className="grid grid-cols-4 gap-x-2 gap-y-3">
+                            <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-2 gap-y-3">
                                 {/* Origin */}
                                 <div className="relative" ref={originRef}>
                                     <div
-                                        className="flex items-center bg-white rounded-xl px-3 py-2 border border-primary"
+                                        className="flex items-center bg-white rounded-xl px-3 py-2 border border-primary w-full"
                                         style={{ height: "52px" }}
                                     >
                                         <input
@@ -421,7 +421,7 @@ const CustomizePackageForm = () => {
                                 </div>
 
                                 <div
-                                    className="flex items-center bg-white rounded-xl px-3 py-2 border border-primary"
+                                    className="flex items-center bg-white rounded-xl px-3 py-2 border border-primary w-full"
                                     style={{ height: "52px" }}
                                 >
                                     <DatePicker
@@ -439,7 +439,7 @@ const CustomizePackageForm = () => {
                                     <>
                                         {/* No. Nights Makkah */}
                                         <div
-                                            className="flex items-center bg-white rounded-xl px-3 py-2 border border-primary"
+                                            className="flex items-center bg-white rounded-xl px-3 py-2 border border-primary w-full"
                                             style={{ height: "52px" }}
                                         >
                                             <input
@@ -454,7 +454,7 @@ const CustomizePackageForm = () => {
 
                                         {/* No. Nights Madinah */}
                                         <div
-                                            className="flex items-center bg-white rounded-xl px-3 py-2 border border-primary"
+                                            className="flex items-center bg-white rounded-xl px-3 py-2 border border-primary w-full"
                                             style={{ height: "52px" }}
                                         >
                                             <input
@@ -472,7 +472,7 @@ const CustomizePackageForm = () => {
                                 <div className="relative inline-block w-full" ref={AccomodationRef}>
                                     {/* Input Field */}
                                     <div
-                                        className="flex items-center bg-white rounded-xl px-3 py-2 border border-primary"
+                                        className="flex items-center bg-white rounded-xl px-3 py-2 border border-primary w-full"
                                         style={{ height: "52px" }}
                                         onClick={() => setIsAccomodationOpen(!isAccomodationOpen)}
                                     >
@@ -509,7 +509,7 @@ const CustomizePackageForm = () => {
                                         <div className="relative inline-block w-full" ref={RoomTypeRef}>
                                             {/* Input Field */}
                                             <div
-                                                className="flex items-center bg-white rounded-xl px-3 py-2 border border-primary"
+                                                className="flex items-center bg-white rounded-xl px-3 py-2 border border-primary w-full"
                                                 style={{ height: "52px" }}
                                                 onClick={() => setIsRoomTypeOpen(!isRoomTypeOpen)}
                                             >
@@ -543,7 +543,7 @@ const CustomizePackageForm = () => {
                                         <div className="relative inline-block w-full" ref={MealTypeRef}>
                                             {/* Input Field */}
                                             <div
-                                                className="flex items-center bg-white rounded-xl px-3 py-2 border border-primary"
+                                                className="flex items-center bg-white rounded-xl px-3 py-2 border border-primary w-full"
                                                 style={{ height: "52px" }}
                                                 onClick={() => setIsMealTypeOpen(!isMealTypeOpen)}
                                             >
@@ -577,7 +577,7 @@ const CustomizePackageForm = () => {
                                         <div className="relative inline-block w-full" ref={DistanceTypeRef}>
                                             {/* Input Field */}
                                             <div
-                                                className="flex items-center bg-white rounded-xl px-3 py-2 border border-primary"
+                                                className="flex items-center bg-white rounded-xl px-3 py-2 border border-primary w-full"
                                                 style={{ height: "52px" }}
                                                 onClick={() => setIsDistanceTypeOpen(!isDistanceTypeOpen)}
                                             >
@@ -614,7 +614,7 @@ const CustomizePackageForm = () => {
                                 <div className="relative inline-block w-full" ref={dropdownRef}>
                                     {/* Input field */}
                                     <div
-                                        className="flex items-center bg-white rounded-xl px-3 py-2 border border-primary"
+                                        className="flex items-center bg-white rounded-xl px-3 py-2 border border-primary w-full"
                                         style={{ height: "52px" }}
                                         onClick={() => setIsOpen(!isOpen)}
                                     >
@@ -735,7 +735,7 @@ const CustomizePackageForm = () => {
                                 )}
 
                                 <div
-                                    className="flex items-center bg-white rounded-xl px-3 py-2 border border-primary"
+                                    className="flex items-center bg-white rounded-xl px-3 py-2 border border-primary w-full"
                                     style={{ height: "52px" }}
                                 >
                                     <input
@@ -754,7 +754,7 @@ const CustomizePackageForm = () => {
 
                                 {/* Phone */}
                                 <div
-                                    className="flex items-center bg-white rounded-xl px-3 py-2 border border-primary"
+                                    className="flex items-center bg-white rounded-xl px-3 py-2 border border-primary w-full"
                                     style={{ height: "52px" }}
                                 >
                                     <input
@@ -773,7 +773,7 @@ const CustomizePackageForm = () => {
 
                                 {/* Email */}
                                 <div
-                                    className="flex items-center bg-white rounded-xl px-3 py-2 border border-primary"
+                                    className="flex items-center bg-white rounded-xl px-3 py-2 border border-primary w-full"
                                     style={{ height: "52px" }}
                                 >
                                     <input
@@ -791,7 +791,7 @@ const CustomizePackageForm = () => {
                                 </div>
 
                                 <div
-                                    className="flex items-center bg-white rounded-xl px-3 py-2 border border-primary col-span-2"
+                                    className="flex items-center bg-white rounded-xl px-3 py-2 border border-primary col-span-2 w-full"
                                     style={{ height: "52px" }}
                                 >
                                     <input
@@ -805,7 +805,7 @@ const CustomizePackageForm = () => {
 
                                 {/* Captcha */}
                                 <div
-                                    className="flex items-center bg-white rounded-xl px-3 py-2 border border-primary"
+                                    className="flex items-center bg-white rounded-xl px-3 py-2 border border-primary w-full"
                                     style={{ height: "52px" }}
                                 >
                                     <input
@@ -843,7 +843,7 @@ const CustomizePackageForm = () => {
                     </div>
 
                     {/* Side Image */}
-                    <div className="w-full max-w-[30%] flex justify-center items-center">
+                    <div className="w-full max-w-[30%] hidden md:flex justify-center items-center">
                         <img src={`${BASE_URL_SVG}/assets/svgs/FormImg.svg`} alt="submit" className="" />
                     </div>
                 </div>

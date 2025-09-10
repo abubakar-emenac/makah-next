@@ -219,7 +219,7 @@ import { BASE_URL_IMG } from '../../Helpers/apiEndpoints';
 
 export default function HeroSection({ pageData }) {
     React.useEffect(() => {
-        console.log("HeroSection received data:", pageData);
+        // console.log("HeroSection received data:", pageData);
     }, [pageData]);
     const buttonEnabled = pageData?.button_enable;
     const buttonText = pageData?.button_text;

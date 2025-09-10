@@ -71,7 +71,7 @@ function App() {
           path="/contact-us"
           element={<ContactUS />}
         />
-         <Route
+        <Route
           path="/customize-form"
           element={<CustomizePackageForm />}
         />
@@ -80,7 +80,7 @@ function App() {
           element={<PageNavigator />}
         />
         <Route
-          path="/umrah/:slug" element={< UmrahDetail />}
+          path="/umrah/:slug" element={<UmrahDetail />}
         />
         <Route
           path="/hajj/:slug"

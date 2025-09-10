@@ -173,7 +173,6 @@ export default function UmrahPackageStar({ pageData }) {
     return (
         <div className="flex flex-col w-full">
             <HeroSection pageData={pageData} />
-
             <div className="flex flex-col my-8 w-full max-w-[85%] mx-auto">
                 {packagesData.map((section, idx) => (
                     <UmrahStarSection
