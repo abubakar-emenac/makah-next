@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { BASE_URL_IMG, endpoints } from "../../Helpers/apiEndpoints";
+import { BASE_URL_IMG, BASE_URL_SVG, endpoints } from "../../Helpers/apiEndpoints";
 import HeroSectionblog from "../../Components/CommonComponents/HeroSectionblog";
 import NeedHelp from '../../Components/CommonComponents/NeedHelp'
 import { Helmet } from "react-helmet";
@@ -168,7 +168,7 @@ const BlogHome = () => {
         {widgets[0] && (
           <div className="w-full mb-8">
             <img
-              src="/svgs/crown-black.svg"
+              src={`${BASE_URL_SVG}assets/svgs/crown-black.svg`}
               alt="Crown"
               className="w-16 sm:w-18 md:w-24 mb-3 sm:mb-2"
             />
@@ -214,7 +214,7 @@ const BlogHome = () => {
         {widgets[1] && (
           <div className="w-full mb-8">
             <img
-              src="/svgs/crown-black.svg"
+              src={`${BASE_URL_SVG}assets/svgs/crown-black.svg`}
               alt="Crown"
               className="w-16 sm:w-18 md:w-24 mb-2"
             />

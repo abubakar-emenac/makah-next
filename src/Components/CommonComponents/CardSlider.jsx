@@ -424,6 +424,10 @@ export default function CardSlider({ pageData }) {
     responsive: [
       {
         breakpoint: 1280,
+        settings: { slidesToShow: 2, slidesToScroll: 1 }
+      },
+      {
+        breakpoint: 1380,
         settings: { slidesToShow: 3, slidesToScroll: 1 }
       },
       {

@@ -73,7 +73,7 @@ const Navbar = ({ textColor = "black" }) => {
       className={`fixed top-0 left-0 w-full font-Montserrat z-[9999] transition-all duration-300 ${scrolled ? "bg-white shadow-md text-black" : "bg-transparent text-black"
         }`}
     >
-      <div className="w-full max-w-[90%] sm:max-w-[95%] md:max-w-[88%] lg:max-w-[90%] xl:max-w-[75%] mx-auto px-3 md:px-6 lg:px-8 py-2 md:py-3 flex justify-between items-center">
+      <div className="w-full max-w-[90%]  sm:max-w-[90%] md:max-w-[85%] lg:max-w-[90%] xl:max-w-[80%] mx-auto px-1 md:px-4 lg:px-8 py-2 md:py-3 flex justify-between items-center">
 
         {/* LOGO */}
         <Link to={'/'} className="text-base sm:text-lg md:text-xl font-bold whitespace-nowrap text-white">

@@ -91,16 +91,16 @@ export default function BlogSection() {
           <span className="text-black mt-4 block font-Montserrat text-[14px] sm:text-[15px] md:text-[16px]">
             {firstBlog.publish_date}
           </span>
-          <h4 className="text-[22px] sm:text-[28px] md:text-[32px] font-abril leading-tight mt-2 mb-3">
+          <Link to={`/blog/${firstBlog.page_url}`}>
+            <h4 className="text-[22px] sm:text-[28px] md:text-[32px] font-abril leading-tight mt-2 mb-3 cursor-pointer">
             {firstBlog.title}
           </h4>
+          </Link>
           <p className="text-[14px] sm:text-[15px] md:text-[16px] font-Montserrat leading-relaxed text-black mb-4 line-clamp-3">
             {firstBlog.short_description || "Read more about this blog."}
           </p>
           <div className="mt-2">
-            <Link to={`/blog/${firstBlog.page_url}`}>
-              <ViewAllButton label="Read More" color="primary" size="md" />
-            </Link>
+            <ViewAllButton label="Read More" color="primary" size="md" slug={`/blog/${firstBlog.page_url}`} />
           </div>
         </div>
 
@@ -135,9 +135,7 @@ export default function BlogSection() {
           ))}
 
           <div className="mt-10">
-            <Link to="/blog">
-              <ViewAllButton label="View All Blogs" color="primary" size="md" />
-            </Link>
+            <ViewAllButton label="View All Blogs" color="primary" size="md" slug={"/blog"} />
           </div>
         </div>
       </div>

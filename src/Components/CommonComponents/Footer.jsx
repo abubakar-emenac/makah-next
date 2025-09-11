@@ -144,6 +144,7 @@ export default function Footer() {
         if (!globalData?.result?.footer_setting) return null;
 
         const footerSetting = globalData.result.footer_setting;
+        const footerLogo = globalData.result.settings;
         const contents = footerSetting.contents;
         const socialMedia = footerSetting.social_media_icons;
 
@@ -181,8 +182,9 @@ export default function Footer() {
     }, [globalData, currentYear]);
 
     if (!footerItems) {
-        return <div>Loading...</div>;
+        return null; // or a loader/skeleton
     }
+
 
     return (
         <footer
@@ -197,7 +199,7 @@ export default function Footer() {
                 {/* Top Section - Desktop/Laptop */}
                 <div className="hidden lg:grid grid-cols-4 items-start px-3 gap-8">
                     {/* Logo */}
-                    <Link to={'/'} className="font-Montserrat text-[26px] w-48 h-10">
+                    <Link to={'/'} className="font-Montserrat text-[26px] w-28 sm:w-30 md:w-38 lg:w-48 h-10">
                         {footerItems.logo ? (
                             <img
                                 src={`${WEB_URL}/${logo}`}
@@ -260,7 +262,7 @@ export default function Footer() {
                 <div className="lg:hidden space-y-10">
                     {/* Row 1: Logo + Social Icons */}
                     <div className="flex flex-row sm:flex-row items-center justify-between px-3">
-                        <Link to={'/'} className="font-Montserrat text-[26px] w-48 h-10">
+                        <Link to={'/'} className="font-Montserrat text-[26px] w-32 sm:w-30 md:w-38 lg:w-48 h-10">
                             {footerItems.logo ? (
                                 <img
                                     src={`${WEB_URL}/${logo}`}

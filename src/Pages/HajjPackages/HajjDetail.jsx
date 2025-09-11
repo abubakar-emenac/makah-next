@@ -282,7 +282,7 @@ export default function HajjDetail() {
                             {button.map((btn) => (
                                 <div
                                     key={btn.id}
-                                    className="flex flex-col sm:flex-row items-center gap-2 w-full sm:w-auto"
+                                    className="flex sm:flex-row items-center gap-2 w-full sm:w-auto"    
                                 >
                                     <button className="flex-1 sm:w-[250px] md:w-[280px] lg:w-[330px] px-4 sm:px-6 md:px-8 py-2 bg-primary text-white font-abril text-sm sm:text-base md:text-lg leading-tight text-center sm:text-left lg:text-right">
                                         {btn.title}

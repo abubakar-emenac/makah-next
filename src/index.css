@@ -13,11 +13,12 @@
   font-family: Montserrat;
   src: url('./assets/fonts/Montserrat-VariableFont_wght.ttf');
 }
+
 @import "tailwindcss";
 
 @theme {
   --font-abril: Abril, 'sans-serif';
-    --font-Montserrat-italic: Montserrat-italic, 'sans-serif';
+  --font-Montserrat-italic: Montserrat-italic, 'sans-serif';
     --font-Montserrat: Montserrat, 'sans-serif';
   --color-primary-hover: #C18620;
   --color-primary: #DB9E30;
@@ -77,6 +78,7 @@
   z-index: 0;
   pointer-events: none;
 }
+
 html {
   scroll-behavior: smooth;
 }
@@ -95,6 +97,18 @@ html {
     @apply text-3xl font-bold my-4 text-secondary;
   }
 
+    .parseData a {
+      @apply relative inline-block text-primary hover:text-primary-hover no-underline;
+    }
+  
+    .parseData a::after {
+      content: "";
+      @apply absolute left-0 -bottom-[0.1px] h-[2px] w-0 bg-primary transition-all duration-300;
+    }
+  
+    .parseData a:hover::after {
+      @apply w-full;
+    }
   .parseData h2 {
     @apply text-3xl font-semibold my-3 text-secondary;
   }
@@ -112,8 +126,32 @@ html {
   }
 
   .parseData ul {
-    @apply list-disc list-inside my-3;
+    @apply list-disc pl-6 my-2 space-y-1;
+      /* bullets + spacing */
+    }
+    
+    .parseData ol {
+      @apply list-decimal pl-6 my-2 space-y-1;
+      /* numbered list */
+    }
+    
+    .parseData li {
+      @apply text-base leading-relaxed text-gray-700;
+      /* consistent list item style */
+    }
+    
+    .parseData ul ul,
+    .parseData ol ul {
+      @apply list-disc pl-6 mt-1;
+      /* nested unordered lists */
+    }
+    
+    .parseData ol ol,
+    .parseData ul ol {
+      @apply list-decimal pl-6 mt-1;
+      /* nested ordered lists */
   }
+
 
   .parseData a {
     @apply text-blue-600 underline hover:text-blue-800;
