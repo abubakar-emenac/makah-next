@@ -78,7 +78,7 @@ function App() {
           element={<ContactUS />}
         />
         <Route
-          path="/customize-form"
+          path="/customize-your-umrah"
           element={<CustomizePackageForm />}
         />
         <Route
