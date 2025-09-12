@@ -199,8 +199,8 @@ const BlogHome = () => {
                 </p>
                 <div className="flex items-center space-x-2 text-sm text-gray-700  font-Montserrat">
                   <span className="font-medium">{blog?.author}</span>
-                  <span className="w-2 h-2 bg-green-500 rounded-full ml-6"></span>
-                  <span>{formatDate(blog?.created_at)}</span>
+                  {/* <span className="w-2 h-2 bg-green-500 rounded-full ml-6"></span> */}
+                  {/* <span>{formatDate(blog?.created_at)}</span> */}
                 </div>
                 {/* <span className="text-primary font-semibold hover:underline">
                   Read More →
@@ -245,8 +245,8 @@ const BlogHome = () => {
                 </p>
                 <div className="flex items-center space-x-2 text-sm text-gray-700  font-Montserrat">
                   <span className="font-medium">{blog?.author}</span>
-                  <span className="w-2 h-2 bg-green-500 rounded-full ml-6"></span>
-                  <span>{formatDate(blog?.created_at)}</span>
+                  {/* <span className="w-2 h-2 bg-green-500 rounded-full ml-6"></span> */}
+                  {/* <span>{formatDate(blog?.created_at)}</span> */}
                 </div>
                 {/* <span className="text-primary font-semibold hover:underline">
                   Read More →
