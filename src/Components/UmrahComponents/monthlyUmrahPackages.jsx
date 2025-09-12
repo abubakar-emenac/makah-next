@@ -144,6 +144,13 @@ export default function MonthlyUmrahPackages({ pageData }) {
             {
                 breakpoint: 1280, // ≤ 1280px
                 settings: {
+                    slidesToShow: 3,
+                    slidesToScroll: 1,
+                }
+            },
+            {
+                breakpoint: 1380, // ≤ 1280px
+                settings: {
                     slidesToShow: 4,
                     slidesToScroll: 1,
                 }

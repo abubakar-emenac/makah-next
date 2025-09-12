@@ -213,7 +213,7 @@ export default function WhyChoose() {
             <div className="hidden lg:grid grid-cols-4 gap-6 lg:gap-8">
                 {sloganData.cards.map((item, index) => (
                     <div key={index} className="flex flex-col items-center text-center px-2 sm:px-0">
-                        <img src={item.icon} alt={item.heading} className="w-24 sm:w-28 h-auto mb-2 object-contain" />
+                        <img src={item.icon} alt={`${item.heading}`} className="w-24 sm:w-28 h-auto mb-2 object-contain" />
                         <h3 className="text-[16px] sm:text-[18px] md:text-[20px] font-abril leading-tight mb-1 break-words">
                             {item.heading}
                         </h3>
@@ -231,7 +231,7 @@ export default function WhyChoose() {
                         <div key={index} className="flex flex-col items-center text-center px-4">
                             <div className="flex justify-center w-full mb-3">
                                 <img
-                                    src={`${BASE_URL_IMG}/${item.icon}`}
+                                    src={item.icon}
                                     alt={item.heading}
                                     className="w-24 sm:w-28 h-auto object-contain"
                                 />

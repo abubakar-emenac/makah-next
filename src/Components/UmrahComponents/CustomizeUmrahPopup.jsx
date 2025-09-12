@@ -4,10 +4,12 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import '../../CSS/datepicker-custom.css';
 import { BASE_URL_SVG, endpoints } from '../../Helpers/apiEndpoints';
+import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 import Loader from '../CommonComponents/Loader';
 
 export default function CustomizeUmrahPopup() {
+    const navigate = useNavigate();
     const [departureDate, setDepartureDate] = useState(null);
     const [makkahNights, setMakkahNights] = useState('');
     const [medinahNights, setMedinahNights] = useState('');
@@ -24,7 +26,8 @@ export default function CustomizeUmrahPopup() {
     const [captcha, setCaptcha] = useState('');
     const [message, setMessage] = useState('');
     const [departureAirport, setDepartureAirport] = useState('');
-    const [showAirportList, setShowAirportList] = useState('');
+    const [currentStep, setCurrentStep] = useState(1);
+    const [showAirportList, setShowAirportList] = useState(false);
     const [airportList, setAirportList] = useState([]);
     const [isOpen, setIsOpen] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
@@ -94,6 +97,7 @@ export default function CustomizeUmrahPopup() {
             setIsLoading(true);
             const res = await axios.post(endpoints.sendEmail, payload);
             if (res.status === 200) {
+                navigate("/thank-you")
                 toast.success("Form submitted successfully ✅");
                 generateCaptcha();
                 // reset form (optional)
@@ -133,18 +137,6 @@ export default function CustomizeUmrahPopup() {
         fetchAirports();
     }, []);
 
-
-    useEffect(() => {
-        const handleClickOutside = (event) => {
-            if (airportRef.current && !airportRef.current.contains(event.target)) {
-                setShowAirportList(false);
-            }
-        };
-        document.addEventListener("mousedown", handleClickOutside);
-        return () => document.removeEventListener("mousedown", handleClickOutside);
-    }, [airportRef]);
-
-
     const inputClass =
         "w-full bg-white text-black placeholder-black outline-none placeholder:text-lg";
 
@@ -154,20 +146,23 @@ export default function CustomizeUmrahPopup() {
     const selectClass =
         "w-full bg-white text-black outline-none appearance-none cursor-pointer placeholder:font-Montserrat placeholder:text-lg";
 
+    const nextStep = () => setCurrentStep((prev) => prev + 1);
+    const prevStep = () => setCurrentStep((prev) => prev - 1);
+
     return (
         <form
             onSubmit={handleSubmit}
             className="bg-white px-4 py-6 rounded-xl shadow-md w-full font-Montserrat">
-            <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className=" hidden gap-4 md:grid md:grid-cols-2 lg:grid-cols-4">
 
                 {/* Departure Airport */}
-                <div className="relative" ref={airportRef}>
+                <div className="relative col-span-1" ref={airportRef} >
                     <div
                         className={`${containerClass}`}
-                        onClick={() => setShowAirportList(true)}
                     >
                         <input
                             type="text"
+                            onClick={() => setShowAirportList(true)}
                             value={departureAirport}
                             onChange={(e) => setDepartureAirport(e.target.value)}
                             placeholder="Departure Airport"
@@ -194,7 +189,8 @@ export default function CustomizeUmrahPopup() {
                                         <li
                                             key={airport.id}
                                             className="px-3 py-2 cursor-pointer hover:bg-gray-300"
-                                            onClick={() => {
+                                            onClick={(e) => {
+                                                e.stopPropagation();
                                                 setDepartureAirport(airport.name);
                                                 setShowAirportList(false);
                                             }}
@@ -214,7 +210,7 @@ export default function CustomizeUmrahPopup() {
                 {/* Departure Date */}
                 <div
                     onClick={() => setIsOpen(true)}
-                    className={containerClass}
+                    className={`${containerClass} col-span-1`}
                 >
                     <DatePicker
                         ref={datePickerRef}
@@ -237,7 +233,7 @@ export default function CustomizeUmrahPopup() {
                 </div>
 
                 {/* No. Nights Makkah */}
-                <div className={containerClass}>
+                <div className={`${containerClass} col-span-1`}>
                     <input
                         type="number"
                         value={makkahNights}
@@ -249,7 +245,7 @@ export default function CustomizeUmrahPopup() {
                 </div>
 
                 {/* No. Nights Madinah */}
-                <div className={containerClass}>
+                <div className={`${containerClass} col-span-1`}>
                     <input
                         type="number"
                         value={medinahNights}
@@ -261,7 +257,7 @@ export default function CustomizeUmrahPopup() {
                 </div>
 
                 {/* Accomodation */}
-                <div className={containerClass}>
+                <div className={`${containerClass} col-span-1`}>
                     <select
                         value={accomodation}
                         onChange={(e) => setAccomodation(e.target.value)}
@@ -276,7 +272,7 @@ export default function CustomizeUmrahPopup() {
                 </div>
 
                 {/* Room Type */}
-                <div className={containerClass}>
+                <div className={`${containerClass} col-span-1`}>
                     <select
                         value={roomType}
                         onChange={(e) => setRoomType(e.target.value)}
@@ -290,7 +286,7 @@ export default function CustomizeUmrahPopup() {
                 </div>
 
                 {/* Meal Type */}
-                <div className={containerClass}>
+                <div className={`${containerClass} col-span-1`}>
                     <select
                         value={mealType}
                         onChange={(e) => setMealType(e.target.value)}
@@ -304,7 +300,7 @@ export default function CustomizeUmrahPopup() {
                 </div>
 
                 {/* Distance From Mosque */}
-                <div className={containerClass}>
+                <div className={`${containerClass} col-span-1`}>
                     <select
                         value={distance}
                         onChange={(e) => setDistance(e.target.value)}
@@ -318,7 +314,7 @@ export default function CustomizeUmrahPopup() {
                 </div>
 
                 {/* Passengers */}
-                <div className={containerClass}>
+                <div className={`${containerClass} col-span-1`}>
                     <select
                         value={passengers}
                         onChange={(e) => setPassengers(e.target.value)}
@@ -332,7 +328,7 @@ export default function CustomizeUmrahPopup() {
                 </div>
 
                 {/* Full Name */}
-                <div className={containerClass}>
+                <div className={`${containerClass} col-span-1`}>
                     <input
                         type="text"
                         value={fullName}
@@ -348,7 +344,7 @@ export default function CustomizeUmrahPopup() {
                 </div>
 
                 {/* Phone */}
-                <div className={containerClass}>
+                <div className={`${containerClass} col-span-1`}>
                     <input
                         type="text"
                         value={phone}
@@ -364,7 +360,7 @@ export default function CustomizeUmrahPopup() {
                 </div>
 
                 {/* Email */}
-                <div className={containerClass}>
+                <div className={`${containerClass} col-span-1`}>
                     <input
                         type="email"
                         value={email}
@@ -379,7 +375,7 @@ export default function CustomizeUmrahPopup() {
                     />
                 </div>
 
-                <div className={`${containerClass} col-span-2`}>
+                <div className={`${containerClass} col-span-1 sm:col-span-2 lg:col-span-2`}>
                     <input
                         type="text"
                         value={message}
@@ -394,7 +390,7 @@ export default function CustomizeUmrahPopup() {
                     />
                 </div>
                 {/* Captcha */}
-                <div className={containerClass}>
+                <div className={`${containerClass} col-span-1`}>
                     <input
                         type="text"
                         value={captcha}
@@ -426,6 +422,172 @@ export default function CustomizeUmrahPopup() {
                     )}
                 </button>
             </div>
+
+
+
+
+            <div className="block md:hidden bg-white p-4 rounded-xl shadow-md font-Montserrat">
+
+                {/* Step Progress */}
+                <div className="flex mb-6 space-x-1">
+                    {[1, 2, 3, 4, 5].map(step => (
+                        <div
+                            key={step}
+                            className={`flex-1 h-2 rounded ${currentStep >= step ? 'bg-secondary' : 'bg-gray-300'}`}
+                        />
+                    ))}
+                </div>
+
+                <form onSubmit={handleSubmit}>
+                    {/* Step 1: Departure Info */}
+                    {currentStep === 1 && (
+                        <>
+                            <div className="relative mb-4" ref={airportRef}>
+                                <input
+                                    type="text"
+                                    placeholder="Departure Airport"
+                                    value={departureAirport}
+                                    onChange={(e) => { setDepartureAirport(e.target.value); setShowAirportList(true); }}
+                                    className={`${inputClass} border border-gray-300 rounded-lg px-4 py-3`}
+                                />
+                                <img
+                                    src={`${BASE_URL_SVG}/assets/svgs/plane.svg`}
+                                    alt="plane"
+                                    className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 pointer-events-none"
+                                />
+
+                                {/* Dropdown */}
+                                {showAirportList && (
+                                    <ul className="absolute z-20 w-full max-h-40 overflow-auto bg-white border border-gray-300 rounded shadow-lg mt-1">
+                                        {airportList.filter(a => a.name.toLowerCase().includes(departureAirport.toLowerCase())).length > 0 ? (
+                                            airportList
+                                                .filter(a => a.name.toLowerCase().includes(departureAirport.toLowerCase()))
+                                                .map(a => (
+                                                    <li
+                                                        key={a.id}
+                                                        className="px-3 py-2 cursor-pointer hover:bg-gray-100"
+                                                        onClick={() => { setDepartureAirport(a.name); setShowAirportList(false); }}
+                                                    >
+                                                        {a.name}
+                                                    </li>
+                                                ))
+                                        ) : (
+                                            <li className="px-3 py-2 text-gray-500 italic">No airports found</li>
+                                        )}
+                                    </ul>
+                                )}
+                            </div>
+
+                            <div className="relative mb-4">
+                                <DatePicker
+                                    selected={departureDate}
+                                    onChange={(date) => setDepartureDate(date)}
+                                    placeholderText="Departure Date"
+                                    className={`${inputClass} border border-gray-300 rounded-lg px-4 py-3 w-full`}
+                                    dateFormat="dd/MM/yyyy"
+                                />
+                                <img
+                                    src={`${BASE_URL_SVG}/assets/svgs/Departure Date SVG.svg`}
+                                    alt="calendar"
+                                    className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 pointer-events-none"
+                                />
+                            </div>
+                        </>
+                    )}
+
+                    {/* Step 2: Nights */}
+                    {currentStep === 2 && (
+                        <>
+                            <input
+                                type="number"
+                                placeholder="No.Nights Makkah"
+                                value={makkahNights}
+                                onChange={(e) => setMakkahNights(e.target.value)}
+                                className={`${inputClass} border border-gray-300 rounded-lg px-4 py-3 mb-4 w-full`}
+                                min={1}
+                            />
+                            <input
+                                type="number"
+                                placeholder="No.Nights Madinah"
+                                value={medinahNights}
+                                onChange={(e) => setMedinahNights(e.target.value)}
+                                className={`${inputClass} border border-gray-300 rounded-lg px-4 py-3 mb-4 w-full`}
+                                min={1}
+                            />
+                        </>
+                    )}
+
+                    {/* Step 3: Accommodation & Room */}
+                    {currentStep === 3 && (
+                        <>
+                            <select value={accomodation} onChange={(e) => setAccomodation(e.target.value)} className={`${selectClass} border border-gray-300 rounded-lg px-4 py-3 mb-4 w-full`}>
+                                <option value="">Select Accomodation</option>
+                                <option value="3 star">3 Star</option>
+                                <option value="4 star">4 Star</option>
+                                <option value="5 star">5 Star</option>
+                                <option value="any">Any</option>
+                            </select>
+                            <select value={roomType} onChange={(e) => setRoomType(e.target.value)} className={`${selectClass} border border-gray-300 rounded-lg px-4 py-3 mb-4 w-full`}>
+                                <option value="">Room Type</option>
+                                <option value="Single">Single</option>
+                                <option value="Double">Double</option>
+                                <option value="Triple">Triple</option>
+                            </select>
+                            <select value={mealType} onChange={(e) => setMealType(e.target.value)} className={`${selectClass} border border-gray-300 rounded-lg px-4 py-3 mb-4 w-full`}>
+                                <option value="">Meal Type</option>
+                                <option value="Breakfast">Breakfast</option>
+                                <option value="Half Board">Half Board</option>
+                                <option value="Full Board">Full Board</option>
+                            </select>
+                            <select value={distance} onChange={(e) => setDistance(e.target.value)} className={`${selectClass} border border-gray-300 rounded-lg px-4 py-3 mb-4 w-full`}>
+                                <option value="">Distance From Mosque</option>
+                                <option value="Near">Near</option>
+                                <option value="Medium">Medium</option>
+                                <option value="Far">Far</option>
+                            </select>
+                            <select value={passengers} onChange={(e) => setPassengers(e.target.value)} className={`${selectClass} border border-gray-300 rounded-lg px-4 py-3 mb-4 w-full`}>
+                                <option value="">Passengers</option>
+                                <option value="1 Adult">1 Adult</option>
+                                <option value="2 Adults">2 Adults</option>
+                                <option value="3 Adults">3 Adults</option>
+                            </select>
+                        </>
+                    )}
+
+                    {/* Step 4: Contact */}
+                    {currentStep === 4 && (
+                        <>
+                            <input type="text" placeholder="Name*" value={fullName} onChange={(e) => setFullName(e.target.value)} className={`${inputClass} border border-gray-300 rounded-lg px-4 py-3 mb-4 w-full`} />
+                            <input type="text" placeholder="Phone.No*" value={phone} onChange={(e) => setPhone(e.target.value)} className={`${inputClass} border border-gray-300 rounded-lg px-4 py-3 mb-4 w-full`} />
+                            <input type="email" placeholder="Email Address*" value={email} onChange={(e) => setEmail(e.target.value)} className={`${inputClass} border border-gray-300 rounded-lg px-4 py-3 mb-4 w-full`} />
+                        </>
+                    )}
+
+                    {/* Step 5: Message + Captcha */}
+                    {currentStep === 5 && (
+                        <>
+                            <input type="text" placeholder="Type Your Message..." value={message} onChange={(e) => setMessage(e.target.value)} className={`${inputClass} border border-gray-300 rounded-lg px-4 py-3 mb-4 w-full`} />
+                            <div className="relative mb-4">
+                                <input type="text" placeholder="Captcha Answer" value={captcha} onChange={(e) => setCaptcha(e.target.value)} className={`${inputClass} border border-gray-300 rounded-lg px-4 py-3 w-full`} />
+                                <span className="absolute right-3 top-1/2 -translate-y-1/2 text-secondary font-semibold">{num1}+{num2}</span>
+                            </div>
+                        </>
+                    )}
+
+                    {/* Navigation Buttons */}
+                    <div className="flex justify-between mt-6">
+                        {currentStep > 1 && <button type="button" onClick={prevStep} className="px-5 py-2 bg-gray-200 rounded-lg">Previous</button>}
+                        {currentStep < 5 ? (
+                            <button type="button" onClick={nextStep} className="px-5 py-2 bg-secondary text-white rounded-lg">Next</button>
+                        ) : (
+                            <button type="submit" disabled={isLoading} className="px-5 py-2 bg-secondary text-white rounded-lg flex items-center justify-center gap-2">
+                                {isLoading ? <Loader /> : "Submit"}
+                            </button>
+                        )}
+                    </div>
+                </form>
+            </div>
+
         </form>
     );
 }

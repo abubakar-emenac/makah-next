@@ -330,7 +330,7 @@ export default function EnquiryBox() {
                         onChange={(e) => setAccommodation(e.target.value)}
                         className="w-full bg-transparent outline-none text-sm"
                     >
-                        <option disabled value="">Accommodation</option>
+                        <option disabled value="" className='text-secondary'>Accommodation</option>
                         <option value="3-Star">3 star</option>
                         <option value="4-Star">4 Star</option>
                         <option value="5-Star">5 Star</option>
@@ -347,7 +347,7 @@ export default function EnquiryBox() {
                         placeholder="Captcha"
                         className="w-full bg-transparent outline-none text-sm"
                     />
-                    <span className="bg-white text-secondary pr-1 absolute right-3 top-1/2 transform -translate-y-1/2">
+                    <span className="bg-white text-secondary pr-1 absolute right-3 top-1/2 transform -translate-y-1/2 underline selection:disabled:">
                         5+8
                     </span>
                 </div>

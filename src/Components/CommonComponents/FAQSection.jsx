@@ -81,11 +81,11 @@ export default function FAQSection({ pageData }) {
     const fullImageUrl = faqImageSrc ? `${BASE_URL_IMG}/${faqImageSrc}` : null;
 
     return (
-        <div className="w-full max-w-[82%] mx-auto mt-8 sm:mt-12 md:mt-20 px-4 sm:px-6 md:px-9 font-sans mb-20">
+        <div className="w-full max-w-[78%] mx-auto mt-8 sm:mt-12 md:mt-20 px-4 sm:px-6 md:px-9 font-sans mb-20">
             <div className="w-full flex flex-col lg:flex-row gap-8">
 
                 {/* Left side: Heading, Subheading, and Image */}
-                <div className="lg:w-1/2 flex flex-col">
+                <div className="lg:w-[45%] flex flex-col">
                     <div className="mb-8"> {/* Container for heading and subheading */}
                         <img src={`${BASE_URL_SVG}/assets/svgs/crown-black.svg`} alt="Crown" className="w-16 sm:w-18 md:w-24 mb-3 sm:mb-4" />
                         <h2 className="text-[28px] sm:text-[32px] md:text-[36px] font-abril leading-tight mb-3 sm:mb-4">
@@ -105,11 +105,11 @@ export default function FAQSection({ pageData }) {
                 </div>
 
                 {/* Right side: FAQs with custom scrollbar */}
-                <div className="lg:w-[40%] faq-scroll-container mt-16">
+                {/* <div className="lg:w-[55%] faq-scroll-container mt-16 max-h-[500px]">
                     {faqs.map((faq, index) => (
                         <div key={index} className="border-b py-4 font-Montserrat">
                             <button
-                                className="flex justify-between items-center w-full text-left cursor-pointer"
+                                className="flex justify-between items-center w-full cursor-pointer"
                                 onClick={() => setOpenId(openId === index ? null : index)}
                             >
                                 {openId === index ? (
@@ -117,7 +117,7 @@ export default function FAQSection({ pageData }) {
                                 ) : (
                                         <img src={`${BASE_URL_SVG}/assets/svgs/chevronDown.svg`} alt="down" />
                                 )}
-                                <h3 className="font-semibold text-black text-[18px] text-end">
+                                <h3 className="font-semibold text-black text-[18px] text-start">
                                     {faq.question}
                                 </h3>
                             </button>
@@ -129,7 +129,42 @@ export default function FAQSection({ pageData }) {
                             )}
                         </div>
                     ))}
+                </div> */}
+                <div className="lg:w-[55%] faq-scroll-container mt-16 max-h-[490px]">
+                    {faqs.map((faq, index) => (
+                        <div key={index} className="border-b py-4 font-Montserrat">
+                            <button
+                                className="flex justify-between items-center w-full text-left cursor-pointer"
+                                onClick={() => setOpenId(openId === index ? null : index)}
+                            >
+                                <h3 className="font-semibold text-black text-[18px]">
+                                    {faq.question}
+                                </h3>
+                                {openId === index ? (
+                                    <img
+                                        src={`${BASE_URL_SVG}/assets/svgs/chevronUp.svg`}
+                                        alt="up"
+                                        className="w-3 h-3 transition-transform duration-200 rotate-180"
+                                    />
+                                ) : (
+                                    <img
+                                        src={`${BASE_URL_SVG}/assets/svgs/chevronDown.svg`}
+                                        alt="down"
+                                        className="w-3 h-3 transition-transform duration-200"
+                                    />
+                                )}
+                            </button>
+
+                            {openId === index && (
+                                <div
+                                    className="mt-3 text-[16px] pl-1 sm:pl-4"
+                                    dangerouslySetInnerHTML={{ __html: faq.answer }}
+                                />
+                            )}
+                        </div>
+                    ))}
                 </div>
+
             </div>
         </div>
     );

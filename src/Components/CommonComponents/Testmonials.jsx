@@ -563,32 +563,34 @@ const TestimonialCard = ({ avatar, name, location, rating, text }) => {
         : text;
 
     return (
-        <div className="px-3">
+        <div className="min-h-[350px] sm:min-h-[400px]"> {/* outer wrapper for spacing */}
             <div className="relative w-full">
                 {/* Avatar */}
                 <div className="absolute -top-12 left-1/2 transform -translate-x-1/2 z-10">
                     <img
                         src={avatar ? `${BASE_URL_IMG}/${avatar}` : `${BASE_URL_SVG}/assets/svgs/user.svg`}
                         alt={name}
-                        className="w-24 h-24 rounded-full object-cover border-4 border-white shadow-lg"
+                        className="w-24 h-24 rounded-full object-cover hover:border-black hover:border-4  shadow-lg"
                     />
                 </div>
 
                 {/* Card */}
-                <div className="mt-16 relative shadow-md p-6 pt-16 w-full flex flex-col items-center bg-gray-100 rounded-lg">
-                    <div className="text-start font-Montserrat text-black leading-relaxed">
-                        <p>
-                            {parse(truncatedText)}
-                        </p>
+                <div className="mt-16 relative shadow-md p-6 pt-16 w-full flex flex-col bg-gray-100 rounded-lg min-h-[280px]">
+                    {/* Text Section */}
+                    <div className="text-start font-Montserrat text-black leading-relaxed flex-1">
+                        <p>{parse(truncatedText)}</p>
                     </div>
+
+                    {/* Footer Section */}
                     <div className="flex flex-col sm:flex-row items-center justify-between w-full mt-6 pt-4 border-t border-gray-200">
                         <div className="flex flex-col items-center sm:items-start mb-4 sm:mb-0">
-                            <div className='flex justify-between items-center gap-2'>
+                            <div className="flex justify-between items-center gap-2">
                                 <div className="font-semibold text-lg font-Montserrat text-black">{name}</div>
                                 <div className="flex">{renderStars(Number(rating))}</div>
                             </div>
                             <div className="text-sm font-Montserrat text-black">{location}</div>
                         </div>
+
                         {text.length > 200 && (
                             <button
                                 onClick={() => setShowFullText(!showFullText)}
@@ -601,6 +603,7 @@ const TestimonialCard = ({ avatar, name, location, rating, text }) => {
                 </div>
             </div>
         </div>
+
 
     );
 };
@@ -637,7 +640,7 @@ export default function Testimonials({ pageData }) {
 
 
     const sliderSettings = {
-        dots: true,
+        dots: false,
         infinite: true,
         speed: 500,
         slidesToShow: 3,
@@ -651,7 +654,7 @@ export default function Testimonials({ pageData }) {
     };
 
     return (
-        <div className="w-full max-w-[82%] mx-auto mt-8 sm:mt-12 md:mt-28 px-4 sm:px-6 md:px-9 font-sans mb-10 relative">
+        <div className="w-full max-w-[82%] mx-auto mt-8 sm:mt-12 md:mt-28 sm:px-2 md:px-9 font-sans mb-10 relative">
             {/* Header */}
             <div className="w-full lg:w-[48%] mb-12 sm:mb-16">
                 <img src={`${BASE_URL_SVG}/assets/svgs/crown-black.svg`} alt="Crown" className="w-16 sm:w-18 md:w-24 mb-3 sm:mb-4" />
@@ -668,7 +671,7 @@ export default function Testimonials({ pageData }) {
             </div>
             <span
                 onClick={() => sliderRef.current.slickPrev()}
-                className="hidden md:flex absolute -left-6 top-3/4 -translate-y-1/2 bg-white cursor-pointer rounded-full p-2 shadow-md hover:scale-105 transition border border-gray-200 z-10"
+                className="hidden md:flex absolute -left-6 top-[60%] -translate-y-1/2 bg-white cursor-pointer rounded-full p-2 shadow-md hover:scale-105 transition border border-gray-200 z-10"
                 aria-label="Previous Slide"
             >
                 <img src={`${BASE_URL_SVG}/assets/svgs/arrow-left.svg`} alt="Left Arrow" className="w-5 h-5 sm:w-6 sm:h-6" />
@@ -676,7 +679,7 @@ export default function Testimonials({ pageData }) {
 
             <span
                 onClick={() => sliderRef.current.slickNext()}
-                className="hidden md:flex absolute -right-6 top-3/4 -translate-y-1/2 bg-white cursor-pointer rounded-full p-2 shadow-md hover:scale-105 transition border border-gray-200 z-10"
+                className="hidden md:flex absolute -right-6 top-[60%] -translate-y-1/2 bg-white cursor-pointer rounded-full p-2 shadow-md hover:scale-105 transition border border-gray-200 z-10"
                 aria-label="Next Slide"
             >
                 <img src={`${BASE_URL_SVG}/assets/svgs/arrow-right.svg`} alt="Right Arrow" className="w-5 h-5 sm:w-6 sm:h-6" />

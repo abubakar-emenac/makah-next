@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
-import Navbar from '../../Components/CommonComponents/NavBar'
-import { AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import CustomizeUmrahPopup from '../../Components/UmrahComponents/CustomizeUmrahPopup';
 import ImageGallery from '../CommonPages/ImageGallery'
 import ImageSlider from '../../Components/CommonComponents/ImageSlider'
@@ -11,6 +10,7 @@ import { useParams, useLocation } from 'react-router-dom'
 import { endpoints, BASE_URL_IMG, BASE_URL_SVG } from '../../Helpers/apiEndpoints'
 import parse from "html-react-parser";
 import axios from 'axios'
+import NotFound from '../CommonPages/NotFound';
 import { Helmet } from 'react-helmet';
 
 export default function UmrahDetail() {
@@ -20,6 +20,12 @@ export default function UmrahDetail() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [isOpen, setIsOpen] = useState(false);
+    const makkahDescription = packageData?.makkah_hotel?.description || "";
+    const madinahDescription = packageData?.madinah_hotel?.description || "";
+    const isMakkahLong = makkahDescription.length > 300;
+    const isMadinahLong = madinahDescription.length > 300;
+    const shortMakkah = isMakkahLong ? makkahDescription.slice(0, 350) + "..." : makkahDescription;
+    const shortMadinah = isMadinahLong ? madinahDescription.slice(0, 350) + "..." : madinahDescription;
     const modalRef = useRef(null);
     useEffect(() => {
         const handleClickOutside = (event) => {
@@ -34,18 +40,8 @@ export default function UmrahDetail() {
             document.removeEventListener("mousedown", handleClickOutside);
         };
     }, [isOpen]);
-
-
-    // console.log("Render caused by:", {
-    //     slug,
-    //     pathname: location.pathname,
-    //     key: location.key
-    // });
     useEffect(() => {
-        // console.log("Route changed to:", location.pathname);
     }, [location.pathname]);
-    // console.log("The slug of package is", slug)
-    // console.log("The current package data is:", packageData);
     useEffect(() => {
         const fetchPageData = async () => {
             setLoading(true);
@@ -116,12 +112,16 @@ export default function UmrahDetail() {
                     // canonicalLink.setAttribute("href", window.location.href);
                 }
                 else {
-                    setError("Failed to load package data");
+                    return (
+                        <NotFound />
+                    )
                 }
             } catch (err) {
 
                 console.error("Error fetching page data:", err);
-                setError("Failed to load package data");
+                return (
+                    <NotFound />
+                )
             } finally {
                 setLoading(false);
             }
@@ -184,10 +184,8 @@ export default function UmrahDetail() {
 
     if (!packageData) {
         return (
-            <div className="flex justify-center items-center h-64">
-                <div>Package not Found.</div>
-            </div>
-        );
+            <NotFound />
+        )
     }
 
     const imageUrl = packageData.image_url ? `${BASE_URL_IMG}/${packageData.image_url}` : ""
@@ -210,8 +208,7 @@ export default function UmrahDetail() {
                 <link rel="canonical" href={window.location.href} />
             </Helmet>
 
-            <Navbar />
-            <div className="flex flex-col w-full max-w-[97%] md:max-w-[85%] lg:max-w-[80%] mx-auto px-4">
+            <div className="flex flex-col w-full max-w-[97%] md:max-w-[85%] lg:max-w-[80%] mx-auto px-4 mt-20">
 
                 {/* Package Title + Price */}
                 <div className="flex flex-col md:flex-row flex-wrap justify-between items-start md:items-center gap-4 mt-4">
@@ -242,36 +239,42 @@ export default function UmrahDetail() {
 
                 {/* Image Gallery + Hotel Nights */}
                 <div className="flex flex-col lg:flex-row w-full mt-5 gap-6">
+                    {/* Left: Gallery */}
                     <div className="w-full lg:w-2/3">
-
                         <ImageGallery images={packageData?.images || []} />
                     </div>
 
-                    <div className="flex flex-col w-full lg:w-1/3">
+                    {/* Right: Nights + Buttons + Certs */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:flex lg:flex-col w-full lg:w-1/3 gap-6">
                         {/* Nights Info */}
-                        <div className="flex flex-col justify-between gap-y-6 items-end w-full">
+                        <div className="flex flex-col justify-between gap-y-6 w-full">
                             {[
                                 {
-                                    nights: packageData?.makkah_night, title: 'Makkah Hotel Nights', subtitle:
-                                        packageData?.makkah_hotel?.name
+                                    nights: packageData?.makkah_night,
+                                    title: "Makkah Hotel Nights",
+                                    subtitle: packageData?.makkah_hotel?.name,
                                 },
                                 {
-                                    nights: packageData?.madinah_night, title: 'Madinah Hotel Nights', subtitle:
-                                        packageData?.madinah_hotel?.name
+                                    nights: packageData?.madinah_night,
+                                    title: "Madinah Hotel Nights",
+                                    subtitle: packageData?.madinah_hotel?.name,
                                 },
                             ].map((item, idx) => (
-                                <div key={idx} className="flex items-center justify-end w-full gap-x-6">
+                                <div
+                                    key={idx}
+                                    className="flex items-center justify-start lg:justify-end w-full gap-x-4 sm:gap-x-6"
+                                >
                                     <div className="w-12 text-center">
-                                        <span className="text-secondary font-Montserrat text-2xl md:text-3xl font-semibold">
+                                        <span className="text-secondary font-Montserrat text-xl sm:text-2xl md:text-3xl font-semibold">
                                             {item.nights}
                                         </span>
                                     </div>
                                     <div className="hidden lg:block w-[2px] h-12 bg-secondary" />
-                                    <div className="flex flex-col text-end font-Montserrat overflow-hidden">
-                                        <h3 className="text-base sm:text-lg md:text-2xl whitespace-normal md:whitespace-nowrap">
+                                    <div className="flex flex-col text-start sm:text-left lg:text-right font-Montserrat overflow-hidden">
+                                        <h3 className="text-sm sm:text-base md:text-xl truncate">
                                             {item.title}
                                         </h3>
-                                        <span className="text-secondary text-xs sm:text-sm md:text-base whitespace-normal md:whitespace-nowrap">
+                                        <span className="text-secondary text-xs sm:text-sm md:text-base truncate">
                                             {item.subtitle}
                                         </span>
                                     </div>
@@ -280,30 +283,45 @@ export default function UmrahDetail() {
                         </div>
 
                         {/* Action Buttons */}
-                        <div className="flex flex-col mt-7 gap-y-4 w-full items-end">
+                        <div className="flex flex-col mt-0 lg:mt-7 gap-y-4 w-full items-stretch lg:items-end">
                             {button.map((btn) => (
-                                <div key={btn.id} className="flex flex-col sm:flex-row items-center gap-2 justify-end">
-                                    <button
-                                        className="flex flex-col cursor-pointer text-end w-full sm:w-[330px] px-4 sm:px-8 py-2 bg-primary text-white font-abril text-base sm:text-lg leading-tight">
+                                <div
+                                    key={btn.id}
+                                    className="flex sm:flex-row items-center gap-2 w-full sm:w-auto"
+                                >
+                                    <button className="flex-1 sm:w-[250px] md:w-[280px] lg:w-[330px] px-4 sm:px-6 md:px-8 py-2 bg-primary text-white font-abril text-sm sm:text-base md:text-lg leading-tight text-center sm:text-left lg:text-right">
                                         {btn.title}
                                         <br />
                                         {btn.info}
                                     </button>
                                     <div className="bg-white p-2 rounded-full shadow-sm flex items-center justify-center">
-                                        <img src={`${BASE_URL_SVG}/assets/${btn.icon}`} alt={btn.title} className="w-8 sm:w-10 h-8 sm:h-10 object-contain" />
+                                        <img
+                                            src={`${BASE_URL_SVG}/assets/${btn.icon}`}
+                                            alt={btn.title}
+                                            className="w-7 sm:w-8 md:w-10 h-7 sm:h-8 md:h-10 object-contain"
+                                        />
                                     </div>
                                 </div>
                             ))}
                         </div>
 
                         {/* Certifications */}
-                        <div className="flex flex-wrap justify-center lg:justify-end items-center mt-9 gap-x-8 gap-y-4">
-                            <img src={`${BASE_URL_SVG}/assets/svgs/atol.svg`} alt="" className="w-20" />
+                        <div className="flex flex-wrap justify-center sm:justify-start lg:justify-end items-center mt-0 lg:mt-9 gap-x-6 gap-y-4">
+                            <img
+                                src={`${BASE_URL_SVG}/assets/svgs/atol.svg`}
+                                alt="ATOL"
+                                className="w-16 sm:w-20"
+                            />
                             <div className="hidden lg:block w-[2px] h-12 bg-black" />
-                            <img src={`${BASE_URL_SVG}/assets/svgs/iata.svg`} alt="" className="w-20" />
+                            <img
+                                src={`${BASE_URL_SVG}/assets/svgs/iata.svg`}
+                                alt="IATA"
+                                className="w-16 sm:w-20"
+                            />
                         </div>
                     </div>
                 </div>
+
 
                 {/* Package Details */}
                 <div className="flex flex-col w-full mt-8">
@@ -361,7 +379,7 @@ export default function UmrahDetail() {
 
                     {/* First Hotel */}
                     <div className="flex flex-col lg:flex-row justify-end items-center lg:items-start">
-                        <div className="flex flex-col w-full lg:w-[42%] order-2 lg:order-1 bg-[#F4F4F4] mt-14 pr-5">
+                        <div className="flex flex-col w-full lg:w-[42%] order-2 lg:order-1 bg-[#F4F4F4] mt-14 pr-5 max-h-[250px] min-h-[250px]">
                             <div className="flex justify-end gap-1">
                                 {Array.from({ length: Number(packageData?.makkah_hotel?.hotel_star || 0) }).map((_, idx) => (
                                     <img
@@ -377,7 +395,7 @@ export default function UmrahDetail() {
                                 {packageData?.makkah_hotel?.name}</h2>
                             <span className="text-secondary font-Montserrat text-end">Hotel in Makkah</span>
                             <p className="font-Montserrat py-1.5 text-end text-sm sm:text-base" dangerouslySetInnerHTML={{
-                                __html: packageData?.makkah_hotel?.description || ""
+                                __html: shortMakkah 
                             }}>
                             </p>
                         </div>
@@ -392,7 +410,7 @@ export default function UmrahDetail() {
 
                             <ImageSlider images={packageData?.madinah_hotel?.images || []} />
                         </div>
-                        <div className="flex flex-col w-full lg:w-[42%] bg-[#F4F4F4] mt-14 pl-5">
+                        <div className="flex flex-col w-full lg:w-[42%] bg-[#F4F4F4] mt-14 pl-5 max-h-[250px] min-h-[250px]">
                             <div className="flex gap-1">
                                 {Array.from({ length: Number(packageData?.madinah_hotel?.hotel_star || 0) }).map((_, idx) => (
                                     <img
@@ -406,10 +424,11 @@ export default function UmrahDetail() {
                             <h2 className="text-xl sm:text-2xl lg:text-3xl font-abril text-start">
                                 {packageData?.madinah_hotel?.name}</h2>
                             <span className="text-secondary font-Montserrat text-start">Hotel in Madinah</span>
-                            <p className="font-Montserrat py-1.5 text-start text-sm sm:text-base " dangerouslySetInnerHTML={{
-                                __html: packageData?.madinah_hotel?.description || ""
-                            }}>
-                            </p>
+                            <p
+                                className="font-Montserrat py-1.5 text-start text-sm sm:text-base"
+                                dangerouslySetInnerHTML={{ __html: shortMadinah }}
+                            />
+
                         </div>
                     </div>
                 </div>
@@ -460,6 +479,7 @@ export default function UmrahDetail() {
                     </>
                 )}
             </AnimatePresence>
+
 
         </div>
     )

@@ -13,8 +13,8 @@ export default function CustomizationForm({
     };
 
     return (
-        <div className="w-full max-w-[75%] bg-white py-10 px-4 mx-auto">
-            <Navbar/>
+        <div>
+            <div className="w-full max-w-[75%] bg-white py-10 px-4 mx-auto">
             <div className="flex flex-col lg:flex-row items-start gap-8 lg:gap-12">
                 {/* Left Section: Form */}
                 <div className="w-full flex flex-col">
@@ -87,6 +87,7 @@ export default function CustomizationForm({
                     />
                 </div>
             </div>
+        </div>
         </div>
     );
 }

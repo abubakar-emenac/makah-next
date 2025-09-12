@@ -173,7 +173,7 @@ export default function UmrahPackageStar({ pageData }) {
     return (
         <div className="flex flex-col w-full">
             <HeroSection pageData={pageData} />
-            <div className="flex flex-col my-8 w-full max-w-[85%] mx-auto">
+            <div className="flex flex-col my-8 w-full max-w-[88%] mx-auto">
                 {packagesData.map((section, idx) => (
                     <UmrahStarSection
                         key={idx}
@@ -183,11 +183,11 @@ export default function UmrahPackageStar({ pageData }) {
                 ))}
             </div>
             {pageData?.scroll_description && (
-                <div className="flex flex-col my-8 w-full max-w-[75%] mx-auto">
-                    <ScrollDetail pageData={pageData} />
-                </div>
+                <ScrollDetail pageData={pageData} />
             )}
-            <FAQSection pageData={pageData} />
+            {Array.isArray(pageData?.faqs) && pageData.faqs.length > 0 && (
+                <FAQSection pageData={pageData} />
+            )}
         </div>
     );
 }

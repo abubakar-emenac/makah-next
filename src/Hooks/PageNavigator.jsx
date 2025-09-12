@@ -7,6 +7,7 @@ import HajjPackage from "../Pages/HajjPackages/HajjPackage";
 import SpecificCategoryHajj from "../Pages/HajjPackages/SpecificCategoryHajj";
 import UmrahPackageStar from "../Pages/UmrahPages/UmrahPackageStar";
 import SpecificCategoryUmrah from "../Pages/UmrahPages/SpecificCategoryUmrah";
+import NotFound from "../Pages/CommonPages/NotFound";
 import { Helmet } from "react-helmet";
 
 export default function PageNavigator() {
@@ -93,7 +94,9 @@ export default function PageNavigator() {
     }, [slug]);
 
     if (loading) return <p className="text-center py-10">Loading...</p>;
-    if (!pageData) return <p className="text-center py-10">Page not found</p>;
+    if (!pageData) return (
+        <NotFound />
+    )
 
     const imageUrl = pageData.image_url ? `${BASE_URL_IMG}/${pageData.image_url}` : ""
 
@@ -171,7 +174,9 @@ export default function PageNavigator() {
             )
         }
 
-        return <div className="text-center py-10">No valid Hajj section found</div>;
+        return (
+            <NotFound />
+        )
     }
 
     // ----- Umrah logic -----
@@ -210,10 +215,14 @@ export default function PageNavigator() {
             )
         }
 
-        return <div className="text-center py-10">No Matching Umrah Flow</div>;
+        return (
+            <NotFound />
+        )
     }
 
     // ----- Fallback -----
     console.warn("Unmatched pageData structure:", pageData);
-    return <div className="text-center py-10">No matching handler</div>;
+    return (
+        <NotFound />
+    )
 }

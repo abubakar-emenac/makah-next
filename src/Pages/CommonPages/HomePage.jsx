@@ -129,11 +129,11 @@ export default function Home() {
                 <HajjDeals pageData={homeData} />
             )}
             <Testmonials pageData={homeData} />
-            <BlogSection pageData={homeData} />
-            <div className="w-full lg:max-w-[75%] mx-auto">
                 <ScrollDetail pageData={homeData} />
-            </div>
-            <FAQSection pageData={homeData} />
+            {Array.isArray(homeData?.faqs) && homeData.faqs.length > 0 && (
+                <FAQSection pageData={homeData} />
+            )}
+            <BlogSection pageData={homeData} />
             <NeedHelp />
         </>
     )

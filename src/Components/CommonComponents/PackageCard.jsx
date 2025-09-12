@@ -1,5 +1,5 @@
 import React from 'react'
-import { useNavigate } from "react-router-dom";
+import { Link } from 'react-router-dom';
 import { BASE_URL_IMG, BASE_URL_SVG } from '../../Helpers/apiEndpoints';
 
 
@@ -53,7 +53,6 @@ export const EmptyStar = () => (
 );
 
 export default function PackageCard({ pkg, p_type }) {
-    const navigate = useNavigate();
 
     const {
         image_url,
@@ -66,17 +65,10 @@ export default function PackageCard({ pkg, p_type }) {
     } = pkg || {};
     // console.log("The umrah packages of this specific page :", pkg)
     const cleanedUrl = image_url ? `${BASE_URL_IMG}/${image_url}` : "/fallback.jpg";
-    const handleCardClick = () => {
-        if (p_type === "umrah") {
-            console.log("Navigating to Umrah:", pkg.page_url);
-            navigate(`/umrah/${pkg.page_url}`);
-        } else if (p_type === 'hajj') {
-            console.log("Navigating to Hajj:", pkg.page_url);
-            navigate(`/hajj/${pkg.page_url}`);
-        } else {
-            console.log("Navigating to generic package:", pkg.page_url);
-            navigate(`/package/${pkg.page_url}`);
-        }
+    const getPackageUrl = () => {
+        if (p_type === "umrah") return `/umrah/${pkg.page_url}`;
+        if (p_type === "hajj") return `/hajj/${pkg.page_url}`;
+        return `/package/${pkg.page_url}`;
     };
 
 
@@ -92,8 +84,8 @@ export default function PackageCard({ pkg, p_type }) {
     );
 
     return (
-        <div
-            onClick={handleCardClick}
+        <Link
+            to={getPackageUrl()}
             className="w-full max-w-[95%] sm:max-w-[360px] md:max-w-[400px] lg:max-w-[550px] max-h-[650px] cursor-pointer flex flex-col overflow-hidden mx-auto sm:mx-0"
         >
             {/* Image */}
@@ -104,7 +96,7 @@ export default function PackageCard({ pkg, p_type }) {
             />
 
             <div className="p-3 md:p-4 bg-white flex flex-col gap-3 border hover:border-secondary border-primary w-full h-full">
-                <span className="text-start font-Montserrat text-[18px] md:text-base lg:text-[18px] line-clamp-2 pl-2">
+                <span className="text-start font-Montserrat text-[18px] md:text-base lg:text-[18px] line-clamp-1 pl-2">
                     {title}
                 </span>
                 {/* Hotel Info */}
@@ -157,6 +149,6 @@ export default function PackageCard({ pkg, p_type }) {
                 </div>
 
             </div>
-        </div>
+        </Link>
     );
 }

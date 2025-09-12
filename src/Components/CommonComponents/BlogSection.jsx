@@ -60,7 +60,7 @@ export default function BlogSection() {
   const otherBlogs = latestBlogs.slice(1, 4);
 
   return (
-    <div className="w-full px-4 sm:px-6 md:px-10 mx-auto mt-10 sm:mt-14 md:mt-28 font-sans max-w-[90%] md:max-w-[82%] mb-10">
+    <div className="w-full px-4 sm:px-6 md:px-10 mx-auto mt-10 sm:mt-14 md:mt-28 font-sans max-w-[90%] md:max-w-[75%] mb-10">
       {/* Heading Section */}
       <div className="w-full mb-10 sm:mb-12 md:mb-16">
         <img
@@ -72,7 +72,7 @@ export default function BlogSection() {
           {widgets[1]?.heading || "Our Latest News"}
         </h3>
         <p className="font-Montserrat text-[14px] sm:text-[15px] md:text-[16px] leading-relaxed text-black">
-          {widgets[0]?.sub_heading ||
+          {widgets[1]?.sub_heading ||
             "Makkah Travel is here to help you visit religious places and make Umrah trips that connect with your soul."}
         </p>
       </div>
@@ -91,16 +91,16 @@ export default function BlogSection() {
           <span className="text-black mt-4 block font-Montserrat text-[14px] sm:text-[15px] md:text-[16px]">
             {firstBlog.publish_date}
           </span>
-          <h4 className="text-[22px] sm:text-[28px] md:text-[32px] font-abril leading-tight mt-2 mb-3">
+          <Link to={`/blog/${firstBlog.page_url}`}>
+            <h4 className="text-[22px] sm:text-[28px] md:text-[32px] font-abril leading-tight mt-2 mb-3 cursor-pointer">
             {firstBlog.title}
           </h4>
+          </Link>
           <p className="text-[14px] sm:text-[15px] md:text-[16px] font-Montserrat leading-relaxed text-black mb-4 line-clamp-3">
             {firstBlog.short_description || "Read more about this blog."}
           </p>
           <div className="mt-2">
-            <Link to={`/blog/${firstBlog.page_url}`}>
-              <ViewAllButton label="Read More" color="primary" size="md" />
-            </Link>
+            <ViewAllButton label="Read More" color="primary" size="md" slug={`blog/${firstBlog.page_url}`} />
           </div>
         </div>
 
@@ -112,13 +112,13 @@ export default function BlogSection() {
                 <span className="text-black font-Montserrat text-[14px] sm:text-[15px] md:text-[16px]">
                   {item.publish_date}
                 </span>
-                <Link to={`/blog/${item.page_url}`}>
+                <Link to={`blog/${item.page_url}`}>
                   <h5 className="text-[18px] sm:text-[20px] md:text-[18px] lg:text-[22px] font-Montserrat font-semibold text-black hover:text-primary-hover transition-all">
                     {item.title}
                   </h5>
                 </Link>
                 <Link
-                  to={`/blog/${item.page_url}`}
+                  to={`blog/${item.page_url}`}
                   className="text-secondary flex gap-2 text-[12px] md:text-[14px] lg:text-[16px] items-center mt-2"
                 >
                   Read More
@@ -135,9 +135,7 @@ export default function BlogSection() {
           ))}
 
           <div className="mt-10">
-            <Link to="/blog">
-              <ViewAllButton label="View All Blogs" color="primary" size="md" />
-            </Link>
+            <ViewAllButton label="View All Blogs" color="primary" size="md" slug={"blog"} />
           </div>
         </div>
       </div>

@@ -280,11 +280,13 @@ export default function HajjPackage({ pageData }) {
                 "section2"
             )}
 
-            <div className="w-full lg:max-w-[75%] mx-auto my-5 mb-7">
+            {pageData?.scroll_description && (
                 <ScrollDetail pageData={pageData} />
-            </div>
+            )}
 
-            <FAQSection pageData={pageData} />
+            {Array.isArray(pageData?.faqs) && pageData.faqs.length > 0 && (
+                <FAQSection pageData={pageData} />
+            )}
         </div>
     );
 }

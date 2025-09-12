@@ -144,6 +144,7 @@ export default function Footer() {
         if (!globalData?.result?.footer_setting) return null;
 
         const footerSetting = globalData.result.footer_setting;
+        const footerLogo = globalData.result.settings;
         const contents = footerSetting.contents;
         const socialMedia = footerSetting.social_media_icons;
 
@@ -156,12 +157,14 @@ export default function Footer() {
                 const iconKey = `social_media_icons_${i}`;
                 const labelKey = `social_media_icons_input_${i}`;
                 const altKey = `social_media_icons_alt_input_${i}`;
+                const linkKey = `social_media_icons_link_input_${i}`;
 
                 if (socialMedia[iconKey]) {
                     socialIcons.push({
                         icon: socialMedia[iconKey],
                         label: socialMedia[labelKey] || `Social ${i}`,
-                        alt: socialMedia[altKey] || socialMedia[labelKey] || `Social Media ${i}`
+                        alt: socialMedia[altKey] || socialMedia[labelKey] || `Social Media ${i}`,
+                        link: socialMedia[linkKey] || "#"
                     });
                 }
             }
@@ -181,8 +184,9 @@ export default function Footer() {
     }, [globalData, currentYear]);
 
     if (!footerItems) {
-        return <div>Loading...</div>;
+        return null; // or a loader/skeleton
     }
+
 
     return (
         <footer
@@ -197,7 +201,7 @@ export default function Footer() {
                 {/* Top Section - Desktop/Laptop */}
                 <div className="hidden lg:grid grid-cols-4 items-start px-3 gap-8">
                     {/* Logo */}
-                    <Link to={'/'} className="font-Montserrat text-[26px] w-48 h-10">
+                    <Link to={'/'} className="font-Montserrat text-[26px] w-28 sm:w-30 md:w-38 lg:w-48 h-10">
                         {footerItems.logo ? (
                             <img
                                 src={`${WEB_URL}/${logo}`}
@@ -236,11 +240,19 @@ export default function Footer() {
                         <div className="flex gap-6">
                             {footerItems.socialIcons.map((item, index) => (
                                 <div key={index} className="flex flex-col items-center gap-1">
+                                    <a
+                                        key={index}
+                                        href={item.link}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="flex flex-col items-center gap-1 hover:opacity-80 transition"
+                                    >
                                     <img
                                         src={`${BASE_URL_SVG}/${item.icon}`}
                                         alt={item.alt}
                                         className="w-11 sm:w-12 object-contain"
                                     />
+                                    </a>
                                     <span className="text-xs">{item.label}</span>
                                 </div>
                             ))}
@@ -260,7 +272,7 @@ export default function Footer() {
                 <div className="lg:hidden space-y-10">
                     {/* Row 1: Logo + Social Icons */}
                     <div className="flex flex-row sm:flex-row items-center justify-between px-3">
-                        <Link to={'/'} className="font-Montserrat text-[26px] w-48 h-10">
+                        <Link to={'/'} className="font-Montserrat text-[26px] w-32 sm:w-30 md:w-38 lg:w-48 h-10">
                             {footerItems.logo ? (
                                 <img
                                     src={`${WEB_URL}/${logo}`}
@@ -274,7 +286,15 @@ export default function Footer() {
                         <div className="flex gap-6">
                             {footerItems.socialIcons.map((item, index) => (
                                 <div key={index} className="flex flex-col items-center gap-1">
+                                    <a
+                                        key={index}
+                                        href={item.link}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="flex flex-col items-center gap-1 hover:opacity-80 transition"
+                                    >
                                     <img src={`${BASE_URL_SVG}/${item.icon}`} alt={item.alt} className="w-11 sm:w-12" />
+                                    </a>
                                     <span className="text-xs">{item.label}</span>
                                 </div>
                             ))}

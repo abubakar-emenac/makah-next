@@ -11,15 +11,34 @@ import axios from 'axios';
 const CustomizePackageForm = () => {
 
     const staticOrigins = [
-        { label: "Jeddah", code: "JED" },
-        { label: "Dammam", code: "DMM" },
-        { label: "Abha", code: "AHB" },
-        { label: "Yanbu", code: "YNB" },
-        { label: "Taif", code: "TIF" },
-        { label: "Riyadh", code: "RUH" }
+       
+        { label: "Leeds (LBA) - United Kingdom", code: "LBA" },
+        { label: "London-All (LON) - United Kingdom", code: "LON" },
+        { label: "London-Heathrow (LHR) - United Kingdom", code: "LHR" },
+        { label: "London-Gatwick (LGW) - United Kingdom", code: "LGW" },
+        { label: "Shetland Islands-Lerwick (LWK) - United Kingdom", code: "LWK" },
+        { label: "London-City (LCY) - United Kingdom", code: "LCY" },
+        { label: "Manchester (MAN) - United Kingdom", code: "MAN" },
+        { label: "Isles Of Scilly-St Marys (ISC) - United Kingdom", code: "ISC" },
+        { label: "Kirkwall (KOI) - United Kingdom", code: "KOI" },
+        { label: "London-Luton (LTN) - United Kingdom", code: "LTN" },
+        { label: "London-St Pancras (QQS) - United Kingdom", code: "QQS" },
+        { label: "Liverpool (LPL) - United Kingdom", code: "LPL" },
+        { label: "Shetland Islands-Sumburgh (LSI) - United Kingdom", code: "LSI" },
+        { label: "London-Stansted (STN) - United Kingdom", code: "STN" },
+        { label: "Humberside (HUY) - United Kingdom", code: "HUY" },
+        { label: "Islay (ILY) - United Kingdom", code: "ILY" },
+        { label: "Inverness (INV) - United Kingdom", code: "INV" },
+        { label: "Isle Of Man (IOM) - United Kingdom", code: "IOM" },
+        { label: "Jersey (JER) - United Kingdom", code: "JER" },
+        { label: "Guernsey (GCI) - United Kingdom", code: "GCI" },
+        { label: "Glasgow Intl (GLA) - United Kingdom", code: "GLA" },
+        { label: "Dundee (DND) - United Kingdom", code: "DND" },
+        { label: "Doncaster/Sheffield (DSA) - United Kingdom", code: "DSA" },
+        { label: "Edinburgh (EDI) - United Kingdom", code: "EDI" }
     ];
 
-    const [activeTab, setActiveTab] = useState('hajj');
+    const [activeTab, setActiveTab] = useState('umrah');
     const [departureDate, setDepartureDate] = useState(null);
     const [fullName, setFullName] = useState('');
     const [email, setEmail] = useState('');
@@ -336,8 +355,7 @@ const CustomizePackageForm = () => {
 
     return (
         <>
-            <div className=" w-[85%] mx-auto mb-10">
-                <Navbar textColor="black" />
+            <div className=" w-[85%] mx-auto mb-10 mt-30">
             </div>
             <div className="w-full max-w-[90%] mx-auto mt-10 mb-15">
                 <img
@@ -411,7 +429,7 @@ const CustomizePackageForm = () => {
                                                         setOriginLabel(item);
                                                         setOriginSuggestions([]);
                                                     }}
-                                                    className="px-2 py-2 cursor-pointer font-Montserrat hover:bg-[#57A68F] hover:text-white text-md hover:font-semibold hover:text-white"
+                                                    className="px-2 py-2 cursor-pointer font-Montserrat hover:bg-[#57A68F]  text-md hover:font-semibold hover:text-white"
                                                 >
                                                     {item}
                                                 </li>
@@ -662,7 +680,7 @@ const CustomizePackageForm = () => {
                                                                 }
                                                             }}
                                                         >
-                                                            <img src={`/svg/PassDec.svg`} className="w-5 h-5" alt="Passengers" />
+                                                            <img src={`${BASE_URL_SVG}/assets/svgs/PassInminus.svg`} className="w-5 h-5" alt="Passengers" />
                                                         </button>
 
                                                         {/* Count display */}
@@ -687,7 +705,7 @@ const CustomizePackageForm = () => {
                                                                 }
                                                             }}
                                                         >
-                                                            <img src={`/svg/PassInc.svg`} className="w-5 h-5" alt="Passengers" />
+                                                            <img src={`${BASE_URL_SVG}/assets/svgs/PassIncplus.svg`}className="w-5 h-5" alt="Passengers" />
                                                         </button>
                                                     </div>
                                                 </div>

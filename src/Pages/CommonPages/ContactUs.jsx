@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import Navbar from "../../Components/CommonComponents/NavBar";
 import NeedHelp from "../../Components/CommonComponents/NeedHelp";
 import axios from "axios";
@@ -13,6 +14,8 @@ import { motion } from "framer-motion";
 import { Helmet } from "react-helmet";
 
 export default function ContactUS() {
+    const navigate = useNavigate();
+
     const { globalData } = useGlobalData();
     const [contactData, setContactData] = useState({});
     const [fullName, setFullName] = useState('');
@@ -51,18 +54,15 @@ export default function ContactUS() {
         {
             icon: "assets/svgs/fbContact.svg",
             alt: "fb",
-            width: '8'
+            width: '8',
+            link: "https://www.facebook.com/makkahtraveluk"
         },
         {
             icon: "assets/svgs/igContact.svg",
             alt: "ig",
-            width: '16'
-        },
-        {
-            icon: "assets/svgs/ytContact.svg",
-            alt: "yt",
-            width: '20'
-        },
+            width: '16',
+            link: "https://www.instagram.com/makkahtraveluk/",
+        }
     ]
 
     const sliderSettings = {
@@ -202,6 +202,7 @@ export default function ContactUS() {
 
             if (data.status === 1 && data.message.includes("Email sent successfully")) {
                 toast.success("Enquiry submitted successfully ✅");
+                navigate("/thank-you")
 
                 // Reset form
                 setFullName('');
@@ -252,10 +253,7 @@ export default function ContactUS() {
                 {/* Canonical */}
                 <link rel="canonical" href={window.location.href} />
             </Helmet>
-            <div className=" w-[85%] mx-auto mb-10">
-                <Navbar textColor="black" />
-            </div>
-            <div className="flex flex-col w-full max-w-[90%] lg:max-w-[75%] mx-auto font-Montserrat">
+            <div className="flex flex-col w-full max-w-[90%] mt-32 lg:max-w-[75%] mx-auto font-Montserrat">
 
                 {/* Cards Section */}
                 <div className="hidden sm:grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 my-10 w-full">
@@ -282,19 +280,31 @@ export default function ContactUS() {
                                 {item.title === "Our Social Media" ? (
                                     <div className="flex justify-center flex-wrap gap-4 mt-5">
                                         {SocialMIcons.map((item, index) => (
-                                            <div key={index} className="flex flex-col items-center gap-1">
+                                            <div key={index} className="flex flex-col items-center gap-1 cursor-pointer">
+                                                <a href={item.link} target="_blank">
                                                 <img
                                                     src={`${BASE_URL_SVG}/${item.icon}`}
                                                     alt={item.alt}
                                                     className={`w-${item.width}`}
                                                 />
+                                                </a>
                                             </div>
                                         ))}
                                     </div>
                                 ) : (
                                     <p className="mt-2 text-base font-medium tracking-wide break-words">
-                                        {item.value}
-                                    </p>
+                                            {item.title.includes("Number") ? (
+                                                <a href={`tel:${item.value}`} className="cursor-pointer">
+                                                    {item.value}
+                                                </a>
+                                            ) : item.title.includes("Email") ? (
+                                                <a href={`mailto:${item.value}`} className="cursor-pointer">
+                                                    {item.value}
+                                                </a>
+                                            ) : (
+                                                item.value
+                                            )}
+                                        </p>
                                 )}
                             </div>
                         </div>
@@ -337,8 +347,19 @@ export default function ContactUS() {
                                         </div>
                                     ) : (
                                         <p className="mt-2 text-base font-medium tracking-wide break-words">
-                                            {item.value}
-                                        </p>
+                                                {item.title.includes("Number") ? (
+                                                    <a href={`tel:${item.value}`} className="cursor-pointer">
+                                                        {item.value}
+                                                    </a>
+                                                ) : item.title.includes("Email") ? (
+                                                    <a href={`mailto:${item.value}`} className="cursor-pointer">
+                                                        {item.value}
+                                                    </a>
+                                                ) : (
+                                                    item.value
+                                                )}
+                                            </p>
+
                                     )}
                                 </div>
                             </div>
@@ -351,7 +372,7 @@ export default function ContactUS() {
                     {/* Form */}
                     <div className="lg:w-3/5 w-full flex flex-col font-Montserrat">
                         <img
-                            src="/svgs/crown-black.svg"
+                            src={`${BASE_URL_SVG}assets/svgs/crown-black.svg`}
                             alt="Crown"
                             className="w-12 sm:w-16 md:w-20 mb-3 sm:mb-4"
                         />
@@ -370,7 +391,7 @@ export default function ContactUS() {
                                         className="w-full bg-transparent outline-none text-sm sm:text-base py-2 placeholder:text-base"
                                     />
                                     <img
-                                        src="/svgs/Name SVG.svg"
+                                        src={`${BASE_URL_SVG}assets/svgs/Name SVG.svg`}
                                         alt="name"
                                         className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5"
                                     />
@@ -387,7 +408,7 @@ export default function ContactUS() {
                                         className="w-full bg-transparent outline-none text-sm sm:text-base py-2 placeholder:text-base"
                                     />
                                     <img
-                                        src="/svgs/Guests SVG.svg"
+                                        src={`${BASE_URL_SVG}assets/svgs/Guests SVG.svg`}
                                         alt="guests"
                                         className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5"
                                     />
@@ -405,7 +426,7 @@ export default function ContactUS() {
                                         className="w-full bg-transparent outline-none text-sm sm:text-base py-2 placeholder:text-base"
                                     />
                                     <img
-                                        src="/svgs/Phone Number SVG.svg"
+                                        src={`${BASE_URL_SVG}assets/svgs/Phone Number SVG.svg`}
                                         alt="phone"
                                         className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5"
                                     />
@@ -421,7 +442,7 @@ export default function ContactUS() {
                                         className="w-full bg-transparent outline-none text-sm sm:text-base py-2 placeholder:text-base"
                                     />
                                     <img
-                                        src="/svgs/Email SVG.svg"
+                                        src={`${BASE_URL_SVG}assets/svgs/Email SVG.svg`}
                                         alt="email"
                                         className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5"
                                     />
@@ -466,7 +487,7 @@ export default function ContactUS() {
                                         <>
                                             <span>Submit</span>
                                             <img
-                                                src="/svgs/SubmitArrow.svg"
+                                                    src={`${BASE_URL_SVG}assets/svgs/SubmitArrow.svg`}
                                                 alt="submit"
                                                 className="w-6 h-6 sm:w-7 sm:h-7"
                                             />
@@ -487,8 +508,8 @@ export default function ContactUS() {
                     </div>
                 </div>
 
-                <NeedHelp />
             </div>
+            <NeedHelp />
         </>
     );
 

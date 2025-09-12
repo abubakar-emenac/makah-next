@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { BASE_URL_SVG } from "../../Helpers/apiEndpoints";
 
 const colorClasses = {
@@ -37,20 +37,13 @@ const ViewAllButton = ({
   size = "md",
   onClick, // 👈 optional custom click handler
 }) => {
-  const navigate = useNavigate();
   const { text, iconWrapper, icon: iconSize, padding } = sizeClasses[size] || sizeClasses["md"];
 
-  const handleClick = () => {
-    if (typeof onClick === "function") {
-      onClick();
-    } else if (slug) {
-      navigate(`/${slug}`);
-    }
-  };
-
+  const linkUrl = slug ? `/${slug}` : "#";
   return (
-    <button
-      onClick={handleClick}
+    <Link
+      to={linkUrl}
+      onClick={onClick}
       className={`inline-flex font-Montserrat cursor-pointer items-center justify-between gap-5 rounded-full font-semibold shadow-md transition-all duration-300 hover:opacity-90 ${padding} ${colorClasses[color]}`}
     >
       <span className={`font-semibold text-${textColor} ${text}`}>{label}</span>
@@ -64,7 +57,7 @@ const ViewAllButton = ({
           )
         ) : null}
       </span>
-    </button>
+    </Link>
   );
 };
 

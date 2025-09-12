@@ -247,8 +247,6 @@ export default function HeroSection({ pageData }) {
             }}
         >
 
-            <Navbar />
-
             {/* CONTENT CONTAINER - This container now holds the rest of the hero content */}
             <div className="w-full max-w-[98%] sm:max-w-[95%] md:max-w-[90%] lg:max-w-[85%] xl:max-w-[75%] mx-auto px-3 sm:px-4 md:px-6 mt-4 sm:mt-6 md:mt-8">
 
@@ -267,12 +265,14 @@ export default function HeroSection({ pageData }) {
                     text-[13px] sm:text-[15px] md:text-[17px] lg:text-[18px] leading-relaxed 
                     w-full sm:w-[95%] md:w-[85%] mx-auto"
                 >
-                    <p dangerouslySetInnerHTML={{ __html: pageData.description }}></p>
+                    <p dangerouslySetInnerHTML={{
+                        __html: pageData?.description ? pageData.description.replace(/&nbsp;/g, ' ') : ''
+                    }}></p>
                 </div>
 
                 {viewAllButtonComponent}
                 {/* ENQUIRY BOX */}
-                <div className="mt-10 sm:mt-12 md:mt-16 w-full sm:w-[95%] md:w-[85%] mx-auto mb-8 sm:mb-10 md:mb-12">
+                <div className="mt-10 sm:mt-12 md:mt-16 w-full sm:w-[95%] md:w-[88%] mx-auto mb-8 sm:mb-10 md:mb-12">
                     <EnquiryBox />
                 </div>
             </div>

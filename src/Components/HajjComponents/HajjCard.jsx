@@ -1,5 +1,5 @@
 import React from 'react'
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export const MoonIcon = () => (
     <svg id="Group_46" data- name="Group 46" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20.442" height="20.437" viewBox="0 0 20.442 20.437" >
@@ -52,16 +52,15 @@ export const EmptyStar = () => (
 
 export default function HajjCard({ description = '13 Days 5* Non Shifting Hajj 2025', night = '10', star = '03', price = '1250', slug }) {
     const safeStar = Math.min(Math.max(Number(star), 0), 5);
-    const navigate = useNavigate();
 
     return (
-        <div
-            onClick={() => navigate(slug)}
+        <Link
+            to={(slug)}
             className="w-full max-w-[350px] cursor-pointer flex flex-col overflow-hidden mx-auto sm:mx-0">
             <img src={img} alt="package_image" className="w-full h-[180px] object-cover" />
             <div className="p-4 bg-white flex flex-col gap-3 border hover:border-secondary border-primary w-full">
                 {/* Title */}
-                <span className="text-start font-Montserrat text-[18px] md:text-[18px] line-clamp-2 pl-2">
+                <span className="text-start font-Montserrat text-[18px] md:text-[18px] pl-2 line-clamp-1">
                     {description}
                 </span>
 
@@ -97,6 +96,6 @@ export default function HajjCard({ description = '13 Days 5* Non Shifting Hajj 2
                 </div>
             </div>
 
-        </div>
+        </Link>
     );
 }
