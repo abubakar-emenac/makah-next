@@ -100,7 +100,6 @@ export default function Home() {
 
     return (
         <>
-
             <Helmet>
                 <title>{homeData.browser_title}</title>
                 <meta name="description" content={homeData.meta_description || ""} />
