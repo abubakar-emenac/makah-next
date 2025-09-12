@@ -160,16 +160,16 @@ const BlogDetails = () => {
 
 
         {/* Right - Latest Posts Sidebar */}
-        <aside className="w-full md:w-1/3 mb-8 md:mb-0 hidden md:block">
+       <aside className="w-full md:w-1/3 mb-8 md:mb-0 hidden md:block sticky top-24 self-start h-fit">
           <h2 className="text-lg font-semibold font-Montserrat mb-4">Latest Posts</h2>
-          <div className="grid grid-cols-1 gap-4 max-h-[95vh] overflow-y-auto pr-1">
+          <div className="grid grid-cols-1 gap-4 overflow-y-auto pr-1">
             {latestBlogs.map((item) => (
               <Link
                 key={item.id}
                 to={`/blog/${item.page_url}`}
                 className="rounded-xl overflow-hidden hover:shadow-md transition block"
               >
-                <div className="w-full h-28 object-cover rounded-lg"
+                <div className="w-full h-28 object-cover rounded-xl"
                 >
                   <img
                     src={`${BASE_URL_IMG}/${item.image_url}`}

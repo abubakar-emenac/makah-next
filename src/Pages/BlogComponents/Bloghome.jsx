@@ -185,7 +185,7 @@ const BlogHome = () => {
             <Link
               key={blog.id}
               to={`/blog/${blog.page_url}`}
-              className="rounded-2xl overflow-hidden shadow hover:shadow-lg transition block"
+              className="rounded-xl overflow-hidden shadow hover:shadow-lg transition block"
             >
               <img
                 src={`${BASE_URL_IMG}/${blog.image_url}`}
@@ -231,7 +231,7 @@ const BlogHome = () => {
             <Link
               key={blog.id}
               to={`/blog/${blog.page_url}`}
-              className="rounded-2xl overflow-hidden shadow hover:shadow-lg transition block"
+              className="rounded-xl overflow-hidden shadow hover:shadow-lg transition block"
             >
               <img
                 src={`${BASE_URL_IMG}/${blog.image_url}`}
