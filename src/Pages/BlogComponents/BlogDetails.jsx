@@ -160,7 +160,7 @@ const BlogDetails = () => {
 
 
         {/* Right - Latest Posts Sidebar */}
-       <aside className="w-full md:w-1/3 mb-8 md:mb-0 hidden md:block sticky top-24 self-start h-fit">
+       <aside className="w-full md:w-1/3 mb-8 md:mb-0 md:sticky top-24 self-start h-fit">
           <h2 className="text-lg font-semibold font-Montserrat mb-4">Latest Posts</h2>
           <div className="grid grid-cols-1 gap-4 overflow-y-auto pr-1">
             {latestBlogs.map((item) => (
