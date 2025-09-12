@@ -100,7 +100,7 @@ export default function BlogSection() {
             {firstBlog.short_description || "Read more about this blog."}
           </p>
           <div className="mt-2">
-            <ViewAllButton label="Read More" color="primary" size="md" slug={`/blog/${firstBlog.page_url}`} />
+            <ViewAllButton label="Read More" color="primary" size="md" slug={`blog/${firstBlog.page_url}`} />
           </div>
         </div>
 
@@ -112,13 +112,13 @@ export default function BlogSection() {
                 <span className="text-black font-Montserrat text-[14px] sm:text-[15px] md:text-[16px]">
                   {item.publish_date}
                 </span>
-                <Link to={`/blog/${item.page_url}`}>
+                <Link to={`blog/${item.page_url}`}>
                   <h5 className="text-[18px] sm:text-[20px] md:text-[18px] lg:text-[22px] font-Montserrat font-semibold text-black hover:text-primary-hover transition-all">
                     {item.title}
                   </h5>
                 </Link>
                 <Link
-                  to={`/blog/${item.page_url}`}
+                  to={`blog/${item.page_url}`}
                   className="text-secondary flex gap-2 text-[12px] md:text-[14px] lg:text-[16px] items-center mt-2"
                 >
                   Read More
