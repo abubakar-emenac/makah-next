@@ -1,12 +1,13 @@
 
 import React, { useState, useMemo, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useGlobalData } from "../../Helpers/useGlobalData";
 import { WEB_URL, BASE_URL_SVG } from "../../Helpers/apiEndpoints";
 
 const Navbar = ({ textColor = "black" }) => {
   const { globalData } = useGlobalData();
+  const location = useLocation();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState(null);
   const [scrolled, setScrolled] = useState(false);
@@ -31,6 +32,21 @@ const Navbar = ({ textColor = "black" }) => {
 
   const logo = logoSetting?.contents?.main_logo;
   const darkLogo = logoSetting?.contents?.dark_logo;
+
+
+  const darkLogoSlugs = [
+    "terms-and-conditions",
+    "privacy-policy",
+    "contact-us",
+    "cookies-policy",
+  ];
+
+  const path = location.pathname;
+
+  const forceDarkLogo =
+    darkLogoSlugs.includes(path.replace("/", "")) || // static pages
+    /^\/hajj\/[^/]+$/.test(path) || // hajj/:slug
+    /^\/umrah\/[^/]+$/.test(path);  // umrah/:slug
   // const textColorClass = textColor === "white" ? "text-white" : "text-black";
   const navItems = useMemo(() => {
     if (!globalData?.result?.navigation_bar) return [];
@@ -70,14 +86,15 @@ const Navbar = ({ textColor = "black" }) => {
 
   return (
     <nav
-      className={`fixed top-0 left-0 w-full font-Montserrat z-[9999] transition-all duration-300 ${scrolled ? "bg-white shadow-md text-black" : "bg-transparent text-black"
-        }`}
+      className={`fixed top-0 left-0 w-full font-Montserrat z-[9999] transition-all duration-300 
+    ${(scrolled) ? "bg-white shadow-md text-black" : "bg-transparent text-black"}`}
     >
+
       <div className="w-full max-w-[90%]  sm:max-w-[90%] md:max-w-[85%] lg:max-w-[90%] xl:max-w-[80%] mx-auto px-1 md:px-4 lg:px-8 py-2 md:py-3 flex justify-between items-center">
 
         {/* LOGO */}
         <Link to={'/'} className="text-base sm:text-lg md:text-xl font-bold whitespace-nowrap text-white">
-          <img src={`${WEB_URL}/${scrolled ? darkLogo : logo}`} alt="logo" className="lg:w-40 md:w-32 sm:w-28 w-16 " />
+          <img src={`${WEB_URL}/${(scrolled || forceDarkLogo) ? darkLogo : logo}`} alt="logo" className="lg:w-40 md:w-32 sm:w-28 w-16 " />
         </Link>
 
         {/* DESKTOP NAV */}
@@ -126,7 +143,10 @@ const Navbar = ({ textColor = "black" }) => {
           <div className="relative rounded-l-3xl rounded-r-lg flex items-center text-xs md:text-sm font-medium ml-4 bg-white">
             <div className="  pl-3 md:pl-4 py-1.5 md:py-[1.5px] flex flex-col items-end">
               <span className="text-yellow-500 leading-tight">Call Now:</span>
-              <span className="text-gray-800">{phoneNumber}</span>
+              <a href={`tel:${phoneNumber}`} >
+                {phoneNumber}
+              </a>
+
             </div>
             <div>
               <img src={`${BASE_URL_SVG}/assets/svgs/phone.svg`} alt="" />
@@ -254,7 +274,7 @@ const Navbar = ({ textColor = "black" }) => {
               >
                 <div className="flex flex-col">
                   <span className="text-yellow-600 font-bold text-sm md:text-base">Call Now:</span>
-                  <span className="text-gray-800 font-medium text-sm md:text-base">{phoneNumber}</span>
+                  <a href={`tel:${phoneNumber}`} className="text-gray-800 font-medium text-sm md:text-base">{phoneNumber}</a>
                 </div>
                 <img src={`${BASE_URL_SVG}/assets/svgs/phone.svg`} alt="" className="ml-4 w-6 h-6 md:w-7 md:h-7" />
                 <div className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 rounded-full bg-green-500 flex items-center justify-center shadow-md hover:bg-green-600 transition-colors">

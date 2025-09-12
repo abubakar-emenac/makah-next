@@ -6,14 +6,16 @@ import ImageSlider from '../../Components/CommonComponents/ImageSlider'
 import Testmonials from '../../Components/CommonComponents/Testmonials'
 import MonthlyUmrahPackages from '../../Components/UmrahComponents/monthlyUmrahPackages'
 import NeedHelp from '../../Components/CommonComponents/NeedHelp'
-import { useParams, useLocation } from 'react-router-dom'
+import { useParams, useLocation, Link } from 'react-router-dom'
 import { endpoints, BASE_URL_IMG, BASE_URL_SVG } from '../../Helpers/apiEndpoints'
 import parse from "html-react-parser";
 import axios from 'axios'
 import NotFound from '../CommonPages/NotFound';
 import { Helmet } from 'react-helmet';
+import { useGlobalData } from "../../Helpers/useGlobalData";
 
 export default function UmrahDetail() {
+    const { globalData } = useGlobalData();
     const { slug } = useParams();
     const location = useLocation();
     const [packageData, setPackageData] = useState(null);
@@ -27,6 +29,13 @@ export default function UmrahDetail() {
     const shortMakkah = isMakkahLong ? makkahDescription.slice(0, 350) + "..." : makkahDescription;
     const shortMadinah = isMadinahLong ? madinahDescription.slice(0, 350) + "..." : madinahDescription;
     const modalRef = useRef(null);
+
+
+    const getVariable = (code) =>
+        globalData?.result?.global_variables?.find((v) => v.code === code)
+            ?.code_value || "";
+
+
     useEffect(() => {
         const handleClickOutside = (event) => {
             if (modalRef.current && !modalRef.current.contains(event.target)) {
@@ -135,19 +144,19 @@ export default function UmrahDetail() {
         {
             id: 1,
             title: 'Call Now!',
-            info: '(0208) - 000 - 000',
+            info: getVariable("[%PHONENUMBER%]"),
             icon: '/svgs/callNow.svg'
         },
         {
             id: 2,
             title: 'Send Email!',
-            info: 'info@makkahtravel.co.uk',
+            info: getVariable("[%OFFICEEMAIL%]"),
             icon: '/svgs/sendMail.svg'
         },
         {
             id: 3,
             title: 'WhatsApp Chat!',
-            info: '(0208) - 000 - 000',
+            info: getVariable("[%WHATSAPP%]"),
             icon: '/svgs/whatsappMsg.svg'
         }
     ];
@@ -247,7 +256,7 @@ export default function UmrahDetail() {
                     {/* Right: Nights + Buttons + Certs */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:flex lg:flex-col w-full lg:w-1/3 gap-6">
                         {/* Nights Info */}
-                        <div className="flex flex-col justify-between gap-y-6 w-full">
+                        <div className="flex flex-col gap-y-6 w-[84%] ml-auto">
                             {[
                                 {
                                     nights: packageData?.makkah_night,
@@ -258,29 +267,36 @@ export default function UmrahDetail() {
                                     nights: packageData?.madinah_night,
                                     title: "Madinah Hotel Nights",
                                     subtitle: packageData?.madinah_hotel?.name,
-                                },
+                                }
                             ].map((item, idx) => (
                                 <div
                                     key={idx}
-                                    className="flex items-center justify-start lg:justify-end w-full gap-x-4 sm:gap-x-6"
+                                    className="grid grid-cols-[1fr_2px_2fr] items-end gap-x-1 sm:gap-x-1"
                                 >
+                                    {/* Nights */}
                                     <div className="w-12 text-center">
                                         <span className="text-secondary font-Montserrat text-xl sm:text-2xl md:text-3xl font-semibold">
                                             {item.nights}
                                         </span>
                                     </div>
-                                    <div className="hidden lg:block w-[2px] h-12 bg-secondary" />
-                                    <div className="flex flex-col text-start sm:text-left lg:text-right font-Montserrat overflow-hidden">
-                                        <h3 className="text-sm sm:text-base md:text-xl truncate">
+
+                                    {/* Vertical line */}
+                                    <div className="hidden lg:block h-full bg-secondary" />
+
+                                    {/* Hotel info */}
+                                    <div className="flex flex-col font-Montserrat overflow-hidden text-start sm:text-left lg:text-right">
+                                        <h3 className="text-sm sm:text-base md:text-xl">
                                             {item.title}
                                         </h3>
-                                        <span className="text-secondary text-xs sm:text-sm md:text-base truncate">
+                                        <span className="text-secondary text-xs sm:text-sm md:text-base">
                                             {item.subtitle}
                                         </span>
                                     </div>
                                 </div>
+
                             ))}
                         </div>
+
 
                         {/* Action Buttons */}
                         <div className="flex flex-col mt-0 lg:mt-7 gap-y-4 w-full items-stretch lg:items-end">
@@ -289,11 +305,24 @@ export default function UmrahDetail() {
                                     key={btn.id}
                                     className="flex sm:flex-row items-center gap-2 w-full sm:w-auto"
                                 >
-                                    <button className="flex-1 sm:w-[250px] md:w-[280px] lg:w-[330px] px-4 sm:px-6 md:px-8 py-2 bg-primary text-white font-abril text-sm sm:text-base md:text-lg leading-tight text-center sm:text-left lg:text-right">
+                                    <a
+                                        href={
+                                            btn.id === 1
+                                                ? `tel:${btn.info.replace(/[^+\d]/g, "")}`
+                                                : btn.id === 2
+                                                    ? `mailto:${btn.info}`
+                                                    : btn.id === 3
+                                                        ? `https://wa.me/${btn.info.replace(/[^+\d]/g, "")}`
+                                                        : "#"
+                                        }
+                                        target={btn.id === 3 ? "_blank" : "_self"} // open WhatsApp in new tab
+                                        rel="noopener noreferrer"
+                                        className="flex-1 sm:w-[250px] md:w-[280px] lg:w-[330px] px-4 sm:px-6 md:px-8 py-2 bg-primary text-white font-abril text-sm sm:text-base md:text-lg leading-tight text-center sm:text-left lg:text-right"
+                                    >
                                         {btn.title}
                                         <br />
-                                        {btn.info}
-                                    </button>
+                                        <span className="font-Montserrat">{btn.info}</span>
+                                    </a>
                                     <div className="bg-white p-2 rounded-full shadow-sm flex items-center justify-center">
                                         <img
                                             src={`${BASE_URL_SVG}/assets/${btn.icon}`}
@@ -359,16 +388,17 @@ export default function UmrahDetail() {
                     <div className="w-full lg:w-[23%] flex flex-col items-end gap-y-4">
                         <button
                             onClick={() => setIsOpen(true)}
-                            className="w-full border border-secondary text-primary font-semibold text-2xl font-Montserrat flex justify-between items-center py-4 pl-7 pr-5 cursor-pointer">
+                            className="w-full border border-secondary text-primary font-semibold text-xl font-Montserrat flex justify-between items-center py-4 pl-7 pr-5 cursor-pointer">
                             Book This Package
                             <img src={`${BASE_URL_SVG}/assets/svgs/arrow-bg-gray.svg`} alt="button" />
                         </button>
 
-                        <button
-                            className="w-full text-2xl text-white font-semibold font-Montserrat flex justify-between items-center bg-primary p-4 cursor-pointer">
+                        <Link
+                            to={"/customize-your-umrah"}
+                            className="w-full text-xl text-white font-semibold font-Montserrat flex justify-between items-center bg-primary p-4 cursor-pointer">
                             Customize My Package
                             <img src={`${BASE_URL_SVG}/assets/svgs/arrow-bg-white.svg`} alt="button" />
-                        </button>
+                        </Link>
                     </div>
 
                 </div>

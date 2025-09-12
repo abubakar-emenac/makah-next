@@ -72,7 +72,7 @@ import { BASE_URL_IMG, BASE_URL_SVG } from "../../Helpers/apiEndpoints";
 import "../../CSS/FAQSection.css"; 
 
 export default function FAQSection({ pageData }) {
-    const [openId, setOpenId] = useState(1);
+    const [openId, setOpenId] = useState(0);
     const faqs = pageData?.faqs ?? [];
     const faqImageSrc = pageData?.faq_image_url;
     const faqImageAlt = pageData?.faq_image_alt;
@@ -130,7 +130,11 @@ export default function FAQSection({ pageData }) {
                         </div>
                     ))}
                 </div> */}
-                <div className="lg:w-[55%] faq-scroll-container mt-16 max-h-[490px]">
+
+
+
+
+                {/* <div className="lg:w-[55%] faq-scroll-container mt-16 max-h-[490px]">
                     {faqs.map((faq, index) => (
                         <div key={index} className="border-b py-4 font-Montserrat">
                             <button
@@ -163,7 +167,41 @@ export default function FAQSection({ pageData }) {
                             )}
                         </div>
                     ))}
+                </div> */}
+
+                <div className="lg:w-[55%] faq-scroll-container mt-16 max-h-[490px]">
+                    {faqs.map((faq, index) => (
+                        <div key={index} className="border-b py-4 font-Montserrat">
+                            <button
+                                className="flex justify-between items-center w-full text-left cursor-pointer"
+                                onClick={() => setOpenId(openId === index ? null : index)}
+                            >
+                                <h3 className="font-semibold text-black text-[18px]">
+                                    {faq.question}
+                                </h3>
+                                <img
+                                    src={`${BASE_URL_SVG}/assets/svgs/${openId === index ? "chevronUp.svg" : "chevronDown.svg"
+                                        }`}
+                                    alt={openId === index ? "up" : "down"}
+                                    className={`w-3 h-3 transition-transform duration-300 ${openId === index ? "rotate-180" : ""
+                                        }`}
+                                />
+                            </button>
+
+                            {/* Animated answer */}
+                            <div
+                                className={`overflow-hidden transition-all duration-300 ease-in-out ${openId === index ? "max-h-96 opacity-100 mt-3" : "max-h-0 opacity-0"
+                                    }`}
+                            >
+                                <div
+                                    className="text-[16px] pl-1 sm:pl-4"
+                                    dangerouslySetInnerHTML={{ __html: faq.answer }}
+                                />
+                            </div>
+                        </div>
+                    ))}
                 </div>
+
 
             </div>
         </div>

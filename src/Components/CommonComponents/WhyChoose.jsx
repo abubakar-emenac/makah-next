@@ -180,15 +180,15 @@ export default function WhyChoose() {
 
     const sliderSettings = {
         dots: true,
-        infinite: false,
+        infinite: true,
         speed: 500,
         slidesToShow: 1,
         slidesToScroll: 1,
         beforeChange: (_, next) => setCurrentSlide(next),
         arrows: false,
         adaptiveHeight: true, // auto-adjust height for content
-        centerMode: true, // center slide
-        centerPadding: "0px",
+        autoplay: true,
+        autoplaySpeed: 3000,
     };
 
     return (
@@ -201,51 +201,64 @@ export default function WhyChoose() {
                     alt="Crown"
                     className="w-20 sm:w-16 md:w-20 mb-3 sm:mb-4"
                 />
-                <h2 className="text-[24px] sm:text-[30px] md:text-[36px] font-abril leading-tight mb-2 break-words">
+                <h2 className="text-[36px] font-abril leading-tight mb-2 break-words">
                     {sloganData.heading}
                 </h2>
-                <p className="font-Montserrat text-[14px] sm:text-[15px] md:text-[16px] leading-relaxed text-black break-words">
+                <p className="font-Montserrat text-[16px] leading-relaxed text-black break-words">
                     {sloganData.subHeading}
                 </p>
             </div>
 
-            {/* Desktop Grid */}
             <div className="hidden lg:grid grid-cols-4 gap-6 lg:gap-8">
                 {sloganData.cards.map((item, index) => (
-                    <div key={index} className="flex flex-col items-center text-center px-2 sm:px-0">
-                        <img src={item.icon} alt={`${item.heading}`} className="w-24 sm:w-28 h-auto mb-2 object-contain" />
-                        <h3 className="text-[16px] sm:text-[18px] md:text-[20px] font-abril leading-tight mb-1 break-words">
+                    <div
+                        key={index}
+                        className="flex flex-col items-center text-center px-4 py-6 h-full"
+                    >
+                        <div className="flex-shrink-0 flex justify-center items-center h-28">
+                            <img
+                                src={item.icon}
+                                alt={`${item.heading}`}
+                                className="w-20 sm:w-24 h-auto object-contain"
+                            />
+                        </div>
+                        <h3 className="mt-1 text-[20px] font-abril leading-tight break-words min-h-[50px] flex items-center justify-center">
                             {item.heading}
                         </h3>
-                        <p className="text-[13px] sm:text-[14px] md:text-[15px] font-Montserrat leading-relaxed break-words">
+                        <p className="mt-1 text-[15px] font-Montserrat leading-relaxed break-words min-h-[70px] flex items-center justify-center">
                             {item.text}
                         </p>
                     </div>
                 ))}
             </div>
 
+
             {/* Mobile Slider */}
             <div className="lg:hidden mt-6">
                 <Slider {...sliderSettings}>
                     {sloganData.cards.map((item, index) => (
-                        <div key={index} className="flex flex-col items-center text-center px-4">
-                            <div className="flex justify-center w-full mb-3">
+                        <div
+                            key={index}
+                            className="flex flex-col items-center text-center px-4 py-6"
+                        >
+                            <div className="flex-shrink-0 flex justify-center items-center h-28 mb-3">
                                 <img
                                     src={item.icon}
                                     alt={item.heading}
-                                    className="w-24 sm:w-28 h-auto object-contain"
+                                    className="w-20 sm:w-24 h-auto object-contain"
                                 />
                             </div>
-                            <h3 className="text-[16px] sm:text-[18px] font-abril leading-tight mb-1 max-w-[80%]">
+                            <h3 className="text-[20px] font-abril leading-tight min-h-[50px] flex items-center justify-center">
                                 {item.heading}
                             </h3>
-                            <p className="text-[13px] sm:text-[14px] font-Montserrat leading-relaxed max-w-[85%]">
+                            <p className="mt-2 text-[17px] font-Montserrat leading-relaxed min-h-[70px] flex items-center justify-center">
                                 {item.text}
                             </p>
                         </div>
                     ))}
                 </Slider>
             </div>
+
         </div>
     );
 }

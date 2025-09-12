@@ -157,10 +157,11 @@ export default function ImageGallery({ images = [] }) {
     };
 
 
+
     return (
         <div className="w-full max-w-5xl mx-auto flex flex-col items-center pb-20 relative">
             {/* Main Image */}
-            <div className="relative w-full h-[400px]">
+            <div className="relative w-full h-[440px]">
                 <img
                     src={`${BASE_URL_SVG}/${images[currentIndex].url}`}
                     alt={images[currentIndex]?.alt || `Slide ${currentIndex + 1}`}
@@ -182,7 +183,7 @@ export default function ImageGallery({ images = [] }) {
                 </button>
 
                 {/* Responsive Thumbnails */}
-                <div className="absolute left-1/2 -translate-x-1/2 -bottom-16 z-10 flex items-center justify-center gap-3">
+                <div className="absolute left-1/2 -translate-x-1/2 -bottom-16 z-10 flex items-center justify-center">
                     {getVisibleThumbnails().map((img, i) => {
                         const actualIndex =
                             currentIndex < Math.floor(visibleCount / 2)
@@ -197,7 +198,7 @@ export default function ImageGallery({ images = [] }) {
                                 src={`${BASE_URL_SVG}/${img.url}`}
                                 onClick={() => handleThumbnailClick(actualIndex)}
                                 className={`w-20 sm:w-28 md:w-32 lg:w-36 xl:w-40 object-cover cursor-pointer border-2 transition-all duration-300 ${currentIndex === actualIndex
-                                    ? "border-primary ring-2 ring-primary"
+                                    ? "border-secondary ring-2 ring-secondary"
                                     : "border-white"
                                     }`}
                                 alt={`Thumbnail ${actualIndex + 1}`}

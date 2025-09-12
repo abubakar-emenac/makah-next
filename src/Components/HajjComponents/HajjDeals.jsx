@@ -321,12 +321,15 @@ const HajjCards = ({ Packagedata, packages, loading, c_type }) => {
                                 const actualIndex = pillPage * pillsPerPage + index;
                                 return (
                                     <span
-                                        key={actualIndex}
+                                        key={index}
                                         onClick={() => {
-                                            setCurrentSlide(actualIndex);
+                                            setCurrentSlide(index);
                                             sliderRef.current?.slickGoTo(actualIndex);
                                         }}
-                                        className={`h-2 rounded-full cursor-pointer transition-all duration-300 ${currentSlide === actualIndex ? 'w-8 bg-primary' : 'w-3 bg-secondary'}`}
+                                        className={`h-1 cursor-pointer rounded-full transition-all duration-300 ${currentSlide === index
+                                            ? "w-20 bg-primary h-1"
+                                            : "w-10 bg-secondary h-1"
+                                            }`}
                                     />
                                 );
                             })}
@@ -400,7 +403,7 @@ export default function HajjDeals({ pageData }) {
     if (!loading && packages.length === 0) return null;
 
     return (
-        <div className="w-full mt-8 sm:mt-12 md:mt-16 md:px-5 flex flex-col lg:flex-row lg:justify-between gap-8">
+        <div className="w-full mt-8 sm:mt-12 md:mt-16 md:px-5 flex flex-col lg:flex-row lg:justify-between ">
             <div className="w-full lg:w-[72%]">
                 <HajjCards Packagedata={widgetData} packages={packages} loading={loading} c_type={type} />
             </div>

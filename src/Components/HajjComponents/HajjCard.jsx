@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from "react-router-dom";
+import { BASE_URL_SVG } from '../../Helpers/apiEndpoints';
 
 export const MoonIcon = () => (
     <svg id="Group_46" data- name="Group 46" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20.442" height="20.437" viewBox="0 0 20.442 20.437" >
@@ -76,7 +77,7 @@ export default function HajjCard({ description = '13 Days 5* Non Shifting Hajj 2
                             i < safeStar ? <FilledStar key={i} /> : <EmptyStar key={i} />
                         )}
                     </div>
-                    <img src="/svgs/Card_Element.svg" alt="" className='w-12' />
+                    <img src={`${BASE_URL_SVG}/svgs/Card_Element.svg`} alt="" className='w-12' />
                 </div>
 
                 {/* Price Section */}
@@ -92,7 +93,7 @@ export default function HajjCard({ description = '13 Days 5* Non Shifting Hajj 2
                         <span className='text-secondary'>{night}</span><span className='text-black'>Nights</span>
                         <MoonIcon />
                     </div>
-                    <img src="/svgs/Card_Element.svg" alt="element" className="rotate-y-180 w-12" />
+                    <img src={`${BASE_URL_SVG}/svgs/Card_Element.svg`} alt="element" className="rotate-y-180 w-12" />
                 </div>
             </div>
 

@@ -140,9 +140,9 @@
 
 import React from 'react';
 import ViewAllButton from './ViewAllButton';
-import { BASE_URL_IMG } from '../../Helpers/apiEndpoints';
+import { BASE_URL_IMG, BASE_URL_SVG } from '../../Helpers/apiEndpoints';
 import parse from 'html-react-parser'
-import { Link } from 'react-router-dom';
+
 
 export default function CustomizeYourPackage({ pageData }) {
     if (!pageData) return null;
@@ -176,7 +176,13 @@ export default function CustomizeYourPackage({ pageData }) {
                 lg:shadow-2xl
                 text-center lg:text-right
                 relative z-10 lg:-ml-12 xl:-ml-20 2xl:-ml-28
-            ">
+            "
+                style={{
+                    backgroundImage: `url(${BASE_URL_SVG}assets/svgs/customization-bg.png)`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                }}
+            >
                 <div className="w-full max-w-xl lg:max-w-lg xl:max-w-xl">
                     <h2 className='flex flex-col'>
                         <span className="text-white font-Montserrat text-[36px] sm:text-[24px] md:text-[28px] lg:text-[24px] xl:text-[32px] mb-1">
@@ -189,7 +195,8 @@ export default function CustomizeYourPackage({ pageData }) {
                     <p className="text-white font-Montserrat text-[14px] sm:text-[14px] lg:text-[13px] xl:text-[15px] leading-relaxed mb-4 lg:mb-4">
                         {parse(pageData?.simple_description || "")}
                     </p>
-                    <ViewAllButton label="Start Customization" color="primary" size="md"  slug="customize-your-umrah" />
+                        <ViewAllButton label="Start Customization" color="primary" size="md" slug={"customize-your-umrah"} />
+
                 </div>
             </div>
         </div>

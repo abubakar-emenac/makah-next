@@ -644,7 +644,7 @@ export default function Testimonials({ pageData }) {
         infinite: true,
         speed: 500,
         slidesToShow: 3,
-        autoplay: true,
+        autoplay: false,
         autoplaySpeed: 3000,
         slidesToScroll: 1,
         responsive: [

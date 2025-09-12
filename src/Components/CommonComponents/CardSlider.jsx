@@ -417,8 +417,6 @@ export default function CardSlider({ pageData }) {
     speed: 700,
     slidesToShow: 3,  // how many visible
     slidesToScroll: 1, // always move 1
-    autoplay: true,
-    autoplaySpeed: 3000,
     arrows: false,
     beforeChange: (_, next) => setCurrentSlide(next),
     responsive: [
@@ -511,7 +509,7 @@ export default function CardSlider({ pageData }) {
                 setCurrentSlide(index);
                 sliderRef.current?.slickGoTo(index);
               }}
-              className={`h-2 cursor-pointer rounded-full transition-all duration-300 ${currentSlide === index
+              className={`h-1 cursor-pointer rounded-full transition-all duration-300 ${currentSlide === index
                 ? "w-20 bg-primary h-1"
                 : "w-10 bg-secondary h-1"
                 }`}

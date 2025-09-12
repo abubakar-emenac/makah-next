@@ -88,9 +88,9 @@ export default function BlogSection() {
               className="w-full h-64 sm:h-72 md:h-80 lg:h-[360px] object-cover rounded-md"
             />
           </Link>
-          <span className="text-black mt-4 block font-Montserrat text-[14px] sm:text-[15px] md:text-[16px]">
+          {/* <span className="text-black mt-4 block font-Montserrat text-[14px] sm:text-[15px] md:text-[16px]">
             {firstBlog.publish_date}
-          </span>
+          </span> */}
           <Link to={`/blog/${firstBlog.page_url}`}>
             <h4 className="text-[22px] sm:text-[28px] md:text-[32px] font-abril leading-tight mt-2 mb-3 cursor-pointer">
             {firstBlog.title}
@@ -105,13 +105,19 @@ export default function BlogSection() {
         </div>
 
         {/* Blog List Right */}
-        <div className="w-full lg:w-1/2 flex flex-col px-4">
+        <div className="w-full lg:w-1/2 flex flex-col px-4"
+          style={{
+            backgroundImage: `url(${BASE_URL_SVG}assets/svgs/Blog-element.png)`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+          }}
+        >
           {otherBlogs.map((item, index) => (
             <div key={item.id} className="w-full pt-3">
               <div className="cursor-pointer">
-                <span className="text-black font-Montserrat text-[14px] sm:text-[15px] md:text-[16px]">
+                {/* <span className="text-black font-Montserrat text-[14px] sm:text-[15px] md:text-[16px]">
                   {item.publish_date}
-                </span>
+                </span> */}
                 <Link to={`blog/${item.page_url}`}>
                   <h5 className="text-[18px] sm:text-[20px] md:text-[18px] lg:text-[22px] font-Montserrat font-semibold text-black hover:text-primary-hover transition-all">
                     {item.title}
