@@ -413,7 +413,7 @@ const CustomizePackageForm = () => {
 
             <div className=" w-[85%] mx-auto mb-10 mt-30">
             </div>
-            <div className="w-full max-w-[90%] mx-auto mt-10 mb-15">
+            <div className="w-full max-w-[92%] mx-auto mt-10 mb-15">
                 <img
                     src={`${BASE_URL_SVG}/assets/svgs/crown-black.svg`}
                     alt="Crown"
@@ -449,7 +449,7 @@ const CustomizePackageForm = () => {
                         <div className="border-[1.5px] border-gray-400 mt-5 p-5">
                             <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-2 gap-y-3">
                                 {/* Origin */}
-                                <div className="relative" ref={originRef}>
+                                <div className="relative col-span-1" ref={originRef}>
                                     <div
                                         className="flex items-center bg-white rounded-xl px-3 py-2 border border-primary w-full"
                                         style={{ height: "52px" }}
@@ -495,7 +495,7 @@ const CustomizePackageForm = () => {
                                 </div>
 
                                 <div
-                                    className="flex items-center bg-white rounded-xl px-3 py-2 border border-primary w-full"
+                                    className="flex items-center bg-white rounded-xl px-3 py-2 border border-primary w-full col-span-1"
                                     style={{ height: "52px" }}
                                 >
                                     <DatePicker
@@ -513,7 +513,7 @@ const CustomizePackageForm = () => {
                                     <>
                                         {/* No. Nights Makkah */}
                                         <div
-                                            className="flex items-center bg-white rounded-xl px-3 py-2 border border-primary w-full"
+                                            className="flex items-center bg-white rounded-xl px-3 py-2 border border-primary w-full col-span-1"
                                             style={{ height: "52px" }}
                                         >
                                             <input
@@ -528,7 +528,7 @@ const CustomizePackageForm = () => {
 
                                         {/* No. Nights Madinah */}
                                         <div
-                                            className="flex items-center bg-white rounded-xl px-3 py-2 border border-primary w-full"
+                                            className="flex items-center bg-white rounded-xl px-3 py-2 border border-primary w-full col-span-1"
                                             style={{ height: "52px" }}
                                         >
                                             <input
@@ -543,7 +543,7 @@ const CustomizePackageForm = () => {
                                     </>
                                 )}
 
-                                <div className="relative inline-block w-full" ref={AccomodationRef}>
+                                <div className="relative inline-block w-full col-span-1" ref={AccomodationRef}>
                                     {/* Input Field */}
                                     <div
                                         className="flex items-center bg-white rounded-xl px-3 py-2 border border-primary w-full"
@@ -580,7 +580,7 @@ const CustomizePackageForm = () => {
 
                                 {activeTab === "umrah" && (
                                     <>
-                                        <div className="relative inline-block w-full" ref={RoomTypeRef}>
+                                        <div className="relative inline-block w-full col-span-1" ref={RoomTypeRef}>
                                             {/* Input Field */}
                                             <div
                                                 className="flex items-center bg-white rounded-xl px-3 py-2 border border-primary w-full"
@@ -614,7 +614,7 @@ const CustomizePackageForm = () => {
                                             )}
                                         </div>
 
-                                        <div className="relative inline-block w-full" ref={MealTypeRef}>
+                                        <div className="relative inline-block w-full col-span-1" ref={MealTypeRef}>
                                             {/* Input Field */}
                                             <div
                                                 className="flex items-center bg-white rounded-xl px-3 py-2 border border-primary w-full"
@@ -648,7 +648,7 @@ const CustomizePackageForm = () => {
                                             )}
                                         </div>
 
-                                        <div className="relative inline-block w-full" ref={DistanceTypeRef}>
+                                        <div className="relative inline-block w-full col-span-1" ref={DistanceTypeRef}>
                                             {/* Input Field */}
                                             <div
                                                 className="flex items-center bg-white rounded-xl px-3 py-2 border border-primary w-full"
@@ -685,7 +685,7 @@ const CustomizePackageForm = () => {
                                 )}
 
                                 {/* Adults Type */}
-                                <div className="relative inline-block w-full" ref={dropdownRef}>
+                                <div className="relative inline-block w-full col-span-1" ref={dropdownRef}>
                                     {/* Input field */}
                                     <div
                                         className="flex items-center bg-white rounded-xl px-3 py-2 border border-primary w-full"
@@ -772,7 +772,7 @@ const CustomizePackageForm = () => {
 
                                 {activeTab === "hajj" && (
                                     <>
-                                        <div className="relative inline-block w-full" ref={HajjTypeRef}>
+                                        <div className="relative inline-block w-full col-span-1" ref={HajjTypeRef}>
                                             {/* Input Field */}
                                             <div
                                                 className="flex items-center bg-white rounded-xl px-3 py-2 border border-primary"
@@ -809,7 +809,7 @@ const CustomizePackageForm = () => {
                                 )}
 
                                 <div
-                                    className="flex items-center bg-white rounded-xl px-3 py-2 border border-primary w-full"
+                                    className="flex items-center bg-white rounded-xl px-3 py-2 border border-primary w-full col-span-1"
                                     style={{ height: "52px" }}
                                 >
                                     <input
@@ -828,7 +828,7 @@ const CustomizePackageForm = () => {
 
                                 {/* Phone */}
                                 <div
-                                    className="flex items-center bg-white rounded-xl px-3 py-2 border border-primary w-full"
+                                    className="flex items-center bg-white rounded-xl px-3 py-2 border border-primary w-full col-span-1"
                                     style={{ height: "52px" }}
                                 >
                                     <input
@@ -847,7 +847,7 @@ const CustomizePackageForm = () => {
 
                                 {/* Email */}
                                 <div
-                                    className="flex items-center bg-white rounded-xl px-3 py-2 border border-primary w-full"
+                                    className="flex items-center bg-white rounded-xl px-3 py-2 border border-primary w-full col-span-1"
                                     style={{ height: "52px" }}
                                 >
                                     <input
@@ -865,7 +865,7 @@ const CustomizePackageForm = () => {
                                 </div>
 
                                 <div
-                                    className="flex items-center bg-white rounded-xl px-3 py-2 border border-primary col-span-2 w-full"
+                                    className="flex items-center bg-white rounded-xl px-3 py-2 border border-primary w-full col-span-1 md:col-span-2"
                                     style={{ height: "52px" }}
                                 >
                                     <input
@@ -879,7 +879,7 @@ const CustomizePackageForm = () => {
 
                                 {/* Captcha */}
                                 <div
-                                    className="flex items-center bg-white rounded-xl px-3 py-2 border border-primary w-full"
+                                    className="flex items-center bg-white rounded-xl px-3 py-2 border border-primary w-full col-span-1"
                                     style={{ height: "52px" }}
                                 >
                                     <input
@@ -901,7 +901,7 @@ const CustomizePackageForm = () => {
                                     disabled={isLoading}
                                     onClick={handleSubmit}
                                     type="submit"
-                                    className="flex cursor-pointer justify-center items-center gap-2 text-white font-semibold font-Montserrat bg-secondary rounded-lg text-[22px] py-2 h-[52px]"
+                                    className="col-span-1 flex cursor-pointer justify-center items-center gap-2 text-white font-semibold font-Montserrat bg-secondary rounded-lg text-[22px] py-2 h-[52px]"
                                 >
                                     {isLoading ? (
                                         <Loader />
