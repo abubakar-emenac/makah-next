@@ -164,6 +164,22 @@ export default function ContactUS() {
         fetchPageData();
     }, [contactData]);
 
+    const [userIp, setUserIp] = useState("");
+    // console.log("IP", userIp)
+
+    useEffect(() => {
+        const fetchIp = async () => {
+            try {
+                const res = await fetch("https://api64.ipify.org?format=json");
+                const data = await res.json();
+                setUserIp(data.ip);
+            } catch (err) {
+                console.error("Error fetching IP:", err);
+            }
+        };
+
+        fetchIp();
+    }, []);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -186,9 +202,9 @@ export default function ContactUS() {
             contact_detail: {
                 passengers,
                 message,
+                user_ip: userIp,
             },
         };
-
         try {
             setIsLoading(true);
 
@@ -282,29 +298,29 @@ export default function ContactUS() {
                                         {SocialMIcons.map((item, index) => (
                                             <div key={index} className="flex flex-col items-center gap-1 cursor-pointer">
                                                 <a href={item.link} target="_blank">
-                                                <img
-                                                    src={`${BASE_URL_SVG}/${item.icon}`}
-                                                    alt={item.alt}
-                                                    className={`w-${item.width}`}
-                                                />
+                                                    <img
+                                                        src={`${BASE_URL_SVG}/${item.icon}`}
+                                                        alt={item.alt}
+                                                        className={`w-${item.width}`}
+                                                    />
                                                 </a>
                                             </div>
                                         ))}
                                     </div>
                                 ) : (
                                     <p className="mt-2 text-base font-medium tracking-wide break-words">
-                                            {item.title.includes("Number") ? (
-                                                <a href={`tel:${item.value}`} className="cursor-pointer">
-                                                    {item.value}
-                                                </a>
-                                            ) : item.title.includes("Email") ? (
-                                                <a href={`mailto:${item.value}`} className="cursor-pointer">
-                                                    {item.value}
-                                                </a>
-                                            ) : (
-                                                item.value
-                                            )}
-                                        </p>
+                                        {item.title.includes("Number") ? (
+                                            <a href={`tel:${item.value}`} className="cursor-pointer">
+                                                {item.value}
+                                            </a>
+                                        ) : item.title.includes("Email") ? (
+                                            <a href={`mailto:${item.value}`} className="cursor-pointer">
+                                                {item.value}
+                                            </a>
+                                        ) : (
+                                            item.value
+                                        )}
+                                    </p>
                                 )}
                             </div>
                         </div>
@@ -347,18 +363,18 @@ export default function ContactUS() {
                                         </div>
                                     ) : (
                                         <p className="mt-2 text-base font-medium tracking-wide break-words">
-                                                {item.title.includes("Number") ? (
-                                                    <a href={`tel:${item.value}`} className="cursor-pointer">
-                                                        {item.value}
-                                                    </a>
-                                                ) : item.title.includes("Email") ? (
-                                                    <a href={`mailto:${item.value}`} className="cursor-pointer">
-                                                        {item.value}
-                                                    </a>
-                                                ) : (
-                                                    item.value
-                                                )}
-                                            </p>
+                                            {item.title.includes("Number") ? (
+                                                <a href={`tel:${item.value}`} className="cursor-pointer">
+                                                    {item.value}
+                                                </a>
+                                            ) : item.title.includes("Email") ? (
+                                                <a href={`mailto:${item.value}`} className="cursor-pointer">
+                                                    {item.value}
+                                                </a>
+                                            ) : (
+                                                item.value
+                                            )}
+                                        </p>
 
                                     )}
                                 </div>
@@ -487,7 +503,7 @@ export default function ContactUS() {
                                         <>
                                             <span>Submit</span>
                                             <img
-                                                    src={`${BASE_URL_SVG}assets/svgs/SubmitArrow.svg`}
+                                                src={`${BASE_URL_SVG}assets/svgs/SubmitArrow.svg`}
                                                 alt="submit"
                                                 className="w-6 h-6 sm:w-7 sm:h-7"
                                             />

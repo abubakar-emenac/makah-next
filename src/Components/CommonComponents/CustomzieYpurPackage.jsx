@@ -180,18 +180,16 @@ export default function CustomizeYourPackage({ pageData }) {
                 <div className="w-full max-w-xl lg:max-w-lg xl:max-w-xl">
                     <h2 className='flex flex-col'>
                         <span className="text-white font-Montserrat text-[36px] sm:text-[24px] md:text-[28px] lg:text-[24px] xl:text-[32px] mb-1">
-                        Customize
+                            Customize
                         </span>
                         <span className="text-white font-abril text-[50px] sm:text-[36px] md:text-[48px] lg:text-[40px] xl:text-[56px] leading-tight lg:leading-snug mb-2 lg:mb-3">
-                        Your Package
+                            Your Package
                         </span>
                     </h2>
                     <p className="text-white font-Montserrat text-[14px] sm:text-[14px] lg:text-[13px] xl:text-[15px] leading-relaxed mb-4 lg:mb-4">
                         {parse(pageData?.simple_description || "")}
                     </p>
-                    <Link to='/customize-your-umrah'>
-                    <ViewAllButton label="Start Customization" color="primary" size="md" />
-                    </Link>
+                    <ViewAllButton label="Start Customization" color="primary" size="md"  slug="customize-your-umrah" />
                 </div>
             </div>
         </div>

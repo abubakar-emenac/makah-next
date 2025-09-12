@@ -157,7 +157,7 @@
 // }
 
 
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import '../../CSS/datepicker-custom.css';
@@ -176,6 +176,23 @@ export default function EnquiryBox() {
     const [isOpen, setIsOpen] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const datePickerRef = useRef(null);
+
+    const [userIp, setUserIp] = useState("");
+    // console.log("IP", userIp)
+
+    useEffect(() => {
+        const fetchIp = async () => {
+            try {
+                const res = await fetch("https://api64.ipify.org?format=json");
+                const data = await res.json();
+                setUserIp(data.ip);
+            } catch (err) {
+                console.error("Error fetching IP:", err);
+            }
+        };
+
+        fetchIp();
+    }, []);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -199,6 +216,7 @@ export default function EnquiryBox() {
                 departureDate: departureDate ? departureDate.toISOString().split("T")[0] : null,
                 guestCount,
                 guestAccommodation: accommodation,
+                user_ip: userIp,
             },
         };
 
@@ -363,8 +381,8 @@ export default function EnquiryBox() {
                         <Loader />
                     ) : (
                         <>
-                                <span>Submit</span>
-                                <img src={`${BASE_URL_SVG}/assets/svgs/SubmitArrow.svg`} alt="submit" className="w-7 h-7" />
+                            <span>Submit</span>
+                            <img src={`${BASE_URL_SVG}/assets/svgs/SubmitArrow.svg`} alt="submit" className="w-7 h-7" />
                         </>
                     )}
                 </button>

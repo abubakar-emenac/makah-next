@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { BASE_URL_SVG } from '../../Helpers/apiEndpoints';
 import { motion, AnimatePresence } from "framer-motion";
 import CustomizeUmrahPopup from '../../Components/UmrahComponents/CustomizeUmrahPopup';
+import { Helmet } from 'react-helmet';
 
 export default function NotFound() {
   const [isOpen, setIsOpen] = useState(false);
@@ -24,6 +25,13 @@ export default function NotFound() {
   }, [isOpen]);
   return (
     <div className="w-full flex flex-col">
+
+      <Helmet>
+        <title>404 Page Not Found</title>
+        <meta name="robots" content="noindex, nofollow" />
+        <link rel="canonical" href={window.location.href} />
+      </Helmet>
+
       <Navbar textColor="black" />
 
       <div
@@ -80,15 +88,15 @@ export default function NotFound() {
               </div>
 
               <div className="flex flex-col gap-3 w-full items-center sm:flex-row sm:justify-center">
-                <button 
-                onClick={() => navigate(-1)}
-                className="flex items-center cursor-pointer gap-2 border border-white bg-secondary px-6 py-3 text-white hover:bg-secondary/10 transition rounded font-Montserrat text-sm sm:text-base">
+                <button
+                  onClick={() => navigate(-1)}
+                  className="flex items-center cursor-pointer gap-2 border border-white bg-secondary px-6 py-3 text-white hover:bg-secondary/10 transition rounded font-Montserrat text-sm sm:text-base">
                   PREVIOUS PAGE
                   <img src={`${BASE_URL_SVG}assets/svgs/mini-arrow.svg`} alt="arrow" className="bg-primary rounded-full p-1" />
                 </button>
-                <button 
-                onClick={() => navigate('/')}
-                className="flex items-center gap-2 border cursor-pointer border-white px-6 py-3 text-white hover:bg-white hover:text-black transition rounded font-Montserrat text-sm sm:text-base">
+                <button
+                  onClick={() => navigate('/')}
+                  className="flex items-center gap-2 border cursor-pointer border-white px-6 py-3 text-white hover:bg-white hover:text-black transition rounded font-Montserrat text-sm sm:text-base">
                   GO TO HOME PAGE
                   <img src={`${BASE_URL_SVG}assets/svgs/mini-arrow.svg`} alt="arrow" className="bg-primary rounded-full p-1" />
                 </button>

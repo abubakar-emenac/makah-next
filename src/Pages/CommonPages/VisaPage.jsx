@@ -54,31 +54,29 @@ import Testimonials from '../../Components/CommonComponents/Testmonials';
 import Navbar from '../../Components/CommonComponents/NavBar';
 import NeedHelp from '../../Components/CommonComponents/NeedHelp';
 import axios from 'axios';
-import { endpoints } from '../../Helpers/apiEndpoints';
+import { BASE_URL_IMG, endpoints } from '../../Helpers/apiEndpoints';
 import ScrollDetail from '../../Components/CommonComponents/ScrollDetail';
 import parse from 'html-react-parser';
+import { Helmet } from 'react-helmet';
 
 export default function VisaPage() {
     const [visaPageData, setVisaPageData] = useState({});
     const [contentImages, setContentImages] = useState([]);
     const [cleanContentHtml, setCleanContentHtml] = useState('');
+    // console.log('visaPageData', visaPageData);
 
     useEffect(() => {
         const fetchPageData = async () => {
             try {
                 const res = await axios.get(endpoints.getPageUrl('hajj-and-umrah-visa'));
-                console.log('API full response:', res.data);
+                // console.log('API full response:', res.data);
 
                 if (res.data?.status === 1) {
                     const result = res.data.result;
-                    console.log('Result object:', result);
+                    // console.log('Result object:', result);
 
                     setVisaPageData(result);
-
-                    if (result?.browser_title) {
-                        document.title = result.browser_title;
-                    }
-
+               
                     // Handle content key
                     if (result?.content) {
                         const parser = new DOMParser();
@@ -105,8 +103,26 @@ export default function VisaPage() {
         fetchPageData();
     }, []);
 
+    const imageUrl = visaPageData && visaPageData.image_url ? `${BASE_URL_IMG}/${visaPageData.image_url}` : ""
+
     return (
         <>
+            <Helmet>
+                <title>{visaPageData.browser_title}</title>
+                <meta name="description" content={visaPageData.meta_description || ""} />
+                <meta name="keywords" content={visaPageData.meta_keywords || ""} />
+
+                {/* Open Graph Tags */}
+                <meta property="og:title" content={visaPageData.browser_title} />
+                <meta property="og:description" content={visaPageData.meta_description || ""} />
+                <meta property="og:image" content={imageUrl} />
+                <meta property="og:url" content={window.location.href} />
+                <meta property="og:type" content="Travels & Tours" />
+
+                {/* Canonical */}
+                <link rel="canonical" href={window.location.href} />
+            </Helmet>
+
             <HeroSection pageData={visaPageData} />
 
             <div className="flex flex-col mt-8 w-full max-w-[75%] mx-auto px-4">

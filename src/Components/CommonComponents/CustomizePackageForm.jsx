@@ -1,17 +1,18 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Navbar from './NavBar';
-import { BASE_URL_SVG, endpoints } from '../../Helpers/apiEndpoints';
+import { BASE_URL_IMG, BASE_URL_SVG, endpoints } from '../../Helpers/apiEndpoints';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import '../../CSS/datepicker-custom.css';
 import Loader from './Loader';
 import toast from "react-hot-toast";
 import axios from 'axios';
+import { Helmet } from 'react-helmet';
 
 const CustomizePackageForm = () => {
 
     const staticOrigins = [
-       
+
         { label: "Leeds (LBA) - United Kingdom", code: "LBA" },
         { label: "London-All (LON) - United Kingdom", code: "LON" },
         { label: "London-Heathrow (LHR) - United Kingdom", code: "LHR" },
@@ -50,6 +51,28 @@ const CustomizePackageForm = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [makkahNights, setMakkahNights] = useState('');
     const [medinahNights, setMedinahNights] = useState('');
+    const [pageData, setPageData] = useState({});
+    // console.log("CustomiZe", pageData)
+
+    useEffect(() => {
+        const fetchPageData = async () => {
+            try {
+                const res = await axios.get(endpoints.getPageUrl('customize-your-umrah'));
+                // console.log('API full response:', res.data);
+
+                if (res.data?.status === 1) {
+                    const result = res.data.result;
+                    setPageData(result);
+                }
+            } catch (err) {
+                console.error('Error fetching Page Data:', err);
+            }
+        };
+
+        fetchPageData();
+    }, []);
+
+    const imageUrl = pageData && pageData.image_url ? `${BASE_URL_IMG}/${pageData.image_url}` : ""
 
     useEffect(() => {
         generateCaptcha();
@@ -62,6 +85,23 @@ const CustomizePackageForm = () => {
         setNum2(n2);
         setCaptcha("");
     };
+
+    const [userIp, setUserIp] = useState("");
+    console.log("IP", userIp)
+
+    useEffect(() => {
+        const fetchIp = async () => {
+            try {
+                const res = await fetch("https://api64.ipify.org?format=json");
+                const data = await res.json();
+                setUserIp(data.ip);
+            } catch (err) {
+                console.error("Error fetching IP:", err);
+            }
+        };
+
+        fetchIp();
+    }, []);
 
     // Airlines Origin DropDown
     const originRef = useRef(null);
@@ -298,7 +338,6 @@ const CustomizePackageForm = () => {
         return true;
     };
 
-
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (isLoading) return;
@@ -311,8 +350,9 @@ const CustomizePackageForm = () => {
             phone,
             form_type: "Package Booking",
             contact_detail: {
-                subject: "Booking Umrah Package Inquiry",
+                subject: "Customize Form",
                 date: departureDate,
+                user_ip: userIp,
                 Departure_Airport: originLabel,
                 Makkah_Nights: makkahNights,
                 Medinah_Nights: medinahNights,
@@ -355,6 +395,22 @@ const CustomizePackageForm = () => {
 
     return (
         <>
+            <Helmet>
+                <title>{pageData.browser_title}</title>
+                <meta name="description" content={pageData.meta_description || ""} />
+                <meta name="keywords" content={pageData.meta_keywords || ""} />
+
+                {/* Open Graph Tags */}
+                <meta property="og:title" content={pageData.browser_title} />
+                <meta property="og:description" content={pageData.meta_description || ""} />
+                <meta property="og:image" content={imageUrl} />
+                <meta property="og:url" content={window.location.href} />
+                <meta property="og:type" content="Travels & Tours" />
+
+                {/* Canonical */}
+                <link rel="canonical" href={window.location.href} />
+            </Helmet>
+
             <div className=" w-[85%] mx-auto mb-10 mt-30">
             </div>
             <div className="w-full max-w-[90%] mx-auto mt-10 mb-15">
@@ -705,7 +761,7 @@ const CustomizePackageForm = () => {
                                                                 }
                                                             }}
                                                         >
-                                                            <img src={`${BASE_URL_SVG}/assets/svgs/PassIncplus.svg`}className="w-5 h-5" alt="Passengers" />
+                                                            <img src={`${BASE_URL_SVG}/assets/svgs/PassIncplus.svg`} className="w-5 h-5" alt="Passengers" />
                                                         </button>
                                                     </div>
                                                 </div>
@@ -862,8 +918,13 @@ const CustomizePackageForm = () => {
 
                     {/* Side Image */}
                     <div className="w-full max-w-[30%] hidden md:flex justify-center items-center">
-                        <img src={`${BASE_URL_SVG}/assets/svgs/FormImg.svg`} alt="submit" className="" />
+                        <img
+                            src={`${BASE_URL_SVG}/assets/svgs/FormImg.svg`}
+                            alt="submit"
+                            className="w-full h-full object-contain"
+                        />
                     </div>
+
                 </div>
             </div>
         </>

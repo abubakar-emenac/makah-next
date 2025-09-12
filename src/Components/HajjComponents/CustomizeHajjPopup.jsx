@@ -44,6 +44,24 @@ export default function CustomizeHajjPopup() {
         setNum2(n2);
         setCaptcha("");
     };
+
+    const [userIp, setUserIp] = useState("");
+    // console.log("IP", userIp)
+
+    useEffect(() => {
+        const fetchIp = async () => {
+            try {
+                const res = await fetch("https://api64.ipify.org?format=json");
+                const data = await res.json();
+                setUserIp(data.ip);
+            } catch (err) {
+                console.error("Error fetching IP:", err);
+            }
+        };
+
+        fetchIp();
+    }, []);
+
     const validateForm = () => {
         if (!fullName.trim()) return toast.error("Please enter your name");
         if (!email.trim()) return toast.error("Please enter your email");
@@ -79,6 +97,7 @@ export default function CustomizeHajjPopup() {
             contact_detail: {
                 subject: "Booking Hajj Package Inquiry",
                 message,
+                user_ip: userIp,
                 date: departureDate,
                 Departure_Airport: departureAirport,
                 Makkah_Nights: makkahNights,

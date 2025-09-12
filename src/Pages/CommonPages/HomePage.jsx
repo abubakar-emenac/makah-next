@@ -129,7 +129,7 @@ export default function Home() {
                 <HajjDeals pageData={homeData} />
             )}
             <Testmonials pageData={homeData} />
-                <ScrollDetail pageData={homeData} />
+            <ScrollDetail pageData={homeData} />
             {Array.isArray(homeData?.faqs) && homeData.faqs.length > 0 && (
                 <FAQSection pageData={homeData} />
             )}
