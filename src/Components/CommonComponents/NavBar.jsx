@@ -39,6 +39,7 @@ const Navbar = ({ textColor = "black" }) => {
     "privacy-policy",
     "contact-us",
     "cookies-policy",
+    "customize-your-umrah"
   ];
 
   const path = location.pathname;
