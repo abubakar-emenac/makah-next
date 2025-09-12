@@ -178,7 +178,7 @@ export default function CustomizeYourPackage({ pageData }) {
                 relative z-10 lg:-ml-12 xl:-ml-20 2xl:-ml-28
             "
                 style={{
-                    backgroundImage: `url(${BASE_URL_SVG}assets/svgs/customization-bg.png)`,
+                    backgroundImage: `linear-gradient(rgba(87, 166, 143, 0.8), rgba(87, 166, 143, 0.8)), url(${BASE_URL_SVG}assets/svgs/customization-bg.png)`,
                     backgroundSize: "cover",
                     backgroundPosition: "center",
                 }}
