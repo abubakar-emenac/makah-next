@@ -60,7 +60,7 @@ export default function BlogSection() {
   const otherBlogs = latestBlogs.slice(1, 4);
 
   return (
-    <div className="w-full px-4 sm:px-6 md:px-10 mx-auto mt-10 sm:mt-14 md:mt-28 font-sans max-w-[90%] md:max-w-[82%] mb-10">
+    <div className="w-full px-4 sm:px-6 md:px-10 mx-auto mt-10 sm:mt-14 md:mt-28 font-sans max-w-[90%] md:max-w-[75%] mb-10">
       {/* Heading Section */}
       <div className="w-full mb-10 sm:mb-12 md:mb-16">
         <img
@@ -135,7 +135,7 @@ export default function BlogSection() {
           ))}
 
           <div className="mt-10">
-            <ViewAllButton label="View All Blogs" color="primary" size="md" slug={"/blog"} />
+            <ViewAllButton label="View All Blogs" color="primary" size="md" slug={"blog"} />
           </div>
         </div>
       </div>

@@ -465,7 +465,7 @@ export default function CardSlider({ pageData }) {
             <ViewAllButton
               color="secondary"
               slug={widgetData?.button_link}
-              size="sm"
+              size="md"
               label={widgetData?.button_text}
             />
             <span

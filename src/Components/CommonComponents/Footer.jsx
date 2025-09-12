@@ -157,12 +157,14 @@ export default function Footer() {
                 const iconKey = `social_media_icons_${i}`;
                 const labelKey = `social_media_icons_input_${i}`;
                 const altKey = `social_media_icons_alt_input_${i}`;
+                const linkKey = `social_media_icons_link_input_${i}`;
 
                 if (socialMedia[iconKey]) {
                     socialIcons.push({
                         icon: socialMedia[iconKey],
                         label: socialMedia[labelKey] || `Social ${i}`,
-                        alt: socialMedia[altKey] || socialMedia[labelKey] || `Social Media ${i}`
+                        alt: socialMedia[altKey] || socialMedia[labelKey] || `Social Media ${i}`,
+                        link: socialMedia[linkKey] || "#"
                     });
                 }
             }
@@ -238,11 +240,19 @@ export default function Footer() {
                         <div className="flex gap-6">
                             {footerItems.socialIcons.map((item, index) => (
                                 <div key={index} className="flex flex-col items-center gap-1">
+                                    <a
+                                        key={index}
+                                        href={item.link}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="flex flex-col items-center gap-1 hover:opacity-80 transition"
+                                    >
                                     <img
                                         src={`${BASE_URL_SVG}/${item.icon}`}
                                         alt={item.alt}
                                         className="w-11 sm:w-12 object-contain"
                                     />
+                                    </a>
                                     <span className="text-xs">{item.label}</span>
                                 </div>
                             ))}
@@ -276,7 +286,15 @@ export default function Footer() {
                         <div className="flex gap-6">
                             {footerItems.socialIcons.map((item, index) => (
                                 <div key={index} className="flex flex-col items-center gap-1">
+                                    <a
+                                        key={index}
+                                        href={item.link}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="flex flex-col items-center gap-1 hover:opacity-80 transition"
+                                    >
                                     <img src={`${BASE_URL_SVG}/${item.icon}`} alt={item.alt} className="w-11 sm:w-12" />
+                                    </a>
                                     <span className="text-xs">{item.label}</span>
                                 </div>
                             ))}

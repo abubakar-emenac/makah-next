@@ -50,7 +50,7 @@ export default function ThankYou() {
                     {/* Foreground Illustration + Button */}
                     <div className="relative z-10 flex items-center gap-6 mt-10">
                         <img
-                            src="/svgs/thankyou.svg"
+                            src={`${BASE_URL_SVG}assets/svgs/thankyou.svg`}
                             alt="Thank You Illustration"
                             className="w-48 sm:w- md:w-[510px] md:h-[455px] lg:w-[610px] lg:h-[555px]"
                         />

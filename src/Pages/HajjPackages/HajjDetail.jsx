@@ -5,7 +5,6 @@ import ImageSlider from '../../Components/CommonComponents/ImageSlider'
 import Testmonials from '../../Components/CommonComponents/Testmonials'
 import MonthlyUmrahPackages from '../../Components/UmrahComponents/monthlyUmrahPackages'
 import NeedHelp from '../../Components/CommonComponents/NeedHelp'
-import CustomizeUmrahPopup from '../../Components/UmrahComponents/CustomizeUmrahPopup'
 import { useParams, useLocation } from 'react-router-dom'
 import { endpoints, BASE_URL_IMG, BASE_URL_SVG } from '../../Helpers/apiEndpoints'
 import parse from "html-react-parser";
@@ -22,6 +21,12 @@ export default function HajjDetail() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [isOpen, setIsOpen] = useState(false);
+    const makkahDescription = packageData?.makkah_hotel?.description || "";
+    const madinahDescription = packageData?.madinah_hotel?.description || "";
+    const isMakkahLong = makkahDescription.length > 300;
+    const isMadinahLong = madinahDescription.length > 300;
+    const shortMakkah = isMakkahLong ? makkahDescription.slice(0, 350) + "..." : makkahDescription;
+    const shortMadinah = isMadinahLong ? madinahDescription.slice(0, 350) + "..." : madinahDescription;
     const modalRef = useRef(null);
     useEffect(() => {
         const handleClickOutside = (event) => {
@@ -373,7 +378,7 @@ export default function HajjDetail() {
 
                     {/* First Hotel */}
                     <div className="flex flex-col lg:flex-row justify-end items-center lg:items-start">
-                        <div className="flex flex-col w-full lg:w-[42%] order-2 lg:order-1 bg-[#F4F4F4] mt-14 pr-5">
+                        <div className="flex flex-col w-full lg:w-[42%] order-2 lg:order-1 bg-[#F4F4F4] mt-14 pr-5 max-h-[250px] min-h-[250px]">
                             <div className="flex justify-end gap-1">
                                 {Array.from({ length: Number(packageData?.makkah_hotel?.hotel_star || 0) }).map((_, idx) => (
                                     <img
@@ -389,7 +394,7 @@ export default function HajjDetail() {
                                 {packageData?.makkah_hotel?.name}</h2>
                             <span className="text-secondary font-Montserrat text-end">Hotel in Makkah</span>
                             <p className="font-Montserrat py-1.5 text-end text-sm sm:text-base" dangerouslySetInnerHTML={{
-                                __html: packageData?.makkah_hotel?.description || ""
+                                __html: shortMakkah 
                             }}>
                             </p>
                         </div>
@@ -404,7 +409,7 @@ export default function HajjDetail() {
 
                             <ImageSlider images={packageData?.madinah_hotel?.images || []} />
                         </div>
-                        <div className="flex flex-col w-full lg:w-[42%] bg-[#F4F4F4] mt-14 pl-5">
+                        <div className="flex flex-col w-full lg:w-[42%] bg-[#F4F4F4] mt-14 pl-5 max-h-[250px] min-h-[250px]">
                             <div className="flex gap-1">
                                 {Array.from({ length: Number(packageData?.madinah_hotel?.hotel_star || 0) }).map((_, idx) => (
                                     <img
@@ -418,10 +423,10 @@ export default function HajjDetail() {
                             <h2 className="text-xl sm:text-2xl lg:text-3xl font-abril text-start">
                                 {packageData?.madinah_hotel?.name}</h2>
                             <span className="text-secondary font-Montserrat text-start">Hotel in Madinah</span>
-                            <p className="font-Montserrat py-1.5 text-start text-sm sm:text-base " dangerouslySetInnerHTML={{
-                                __html: packageData?.madinah_hotel?.description || ""
-                            }}>
-                            </p>
+                            <p
+                                className="font-Montserrat py-1.5 text-start text-sm sm:text-base"
+                                dangerouslySetInnerHTML={{ __html: shortMadinah }}
+                            />
                         </div>
                     </div>
                 </div>

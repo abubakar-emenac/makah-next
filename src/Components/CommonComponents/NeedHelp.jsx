@@ -10,7 +10,7 @@ export default function NeedHelp() {
     const phoneNumber = phoneNumberObj?.code_value || "";
 
     return (
-        <div className="w-full px-6 md:px-10 my-10 flex flex-col-reverse lg:flex-row max-w-[82%] mx-auto gap-10">
+        <div className="w-full px-6 md:px-10 my-10 flex flex-col-reverse lg:flex-row max-w-[75%] mx-auto gap-10">
             {/* Left Section */}
             <div className="w-full lg:w-1/2 flex flex-col gap-8">
                 {/* Call Us Now */}
@@ -49,16 +49,15 @@ export default function NeedHelp() {
             </div>
 
             {/* Right Section */}
-            <div className="w-full lg:w-1/2 flex flex-col lg:flex-row items-center lg:items-end gap-8">
+            <div className="w-full lg:w-1/2 flex flex-col lg:flex-row items-center lg:items-start gap-8">
                 {/* Text */}
-                <div className="flex flex-col text-center lg:text-right mb-6 lg:mb-0 lg:flex-1">
+                <div className="flex flex-col text-start justify-start lg:text-right mb-6 lg:mb-0 lg:flex-1">
                     <h2 className="text-[22px] sm:text-4xl md:text-5xl lg:text-6xl font-abril">
                         NEED HELP?
                     </h2>
                     <p className="text-[14px] sm:text-base md:text-lg font-Montserrat mt-3 leading-relaxed max-w-xl lg:ml-auto">
                         Makkah Travel is here to help you visit religious places
-                        and make Umrah trips that connect with your soul. We're
-                        experts at creating meaningful journeys.
+                        and make Umrah trips that connect with your soul.
                     </p>
                 </div>
 
@@ -70,7 +69,7 @@ export default function NeedHelp() {
                         className="w-40 lg:w-52 xl:w-60 max-w-full object-contain"
                     />
                 </div>
-</div>
+            </div>
 
 
 

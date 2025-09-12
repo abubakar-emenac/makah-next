@@ -137,17 +137,29 @@ export default function CustomizeHajjPopup() {
         fetchAirports();
     }, []);
 
-
     useEffect(() => {
         const handleClickOutside = (event) => {
             if (airportRef.current && !airportRef.current.contains(event.target)) {
                 setShowAirportList(false);
             }
         };
-        document.addEventListener("mousedown", handleClickOutside);
-        return () => document.removeEventListener("mousedown", handleClickOutside);
-    }, [airportRef]);
 
+        // Only add event listener when dropdown is open
+        if (showAirportList) {
+            // Use a small delay to prevent immediate closure
+            setTimeout(() => {
+                document.addEventListener("mousedown", handleClickOutside);
+            }, 100);
+        }
+
+        return () => document.removeEventListener("mousedown", handleClickOutside);
+    }, [showAirportList]); // Changed dependency to showAirportList
+
+    // FIXED: Airport selection handler
+    const handleAirportSelect = (airportName) => {
+        setDepartureAirport(airportName);
+        setShowAirportList(false);
+    };
 
     const inputClass =
         "w-full bg-white text-black placeholder-black outline-none placeholder:text-lg";
@@ -204,6 +216,12 @@ export default function CustomizeHajjPopup() {
                                             onClick={() => {
                                                 setDepartureAirport(airport.name);
                                                 setShowAirportList(false);
+                                            }}
+                                            onMouseDown={(e) => {
+                                                // Use onMouseDown instead of onClick to prevent event conflicts
+                                                e.preventDefault();
+                                                e.stopPropagation();
+                                                handleAirportSelect(airport.name);
                                             }}
                                         >
                                             {airport.name}

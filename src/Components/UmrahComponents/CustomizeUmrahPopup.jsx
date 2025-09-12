@@ -27,7 +27,7 @@ export default function CustomizeUmrahPopup() {
     const [message, setMessage] = useState('');
     const [departureAirport, setDepartureAirport] = useState('');
     const [currentStep, setCurrentStep] = useState(1);
-    const [showAirportList, setShowAirportList] = useState('');
+    const [showAirportList, setShowAirportList] = useState(false);
     const [airportList, setAirportList] = useState([]);
     const [isOpen, setIsOpen] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
@@ -97,8 +97,8 @@ export default function CustomizeUmrahPopup() {
             setIsLoading(true);
             const res = await axios.post(endpoints.sendEmail, payload);
             if (res.status === 200) {
-                toast.success("Form submitted successfully ✅");
                 navigate("/thank-you")
+                toast.success("Form submitted successfully ✅");
                 generateCaptcha();
                 // reset form (optional)
                 setFullName("");
@@ -137,18 +137,6 @@ export default function CustomizeUmrahPopup() {
         fetchAirports();
     }, []);
 
-
-    useEffect(() => {
-        const handleClickOutside = (event) => {
-            if (airportRef.current && !airportRef.current.contains(event.target)) {
-                setShowAirportList(false);
-            }
-        };
-        document.addEventListener("mousedown", handleClickOutside);
-        return () => document.removeEventListener("mousedown", handleClickOutside);
-    }, [airportRef]);
-
-
     const inputClass =
         "w-full bg-white text-black placeholder-black outline-none placeholder:text-lg";
 
@@ -168,13 +156,13 @@ export default function CustomizeUmrahPopup() {
             <div className=" hidden gap-4 md:grid md:grid-cols-2 lg:grid-cols-4">
 
                 {/* Departure Airport */}
-                <div className="relative col-span-1" ref={airportRef}>
+                <div className="relative col-span-1" ref={airportRef} >
                     <div
                         className={`${containerClass}`}
-                        onClick={() => setShowAirportList(true)}
                     >
                         <input
                             type="text"
+                            onClick={() => setShowAirportList(true)}
                             value={departureAirport}
                             onChange={(e) => setDepartureAirport(e.target.value)}
                             placeholder="Departure Airport"
@@ -201,7 +189,8 @@ export default function CustomizeUmrahPopup() {
                                         <li
                                             key={airport.id}
                                             className="px-3 py-2 cursor-pointer hover:bg-gray-300"
-                                            onClick={() => {
+                                            onClick={(e) => {
+                                                e.stopPropagation();
                                                 setDepartureAirport(airport.name);
                                                 setShowAirportList(false);
                                             }}

@@ -34,8 +34,6 @@ export default function HeroSection({ pageData }) {
                 backgroundPosition: 'center',
             }}
         >
-            {/* NAVBAR */}
-            <Navbar />
 
             {/* CONTENT CONTAINER */}
             <div className="w-full max-w-[90%] lg:max-w-[80%] mx-auto px-4 sm:px-6 md:px-8 h-full flex flex-col justify-center">

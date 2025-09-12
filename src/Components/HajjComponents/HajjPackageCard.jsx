@@ -1,5 +1,5 @@
 import React from 'react'
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { BASE_URL_IMG } from '../../Helpers/apiEndpoints';
 
 
@@ -53,7 +53,6 @@ export const EmptyStar = () => (
 );
 
 export default function HajjPackageCard({ data }) {
-    const navigate = useNavigate();
 
     const {
         image_url,
@@ -65,9 +64,6 @@ export default function HajjPackageCard({ data }) {
 
     } = data || {};
     const cleanedUrl = image_url ? `${BASE_URL_IMG}/${image_url}` : "/fallback.jpg";
-    const handleCardClick = () => {
-            navigate(`/hajj/${data.page_url}`);
-    };
 
 
 
@@ -82,8 +78,8 @@ export default function HajjPackageCard({ data }) {
     );
 
     return (
-        <div
-            onClick={handleCardClick}
+        <Link
+            to={`/hajj/${data.page_url}`}
             className="w-full max-w-[95%] sm:max-w-[360px] md:max-w-[400px] lg:max-w-[550px] max-h-[650px] cursor-pointer flex flex-col overflow-hidden mx-auto sm:mx-0"
         >
             {/* Image */}
@@ -94,7 +90,7 @@ export default function HajjPackageCard({ data }) {
             />
 
             <div className="p-3 md:p-4 bg-white flex flex-col gap-3 border hover:border-secondary border-primary w-full h-full">
-                <span className="text-start font-Montserrat text-[18px] md:text-base lg:text-[18px] line-clamp-2 pl-2">
+                <span className="text-start font-Montserrat text-[18px] md:text-base lg:text-[18px] line-clamp-1 pl-2">
                     {title}
                 </span>
                 {/* Hotel Info */}
@@ -147,6 +143,6 @@ export default function HajjPackageCard({ data }) {
                 </div>
 
             </div>
-        </div>
+        </Link>
     );
 }

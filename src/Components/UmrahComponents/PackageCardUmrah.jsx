@@ -1,5 +1,5 @@
 import React from 'react'
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { BASE_URL_IMG, BASE_URL_SVG } from '../../Helpers/apiEndpoints';
 
 
@@ -53,7 +53,6 @@ export const EmptyStar = () => (
 );
 
 export default function PackageCardUmrah({ data }) {
-    const navigate = useNavigate();
 
     const {
         image_url,
@@ -65,9 +64,6 @@ export default function PackageCardUmrah({ data }) {
 
     } = data || {};
     const cleanedUrl = image_url ? `${BASE_URL_IMG}/${image_url}` : "/fallback.jpg";
-    const handleCardClick = () => {
-            navigate(`/umrah/${data.page_url}`);
-    };
 
 
 
@@ -82,8 +78,8 @@ export default function PackageCardUmrah({ data }) {
     );
 
     return (
-        <div
-            onClick={handleCardClick}
+        <Link
+            to={`/umrah/${data.page_url}`}
             className="w-full max-w-[95%] sm:max-w-[360px] md:max-w-[400px] lg:max-w-[550px] max-h-[650px] cursor-pointer flex flex-col overflow-hidden mx-auto sm:mx-0"
         >
             {/* Image */}
@@ -147,6 +143,6 @@ export default function PackageCardUmrah({ data }) {
                 </div>
 
             </div>
-        </div>
+        </Link>
     );
 }
