@@ -149,7 +149,7 @@ const BlogDetails = () => {
         <main className="w-full md:w-2/3 order-1 md:order-1">
 
           <p className="text-gray-600 text-sm mb-6 font-Montserrat">
-            By {blog.author || "Admin"}
+    
              {/* on{" "}
             {new Date(blog.publish_date).toLocaleDateString()} */}
           </p>
@@ -182,11 +182,7 @@ const BlogDetails = () => {
                   <h3 className="text-md font-semibold font-Montserrat line-clamp-2">
                     {item.title}
                   </h3>
-                  <div className="flex items-center space-x-2 text-sm text-gray-700  font-Montserrat mt-4">
-                    <span className="font-medium">{item?.author}</span>
-                    {/* <span className="w-2 h-2 bg-green-500 rounded-full ml-6"></span> */}
-                    {/* <span>{formatDate(item?.created_at)}</span> */}
-                  </div>
+                 
                 </div>
               </Link>
             ))}
