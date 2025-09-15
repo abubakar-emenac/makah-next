@@ -143,6 +143,19 @@ export default function Footer() {
     );
     const logo = logoSetting?.contents?.footer_logo;
 
+    const hoveredicons = [
+        { label: "facebook", icon: "/svg/fb1.svg" },
+        { label: "Instagram", icon: "/svg/ig1.svg" }
+    ];
+
+    // Preload hover images (hook at the top)
+    useEffect(() => {
+        hoveredicons.forEach(h => {
+            const img = new Image();
+            img.src = h.icon;
+        });
+    }, []); 
+
     const footerItems = useMemo(() => {
         if (!globalData?.result?.footer_setting) return null;
 
@@ -150,6 +163,8 @@ export default function Footer() {
         const footerLogo = globalData.result.settings;
         const contents = footerSetting.contents;
         const socialMedia = footerSetting.social_media_icons;
+
+
 
         // Extract social media icons data
         const socialIcons = [];
@@ -190,31 +205,6 @@ export default function Footer() {
         return null; // or a loader/skeleton
     }
 
-    const hoveredicons = [
-        {
-            label: "facebook",
-            icon: "/svg/fb1.svg"
-        },
-        {
-            label: "Instagram",
-            icon: "/svg/ig1.svg"
-        }
-
-    ]
-
-
-    useEffect(() => {
-        // Preload all hover images
-        const preloadImages = [
-            "/svg/fb1.svg",
-            "/svg/ig1.svg"
-        ];
-
-        preloadImages.forEach((src) => {
-            const img = new Image();
-            img.src = src;
-        });
-    }, []);
 
 
     return (
