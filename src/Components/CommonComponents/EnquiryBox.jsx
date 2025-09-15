@@ -282,7 +282,7 @@ export default function EnquiryBox() {
                 {/* Date Picker */}
                 <div
                     onClick={() => setIsOpen(true)}
-                    className="relative border border-primary rounded-md px-4 py-2 hover:border-secondary flex items-center focus-within:ring-1 focus-within:ring-primary-hover"
+                    className="relative border z-40 border-primary rounded-md px-4 py-2 hover:border-secondary flex items-center focus-within:ring-1 focus-within:ring-primary-hover"
                 >
                     <DatePicker
                         ref={datePickerRef}
@@ -297,6 +297,7 @@ export default function EnquiryBox() {
                         dateFormat="dd/MM/yyyy"
                         minDate={new Date()}
                         shouldCloseOnSelect={true}
+                        popperClassName='z-[999]'
                     />
                     <img
                         src={`${BASE_URL_SVG}/assets/svgs/Departure Date SVG.svg`}
