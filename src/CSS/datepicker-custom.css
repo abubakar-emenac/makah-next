@@ -20,13 +20,13 @@
   .react-datepicker__current-month {
     font-weight: 600;
     font-size: 1rem;
-  color: #d97706;
+  color: #DB9E30;
     /* amber-600 (golden) */
   }
   
   /* Navigation arrows */
   .react-datepicker__navigation-icon::before {
-    border-color: #d97706;
+    border-color: #DB9E30;
     /* golden arrows */
     border-width: 2px;
 }
@@ -63,7 +63,7 @@
     /* Today highlight */
     .react-datepicker__day--today {
       font-weight: bold;
-      color: #d97706;
+      color: #DB9E30;
       /* amber */
   }
 
@@ -92,7 +92,7 @@
   }
 
   .react-datepicker__navigation-icon::before {
-    border-color: #d97706;
+    border-color: #DB9E30;
       /* amber-600 */
       border-width: 2px 2px 0 0;
       /* arrow thickness */

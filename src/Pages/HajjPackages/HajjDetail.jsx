@@ -213,6 +213,9 @@ export default function HajjDetail() {
                 <meta property="og:image" content={imageUrl} />
                 <meta property="og:url" content={window.location.href} />
                 <meta property="og:type" content="Travels & Tours" />
+                <script >
+                    {packageData.script}
+                </script>
 
                 {/* Canonical */}
                 <link rel="canonical" href={window.location.href} />
@@ -406,7 +409,7 @@ export default function HajjDetail() {
 
                     {/* First Hotel */}
                     <div className="flex flex-col lg:flex-row justify-end items-center lg:items-start">
-                        <div className="flex flex-col w-full lg:w-[42%] order-2 lg:order-1 bg-[#F4F4F4] mt-14 pr-5 max-h-[250px] min-h-[250px]">
+                        <div className="flex flex-col w-full lg:w-[42%] order-2 lg:order-1 mx-2 pt-5 bg-[#F4F4F4] mt-14 pr-5 max-h-[250px] min-h-[250px]">
                             <div className="flex justify-end gap-1">
                                 {Array.from({ length: Number(packageData?.makkah_hotel?.hotel_star || 0) }).map((_, idx) => (
                                     <img
@@ -437,7 +440,7 @@ export default function HajjDetail() {
 
                             <ImageSlider images={packageData?.madinah_hotel?.images || []} />
                         </div>
-                        <div className="flex flex-col w-full lg:w-[42%] bg-[#F4F4F4] mt-14 pl-5 max-h-[250px] min-h-[250px]">
+                        <div className="flex flex-col w-full lg:w-[42%] mx-2 pt-5 bg-[#F4F4F4] mt-14 pl-5 max-h-[250px] min-h-[250px]">
                             <div className="flex gap-1">
                                 {Array.from({ length: Number(packageData?.madinah_hotel?.hotel_star || 0) }).map((_, idx) => (
                                     <img

@@ -338,18 +338,15 @@ export default function WhyChoose() {
                         const fileName = item.icon.split("/").pop();
                         const hoverMatch = hoveredImage.find((h) => h.url === fileName);
 
-                        console.log(`Card ${index}:`, { fileName, hoverMatch, hoveredIndex }); // Debug log
 
                         return (
                             <div
                                 key={index}
                                 className="flex flex-col items-center text-center px-4 py-6 h-full cursor-pointer"
                                 onMouseEnter={() => {
-                                    console.log(`Hovering over card ${index}`); // Debug log
                                     setHoveredIndex(index);
                                 }}
                                 onMouseLeave={() => {
-                                    console.log(`Left card ${index}`); // Debug log
                                     setHoveredIndex(null);
                                 }}
                             >

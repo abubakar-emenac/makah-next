@@ -114,6 +114,9 @@ export default function PrivacyPolicy() {
 
                 {/* Canonical */}
                 <link rel="canonical" href={window.location.href} />
+                <script >
+                    {pageContent.script}
+                </script>
             </Helmet>
             <Navbar textColor='black' />
             <div className='max-w-[75%] mx-auto mt-8 parseData'>

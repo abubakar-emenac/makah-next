@@ -114,13 +114,9 @@ export default function Home() {
 
                 {/* Canonical */}
                 <link rel="canonical" href={window.location.href} />
-                {homeData.schema && (
-                    <script
-                        type="application/ld+json"
-                        dangerouslySetInnerHTML={{ __html: homeData.schema }}
-                    />
-                )}
-
+                <script >
+                    {homeData.script}
+                </script>
             </Helmet>
 
             <HeroSection pageData={homeData} />

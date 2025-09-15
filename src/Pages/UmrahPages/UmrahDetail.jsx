@@ -215,6 +215,9 @@ export default function UmrahDetail() {
 
                 {/* Canonical */}
                 <link rel="canonical" href={window.location.href} />
+                <script >
+                    {packageData.script}
+                </script>
             </Helmet>
 
             <div className="flex flex-col w-full max-w-[97%] md:max-w-[85%] lg:max-w-[80%] mx-auto px-4 mt-20">
@@ -409,7 +412,7 @@ export default function UmrahDetail() {
 
                     {/* First Hotel */}
                     <div className="flex flex-col lg:flex-row justify-end items-center lg:items-start">
-                        <div className="flex flex-col w-full lg:w-[42%] order-2 lg:order-1 bg-[#F4F4F4] mt-14 pr-5 max-h-[250px] min-h-[250px]">
+                        <div className="flex flex-col w-full lg:w-[42%] order-2 lg:order-1 mx-2 pt-5 bg-[#F4F4F4] mt-14 pr-5 max-h-[250px] min-h-[250px]">
                             <div className="flex justify-end gap-1">
                                 {Array.from({ length: Number(packageData?.makkah_hotel?.hotel_star || 0) }).map((_, idx) => (
                                     <img
@@ -440,7 +443,7 @@ export default function UmrahDetail() {
 
                             <ImageSlider images={packageData?.madinah_hotel?.images || []} />
                         </div>
-                        <div className="flex flex-col w-full lg:w-[42%] bg-[#F4F4F4] mt-14 pl-5 max-h-[250px] min-h-[250px]">
+                        <div className="flex flex-col w-full lg:w-[42%] mx-2 pt-5 bg-[#F4F4F4] mt-14 pl-5 max-h-[250px] min-h-[250px]">
                             <div className="flex gap-1">
                                 {Array.from({ length: Number(packageData?.madinah_hotel?.hotel_star || 0) }).map((_, idx) => (
                                     <img

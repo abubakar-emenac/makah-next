@@ -285,6 +285,9 @@ export default function ContactUS() {
 
                 {/* Canonical */}
                 <link rel="canonical" href={window.location.href} />
+                <script >
+                    {contactData.script}
+                </script>
             </Helmet>
             <div className="flex flex-col w-full max-w-[90%] mt-32 lg:max-w-[75%] mx-auto font-Montserrat">
 
@@ -292,7 +295,7 @@ export default function ContactUS() {
                 <div className="hidden sm:grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 my-10 w-full">
                     {allIcons.map((item, idx) => (
                         <div key={idx} className="relative w-full">
-                            <div className="relative bg-gray-100 rounded-md pt-16 pb-8 px-6 text-center shadow-sm h-56">
+                            <div className="relative bg-gray-100 rounded-md pt-16 pb-8 px-6 text-center shadow-sm h-60">
                                 {/* Floating icon card */}
                                 <motion.div
                                     initial={{ opacity: 0, y: -8 }}
@@ -308,7 +311,7 @@ export default function ContactUS() {
                                     />
                                 </motion.div>
 
-                                <h3 className="text-lg font-semibold">{item.title}</h3>
+                                <h3 className="text-lg font-semibold mt-5">{item.title}</h3>
 
                                 {item.title === "Our Social Media" ? (
                                     <div className="flex justify-center flex-wrap gap-4 mt-5">

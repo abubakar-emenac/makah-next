@@ -121,6 +121,9 @@ export default function VisaPage() {
 
                 {/* Canonical */}
                 <link rel="canonical" href={window.location.href} />
+                <script >
+                    {visaPageData.script}
+                </script>
             </Helmet>
 
             <HeroSection pageData={visaPageData} />

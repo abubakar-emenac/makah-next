@@ -111,6 +111,9 @@ export default function TnCpage() {
                 <meta property="og:image" content={imageUrl} />
                 <meta property="og:url" content={window.location.href} />
                 <meta property="og:type" content="Travels & Tours" />
+                <script >
+                    {tnCpage.script}
+                </script>
 
                 {/* Canonical */}
                 <link rel="canonical" href={window.location.href} />
