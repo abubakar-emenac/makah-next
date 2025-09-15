@@ -30,10 +30,8 @@ import CookiePolicy from "./Pages/CommonPages/CookiesPolicy"
 import ThankYou from "./Pages/CommonPages/ThankYouPage"
 import Navbar from "./Components/CommonComponents/NavBar"
 import ScrollToTopButton from "./Components/CommonComponents/ScrollToTopButton"
-import { usePageScriptInjector } from "./Hooks/ScriptInjector"
 
 function App() {
-  usePageScriptInjector()
   useGlobalSettingsInjector();
   // usePageMetaInjector();
   AnalyticsInjector();
