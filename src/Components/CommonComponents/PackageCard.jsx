@@ -95,7 +95,7 @@ export default function PackageCard({ pkg, p_type }) {
                 className="w-full h-[180px] md:h-[200px] lg:h-[215px] object-cover"
             />
 
-            <div className="p-3 md:p-4 bg-white flex flex-col gap-3 border hover:border-secondary border-primary w-full h-full">
+            <div className="p-3 md:p-4 bg-white flex flex-col gap-3 border hover:border-primary border-black w-full h-full">
                 <span className="text-start font-Montserrat text-[18px] md:text-base lg:text-[18px] line-clamp-1 pl-2">
                     {title}
                 </span>

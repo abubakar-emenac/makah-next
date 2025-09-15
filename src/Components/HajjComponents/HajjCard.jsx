@@ -59,7 +59,7 @@ export default function HajjCard({ description = '13 Days 5* Non Shifting Hajj 2
             to={(slug)}
             className="w-full max-w-[350px] cursor-pointer flex flex-col overflow-hidden mx-auto sm:mx-0">
             <img src={img} alt="package_image" className="w-full h-[180px] object-cover" />
-            <div className="p-4 bg-white flex flex-col gap-3 border hover:border-secondary border-primary w-full">
+            <div className="p-4 bg-white flex flex-col gap-3 border hover:border-primary border-black w-full">
                 {/* Title */}
                 <span className="text-start font-Montserrat text-[18px] md:text-[18px] pl-2 line-clamp-1">
                     {description}
