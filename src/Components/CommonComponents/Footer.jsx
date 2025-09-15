@@ -127,13 +127,16 @@
 //         </footer>
 //     );
 // }
-import React, { useMemo } from 'react';
+import React, { useMemo, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useGlobalData } from "../../Helpers/useGlobalData";
 import { BASE_URL_SVG, WEB_URL } from '../../Helpers/apiEndpoints';
+import { label } from 'framer-motion/client';
 export default function Footer() {
     const { globalData } = useGlobalData();
+
     const currentYear = new Date().getFullYear();
+    const [hovered, setHovered] = useState(false);
     const settings = globalData?.result?.settings || [];
     const logoSetting = settings.find(
         (item) => item.ref_name === "Website Logo"
@@ -187,6 +190,32 @@ export default function Footer() {
         return null; // or a loader/skeleton
     }
 
+    const hoveredicons = [
+        {
+            label: "facebook",
+            icon: "/svg/fb1.svg"
+        },
+        {
+            label: "Instagram",
+            icon: "/svg/ig1.svg"
+        }
+
+    ]
+
+
+    useEffect(() => {
+        // Preload all hover images
+        const preloadImages = [
+            "/svg/fb1.svg",
+            "/svg/ig1.svg"
+        ];
+
+        preloadImages.forEach((src) => {
+            const img = new Image();
+            img.src = src;
+        });
+    }, []);
+
 
     return (
         <footer
@@ -237,7 +266,7 @@ export default function Footer() {
 
                     {/* Social Media + Banks */}
                     <div className="flex flex-col items-center gap-4">
-                        <div className="flex gap-6">
+                        {/* <div className="flex gap-6">
                             {footerItems.socialIcons.map((item, index) => (
                                 <div key={index} className="flex flex-col items-center gap-1">
                                     <a
@@ -247,16 +276,45 @@ export default function Footer() {
                                         rel="noopener noreferrer"
                                         className="flex flex-col items-center gap-1 hover:opacity-80 transition"
                                     >
-                                    <img
-                                        src={`${BASE_URL_SVG}/${item.icon}`}
-                                        alt={item.alt}
-                                        className="w-11 sm:w-12 object-contain"
-                                    />
+                                        <img
+                                            src={`${BASE_URL_SVG}/${item.icon}`}
+                                            alt={item.alt}
+                                            className="w-11 sm:w-12 object-contain"
+                                        />
                                     </a>
                                     <span className="text-xs">{item.label}</span>
                                 </div>
                             ))}
+                        </div> */}
+                        <div className="flex gap-6">
+                            {footerItems.socialIcons.map((item, index) => {
+
+
+                                // Find matching hover icon by label
+                                const hoverMatch = hoveredicons.find(h => h.label === item.label);
+
+                                return (
+                                    <div key={index} className="flex flex-col items-center gap-1">
+                                        <a
+                                            href={item.link}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="flex flex-col items-center gap-1 transition"
+                                            onMouseEnter={() => setHovered(true)}
+                                            onMouseLeave={() => setHovered(false)}
+                                        >
+                                            <img
+                                                src={hovered && hoverMatch ? `${hoverMatch.icon}` : `${BASE_URL_SVG}${item.icon}`}
+                                                alt={item.alt}
+                                                className="w-11 sm:w-12 object-contain transition-all duration-300"
+                                            />
+                                        </a>
+                                        <span className="text-xs">{item.label}</span>
+                                    </div>
+                                );
+                            })}
                         </div>
+
                         <div>
                             <img
                                 src={`${BASE_URL_SVG}/assets/svgs/banks.svg`}
@@ -293,7 +351,7 @@ export default function Footer() {
                                         rel="noopener noreferrer"
                                         className="flex flex-col items-center gap-1 hover:opacity-80 transition"
                                     >
-                                    <img src={`${BASE_URL_SVG}/${item.icon}`} alt={item.alt} className="w-11 sm:w-12" />
+                                        <img src={`${BASE_URL_SVG}/${item.icon}`} alt={item.alt} className="w-11 sm:w-12" />
                                     </a>
                                     <span className="text-xs">{item.label}</span>
                                 </div>
@@ -361,7 +419,7 @@ export default function Footer() {
                         className="flex items-start gap-4 hover:underline"
                     >
                         <img
-                            src={`${BASE_URL_SVG}/assets/svgs/Need Help Section (Call) SVG.svg`}
+                            src={`${BASE_URL_SVG}/assets/svgs/emailf.svg`}
                             alt="Email"
                             className="w-10 sm:w-12"
                         />
@@ -381,15 +439,22 @@ export default function Footer() {
                         )}`}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="hover:underline"
+                        className="flex items-start gap-4 hover:underline"
                     >
-                        <p className="text-primary font-semibold font-Montserrat">ADDRESS</p>
-                        <p className="font-Montserrat text-sm leading-snug">
-                            {footerItems.contents.footer_address ||
-                                `Suite No.5, The Old Dispensary, 30 Romford Road,
+                        <img
+                            src={`${BASE_URL_SVG}/assets/svgs/pinf.svg`}
+                            alt="Pin"
+                            className="w-10 sm:w-12"
+                        />
+                        <div>
+                            <p className="text-primary font-semibold font-Montserrat">ADDRESS</p>
+                            <p className="font-Montserrat text-sm leading-snug">
+                                {footerItems.contents.footer_address ||
+                                    `Suite No.5, The Old Dispensary, 30 Romford Road,
                 Stratford London, England, E15 4BZ,
                 United Kingdom`}
-                        </p>
+                            </p>
+                        </div>
                     </a>
                 </div>
 

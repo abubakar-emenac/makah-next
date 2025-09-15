@@ -15,6 +15,8 @@ import { Helmet } from "react-helmet";
 
 export default function ContactUS() {
     const navigate = useNavigate();
+    const [num1, setNum1] = useState(0);
+    const [num2, setNum2] = useState(0);
 
     const { globalData } = useGlobalData();
     const [contactData, setContactData] = useState({});
@@ -25,6 +27,16 @@ export default function ContactUS() {
     const [message, setMessage] = useState('');
     const [captcha, setCaptcha] = useState('');
     const [isLoading, setIsLoading] = useState(false);
+
+    const generateCaptcha = () => {
+        setNum1(Math.floor(Math.random() * 10) + 1); // 1-10
+        setNum2(Math.floor(Math.random() * 10) + 1);
+        setCaptcha("");
+    };
+
+    useEffect(() => {
+        generateCaptcha();
+    }, []);
 
     // Helper to find variable by code
     const getVariable = (code) =>
@@ -192,7 +204,11 @@ export default function ContactUS() {
         if (!fullName.trim()) return toast.error("Please enter your full name");
         if (!email.trim()) return toast.error("Please enter your email address");
         if (!message.trim()) return toast.error("Please enter your message");
-        if (parseInt(captcha) !== 13) return toast.error("Captcha incorrect!");
+        if (parseInt(captcha) !== num1 + num2) {
+            toast.error("Captcha incorrect!");
+            generateCaptcha(); // regenerate if failed
+            return;
+        }
 
         const payload = {
             name: fullName,
@@ -227,6 +243,7 @@ export default function ContactUS() {
                 setPhone('');
                 setMessage('');
                 setCaptcha('');
+                generateCaptcha();
             } else if (data.status === 1 && data.message.includes("no email sent")) {
                 toast("Your enquiry was saved, but the email could not be sent ⚠️", { icon: "⚠️" });
             } else {
@@ -485,7 +502,7 @@ export default function ContactUS() {
                                         className="w-full bg-transparent outline-none text-sm sm:text-base py-2 placeholder:text-base"
                                     />
                                     <span className="bg-white underline text-secondary absolute right-3 top-1/2 -translate-y-1/2">
-                                        5+8
+                                        {num1}+{num2}
                                     </span>
                                 </div>
                             </div>

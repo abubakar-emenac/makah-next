@@ -401,7 +401,7 @@ export default function CustomizeHajjPopup() {
                         className={inputClass}
                     />
                     <img
-                        src={`${BASE_URL_SVG}/assets/svgs/Phone SVG.svg`}
+                        src={`${BASE_URL_SVG}/assets/svgs/Phone Number SVG.svg`}
                         alt="phone"
                         className="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 pointer-events-none"
                     />

@@ -1,13 +1,28 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { BASE_URL_SVG } from '../../Helpers/apiEndpoints';
 import { useGlobalData } from "../../Helpers/useGlobalData";
 
 export default function NeedHelp() {
     const { globalData } = useGlobalData();
+    const [hoveredIcon1, setHoveredIcon1] = useState(null);
+    const [hoveredIcon2, setHoveredIcon2] = useState(null);
     const phoneNumberObj = globalData?.result?.global_variables?.find(
         (item) => item.code === "[%PHONENUMBER%]"
     );
     const phoneNumber = phoneNumberObj?.code_value || "";
+
+    useEffect(() => {
+        // Preload all hover images
+        const preloadImages = [
+            "/svg/Need Help Section (Call) SVG.svg",
+            "/svg/Need Help (Call Us).svg"
+        ];
+
+        preloadImages.forEach((src) => {
+            const img = new Image();
+            img.src = src;
+        });
+    }, []);
 
     return (
         <div className="w-full px-6 md:px-10 my-10 flex flex-col-reverse lg:flex-row max-w-[75%] mx-auto gap-10">
@@ -23,10 +38,22 @@ export default function NeedHelp() {
                             {phoneNumber}
                         </span>
                     </div>
-                    <img
+                    {/* <img
                         src={`${BASE_URL_SVG}/assets/svgs/Need Help Section (Call) SVG.svg`}
                         alt="Call Icon"
                         className="w-10 sm:w-14 md:w-16"
+                    /> */}
+                    <img
+                        src={
+                            hoveredIcon1 === "call"
+                                ? `/svg/Need Help (Call Us).svg`
+                                : `${BASE_URL_SVG}/assets/svgs/Need Help Section (Call) SVG.svg`
+                        }
+                        alt="Call Icon"
+                        className={`w-10 sm:w-14 md:w-16 transition-transform duration-1000 ease-in-out `}
+                        onMouseEnter={() => setHoveredIcon1("call")}
+                        onMouseLeave={() => setHoveredIcon1(null)}
+                        loading='eager'
                     />
                 </div>
 
@@ -40,10 +67,22 @@ export default function NeedHelp() {
                             TOO BUSY TO TALK?
                         </span>
                     </div>
-                    <img
+                    {/* <img
                         src={`${BASE_URL_SVG}/assets/svgs/Need Help Section (Call Back) SVG.svg`}
                         alt="Callback Icon"
                         className="w-10 sm:w-14 md:w-16"
+                    /> */}
+                    <img
+                        src={
+                            hoveredIcon2 === "callBack"
+                                ? `/svg/Need Help Section (Call) SVG.svg`
+                                : `${BASE_URL_SVG}/assets/svgs/Need Help Section (Call Back) SVG.svg`
+                        }
+                        alt="Call Icon"
+                        className={`w-10 sm:w-14 md:w-16 transition-transform duration-1000 ease-in-out `}
+                        onMouseEnter={() => setHoveredIcon2("callBack")}
+                        onMouseLeave={() => setHoveredIcon2(null)}
+                        loading='eager'
                     />
                 </div>
             </div>

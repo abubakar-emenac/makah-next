@@ -4,6 +4,8 @@ import { BASE_URL_SVG } from '../../Helpers/apiEndpoints';
 
 export default function ImageSlider({ images = [] }) {
     const [currentIndex, setCurrentIndex] = useState(0);
+    const [fade, setFade] = useState(true);
+
     if (!images || images.length === 0) {
         return (
             <div className="w-full max-w-5xl mx-auto flex flex-col items-center pb-20 relative">
@@ -15,11 +17,19 @@ export default function ImageSlider({ images = [] }) {
     }
 
     const goToNext = () => {
-        setCurrentIndex((prev) => (prev + 1) % images.length);
+        setFade(false);
+        setTimeout(() => {
+            setCurrentIndex((prev) => (prev + 1) % images.length);
+            setFade(true);
+        }, 200);
     };
 
     const goToPrev = () => {
+        setFade(false);
+        setTimeout(() => {
         setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
+        setFade(true);
+    }, 200);
     };
 
     return (
@@ -33,7 +43,8 @@ export default function ImageSlider({ images = [] }) {
                 <img
                     src={`${BASE_URL_SVG}/${images[currentIndex].url}`}
                     alt={images[currentIndex]?.alt || `Slide ${currentIndex + 1}`}
-                    className="w-full h-full object-cover transition-all duration-500 ease-in-out"
+                    className={`w-full h-full object-cover transition-opacity duration-500 ${fade ? "opacity-100" : "opacity-0"
+                        }`}
                 />
 
                 {/* Bottom-positioned Arrows */}

@@ -166,6 +166,8 @@ import Loader from './Loader';
 import toast from 'react-hot-toast';
 
 export default function EnquiryBox() {
+    const [num1, setNum1] = useState(0);
+    const [num2, setNum2] = useState(0);
     const [departureDate, setDepartureDate] = useState(null);
     const [guestCount, setGuestCount] = useState('');
     const [number, setNumber] = useState('');
@@ -179,6 +181,16 @@ export default function EnquiryBox() {
 
     const [userIp, setUserIp] = useState("");
     // console.log("IP", userIp)
+
+    const generateCaptcha = () => {
+        setNum1(Math.floor(Math.random() * 9) + 1); // 1-10
+        setNum2(Math.floor(Math.random() * 9) + 1);
+        setCaptcha("");
+    };
+
+    useEffect(() => {
+        generateCaptcha();
+    }, []);
 
     useEffect(() => {
         const fetchIp = async () => {
@@ -205,7 +217,11 @@ export default function EnquiryBox() {
         if (!fullName.trim()) return toast.error("Please enter your full name");
         if (!email.trim()) return toast.error("Please enter your email address");
         if (!accommodation) return toast.error("Please select accommodation");
-        if (parseInt(captcha) !== 13) return toast.error("Captcha incorrect!");
+        if (parseInt(captcha) !== num1 + num2) {
+            toast.error("Captcha incorrect!");
+            generateCaptcha(); // regenerate if failed
+            return;
+        }
 
         const payload = {
             name: fullName,
@@ -242,6 +258,7 @@ export default function EnquiryBox() {
                 setEmail('');
                 setAccommodation('');
                 setCaptcha('');
+                generateCaptcha();
             } else if (data.status === 1 && data.message.includes("no email sent")) {
                 toast("Your enquiry was saved, but the email could not be sent ⚠️", { icon: "⚠️" });
             } else {
@@ -366,7 +383,7 @@ export default function EnquiryBox() {
                         className="w-full bg-transparent outline-none text-sm"
                     />
                     <span className="bg-white text-secondary pr-1 absolute right-3 top-1/2 transform -translate-y-1/2 underline selection:disabled:">
-                        5+8
+                        {num1}+{num2}
                     </span>
                 </div>
 
