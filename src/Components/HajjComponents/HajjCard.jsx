@@ -61,8 +61,8 @@ export default function HajjCard({ description = '13 Days 5* Non Shifting Hajj 2
             <img src={img} alt="package_image" className="w-full h-[180px] object-cover" />
             <div className="p-4 bg-white flex flex-col gap-3 border hover:border-primary border-black w-full">
                 {/* Title */}
-                <span className="text-start font-Montserrat text-[18px] md:text-[18px] pl-2 line-clamp-1">
-                    {description}
+                <span className="text-start font-Montserrat text-[18px] md:text-[18px] pl-2 truncate">
+                    {description.length > 50 ? description.slice(0, 50) + "… Read More" : description}
                 </span>
 
                 {/* Night & Star Section */}

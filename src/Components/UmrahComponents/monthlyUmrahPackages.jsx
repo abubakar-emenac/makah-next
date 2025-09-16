@@ -190,7 +190,7 @@ export default function MonthlyUmrahPackages({ pageData }) {
                     <h2 className="text-[28px] sm:text-[32px] md:text-[36px] font-abril leading-tight mb-3 sm:mb-4">
                         {widgetData.heading}
                     </h2>
-                    <span className="font-Montserrat text-[14px] sm:text-[15px] md:text-[16px] leading-relaxed text-black max-w-md">
+                    <span className="font-Montserrat text-[14px] sm:text-[15px] md:text-[16px] leading-relaxed text-black max-w-2xl">
                         {widgetData.subheading}
                     </span>
                 </div>

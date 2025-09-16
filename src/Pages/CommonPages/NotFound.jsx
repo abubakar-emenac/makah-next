@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 import Navbar from '../../Components/CommonComponents/NavBar';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { BASE_URL_SVG } from '../../Helpers/apiEndpoints';
 import { motion, AnimatePresence } from "framer-motion";
 import CustomizeUmrahPopup from '../../Components/UmrahComponents/CustomizeUmrahPopup';
@@ -87,19 +87,19 @@ export default function NotFound() {
                 <span className="font-Montserrat text-6xl sm:text-[160px] md:text-[200px] lg:text-[271px] text-white font-bold">4</span>
               </div>
 
-              <div className="flex flex-col gap-3 w-full items-center sm:flex-row sm:justify-center">
+              <div className="flex flex-col gap-3 w-full items-center sm:flex-col sm:justify-center">
                 <button
                   onClick={() => navigate(-1)}
-                  className="flex items-center cursor-pointer gap-2 border border-white bg-secondary px-6 py-3 text-white hover:bg-secondary/10 transition rounded font-Montserrat text-sm sm:text-base">
+                  className="flex items-center cursor-pointer gap-2 border border-white bg-secondary px-9 py-3 text-white hover:bg-secondary/10 transition rounded font-Montserrat text-sm sm:text-base">
                   PREVIOUS PAGE
                   <img src={`${BASE_URL_SVG}assets/svgs/mini-arrow.svg`} alt="arrow" className="bg-primary rounded-full p-1" />
                 </button>
-                <button
-                  onClick={() => navigate('/')}
+                <Link
+                  to={'/'}
                   className="flex items-center gap-2 border cursor-pointer border-white px-6 py-3 text-white hover:bg-white hover:text-black transition rounded font-Montserrat text-sm sm:text-base">
                   GO TO HOME PAGE
                   <img src={`${BASE_URL_SVG}assets/svgs/mini-arrow.svg`} alt="arrow" className="bg-primary rounded-full p-1" />
-                </button>
+                </Link>
               </div>
             </div>
 

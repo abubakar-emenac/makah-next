@@ -185,10 +185,10 @@ export default function CustomizeYourPackage({ pageData }) {
             >
                 <div className="w-full max-w-xl lg:max-w-lg xl:max-w-xl">
                     <h2 className='flex flex-col'>
-                        <span className="text-white font-Montserrat text-[36px] sm:text-[24px] md:text-[28px] lg:text-[24px] xl:text-[32px] mb-1">
-                            Customize
+                        <span className="text-white font-Montserrat md:text-[38px] lg:text-[46px] mb-1">
+                            CUSTOMIZE
                         </span>
-                        <span className="text-white font-abril text-[50px] sm:text-[36px] md:text-[48px] lg:text-[40px] xl:text-[56px] leading-tight lg:leading-snug mb-2 lg:mb-3">
+                        <span className="text-white font-abril md:text-[78px] lg:text-[89px] leading-tight lg:leading-snug mb-2 lg:mb-3">
                             Your Package
                         </span>
                     </h2>

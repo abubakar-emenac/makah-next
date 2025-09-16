@@ -96,8 +96,8 @@ export default function PackageCard({ pkg, p_type }) {
             />
 
             <div className="p-3 md:p-4 bg-white flex flex-col gap-3 border hover:border-primary border-black w-full h-full">
-                <span className="text-start font-Montserrat text-[18px] md:text-base lg:text-[18px] line-clamp-1 pl-2">
-                    {title}
+                <span className="text-start font-Montserrat text-[18px] md:text-base lg:text-[18px] truncate pl-2">
+                    {title.length > 50 ? title.slice(0, 50) + "..." : title}
                 </span>
                 {/* Hotel Info */}
                 <div className="flex flex-row sm:flex-row font-Montserrat justify-around items-center gap-2 sm:gap-0">

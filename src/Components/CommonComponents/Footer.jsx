@@ -234,9 +234,9 @@ export default function Footer() {
 
                     {/* Quick Links */}
                     <div>
-                        <h3 className="font-Montserrat text-primary text-xl font-semibold mb-3">
+                        <span className="font-Montserrat text-primary text-xl font-semibold mb-3">
                             {footerItems.contents.link_1_heading || "Quick Links"}
-                        </h3>
+                        </span>
                         <div
                             className="text-sm font-Montserrat"
                             dangerouslySetInnerHTML={{ __html: footerItems.contents.link_1_content }}
@@ -245,9 +245,9 @@ export default function Footer() {
 
                     {/* Terms */}
                     <div>
-                        <h3 className="font-Montserrat text-primary text-xl font-semibold mb-3">
+                        <span className="font-Montserrat text-primary text-xl font-semibold mb-3">
                             {footerItems.contents.link_2_heading || "Our Terms"}
-                        </h3>
+                        </span>
                         <div
                             className="text-sm font-Montserrat"
                             dangerouslySetInnerHTML={{ __html: footerItems.contents.link_2_content }}

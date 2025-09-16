@@ -158,6 +158,7 @@
 
 
 import React, { useEffect, useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import '../../CSS/datepicker-custom.css';
@@ -166,6 +167,7 @@ import Loader from './Loader';
 import toast from 'react-hot-toast';
 
 export default function EnquiryBox() {
+    const navigate = useNavigate()
     const [num1, setNum1] = useState(0);
     const [num2, setNum2] = useState(0);
     const [departureDate, setDepartureDate] = useState(null);
@@ -248,6 +250,7 @@ export default function EnquiryBox() {
             const data = await response.json();
 
             if (data.status === 1 && data.message.includes("Email sent successfully")) {
+                navigate('/thank-you')
                 toast.success("Enquiry submitted successfully ✅");
 
                 // Reset form
@@ -317,7 +320,7 @@ export default function EnquiryBox() {
                         placeholder="Guests"
                         className="w-full bg-transparent outline-none text-sm"
                     />
-                    <img src={`${BASE_URL_SVG}/assets/svgs/Guests SVG.svg`} alt="guests" className="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 pointer-events-none" />
+                    <img src={`${BASE_URL_SVG}/assets/svgs/Guests SVG.svg`} alt="guests" className="absolute right-4 bg-white top-1/2 transform -translate-y-1/2 w-5 h-5 pointer-events-none" />
                 </div>
 
                 {/* Phone */}

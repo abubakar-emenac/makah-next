@@ -6,6 +6,41 @@
   --secondary: #57A68F;
 }
 
+.custom-scrollbar h1 {
+  color: var(--secondary);
+  font-size: 2em;
+  /* usually 32px if base is 16px */
+}
+
+.custom-scrollbar h2 {
+  color: var(--secondary);
+  font-size: 1.5em;
+  /* usually 24px */
+}
+
+.custom-scrollbar h3 {
+  color: var(--secondary);
+  font-size: 1.17em;
+  /* ~18.72px */
+}
+
+.custom-scrollbar h4 {
+  color: var(--secondary);
+  font-size: 1em;
+  /* 16px */
+}
+
+.custom-scrollbar h5 {
+  color: var(--secondary);
+  font-size: 0.83em;
+  /* ~13.28px */
+}
+
+.custom-scrollbar h6 {
+  color: var(--secondary);
+  font-size: 0.67em;
+  /* ~10.72px */
+}
 .custom-scrollbar {
   /* This is the key part for scrollbar placement */
   direction: rtl;
@@ -51,58 +86,46 @@
   .custom-scrollbar::-webkit-scrollbar-thumb:hover {
   background-color: #c48725;
 }
-@layer utilities {
-  .custom-scrollbar h1 {
-    @apply text-3xl font-bold my-4 text-secondary;
+
+.custom-scrollbar a {
+  @apply relative inline-block text-primary hover:text-primary-hover no-underline;
+}
+ .custom-scrollbar a::after {
+   content: "";
+   @apply absolute left-0 -bottom-[0.1px] h-[2px] w-0 bg-primary transition-all duration-300;
+ }
+ .custom-scrollbar a:hover::after {
+   @apply w-full;
+ }
+
+ .custom-scrollbar ul {
+  @apply list-disc pl-5;
   }
 
-  .custom-scrollbar h2 {
-    @apply text-3xl font-semibold my-3 text-secondary;
+ .custom-scrollbar ol {
+   @apply list-decimal pl-5;
+ }
+ .custom-scrollbar li {
+   @apply mb-2;
+   /* optional spacing between items */
+ }
+ /* Tables inside parseData or custom-scrollbar */
+ .custom-scrollbar table {
+   @apply w-full border-collapse border border-gray-300 text-sm sm:text-base mb-4;
+ }
+
+.custom-scrollbar th,
+.custom-scrollbar td {
+  @apply border border-gray-300 px-4 py-2 text-left align-top;
+}
+
+.custom-scrollbar th {
+  @apply bg-gray-100 font-semibold;
   }
 
-  .custom-scrollbar h3 {
-    @apply text-2xl font-semibold my-2 text-secondary;
-  }
-
-  .custom-scrollbar h4 {
-    @apply text-2xl font-semibold my-2 text-secondary;
-  }
-
-  .custom-scrollbar p {
-    @apply text-base leading-relaxed my-2;
-  }
-
-  .custom-scrollbar ul {
-    @apply list-disc list-inside my-3;
-  }
-
-  .custom-scrollbar a {
-    @apply relative inline-block text-primary hover:text-primary-hover no-underline;
-    }
-    
-    .custom-scrollbar a::after {
-      content: "";
-      @apply absolute left-0 -bottom-[0.1px] h-[2px] w-0 bg-primary transition-all duration-300;
-    }
-    
-    .custom-scrollbar a:hover::after {
-      @apply w-full;
-    }
-
-  /* --- Table styling --- */
-  .custom-scrollbar table {
-    @apply w-full border border-gray-300 border-collapse my-4 text-sm;
-  }
-
-  .custom-scrollbar th {
-    @apply bg-gray-100 font-semibold text-left border border-gray-300 px-3 py-2;
-  }
-
-  .custom-scrollbar td {
-    @apply border border-gray-300 px-3 py-2;
-  }
-
-  .custom-scrollbar tr:nth-child(even) {
-    @apply bg-gray-50;
-  }
+.custom-scrollbar tbody tr:nth-child(even) {
+  @apply bg-gray-50;
+}
+.custom-scrollbar caption {
+  @apply text-sm text-gray-500 mb-2;
 }

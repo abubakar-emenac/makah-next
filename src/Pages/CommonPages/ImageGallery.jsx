@@ -171,13 +171,13 @@ export default function ImageGallery({ images = [] }) {
                 {/* Navigation Arrows */}
                 <button
                     onClick={goToPrev}
-                    className="absolute -left-5 top-1/2 transform -translate-y-1/2 bg-secondary hover:bg-white p-2 rounded-full shadow"
+                    className="absolute -left-5 top-1/2 transform -translate-y-1/2 bg-white hover:bg-white p-2 rounded-full shadow"
                 >
                     <ChevronLeft size={24} />
                 </button>
                 <button
                     onClick={goToNext}
-                    className="absolute -right-5 top-1/2 transform -translate-y-1/2 bg-secondary hover:bg-white p-2 rounded-full shadow"
+                    className="absolute -right-5 top-1/2 transform -translate-y-1/2 bg-white hover:bg-white p-2 rounded-full shadow"
                 >
                     <ChevronRight size={24} />
                 </button>

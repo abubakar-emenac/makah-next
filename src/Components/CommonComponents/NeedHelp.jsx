@@ -30,19 +30,20 @@ export default function NeedHelp() {
             <div className="w-full lg:w-1/2 flex flex-col gap-8">
                 {/* Call Us Now */}
                 <div className="flex items-center justify-between">
-                    <div className="flex flex-col">
+                    <a href={`tel:${phoneNumber}`} className="flex flex-col">
                         <span className="capitalize font-Montserrat font-semibold text-lg sm:text-xl md:text-2xl">
                             CALL US NOW!
                         </span>
                         <span className="text-primary font-abril text-xl sm:text-2xl md:text-4xl">
                             {phoneNumber}
                         </span>
-                    </div>
+                    </a>
                     {/* <img
                         src={`${BASE_URL_SVG}/assets/svgs/Need Help Section (Call) SVG.svg`}
                         alt="Call Icon"
                         className="w-10 sm:w-14 md:w-16"
                     /> */}
+                    <a href={`tel:${phoneNumber}`}>
                     <img
                         src={
                             hoveredIcon1 === "call"
@@ -55,6 +56,7 @@ export default function NeedHelp() {
                         onMouseLeave={() => setHoveredIcon1(null)}
                         loading='eager'
                     />
+                    </a>
                 </div>
 
                 {/* Request a Callback */}

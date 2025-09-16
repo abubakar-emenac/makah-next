@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import Navbar from "../../Components/CommonComponents/NavBar";
 import NeedHelp from "../../Components/CommonComponents/NeedHelp";
 import axios from "axios";
 import { BASE_URL_IMG, BASE_URL_SVG, endpoints } from "../../Helpers/apiEndpoints";
@@ -81,7 +80,7 @@ export default function ContactUS() {
         dots: false,
         arrows: false,
         infinite: true,
-        autoplay: false,
+        autoplay: true,
         autoplaySpeed: 2500,
         speed: 600,
         slidesToShow: 1,
@@ -347,17 +346,17 @@ export default function ContactUS() {
                     ))}
                 </div>
 
-                <div className="sm:hidden mt-10 overflow-visible">
+                <div className="sm:hidden  overflow-visible">
                     <Slider {...sliderSettings}>
                         {allIcons.map((item, idx) => (
                             <div key={idx} className="px-2">
-                                <div className="relative bg-gray-100 rounded-md pt-16 pb-8 px-6 text-center shadow-sm h-56">
+                                <div className="relative bg-gray-100 rounded-md mt-10 pb-8 px-6 text-center shadow-sm h-56">
                                     {/* Floating icon card */}
                                     <motion.div
                                         initial={{ opacity: 0, y: -8 }}
                                         animate={{ opacity: 1, y: 0 }}
                                         transition={{ duration: 0.35 }}
-                                        className="absolute -top-12 left-1/2 -translate-x-1/2 w-28 h-28 bg-white rounded-xl shadow-lg grid place-items-center"
+                                        className="absolute -top-12 left-1/2 -translate-x-1/2 w-28 h-28 bg-white rounded-xl shadow-lg grid place-items-center z-10"
                                     >
                                         <img
                                             src={`${BASE_URL_SVG}/${item.icon}`}
@@ -367,17 +366,19 @@ export default function ContactUS() {
                                         />
                                     </motion.div>
 
-                                    <h3 className="text-lg font-semibold">{item.title}</h3>
+                                    <h3 className="text-lg font-semibold pt-20">{item.title}</h3>
 
                                     {item.title === "Our Social Media" ? (
                                         <div className="flex justify-center flex-wrap gap-4 mt-5">
                                             {SocialMIcons.map((item, index) => (
                                                 <div key={index} className="flex flex-col items-center gap-1">
-                                                    <img
-                                                        src={`${BASE_URL_SVG}/${item.icon}`}
-                                                        alt={item.alt}
-                                                        className={`w-${item.width}`}
-                                                    />
+                                                    <a href={item.link} target="_blank">
+                                                        <img
+                                                            src={`${BASE_URL_SVG}/${item.icon}`}
+                                                            alt={item.alt}
+                                                            className={`w-${item.width}`}
+                                                        />
+                                                    </a>
                                                 </div>
                                             ))}
                                         </div>
@@ -394,11 +395,11 @@ export default function ContactUS() {
                                             ) : (
                                                 item.value
                                             )}
-                                        </p>
-
+                                            </p>
                                     )}
                                 </div>
                             </div>
+
                         ))}
                     </Slider>
                 </div>
@@ -515,7 +516,9 @@ export default function ContactUS() {
                                 <button
                                     type="submit"
                                     disabled={isLoading}
-                                    className="cursor-pointer flex justify-center items-center gap-2 text-white font-semibold bg-secondary rounded-lg text-lg sm:text-xl px-5 py-2"
+                                    className="cursor-pointer flex justify-center items-center gap-3 
+               text-white font-semibold bg-secondary rounded-xl 
+               text-xl sm:text-2xl px-8 py-2"
                                 >
                                     {isLoading ? (
                                         <Loader />
@@ -525,23 +528,25 @@ export default function ContactUS() {
                                             <img
                                                 src={`${BASE_URL_SVG}assets/svgs/SubmitArrow.svg`}
                                                 alt="submit"
-                                                className="w-6 h-6 sm:w-7 sm:h-7"
+                                                    className="w-8 h-8 sm:w-9 sm:h-9"
                                             />
                                         </>
                                     )}
                                 </button>
                             </div>
+
                         </form>
                     </div>
 
                     {/* Side Image */}
-                    <div className="lg:w-2/5 w-full flex justify-center lg:justify-end mt-25">
+                    <div className="hidden md:flex md:w-2/5 w-full justify-center md:justify-end mt-25">
                         <img
                             src={`${BASE_URL_IMG}/${contactData.simple_image_url}`}
                             alt={contactData.simple_image_alt}
                             className="w-[424px] h-[308px] max-w-md object-cover rounded-lg"
                         />
                     </div>
+
                 </div>
 
             </div>

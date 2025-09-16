@@ -252,7 +252,7 @@ export default function HeroSection({ pageData }) {
 
                 {/* HEADINGS */}
                 <div
-                    className="mt-8 sm:mt-12 md:mt-16 text-white font-abril leading-tight 
+                    className="mt-8 sm:mt-12 md:mt-20 text-white font-abril leading-tight 
                     text-[26px] sm:text-[34px] md:text-[44px] lg:text-[52px] 
                     w-full sm:w-[95%] md:w-[85%] mx-auto"
                 >
@@ -277,7 +277,7 @@ export default function HeroSection({ pageData }) {
 
                 {viewAllButtonComponent}
                 {/* ENQUIRY BOX */}
-                <div className="mt-10 sm:mt-12 md:mt-16 w-full sm:w-[95%] md:w-[88%] mx-auto mb-8 sm:mb-10 md:mb-12">
+                <div className="mt-10 sm:mt-12 md:mt-10 w-full sm:w-[95%] md:w-[88%] mx-auto mb-8 sm:mb-10 md:mb-12">
                     <EnquiryBox />
                 </div>
             </div>

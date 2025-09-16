@@ -131,7 +131,9 @@ export default function Home() {
             {homeData?.section_3_widget?.length > 0 && (
                 <HajjDeals pageData={homeData} />
             )}
+            {homeData?.faq?.length > 0 && (
             <Testmonials pageData={homeData} />
+            )}
             <ScrollDetail pageData={homeData} />
             {Array.isArray(homeData?.faqs) && homeData.faqs.length > 0 && (
                 <FAQSection pageData={homeData} />

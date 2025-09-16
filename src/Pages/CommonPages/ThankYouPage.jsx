@@ -1,6 +1,6 @@
 import React from 'react';
 import Navbar from '../../Components/CommonComponents/NavBar';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { BASE_URL_SVG } from '../../Helpers/apiEndpoints';
 
 export default function ThankYou() {
@@ -55,8 +55,8 @@ export default function ThankYou() {
                             className="w-48 sm:w- md:w-[510px] md:h-[455px] lg:w-[610px] lg:h-[555px]"
                         />
 
-                        <button
-                            onClick={() => navigate('/')}
+                        <Link
+                            to={'/'}
                             className="flex cursor-pointer items-center gap-2 border border-white bg-secondary px-6 py-3 text-white hover:bg-secondary/90 transition rounded font-Montserrat text-sm sm:text-base"
                         >
                             GO TO HOME PAGE
@@ -65,7 +65,7 @@ export default function ThankYou() {
                                 alt="arrow"
                                 className="bg-primary rounded-full p-1"
                             />
-                        </button>
+                        </Link>
                     </div>
                 </div>
             </div>

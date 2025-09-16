@@ -29,8 +29,12 @@ export default function HajjDetail() {
     const madinahDescription = packageData?.madinah_hotel?.description || "";
     const isMakkahLong = makkahDescription.length > 300;
     const isMadinahLong = madinahDescription.length > 300;
-    const shortMakkah = isMakkahLong ? makkahDescription.slice(0, 350) + "..." : makkahDescription;
-    const shortMadinah = isMadinahLong ? madinahDescription.slice(0, 350) + "..." : madinahDescription;
+    const [descModalOpen, setDescModalOpen] = useState(false);
+    const [descTitle, setDescTitle] = useState("");
+    const [descContent, setDescContent] = useState("");
+
+    // const shortMakkah = isMakkahLong ? makkahDescription.slice(0, 350) + "...Read more" : makkahDescription;
+    // const shortMadinah = isMadinahLong ? madinahDescription.slice(0, 350) + "...Read more" : madinahDescription;
     const modalRef = useRef(null);
 
 
@@ -172,7 +176,7 @@ export default function HajjDetail() {
     };
 
     const icon = [
-        { key: 'flight', icon: '/svgs/flight.svg', label: 'Flight' },
+        { key: 'flight', icon: '/svgs/flightd.svg', label: 'Flight' },
         { key: 'accomodation', icon: '/svgs/hotel.svg', label: 'Hotel' },
         { key: 'visa', icon: '/svgs/visa.svg', label: 'Visa' },
         { key: 'transfer', icon: '/svgs/transport.svg', label: 'Transport' },
@@ -306,7 +310,7 @@ export default function HajjDetail() {
                             {button.map((btn) => (
                                 <div
                                     key={btn.id}
-                                    className="flex sm:flex-row items-center gap-2 w-full sm:w-auto"    
+                                    className="flex sm:flex-row items-center w-full sm:w-auto"
                                 >
                                     <a
                                         href={
@@ -326,11 +330,11 @@ export default function HajjDetail() {
                                         <br />
                                         <span className="font-Montserrat">{btn.info}</span>
                                     </a>
-                                    <div className="bg-white p-2 rounded-full shadow-sm flex items-center justify-center">
+                                    <div className="bg-white p-2 shadow-sm flex items-center justify-center">
                                         <img
                                             src={`${BASE_URL_SVG}/assets/${btn.icon}`}
                                             alt={btn.title}
-                                            className="w-7 sm:w-8 md:w-10 h-7 sm:h-8 md:h-10 object-contain"
+                                            className="w-9 sm:w-8 md:w-10 h-7 sm:h-8 md:h-14 object-contain"
                                         />
                                     </div>
                                 </div>
@@ -423,7 +427,7 @@ export default function HajjDetail() {
 
                     {/* First Hotel */}
                     <div className="flex flex-col lg:flex-row justify-end items-center lg:items-start">
-                        <div className="flex flex-col w-full lg:w-[42%] order-2 lg:order-1 mx-2 pt-5 bg-[#F4F4F4] mt-14 pr-5 max-h-[250px] min-h-[250px]">
+                        <div className="flex flex-col w-full lg:w-[42%] order-2 lg:order-1 mx-2 pt-5 bg-[#F4F4F4] mt-14 pl-5 pr-5 max-h-[250px] min-h-[250px]">
                             <div className="flex justify-end gap-1">
                                 {Array.from({ length: Number(packageData?.makkah_hotel?.hotel_star || 0) }).map((_, idx) => (
                                     <img
@@ -438,10 +442,28 @@ export default function HajjDetail() {
                             <h2 className="text-xl sm:text-2xl lg:text-3xl font-abril text-end">
                                 {packageData?.makkah_hotel?.name}</h2>
                             <span className="text-secondary font-Montserrat text-end">Hotel in Makkah</span>
-                            <p className="font-Montserrat py-1.5 text-end text-sm sm:text-base" dangerouslySetInnerHTML={{
-                                __html: shortMakkah 
-                            }}>
-                            </p>
+                            <div className="font-Montserrat py-1.5 text-end text-sm sm:text-base">
+                                <span
+                                    dangerouslySetInnerHTML={{
+                                        __html: isMakkahLong
+                                            ? makkahDescription.slice(0, 300) + "..."
+                                            : makkahDescription,
+                                    }}
+                                />
+                                {isMakkahLong && (
+                                    <button
+                                        onClick={() => {
+                                            setDescTitle(packageData?.makkah_hotel?.name || "Makkah Hotel");
+                                            setDescContent(makkahDescription);
+                                            setDescModalOpen(true);
+                                        }}
+                                        className="text-primary underline inline ml-1"
+                                    >
+                                        Read More
+                                    </button>
+                                )}
+                            </div>
+
                         </div>
                         <div className="order-1 lg:order-2 w-full lg:w-auto">
                             <ImageSlider images={packageData?.makkah_hotel?.images || []} />
@@ -454,7 +476,7 @@ export default function HajjDetail() {
 
                             <ImageSlider images={packageData?.madinah_hotel?.images || []} />
                         </div>
-                        <div className="flex flex-col w-full lg:w-[42%] mx-2 pt-5 bg-[#F4F4F4] mt-14 pl-5 max-h-[250px] min-h-[250px]">
+                        <div className="flex flex-col w-full lg:w-[42%] mx-2 pt-5 bg-[#F4F4F4] mt-14 pl-5 pr-5 max-h-[250px] min-h-[250px]">
                             <div className="flex gap-1">
                                 {Array.from({ length: Number(packageData?.madinah_hotel?.hotel_star || 0) }).map((_, idx) => (
                                     <img
@@ -468,16 +490,37 @@ export default function HajjDetail() {
                             <h2 className="text-xl sm:text-2xl lg:text-3xl font-abril text-start">
                                 {packageData?.madinah_hotel?.name}</h2>
                             <span className="text-secondary font-Montserrat text-start">Hotel in Madinah</span>
-                            <p
-                                className="font-Montserrat py-1.5 text-start text-sm sm:text-base"
-                                dangerouslySetInnerHTML={{ __html: shortMadinah }}
-                            />
+                            <div className="font-Montserrat py-1.5 text-end text-sm sm:text-base">
+                                <span
+                                    dangerouslySetInnerHTML={{
+                                        __html: isMadinahLong
+                                            ? madinahDescription.slice(0, 300) + "..."
+                                            : madinahDescription,
+                                    }}
+                                />
+                                {isMadinahLong && (
+                                    <button
+                                        onClick={() => {
+                                            setDescTitle(packageData?.madinah_hotel?.name || "Madinah Hotel");
+                                            setDescContent(madinahDescription);
+                                            setDescModalOpen(true);
+                                        }}
+                                        className="text-primary underline inline ml-1"
+                                    >
+                                        Read More
+                                    </button>
+                                )}
+                            </div>
+
                         </div>
                     </div>
                 </div>
             </div>
 
-            <Testmonials />
+
+            {packageData?.ourclientsays_widget?.length > 0 && (
+                <Testmonials pageData={packageData} />
+            )}
 
             {packageData?.section_2_widget && packageData.section_2_widget.length > 0 && (
                 <div className="w-full md:max-w-[85%] lg:max-w-[80%] mx-auto my-5 md:px-4">
@@ -522,6 +565,46 @@ export default function HajjDetail() {
                     </>
                 )}
             </AnimatePresence>
+
+            <AnimatePresence>
+                {descModalOpen && (
+                    <>
+                        {/* Overlay */}
+                        <motion.div
+                            className="fixed inset-0 bg-black/50 z-40"
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                        />
+
+                        {/* Popup */}
+                        <motion.div
+                            className="fixed inset-0 z-50 flex justify-center items-center"
+                            initial={{ opacity: 0, scale: 0.8, y: 50 }}
+                            animate={{ opacity: 1, scale: 1, y: 0 }}
+                            exit={{ opacity: 0, scale: 0.8, y: 50 }}
+                            transition={{ duration: 0.3, ease: "easeInOut" }}
+                        >
+                            <div className="relative bg-white shadow-lg max-w-[600px] w-full p-6 rounded-lg overflow-y-auto max-h-[80vh]">
+                                {/* Close Button */}
+                                <button
+                                    onClick={() => setDescModalOpen(false)}
+                                    className="absolute top-2 right-2 p-2 rounded-full hover:bg-gray-100"
+                                >
+                                    <img src={`${BASE_URL_SVG}/assets/svgs/cross.svg`} alt="close" className="w-5 h-5" />
+                                </button>
+
+                                <h2 className="text-xl font-Montserrat font-semibold mb-4">{descTitle}</h2>
+                                <div
+                                    className="text-sm sm:text-base font-Montserrat leading-relaxed"
+                                    dangerouslySetInnerHTML={{ __html: descContent }}
+                                />
+                            </div>
+                        </motion.div>
+                    </>
+                )}
+            </AnimatePresence>
+
         </div>
     )
 
