@@ -16,6 +16,8 @@ import { useGlobalData } from "../../Helpers/useGlobalData";
 
 export default function UmrahDetail() {
     const { globalData } = useGlobalData();
+    const [hoverBtn1, setHoverBtn1] = useState(false);
+    const [hoverBtn2, setHoverBtn2] = useState(false);
     const { slug } = useParams();
     const location = useLocation();
     const [packageData, setPackageData] = useState(null);
@@ -391,16 +393,28 @@ export default function UmrahDetail() {
                     <div className="w-full lg:w-[23%] flex flex-col items-end gap-y-4">
                         <button
                             onClick={() => setIsOpen(true)}
-                            className="w-full border border-secondary text-primary font-semibold text-xl font-Montserrat flex justify-between items-center py-4 pl-7 pr-5 cursor-pointer">
+                            onMouseEnter={() => setHoverBtn1(true)}
+                            onMouseLeave={() => setHoverBtn1(false)}
+                            className="w-full border border-secondary hover:border-primary text-primary hover:border-0 hover:bg-primary hover:text-white font-semibold text-xl font-Montserrat flex justify-between items-center py-4 pl-7 pr-5 cursor-pointer transition-all duration-300 ease-in-out">
                             Book This Package
-                            <img src={`${BASE_URL_SVG}/assets/svgs/arrow-bg-gray.svg`} alt="button" />
+                            <img src={
+                                hoverBtn1
+                                    ? `${BASE_URL_SVG}/assets/svgs/arrow-bg-white.svg`
+                                    : `${BASE_URL_SVG}/assets/svgs/arrow-bg-gray.svg`
+                            } alt="button" />
                         </button>
 
                         <Link
                             to={"/customize-your-umrah"}
-                            className="w-full text-xl text-white font-semibold font-Montserrat flex justify-between items-center bg-primary p-4 cursor-pointer">
+                            onMouseEnter={() => setHoverBtn2(true)}
+                            onMouseLeave={() => setHoverBtn2(false)}
+                            className="w-full text-xl border border-secondary hover:border-primary text-primary hover:border-0 hover:bg-primary hover:text-white font-semibold font-Montserrat flex justify-between items-center  p-4 cursor-pointer transition-all duration-300 ease-in-out">
                             Customize My Package
-                            <img src={`${BASE_URL_SVG}/assets/svgs/arrow-bg-white.svg`} alt="button" />
+                            <img src={
+                                hoverBtn2
+                                    ? `${BASE_URL_SVG}/assets/svgs/arrow-bg-white.svg`
+                                    : `${BASE_URL_SVG}/assets/svgs/arrow-bg-gray.svg`
+                            } alt="button" />
                         </Link>
                     </div>
 

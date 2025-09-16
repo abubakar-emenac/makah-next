@@ -256,7 +256,12 @@ export default function HeroSection({ pageData }) {
                     text-[26px] sm:text-[34px] md:text-[44px] lg:text-[52px] 
                     w-full sm:w-[95%] md:w-[85%] mx-auto"
                 >
-                    <h1>{pageData?.banner_heading}</h1>
+                    {/* <h1>{pageData?.banner_heading}</h1> */}
+                    <h1
+                        dangerouslySetInnerHTML={{
+                            __html: pageData?.banner_heading
+                        }}
+                    />
                 </div>
 
                 {/* SUBHEADING */}
