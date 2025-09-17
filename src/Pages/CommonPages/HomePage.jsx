@@ -131,7 +131,7 @@ export default function Home() {
             {homeData?.section_3_widget?.length > 0 && (
                 <HajjDeals pageData={homeData} />
             )}
-            {homeData?.faq?.length > 0 && (
+            {homeData?.ourclientsays_widget?.length > 0 && (
             <Testmonials pageData={homeData} />
             )}
             <ScrollDetail pageData={homeData} />
