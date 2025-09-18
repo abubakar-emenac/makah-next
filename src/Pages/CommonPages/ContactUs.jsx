@@ -80,7 +80,7 @@ export default function ContactUS() {
         dots: false,
         arrows: false,
         infinite: true,
-        autoplay: true,
+        autoplay: false,
         autoplaySpeed: 2500,
         speed: 600,
         slidesToShow: 1,

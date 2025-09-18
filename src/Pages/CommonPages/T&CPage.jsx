@@ -119,7 +119,7 @@ export default function TnCpage() {
                 <link rel="canonical" href={window.location.href} />
             </Helmet>
             <Navbar textColor='black' />
-            <div className='max-w-[75%] mx-auto mt-8 parseData'>
+            <div className='max-w-[90%] md:max-w-[75%] mx-auto mt-16 parseData'>
                 {parse(tnCpage?.content ?? "")}
             </div>
             <NeedHelp />

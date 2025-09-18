@@ -69,10 +69,10 @@
 import { useState } from "react";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import { BASE_URL_IMG, BASE_URL_SVG } from "../../Helpers/apiEndpoints";
-import "../../CSS/FAQSection.css"; 
+import "../../CSS/FAQSection.css";
 
 export default function FAQSection({ pageData }) {
-    const [openId, setOpenId] = useState(0);
+    const [openId, setOpenId] = useState(null);
     const faqs = pageData?.faqs ?? [];
     const faqImageSrc = pageData?.faq_image_url;
     const faqImageAlt = pageData?.faq_image_alt;
@@ -81,7 +81,7 @@ export default function FAQSection({ pageData }) {
     const fullImageUrl = faqImageSrc ? `${BASE_URL_IMG}/${faqImageSrc}` : null;
 
     return (
-        <div className="w-full max-w-[78%] mx-auto mt-8 sm:mt-12 md:mt-20 px-4 sm:px-6 md:px-9 font-sans mb-20">
+        <div className="w-full md:max-w-[78%] max-w-[90%] mx-auto mt-8 sm:mt-12 md:mt-20 px-4 sm:px-6 md:px-9 font-sans mb-20">
             <div className="w-full flex flex-col lg:flex-row gap-8">
 
                 {/* Left side: Heading, Subheading, and Image */}
@@ -169,7 +169,7 @@ export default function FAQSection({ pageData }) {
                     ))}
                 </div> */}
 
-                <div className="lg:w-[55%] faq-scroll-container mt-16 max-h-[490px]">
+                <div className="lg:w-[55%] faq-scroll-container mt-16 max-h-[490px] overflow-y-auto">
                     {faqs.map((faq, index) => (
                         <div key={index} className="border-b py-4 font-Montserrat">
                             <button
@@ -190,18 +190,19 @@ export default function FAQSection({ pageData }) {
 
                             {/* Animated answer */}
                             <div
-                                className={`overflow-hidden transition-all duration-300 ease-in-out ${openId === index ? "max-h-96 opacity-100 mt-3" : "max-h-0 opacity-0"
+                                className={`overflow-hidden transition-all duration-300 ease-in-out ${openId === index
+                                    ? "max-h-full opacity-100 mt-3"
+                                    : "max-h-0 opacity-0"
                                     }`}
                             >
                                 <div
-                                    className="text-[16px] pl-1 sm:pl-4"
+                                    className="leading-10 pl-1 sm:pl-4"
                                     dangerouslySetInnerHTML={{ __html: faq.answer }}
                                 />
                             </div>
                         </div>
                     ))}
                 </div>
-
 
             </div>
         </div>

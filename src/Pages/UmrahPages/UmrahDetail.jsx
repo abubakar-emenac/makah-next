@@ -279,7 +279,11 @@ export default function UmrahDetail() {
                             ].map((item, idx) => (
                                 <div
                                     key={idx}
-                                    className="grid grid-cols-[1fr_2px_2fr] items-end gap-x-1 sm:gap-x-1"
+                                    className="
+                                            grid grid-cols-[1fr_2fr] 
+                                            lg:grid-cols-[1fr_2px_2fr] 
+                                            items-end gap-x-2
+                                        "
                                 >
                                     {/* Nights */}
                                     <div className="w-12 text-center">
@@ -288,20 +292,17 @@ export default function UmrahDetail() {
                                         </span>
                                     </div>
 
-                                    {/* Vertical line */}
+                                    {/* Vertical line (only on lg+) */}
                                     <div className="hidden lg:block h-full bg-secondary" />
 
                                     {/* Hotel info */}
                                     <div className="flex flex-col font-Montserrat overflow-hidden text-start sm:text-left lg:text-right">
-                                        <h3 className="text-sm sm:text-base md:text-xl">
-                                            {item.title}
-                                        </h3>
+                                        <h3 className="text-sm sm:text-base md:text-xl">{item.title}</h3>
                                         <span className="text-secondary text-xs sm:text-sm md:text-base">
                                             {item.subtitle}
                                         </span>
                                     </div>
                                 </div>
-
                             ))}
                         </div>
 

@@ -96,8 +96,8 @@ const Navbar = ({ textColor = "black" }) => {
       <div className="w-full max-w-[90%]  sm:max-w-[90%] md:max-w-[85%] lg:max-w-[90%] xl:max-w-[80%] mx-auto px-1 md:px-4 lg:px-8 py-2 md:py-3 flex justify-between items-center">
 
         {/* LOGO */}
-        <Link to={'/'} className="text-base sm:text-lg md:text-xl font-bold whitespace-nowrap text-white">
-          <img src={`${WEB_URL}/${(scrolled || forceDarkLogo) ? darkLogo : logo}`} alt="logo" className="lg:w-40 md:w-32 sm:w-28 w-16 " />
+        <Link to={'/'} rel="preload" hre className="text-base sm:text-lg md:text-xl font-bold whitespace-nowrap text-white">
+          <img src={`${WEB_URL}/${(scrolled || forceDarkLogo) ? darkLogo : logo}`} decoding="sync" fetchPriority="high" loading="eager" alt="logo" className="lg:w-40 md:w-32 sm:w-28 w-16 " />
         </Link>
 
         {/* DESKTOP NAV */}

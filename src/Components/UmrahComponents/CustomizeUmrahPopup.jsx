@@ -157,7 +157,7 @@ export default function CustomizeUmrahPopup() {
     }, []);
 
     const inputClass =
-        "w-full bg-white text-black placeholder-black outline-none placeholder:text-lg";
+        "w-full bg-white text-black placeholder-black outline-none placeholder:text-lg ";
 
     const containerClass =
         "relative border gap-x-5 border-primary rounded-xl placeholder:font-Montserrat px-4 py-4 hover:border-secondary flex items-center focus-within:ring-1 focus-within:ring-primary-hover";
@@ -171,7 +171,7 @@ export default function CustomizeUmrahPopup() {
     return (
         <form
             onSubmit={handleSubmit}
-            className="bg-white px-4 py-6 rounded-xl shadow-md w-full font-Montserrat">
+            className="bg-white px-4 py-6 rounded-xl shadow-md w-full font-Montserrat placeholder:text-gray-300">
             <div className=" hidden gap-4 md:grid md:grid-cols-2 lg:grid-cols-4">
 
                 {/* Departure Airport */}

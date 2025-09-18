@@ -98,6 +98,22 @@
    @apply w-full;
  }
 
+ .custom-scrollbar>strong>a {
+   @apply relative inline-block text-primary hover:text-primary-hover no-underline;
+ }
+
+ .custom-scrollbar>p>a {
+   @apply relative inline-block text-primary hover:text-primary-hover no-underline;
+ }
+
+ .custom-scrollbar a::after {
+   content: "";
+   @apply absolute left-0 -bottom-[0.1px] h-[2px] w-0 bg-primary transition-all duration-300;
+ }
+
+ .custom-scrollbar a:hover::after {
+   @apply w-full;
+ }
  .custom-scrollbar ul {
   @apply list-disc pl-5;
   }

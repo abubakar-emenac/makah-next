@@ -270,7 +270,7 @@ export default function WhyChoose() {
         beforeChange: (_, next) => setCurrentSlide(next),
         arrows: false,
         adaptiveHeight: true,
-        autoplay: true,
+        autoplay: false,
         autoplaySpeed: 3000,
     };
 

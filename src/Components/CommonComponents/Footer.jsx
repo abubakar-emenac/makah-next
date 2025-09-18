@@ -358,9 +358,9 @@ export default function Footer() {
                     <div className="w-full max-w-[90%] mx-auto flex flex-row md:flex-row justify-between gap-6 px-3">
                         {/* Quick Links */}
                         <div className="w-full md:w-1/2">
-                            <h3 className="font-Montserrat text-primary text-2xl font-semibold mb-3">
+                            <span className="font-Montserrat text-primary text-2xl font-semibold mb-3">
                                 {footerItems.contents.link_1_heading || "Quick Links"}
-                            </h3>
+                            </span>
                             <div
                                 className="text-sm font-Montserrat"
                                 dangerouslySetInnerHTML={{ __html: footerItems.contents.link_1_content }}
@@ -369,9 +369,9 @@ export default function Footer() {
 
                         {/* Our Terms */}
                         <div className="w-full md:w-1/2">
-                            <h3 className="font-Montserrat text-primary text-2xl font-semibold mb-3">
+                            <span className="font-Montserrat text-primary text-2xl font-semibold mb-3">
                                 {footerItems.contents.link_2_heading || "Our Terms"}
-                            </h3>
+                            </span>
                             <div
                                 className="text-sm font-Montserrat"
                                 dangerouslySetInnerHTML={{ __html: footerItems.contents.link_2_content }}

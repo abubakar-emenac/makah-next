@@ -98,12 +98,12 @@ export default function PackageCardUmrah({ data }) {
                     <div className="flex flex-col items-center gap-1">
                         <img src={`${BASE_URL_SVG}/assets/svgs/kaba.svg`} alt="kaba" />
                         <span className="text-black font-semibold text-[13px] md:text-[12px] lg:text-[15px]">{makkah_night} Nights</span>
-                        <span className="text-[13px] md:text-[10px] lg:text-[12px]">{data?.makkah_hotel?.name}</span>
+                        <span className="text-[13px] md:text-[10px] lg:text-[12px] line-clamp-1">{data?.makkah_hotel?.name}</span>
                     </div>
                     <div className="flex flex-col items-center gap-1">
                         <img src={`${BASE_URL_SVG}/assets/svgs/madina.svg`} alt="madina" />
                         <span className="text-black font-semibold text-[13px] md:text-[12px] lg:text-[15px]">{madinah_night} Nights</span>
-                        <span className="text-[13px] md:text-[10px] lg:text-[12px]">{data?.madinah_hotel?.name}</span>
+                        <span className="text-[13px] md:text-[10px] lg:text-[12px] line-clamp-1">{data?.madinah_hotel?.name}</span>
                     </div>
                 </div>
 

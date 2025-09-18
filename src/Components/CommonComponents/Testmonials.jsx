@@ -544,22 +544,22 @@ const TestimonialCard = ({ avatar, name, location, rating, text }) => {
     const [showFullText, setShowFullText] = useState(false);
 
     const renderStars = (numStars) => {
-        return Array.from({ length: 5 }).map((_, i) => (
+        const starsToRender = Math.min(numStars, 5); // never more than 5
+
+        return Array.from({ length: starsToRender }).map((_, i) => (
             <img
                 key={i}
-                src={i < numStars
-                    ? `${BASE_URL_SVG}/assets/svgs/filledStar.svg`
-                    : `${BASE_URL_SVG}/assets/svgs/emptyStar.svg`
-                }
-                alt={i < numStars ? 'Filled Star' : 'Empty Star'}
+                src={`${BASE_URL_SVG}/assets/svgs/filledStar.svg`}
+                alt="Filled Star"
                 className="w-5 h-5"
                 loading="lazy"
             />
         ));
     };
 
-    const truncatedText = text.length > 150 && !showFullText
-        ? text.substring(0, 150) + '...'
+
+    const truncatedText = text.length > 120 && !showFullText
+        ? text.substring(0, 135) + '...'
         : text;
 
     return (

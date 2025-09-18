@@ -128,7 +128,7 @@ export default function VisaPage() {
 
             <HeroSection pageData={visaPageData} />
 
-            <div className="flex flex-col mt-8 w-full max-w-[75%] mx-auto px-4">
+            <div className="flex flex-col mt-8 w-full max-w-[94%] md:max-w-[75%] mx-auto px-4">
                 {/* Scroll Description */}
 
                 {/* Content Section */}
@@ -142,7 +142,11 @@ export default function VisaPage() {
                                         key={i}
                                         src={src}
                                         alt={`content-image-${i}`}
-                                        className="w-full sm:w-[48%] lg:w-[49%] object-cover rounded-lg shadow"
+                                        // className="w-full sm:w-[48%] lg:w-[49%] object-cover rounded-lg shadow"
+                                        className={`
+                                            w-full sm:w-[48%] lg:w-[49%] object-cover rounded-lg shadow
+                                            ${i > 0 ? 'hidden sm:block' : ''}
+                                          `}
                                     />
                                 ))}
                             </div>
@@ -158,8 +162,9 @@ export default function VisaPage() {
             {visaPageData?.scroll_description?.trim() && (
                 <ScrollDetail pageData={visaPageData} />
             )}
-
+            <div className="flex flex-col mt-8 w-full">
             <NeedHelp />
+            </div>
         </>
     );
 }

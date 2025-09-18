@@ -288,6 +288,7 @@ import "../../CSS/ScrollDetail.css"; // Ensure this path is correct
 export default function ScrollDetail({ pageData }) {
     const [topImageUrl, setTopImageUrl] = useState(null);
     const [filteredDescription, setFilteredDescription] = useState("");
+    const [topImageAlt, setTopImageAlt] = useState("");
 
     const decodeHtml = (html) => {
         const txt = document.createElement("textarea");
@@ -311,9 +312,14 @@ export default function ScrollDetail({ pageData }) {
         const doc = parser.parseFromString(decodedHtml, "text/html");
 
         const figureImg = doc.querySelector("figure img");
-        if (figureImg?.getAttribute("src")) {
-            setTopImageUrl(figureImg.getAttribute("src"));
-            figureImg.closest("figure")?.remove();
+        if (figureImg) {
+            const src = figureImg.getAttribute("src");
+            const alt = figureImg.getAttribute("alt") || ""; // ✅ get alt if exists
+            if (src) {
+                setTopImageUrl(src);
+                setTopImageAlt(alt);
+            }
+            figureImg.closest("figure")?.remove(); // remove figure
         }
 
         const cleanHtml = doc.body.innerHTML.trim();
@@ -331,7 +337,7 @@ export default function ScrollDetail({ pageData }) {
             <div className="w-full">
                 <img
                     src={topImageUrl || "/images/Layer 0.png"}
-                    alt="Content illustration"
+                    alt={topImageAlt || "Content illustration"}
                     className="w-full h-auto max-h-[250px] sm:max-h-[350px] object-cover"
                 />
             </div>

@@ -104,12 +104,12 @@ export default function PackageCard({ pkg, p_type }) {
                     <div className="flex flex-col items-center gap-1">
                         <img src={`${BASE_URL_SVG}/assets/svgs/kaba.svg`} alt="kaba" />
                         <span className="text-black font-semibold text-[13px] md:text-[12px] lg:text-[15px]">{makkah_night} Nights</span>
-                        <span className="text-[13px] md:text-[10px] lg:text-[12px]">{pkg?.makkah_hotel?.name}</span>
+                        <span className="text-[13px] md:text-[10px] lg:text-[12px] line-clamp-1">{pkg?.makkah_hotel?.name}</span>
                     </div>
                     <div className="flex flex-col items-center gap-1">
                         <img src={`${BASE_URL_SVG}/assets/svgs/madina.svg`} alt="madina" />
                         <span className="text-black font-semibold text-[13px] md:text-[12px] lg:text-[15px]">{madinah_night} Nights</span>
-                        <span className="text-[13px] md:text-[10px] lg:text-[12px]">{pkg?.madinah_hotel?.name}</span>
+                        <span className="text-[13px] md:text-[10px] lg:text-[12px] line-clamp-1">{pkg?.madinah_hotel?.name}</span>
                     </div>
                 </div>
 

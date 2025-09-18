@@ -83,6 +83,10 @@ html {
   scroll-behavior: smooth;
 }
 
+.parseData a {
+  color: var(--color-primary) !important;
+  text-decoration: none !important;
+}
 
 @layer utilities {
   strong {
@@ -100,6 +104,9 @@ html {
     .parseData a {
       @apply relative inline-block text-primary hover:text-primary-hover no-underline;
     }
+                                .parseData>span>a {
+                                  @apply relative inline-block text-primary hover:text-primary-hover no-underline;
+                                }
   
     .parseData a::after {
       content: "";

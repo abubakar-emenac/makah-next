@@ -103,7 +103,7 @@ export default function NeedHelp() {
                 </div>
 
                 {/* Image (only visible on desktop ≥1280px) */}
-                <div className="hidden xl:flex flex-shrink-0 justify-center lg:justify-end">
+                <div className="flex flex-shrink-0 justify-center justify-end">
                     <img
                         src={`${BASE_URL_SVG}/assets/svgs/Need Help.svg`}
                         alt="Need Help"

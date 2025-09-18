@@ -154,7 +154,7 @@ const BlogDetails = () => {
             {new Date(blog.publish_date).toLocaleDateString()} */}
           </p>
           <div
-            className="prose prose-lg font-Montserrat parseData"
+            className="prose prose-a:text-primary prose-lg font-Montserrat parseData"
             dangerouslySetInnerHTML={{ __html: blog.description }}
           />
         </main>

@@ -111,12 +111,12 @@ export default function SpecificCategoryHajj({ pageData }) {
                 </div>
 
                 {/* Package Grid */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-rows-2 lg:grid-cols-3 gap-6 mt-10">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-10">
                     {packages.slice(0, visibleCount).map((pkg) => (
                         <PackageCard key={pkg.id} pkg={pkg} p_type="hajj" />
                     ))}
-
                 </div>
+
 
                 {/* Load More Button */}
                 {visibleCount < packages.length && (

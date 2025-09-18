@@ -29,11 +29,11 @@ const UmrahStarSection = ({ packages = [], section }) => {
     };
 
     return (
-        <div className="w-full max-w-[95%] sm:max-w-[90%] lg:max-w-[85%] mx-auto mt-12">
+        <div className="w-full max-w-full sm:max-w-[90%] lg:max-w-[85%] mx-auto mt-12">
             {/* Header */}
             <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4 sm:gap-6">
                 {/* Title */}
-                <div className="w-full lg:w-[45%] flex flex-col justify-start">
+                <div className="w-full lg:w-[45%] ml-4 flex flex-col justify-start">
                     <img
                         src={`${BASE_URL_SVG}/assets/svgs/crown-black.svg`}
                         alt="Crown"
@@ -50,7 +50,7 @@ const UmrahStarSection = ({ packages = [], section }) => {
                 </div>
 
                 {/* View All + Arrows */}
-                <div className="w-full lg:w-[45%] flex flex-wrap sm:flex-nowrap justify-start lg:justify-end gap-2 sm:gap-3 items-center">
+                <div className="w-full lg:w-[45%] flex flex-wrap sm:flex-nowrap ml-4 justify-start lg:justify-end gap-2 sm:gap-3 items-center">
                     {section.button_text && section.button_link && (
                         <ViewAllButton
                             color="primary"
@@ -173,7 +173,7 @@ export default function UmrahPackageStar({ pageData }) {
     return (
         <div className="flex flex-col w-full">
             <HeroSection pageData={pageData} />
-            <div className="flex flex-col my-8 w-full max-w-[88%] mx-auto">
+            <div className="flex flex-col my-8 w-full max-w-full md:max-w-[88%] mx-auto">
                 {packagesData.map((section, idx) => (
                     <UmrahStarSection
                         key={idx}
