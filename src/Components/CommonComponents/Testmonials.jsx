@@ -558,8 +558,8 @@ const TestimonialCard = ({ avatar, name, location, rating, text }) => {
     };
 
 
-    const truncatedText = text.length > 120 && !showFullText
-        ? text.substring(0, 135) + '...'
+    const truncatedText = text.length > 140 && !showFullText
+        ? text.substring(0, 130) + '...'
         : text;
 
     return (

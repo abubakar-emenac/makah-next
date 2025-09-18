@@ -93,9 +93,9 @@ export default function NeedHelp() {
             <div className="w-full lg:w-1/2 flex flex-col lg:flex-row items-center lg:items-start gap-8">
                 {/* Text */}
                 <div className="flex flex-col text-start justify-start lg:text-right mb-6 lg:mb-0 lg:flex-1">
-                    <h2 className="text-[22px] sm:text-4xl md:text-5xl lg:text-6xl font-abril">
+                    <span className="text-[22px] sm:text-4xl md:text-5xl lg:text-6xl font-abril">
                         NEED HELP?
-                    </h2>
+                    </span>
                     <p className="text-[14px] sm:text-base md:text-lg font-Montserrat mt-3 leading-relaxed max-w-xl lg:ml-auto">
                         Makkah Travel is here to help you visit religious places
                         and make Umrah trips that connect with your soul.
@@ -103,7 +103,7 @@ export default function NeedHelp() {
                 </div>
 
                 {/* Image (only visible on desktop ≥1280px) */}
-                <div className="flex flex-shrink-0 justify-center justify-end">
+                <div className="flex flex-shrink-0  justify-end">
                     <img
                         src={`${BASE_URL_SVG}/assets/svgs/Need Help.svg`}
                         alt="Need Help"
