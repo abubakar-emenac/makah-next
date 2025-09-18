@@ -304,7 +304,7 @@ export default function UmrahDetail() {
                                     </div>
                                 </div>
                             ))}
-                        </div>
+                        </div>  
 
 
                         {/* Action Buttons */}
