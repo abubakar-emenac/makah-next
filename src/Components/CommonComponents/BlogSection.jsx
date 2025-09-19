@@ -68,9 +68,9 @@ export default function BlogSection() {
           alt="Crown"
           className="w-12 sm:w-16 md:w-20 mb-3 sm:mb-4"
         />
-        <h3 className="text-[26px] sm:text-[32px] md:text-[36px] font-abril leading-tight mb-3 sm:mb-4">
+        <h2 className="text-[26px] sm:text-[32px] md:text-[36px] font-abril leading-tight mb-3 sm:mb-4">
           {widgets[1]?.heading || "Our Latest News"}
-        </h3>
+        </h2>
         <p className="font-Montserrat text-[14px] sm:text-[15px] md:text-[16px] leading-relaxed text-black">
           {widgets[1]?.sub_heading ||
             "Makkah Travel is here to help you visit religious places and make Umrah trips that connect with your soul."}
@@ -119,9 +119,9 @@ export default function BlogSection() {
                   {item.publish_date}
                 </span> */}
                 <Link to={`blog/${item.page_url}`}>
-                  <h5 className="text-[18px] sm:text-[20px] md:text-[18px] lg:text-[22px] font-Montserrat font-semibold text-black hover:text-primary-hover transition-all">
+                  <h3 className="text-[18px] sm:text-[20px] md:text-[18px] lg:text-[22px] font-Montserrat font-semibold text-black hover:text-primary-hover transition-all">
                     {item.title}
-                  </h5>
+                  </h3>
                 </Link>
                 <Link
                   to={`blog/${item.page_url}`}
