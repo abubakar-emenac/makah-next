@@ -92,9 +92,9 @@ export default function BlogSection() {
             {firstBlog.publish_date}
           </span> */}
           <Link to={`/blog/${firstBlog.page_url}`}>
-            <h4 className="text-[22px] sm:text-[28px] md:text-[32px] font-abril leading-tight mt-2 mb-3 cursor-pointer">
+            <h3 className="text-[22px] sm:text-[28px] md:text-[32px] font-abril leading-tight mt-2 mb-3 cursor-pointer">
             {firstBlog.title}
-          </h4>
+            </h3>
           </Link>
           <p className="text-[14px] sm:text-[15px] md:text-[16px] font-Montserrat leading-relaxed text-black mb-4 line-clamp-3">
             {firstBlog.short_description || "Read more about this blog."}
