@@ -253,7 +253,7 @@ export default function HeroSection({ pageData }) {
                 {/* HEADINGS */}
                 <div
                     className="mt-8 sm:mt-12 md:mt-20 text-white font-abril leading-tight 
-                    text-[26px] sm:text-[34px] md:text-[44px] lg:text-[52px] 
+                    text-[26px] sm:text-[34px] md:text-[44px] lg:text-[44px] 
                     w-full sm:w-[95%] md:w-[85%] mx-auto"
                 >
                     {/* <h1>{pageData?.banner_heading}</h1> */}
