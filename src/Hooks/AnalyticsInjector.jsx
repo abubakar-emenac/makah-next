@@ -9,10 +9,8 @@ export default function AnalyticsInjector() {
                 if (res.data.status === 1) {
                     const settings = res.data.result.settings;
 
-                    // ✅ Google Analytics script injection
-                    const analyticsSetting = settings.find(
-                        setting => setting.ref_name.toLowerCase().includes('google analytics')
-                    );
+                    // ✅ Google Analytics script injection (ID = 4)
+                    const analyticsSetting = settings.find(s => s.id === 4);
 
                     if (analyticsSetting?.is_active && analyticsSetting?.contents) {
                         const parser = new DOMParser();
@@ -34,7 +32,7 @@ export default function AnalyticsInjector() {
                         });
                     }
 
-                    // ✅ Google Can Index meta tag injection (based on setting ID 18)
+                    // ✅ Google Can Index meta tag injection (ID = 18)
                     const indexSetting = settings.find(s => s.id === 18);
 
                     const shouldAddMetaTag =
