@@ -310,7 +310,7 @@ export default function ContactUS() {
                                     />
                                 </motion.div>
 
-                                <h3 className="text-lg font-semibold mt-5">{item.title}</h3>
+                                <p className="text-lg font-semibold mt-5">{item.title}</p>
 
                                 {item.title === "Our Social Media" ? (
                                     <div className="flex justify-center flex-wrap gap-4 mt-5">
@@ -366,7 +366,7 @@ export default function ContactUS() {
                                         />
                                     </motion.div>
 
-                                    <h3 className="text-lg font-semibold pt-20">{item.title}</h3>
+                                    <p className="text-lg font-semibold pt-20">{item.title}</p>
 
                                     {item.title === "Our Social Media" ? (
                                         <div className="flex justify-center flex-wrap gap-4 mt-5">
@@ -413,7 +413,7 @@ export default function ContactUS() {
                             alt="Crown"
                             className="w-12 sm:w-16 md:w-20 mb-3 sm:mb-4"
                         />
-                        <h3 className="text-xl sm:text-2xl">Feel Free to Drop us a Line Below</h3>
+                        <p className="text-xl sm:text-2xl">Feel Free to Drop us a Line Below</p>
                         <h1 className="font-abril text-2xl sm:text-3xl md:text-4xl">Get In Touch</h1>
 
                         <form onSubmit={handleSubmit}>
@@ -423,7 +423,11 @@ export default function ContactUS() {
                                     <input
                                         type="text"
                                         value={fullName}
-                                        onChange={(e) => setFullName(e.target.value)}
+                                        onChange={(e) => {
+                                            // allow only letters (a–z, A–Z) and spaces
+                                            const value = e.target.value.replace(/[^A-Za-z\s]/g, "");
+                                            setFullName(value);
+                                        }}
                                         placeholder="Full Name*"
                                         className="w-full bg-transparent outline-none text-sm sm:text-base py-2 placeholder:text-base"
                                     />
@@ -439,8 +443,13 @@ export default function ContactUS() {
                                     <input
                                         type="number"
                                         value={passengers}
+                                        inputMode="numeric"
                                         min={1}
-                                        onChange={(e) => setPassengers(e.target.value)}
+                                        onChange={(e) => {
+                                            // keep only digits
+                                            const value = e.target.value.replace(/[^0-9]/g, "");
+                                            setPassengers(value);
+                                        }}
                                         placeholder="Passengers*"
                                         className="w-full bg-transparent outline-none text-sm sm:text-base py-2 placeholder:text-base"
                                     />

@@ -90,7 +90,7 @@ export default function PackageCardUmrah({ data }) {
             />
 
             <div className="p-3 md:p-4 bg-white flex flex-col gap-3 border hover:border-primary border-black w-full h-full">
-                <span className="text-start font-Montserrat text-[18px] md:text-base lg:text-[18px] line-clamp-1 pl-2">
+                <span className="text-start font-Montserrat text-[18px] md:text-base lg:text-[18px] truncate line-clamp-1 pl-2">
                     {title}
                 </span>
                 {/* Hotel Info */}

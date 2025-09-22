@@ -98,14 +98,26 @@
    @apply w-full;
  }
 
- .custom-scrollbar>strong>a {
-   @apply relative inline-block text-primary hover:text-primary-hover no-underline;
- }
+/* ✅ Make sure every <a> inside .custom-scrollbar is styled */
+.custom-scrollbar a,
+.custom-scrollbar strong a,
+.custom-scrollbar a strong {
+  @apply relative inline-block text-primary hover:text-primary-hover no-underline;
+}
 
- .custom-scrollbar>p>a {
-   @apply relative inline-block text-primary hover:text-primary-hover no-underline;
- }
+/* ✅ Hover underline / arrow animation */
+.custom-scrollbar a::after,
+.custom-scrollbar strong a::after,
+.custom-scrollbar a strong::after {
+  content: "";
+  @apply absolute left-0 -bottom-[0.1px] h-[2px] w-0 bg-primary transition-all duration-300;
+}
 
+.custom-scrollbar a:hover::after,
+.custom-scrollbar strong a:hover::after,
+.custom-scrollbar a strong:hover::after {
+  @apply w-full;
+}
  .custom-scrollbar a::after {
    content: "";
    @apply absolute left-0 -bottom-[0.1px] h-[2px] w-0 bg-primary transition-all duration-300;

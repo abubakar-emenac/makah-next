@@ -323,9 +323,9 @@ export default function WhyChoose() {
                         alt="Crown"
                         className="w-20 sm:w-16 md:w-20 mb-3 sm:mb-4"
                     />
-                    <h2 className="text-[36px] font-abril leading-tight mb-2 break-words">
+                    <p className="text-[36px] font-abril leading-tight mb-2 break-words">
                         {sloganData.heading}
-                    </h2>
+                    </p>
                     <p className="font-Montserrat text-[16px] leading-relaxed text-black break-words">
                         {sloganData.subHeading}
                     </p>
@@ -366,7 +366,7 @@ export default function WhyChoose() {
                                             {/* Hover image (back) */}
                                             <img
                                                 src={hoverMatch.icon}
-                                                alt={`${item.heading} hover`}
+                                                alt={`${item.heading}`}
                                                 className="absolute inset-0 backface-hidden w-full h-full object-contain rotate-y-180"
                                             />
                                         </div>
@@ -382,9 +382,9 @@ export default function WhyChoose() {
                                             </div>
                                     )}
                                 </div>
-                                <h3 className="mt-1 text-[20px] font-abril leading-tight break-words min-h-[50px] flex items-center justify-center">
+                                <p className="mt-1 text-[20px] font-abril leading-tight break-words min-h-[50px] flex items-center justify-center">
                                     {item.heading}
-                                </h3>
+                                </p>
                                 <p className="mt-1 text-[15px] font-Montserrat leading-relaxed break-words min-h-[70px] flex items-center justify-center">
                                     {item.text}
                                 </p>
@@ -408,9 +408,9 @@ export default function WhyChoose() {
                                         className="w-20 sm:w-24 h-auto object-contain"
                                     />
                                 </div>
-                                <h3 className="text-[20px] font-abril leading-tight min-h-[50px] flex items-center justify-center">
+                                <p className="text-[20px] font-abril leading-tight min-h-[50px] flex items-center justify-center">
                                     {item.heading}
-                                </h3>
+                                </p>
                                 <p className="mt-2 text-[17px] font-Montserrat leading-relaxed min-h-[70px] flex items-center justify-center">
                                     {item.text}
                                 </p>

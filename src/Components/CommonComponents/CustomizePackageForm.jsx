@@ -255,6 +255,13 @@ const CustomizePackageForm = () => {
         setIsDistanceTypeOpen(false);
     };
 
+    // Allow only digits
+    const handleNumberInput = (e, setter) => {
+        const value = e.target.value.replace(/[^0-9]/g, ""); // remove everything except 0–9
+        setter(value);
+    };
+
+
     useEffect(() => {
         const handleClickOutside = (event) => {
             if (DistanceTypeRef.current && !DistanceTypeRef.current.contains(event.target)) {
@@ -519,6 +526,14 @@ const CustomizePackageForm = () => {
                                             <input
                                                 type="number"
                                                 value={makkahNights}
+                                                inputMode='numeric'
+                                                onKeyPress={(e) => {
+                                                    // Prevent non-numeric characters (except backspace, delete, tab)
+                                                    if (!/[0-9]/.test(e.key) &&
+                                                        !['Backspace', 'Delete', 'Tab', 'Enter'].includes(e.key)) {
+                                                        e.preventDefault();
+                                                    }
+                                                }}
                                                 onChange={(e) => setMakkahNights(e.target.value)}
                                                 placeholder="No Nights Makkah"
                                                 className="w-full outline-none font-Montserrat font-medium text-[14px] text-gray-600"
@@ -535,6 +550,14 @@ const CustomizePackageForm = () => {
                                                 type="number"
                                                 value={medinahNights}
                                                 onChange={(e) => setMedinahNights(e.target.value)}
+                                                inputMode='numeric'
+                                                onKeyPress={(e) => {
+                                                    // Prevent non-numeric characters (except backspace, delete, tab)
+                                                    if (!/[0-9]/.test(e.key) &&
+                                                        !['Backspace', 'Delete', 'Tab', 'Enter'].includes(e.key)) {
+                                                        e.preventDefault();
+                                                    }
+                                                }}
                                                 placeholder="No Nights Madinah"
                                                 className="w-full outline-none font-Montserrat font-medium text-[14px] text-gray-600"
                                                 min={1}
@@ -817,6 +840,19 @@ const CustomizePackageForm = () => {
                                         value={fullName}
                                         onChange={(e) => setFullName(e.target.value)}
                                         placeholder="Name*"
+                                        onKeyPress={(e) => {
+                                            // Prevent numbers and unwanted characters immediately
+                                            if (/[0-9!@#$%^&*()_+={}[\]|\\:";'<>?,./]/.test(e.key)) {
+                                                e.preventDefault();
+                                            }
+                                        }}
+                                        onPaste={(e) => {
+                                            // Handle paste events
+                                            e.preventDefault();
+                                            const paste = (e.clipboardData || window.clipboardData).getData('text');
+                                            const nameValue = paste.replace(/[^a-zA-Z\s'-]/g, '');
+                                            setFullName(nameValue);
+                                        }}
                                         className="w-full outline-none font-Montserrat font-medium text-[14px] text-gray-600"
                                     />
                                     <img
@@ -834,7 +870,15 @@ const CustomizePackageForm = () => {
                                     <input
                                         type="text"
                                         value={phone}
+                                        inputMode='numeric'
                                         onChange={(e) => setPhone(e.target.value)}
+                                        onKeyPress={(e) => {
+                                            // Prevent non-numeric characters (except backspace, delete, tab)
+                                            if (!/[0-9]/.test(e.key) &&
+                                                !['Backspace', 'Delete', 'Tab', 'Enter'].includes(e.key)) {
+                                                e.preventDefault();
+                                            }
+                                        }}
                                         placeholder="Phone No*"
                                         className="w-full outline-none font-Montserrat font-medium text-[14px] text-gray-600"
                                     />
@@ -853,6 +897,7 @@ const CustomizePackageForm = () => {
                                     <input
                                         type="email"
                                         value={email}
+                                        inputMode='email'
                                         onChange={(e) => setEmail(e.target.value)}
                                         placeholder="Email Address*"
                                         className="w-full outline-none font-Montserrat font-medium text-[14px] text-gray-600"
@@ -884,9 +929,17 @@ const CustomizePackageForm = () => {
                                 >
                                     <input
                                         type="text"
+                                        inputMode='numeric'
                                         value={captcha}
                                         onChange={(e) => setCaptcha(e.target.value)}
                                         placeholder="Answer"
+                                        onKeyPress={(e) => {
+                                            // Prevent non-numeric characters (except backspace, delete, tab)
+                                            if (!/[0-9]/.test(e.key) &&
+                                                !['Backspace', 'Delete', 'Tab', 'Enter'].includes(e.key)) {
+                                                e.preventDefault();
+                                            }
+                                        }}
                                         className="w-full outline-none font-Montserrat font-medium text-[14px] text-gray-600"
                                     />
                                     <span

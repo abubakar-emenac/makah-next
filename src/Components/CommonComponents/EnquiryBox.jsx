@@ -316,8 +316,16 @@ export default function EnquiryBox() {
                         type="number"
                         value={guestCount}
                         min={1}
-                        onChange={(e) => setGuestCount(e.target.value)}
+                        inputMode="numeric" // shows number keypad on mobile
                         placeholder="Guests"
+                        onChange={(e) => setGuestCount(e.target.value)}
+                        onKeyPress={(e) => {
+                            // Prevent non-numeric characters including e, E, +, -, .
+                            if (!/[0-9]/.test(e.key) &&
+                                !['Backspace', 'Delete', 'Tab', 'Enter', 'ArrowLeft', 'ArrowRight'].includes(e.key)) {
+                                e.preventDefault();
+                            }
+                        }}
                         className="w-full bg-transparent outline-none text-sm"
                     />
                     <img src={`${BASE_URL_SVG}/assets/svgs/Guests SVG.svg`} alt="guests" className="absolute right-4 bg-white top-1/2 transform -translate-y-1/2 w-5 h-5 pointer-events-none" />
@@ -343,7 +351,11 @@ export default function EnquiryBox() {
                     <input
                         type="text"
                         value={fullName}
-                        onChange={(e) => setFullName(e.target.value)}
+                        onChange={(e) => {
+                            // allow only letters (a–z, A–Z) and spaces
+                            const value = e.target.value.replace(/[^A-Za-z\s]/g, "");
+                            setFullName(value);
+                        }}
                         placeholder="Full Name"
                         className="w-full bg-transparent outline-none text-sm"
                     />
@@ -382,7 +394,10 @@ export default function EnquiryBox() {
                     <input
                         type="number"
                         value={captcha}
-                        onChange={(e) => setCaptcha(e.target.value)}
+                        onChange={(e) => {
+                            const value = e.target.value.replace(/\D/g, "");
+                            setCaptcha(value);
+                        }}
                         placeholder="Captcha"
                         className="w-full bg-transparent outline-none text-sm"
                     />

@@ -332,7 +332,7 @@ export default function ScrollDetail({ pageData }) {
     }
 
     return (
-        <div className="w-full max-w-[75%] mx-auto flex flex-col font-quicksand">
+        <div className="w-full lg:max-w-[75%] md:max-w-[85%] sm:max-w-[95%] max-w-[95%] mx-auto flex flex-col font-quicksand">
             {/* Top Image */}
             <div className="w-full">
                 <img
