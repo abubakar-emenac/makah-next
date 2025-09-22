@@ -170,12 +170,12 @@ const BlogDetails = () => {
                 to={`/blog/${item.page_url}`}
                 className="rounded-xl overflow-hidden hover:shadow-md transition block"
               >
-                <div className="w-full h-28 object-cover rounded-xl"
+                <div className="w-full h-28 object-fill rounded-xl"
                 >
                   <img
                     src={`${BASE_URL_IMG}/${item.image_url}`}
                     alt={item.image_alt || item.title}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-fill"
                   />
                 </div>
                 <div className="p-3">

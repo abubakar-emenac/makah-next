@@ -43,7 +43,7 @@ export default function ImageSlider({ images = [] }) {
                 <img
                     src={`${BASE_URL_SVG}/${images[currentIndex].url}`}
                     alt={images[currentIndex]?.alt || `Slide ${currentIndex + 1}`}
-                    className={`w-full h-full object-cover transition-opacity duration-500 ${fade ? "opacity-100" : "opacity-0"
+                    className={`w-full h-full object-fill transition-opacity duration-500 ${fade ? "opacity-100" : "opacity-0"
                         }`}
                 />
 

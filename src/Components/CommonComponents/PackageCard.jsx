@@ -92,7 +92,7 @@ export default function PackageCard({ pkg, p_type }) {
             <img
                 src={cleanedUrl}
                 alt={image_alt || "package_image"}
-                className="w-full h-[180px] md:h-[200px] lg:h-[215px] object-cover"
+                className="w-full h-[180px] md:h-[200px] lg:h-[215px] object-fill"
             />
 
             <div className="p-3 md:p-4 bg-white flex flex-col gap-3 border hover:border-primary border-black w-full h-full">

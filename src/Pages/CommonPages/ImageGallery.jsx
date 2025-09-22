@@ -49,7 +49,7 @@
 //                 <img
 //                     src={`${BASE_URL_SVG}/${images[currentIndex].url}`}
 //                     alt={images[currentIndex]?.alt || `Slide ${currentIndex + 1}`}
-//                     className="w-full h-full object-cover transition-transform duration-700 ease-in-out"
+//                     className="w-full h-full object-fill transition-transform duration-700 ease-in-out"
 //                 />
 
 //                 {/* Navigation Arrows */}
@@ -80,7 +80,7 @@
 //                                 key={actualIndex}
 //                                 src={`${BASE_URL_SVG}/${img.url}`}
 //                                 onClick={() => handleThumbnailClick(actualIndex)}
-//                                 className={`w-48 object-cover cursor-pointer border-2 transition-all duration-300 ${currentIndex === actualIndex
+//                                 className={`w-48 object-fill cursor-pointer border-2 transition-all duration-300 ${currentIndex === actualIndex
 //                                     ? 'border-primary ring-2 ring-primary'
 //                                     : 'border-white'
 //                                     }`}
@@ -165,7 +165,7 @@ export default function ImageGallery({ images = [] }) {
                 <img
                     src={`${BASE_URL_SVG}/${images[currentIndex].url}`}
                     alt={images[currentIndex]?.alt || `Slide ${currentIndex + 1}`}
-                    className="w-full h-full object-cover transition-transform duration-700 ease-in-out"
+                    className="w-full h-full object-fill transition-transform duration-700 ease-in-out"
                 />
 
                 {/* Navigation Arrows */}
@@ -197,7 +197,7 @@ export default function ImageGallery({ images = [] }) {
                                 key={actualIndex}
                                 src={`${BASE_URL_SVG}/${img.url}`}
                                 onClick={() => handleThumbnailClick(actualIndex)}
-                                className={`w-20 sm:w-28 md:w-32 lg:w-36 xl:w-40 object-cover cursor-pointer border-2 transition-all duration-300 ${currentIndex === actualIndex
+                                className={`w-20 sm:w-28 md:w-32 lg:w-36 xl:w-40 object-fill cursor-pointer border-2 transition-all duration-300 ${currentIndex === actualIndex
                                     ? "border-secondary ring-2 ring-secondary"
                                     : "border-white"
                                     }`}

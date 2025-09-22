@@ -27,7 +27,7 @@
 //                     src="/images/iStock-872424158.png"
 //                     alt="Customize Umrah Package"
 //                     className="
-//             w-full h-full object-cover
+//             w-full h-full object-fill
 //             transition-transform duration-300
 //             hover:scale-105
 //             object-center
@@ -103,7 +103,7 @@
 //                 <img
 //                     src={cleanedUrl}
 //                     alt="Customize Umrah Package"
-//                     className="w-full h-full object-cover transition-transform duration-300 hover:scale-105 object-center"
+//                     className="w-full h-full object-fill transition-transform duration-300 hover:scale-105 object-center"
 //                     loading="lazy"
 //                 />
 //             </div>
@@ -161,8 +161,8 @@ export default function CustomizeYourPackage({ pageData }) {
             ">
                 <img
                     src={cleanedUrl}
-                    alt="Customize Umrah Package"
-                    className="w-full h-full object-cover transition-transform duration-300 hover:scale-105 object-center"
+                    alt={pageData.simple_image_alt}
+                    className="w-full h-full object-fill transition-transform duration-300 hover:scale-105 object-center"
                     loading="lazy"
                 />
             </div>

@@ -543,7 +543,7 @@ export default function ContactUS() {
                         <img
                             src={`${BASE_URL_IMG}/${contactData.simple_image_url}`}
                             alt={contactData.simple_image_alt}
-                            className="w-[424px] h-[308px] max-w-md object-cover rounded-lg"
+                            className="w-[424px] h-[308px] max-w-md object-fill rounded-lg"
                         />
                     </div>
 

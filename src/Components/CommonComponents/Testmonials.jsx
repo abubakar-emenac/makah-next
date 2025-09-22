@@ -31,7 +31,7 @@
 //                 <img
 //                     src={avatar}
 //                     alt={name}
-//                     className="w-24 h-24 rounded-full object-cover border-4 border-white shadow-lg"
+//                     className="w-24 h-24 rounded-full object-fill border-4 border-white shadow-lg"
 //                     onError={(e) => { e.target.onerror = null; e.target.src = "/svgs/user.svg"; }}
 //                 />
 //             </div>
@@ -224,7 +224,7 @@
 //                 <img
 //                     src={avatar}
 //                     alt={name}
-//                     className="w-24 h-24 rounded-full object-cover border-4 border-white shadow-lg"
+//                     className="w-24 h-24 rounded-full object-fill border-4 border-white shadow-lg"
 //                     onError={(e) => {
 //                         e.target.onerror = null;
 //                         e.target.src = '/svgs/user.svg';
@@ -406,7 +406,7 @@
 //                 <img
 //                     src={`${BASE_URL_SVG}/${avatar}`}
 //                     alt={name}
-//                     className="w-24 h-24 rounded-full object-cover border-4 border-white shadow-lg"
+//                     className="w-24 h-24 rounded-full object-fill border-4 border-white shadow-lg"
 //                 />
 //             </div>
 //             <div className="mt-16 text-start font-Montserrat text-black leading-relaxed">
@@ -570,7 +570,7 @@ const TestimonialCard = ({ avatar, name, location, rating, text }) => {
                     <img
                         src={avatar ? `${BASE_URL_IMG}/${avatar}` : `${BASE_URL_SVG}/assets/svgs/user.svg`}
                         alt={name}
-                        className="w-24 h-24 rounded-full object-cover hover:border-black hover:border-4  shadow-lg"
+                        className="w-24 h-24 rounded-full object-fill hover:border-black hover:border-4  shadow-lg"
                     />
                 </div>
 

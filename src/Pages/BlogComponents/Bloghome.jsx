@@ -190,7 +190,7 @@ const BlogHome = () => {
               <img
                 src={`${BASE_URL_IMG}/${blog.image_url}`}
                 alt={blog.image_alt || blog.title}
-                className="w-full h-56 object-cover rounded-xl"
+                className="w-full h-56 object-fill rounded-xl"
               />
               <div className="p-5">
                 <h3 className="text-xl font-Montserrat font-semibold mb-2">{blog.title}</h3>
@@ -232,7 +232,7 @@ const BlogHome = () => {
               <img
                 src={`${BASE_URL_IMG}/${blog.image_url}`}
                 alt={blog.image_alt || blog.title}
-                className="w-full h-56 object-cover rounded-xl"
+                className="w-full h-56 object-fill rounded-xl"
               />
               <div className="p-5">
                 <h3 className="text-xl font-Montserrat font-semibold mb-2">{blog.title}</h3>

@@ -71,13 +71,13 @@
 //                     <img
 //                         src={extractedImageUrl}
 //                         alt="Umrah"
-//                         className="w-full h-auto max-h-[500px] object-cover rounded-xl shadow-lg"
+//                         className="w-full h-auto max-h-[500px] object-fill rounded-xl shadow-lg"
 //                     />
 //                 ) : (
 //                         <img
 //                             src="/images/Layer 0.png"
 //                             alt="Fallback Umrah"
-//                             className="w-full h-auto max-h-[500px] object-cover rounded-xl shadow-lg"
+//                             className="w-full h-auto max-h-[500px] object-fill rounded-xl shadow-lg"
 //                         />
 //                 )}
 //             </div>
@@ -185,7 +185,7 @@
 //                 <img
 //                     src={topImageUrl || "/images/Layer 0.png"}
 //                     alt="Content illustration"
-//                     className="w-full h-auto max-h-[250px] sm:max-h-[350px] object-cover"
+//                     className="w-full h-auto max-h-[250px] sm:max-h-[350px] object-fill"
 //                 />
 //             </div>
 
@@ -251,7 +251,7 @@
 //                 <img
 //                     src={topImageUrl || "/images/Layer 0.png"}
 //                     alt="Content illustration"
-//                     className="w-full h-auto max-h-[250px] sm:max-h-[350px] object-cover"
+//                     className="w-full h-auto max-h-[250px] sm:max-h-[350px] object-fill"
 //                 />
 //             </div>
 
@@ -338,7 +338,7 @@ export default function ScrollDetail({ pageData }) {
                 <img
                     src={topImageUrl || "/images/Layer 0.png"}
                     alt={topImageAlt || "Content illustration"}
-                    className="w-full h-auto max-h-[250px] sm:max-h-[350px] object-cover"
+                    className="w-full h-auto max-h-[250px] sm:max-h-[350px] object-fill"
                 />
             </div>
 

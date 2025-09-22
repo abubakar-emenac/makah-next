@@ -85,7 +85,7 @@ export default function BlogSection() {
             <img
               src={`${BASE_URL_IMG}/${firstBlog.image_url}`}
               alt={firstBlog.image_alt || firstBlog.title}
-              className="w-full h-64 sm:h-72 md:h-80 lg:h-[360px] object-cover rounded-md"
+              className="w-full h-64 sm:h-72 md:h-80 lg:h-[360px] object-fill rounded-md"
             />
           </Link>
           {/* <span className="text-black mt-4 block font-Montserrat text-[14px] sm:text-[15px] md:text-[16px]">

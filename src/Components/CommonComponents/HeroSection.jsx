@@ -242,7 +242,7 @@ export default function HeroSection({ pageData }) {
             className="flex flex-col w-full"
             style={{
                 backgroundImage: `url(${BASE_URL_IMG}/${pageData?.image_url})`,
-                backgroundSize: 'cover',
+                backgroundSize: 'fill',
                 backgroundPosition: 'center',
             }}
         >

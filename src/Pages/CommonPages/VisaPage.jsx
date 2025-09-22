@@ -142,9 +142,9 @@ export default function VisaPage() {
                                         key={i}
                                         src={src}
                                         alt={`content-image-${i}`}
-                                        // className="w-full sm:w-[48%] lg:w-[49%] object-cover rounded-lg shadow"
+                                        // className="w-full sm:w-[48%] lg:w-[49%] object-fill rounded-lg shadow"
                                         className={`
-                                            w-full sm:w-[48%] lg:w-[49%] object-cover rounded-lg shadow
+                                            w-full sm:w-[48%] lg:w-[49%] object-fill rounded-lg shadow
                                             ${i > 0 ? 'hidden sm:block' : ''}
                                           `}
                                     />
