@@ -9,7 +9,10 @@ import toast from "react-hot-toast";
 import axios from 'axios';
 import { Helmet } from 'react-helmet';
 
+import { useNavigate } from 'react-router-dom';
+
 const CustomizePackageForm = () => {
+    const navigate = useNavigate()
 
     const staticOrigins = [
 
@@ -377,6 +380,7 @@ const CustomizePackageForm = () => {
             setIsLoading(true);
             const res = await axios.post(endpoints.sendEmail, payload);
             if (res.status === 200) {
+                navigate("/thank-you")
                 toast.success("Form submitted Successfully");
                 generateCaptcha();
                 setFullName("");

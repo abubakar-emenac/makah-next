@@ -1,3 +1,4 @@
+import { useEffect } from "react"
 import Home from "./Pages/CommonPages/HomePage"
 import Footer from "./Components/CommonComponents/Footer"
 import { Routes, Route, Navigate } from "react-router-dom"
@@ -40,14 +41,20 @@ function App() {
   useFaviconInjector();
 
   // Initialize Lenis
-  const lenis = new Lenis({
-    autoRaf: true,
-  });
+  useEffect(() => {
+    const lenis = new Lenis({
+      autoRaf: true, // automatically hooks into requestAnimationFrame
+    });
 
-  // Listen for the scroll event and log the event data
-  lenis.on('scroll', (e) => {
-    console.log(e);
-  });
+    // optional: listen for scroll
+    lenis.on("scroll", (e) => {
+      console.log("Lenis scroll:", e);
+    });
+
+    return () => {
+      lenis.destroy(); // ✅ cleanup on unmount
+    };
+  }, []); // run only once
 
   return (
     <>

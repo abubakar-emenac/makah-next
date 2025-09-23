@@ -2,6 +2,7 @@ import React from 'react';
 import Navbar from './NavBar';
 import ViewAllButton from './ViewAllButton';
 import { BASE_URL_IMG } from '../../Helpers/apiEndpoints';
+import parse from 'html-react-parser'
 
 export default function HeroSection({ pageData }) {
     React.useEffect(() => {
@@ -30,7 +31,7 @@ export default function HeroSection({ pageData }) {
             className="flex flex-col w-full h-[300px] sm:h-[350px] md:h-[400px] lg:h-[450px] relative"
             style={{
                 backgroundImage: `url(${BASE_URL_IMG}/${pageData?.image_url})`,
-                backgroundSize: 'cover',
+                backgroundSize: 'center',
                 backgroundPosition: 'center',
             }}
         >
@@ -43,7 +44,12 @@ export default function HeroSection({ pageData }) {
                     text-[22px] sm:text-[30px] md:text-[38px] lg:text-[44px] 
                     drop-shadow-lg"
                 >
-                    {pageData?.banner_heading}
+                    <h1
+                        className='ml-10 md:ml-24'
+                        dangerouslySetInnerHTML={{
+                            __html: pageData?.banner_heading
+                        }}
+                    />
                 </h1>
 
                 {/* SUBHEADING */}

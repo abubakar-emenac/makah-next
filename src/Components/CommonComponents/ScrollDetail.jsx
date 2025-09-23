@@ -283,6 +283,7 @@
 
 import React, { useEffect, useState } from "react";
 import parse from "html-react-parser";
+import Lenis from "lenis";
 import "../../CSS/ScrollDetail.css"; // Ensure this path is correct
 
 export default function ScrollDetail({ pageData }) {
@@ -300,6 +301,7 @@ export default function ScrollDetail({ pageData }) {
         const text = html.replace(/<[^>]*>/g, "").replace(/&nbsp;/g, "").trim();
         return text.length > 0;
     };
+
 
     useEffect(() => {
         if (!pageData) return;
@@ -343,7 +345,7 @@ export default function ScrollDetail({ pageData }) {
             </div>
 
             {/* Scrollable description */}
-            <div className="w-full sm:px-6 md:px-1 mt-6 h-[500px] max-h-full">
+            <div className="w-full sm:px-6 md:px-1 mt-6 h-[500px] max-h-full" data-lenis-prevent>
                 <div
                     className="custom-scrollbar prose font-Montserrat p-3"
                 >

@@ -96,8 +96,29 @@ const Navbar = ({ textColor = "black" }) => {
       <div className="w-full max-w-[90%]  sm:max-w-[90%] md:max-w-[85%] lg:max-w-[90%] xl:max-w-[80%] mx-auto px-1 md:px-4 lg:px-8 py-2 md:py-3 flex justify-between items-center">
 
         {/* LOGO */}
-        <Link to={'/'} rel="preload" hre className="text-base sm:text-lg md:text-xl font-bold whitespace-nowrap text-white">
+        {/* <Link to={'/'} rel="preload" hre className="text-base sm:text-lg md:text-xl font-bold whitespace-nowrap text-white">
           <img src={`${WEB_URL}/${(scrolled || forceDarkLogo) ? darkLogo : logo}`} decoding="sync" fetchPriority="high" loading="eager" alt="logo" className="lg:w-40 md:w-32 sm:w-28 w-16 " />
+        </Link> */}
+        <Link to="/" className="flex items-center">
+          {!logo && !darkLogo ? (
+            // Fallback image (SEO friendly, no blink)
+            <img
+              src="/logo.png"
+              alt="Makkah Travel"
+              loading="eager"
+              fetchPriority="high"
+              className="lg:w-40 md:w-32 sm:w-28 w-16"
+            />
+          ) : (
+            <img
+              src={`${WEB_URL}/${scrolled || forceDarkLogo ? darkLogo : logo}`}
+              alt="Company Logo"
+              className="lg:w-40 md:w-32 sm:w-28 w-16"
+              loading="eager"
+              fetchPriority="high"
+              decoding="sync"
+            />
+          )}
         </Link>
 
         {/* DESKTOP NAV */}

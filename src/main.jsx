@@ -5,9 +5,9 @@ import { BrowserRouter } from "react-router-dom";
 import { GlobalDataProvider } from './Helpers/GlobalDataProvider.jsx';
 
 createRoot(document.getElementById('root')).render(
-  <BrowserRouter>
     <GlobalDataProvider>
+    <BrowserRouter>
       <App />
-    </GlobalDataProvider>
-  </BrowserRouter>
+    </BrowserRouter>
+  </GlobalDataProvider>
 )

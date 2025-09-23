@@ -441,8 +441,8 @@ export default function HajjDetail() {
                                 ))}
                             </div>
 
-                            <h2 className="text-xl sm:text-2xl lg:text-3xl font-abril text-end">
-                                {packageData?.makkah_hotel?.name}</h2>
+                            <h3 className="text-xl sm:text-2xl lg:text-3xl font-abril text-end">
+                                {packageData?.makkah_hotel?.name}</h3>
                             <span className="text-secondary font-Montserrat text-end">Hotel in Makkah</span>
                             <div className="font-Montserrat py-1.5 text-end text-sm sm:text-base">
                                 <span
@@ -489,8 +489,8 @@ export default function HajjDetail() {
                                     />
                                 ))}
                             </div>
-                            <h2 className="text-xl sm:text-2xl lg:text-3xl font-abril text-start">
-                                {packageData?.madinah_hotel?.name}</h2>
+                            <h3 className="text-xl sm:text-2xl lg:text-3xl font-abril text-start">
+                                {packageData?.madinah_hotel?.name}</h3>
                             <span className="text-secondary font-Montserrat text-start">Hotel in Madinah</span>
                             <div className="font-Montserrat py-1.5 text-end text-sm sm:text-base">
                                 <span

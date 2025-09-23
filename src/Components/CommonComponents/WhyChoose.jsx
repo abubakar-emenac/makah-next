@@ -323,9 +323,9 @@ export default function WhyChoose() {
                         alt="Crown"
                         className="w-20 sm:w-16 md:w-20 mb-3 sm:mb-4"
                     />
-                    <p className="text-[36px] font-abril leading-tight mb-2 break-words">
+                    <h2 className="text-[36px] font-abril leading-tight mb-2 break-words">
                         {sloganData.heading}
-                    </p>
+                    </h2>
                     <p className="font-Montserrat text-[16px] leading-relaxed text-black break-words">
                         {sloganData.subHeading}
                     </p>

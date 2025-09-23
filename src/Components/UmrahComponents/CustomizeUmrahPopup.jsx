@@ -26,11 +26,11 @@ export default function CustomizeUmrahPopup() {
     const [captcha, setCaptcha] = useState('');
     const [message, setMessage] = useState('');
     const [departureAirport, setDepartureAirport] = useState('');
-    const [currentStep, setCurrentStep] = useState(1);
-    const [showAirportList, setShowAirportList] = useState(false);
+    const [showAirportList, setShowAirportList] = useState('');
     const [airportList, setAirportList] = useState([]);
     const [isOpen, setIsOpen] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
+    const [currentStep, setCurrentStep] = useState(1);
     const datePickerRef = useRef(null);
     const airportRef = useRef(null);
 
@@ -97,6 +97,7 @@ export default function CustomizeUmrahPopup() {
             contact_detail: {
                 subject: "Booking Umrah Package Inquiry",
                 message,
+                user_ip: userIp,
                 date: departureDate,
                 Departure_Airport: departureAirport,
                 Makkah_Nights: makkahNights,
@@ -107,7 +108,6 @@ export default function CustomizeUmrahPopup() {
                 Distance: distance,
                 passenger: passengers,
                 Message: message,
-                user_ip: userIp,
                 page_url: window.location.href, // full URL
             },
         };
@@ -116,8 +116,8 @@ export default function CustomizeUmrahPopup() {
             setIsLoading(true);
             const res = await axios.post(endpoints.sendEmail, payload);
             if (res.status === 200) {
-                navigate("/thank-you")
                 toast.success("Form submitted successfully ✅");
+                navigate("/thank-you")
                 generateCaptcha();
                 // reset form (optional)
                 setFullName("");
@@ -156,8 +156,32 @@ export default function CustomizeUmrahPopup() {
         fetchAirports();
     }, []);
 
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (airportRef.current && !airportRef.current.contains(event.target)) {
+                setShowAirportList(false);
+            }
+        };
+
+        // Only add event listener when dropdown is open
+        if (showAirportList) {
+            // Use a small delay to prevent immediate closure
+            setTimeout(() => {
+                document.addEventListener("mousedown", handleClickOutside);
+            }, 100);
+        }
+
+        return () => document.removeEventListener("mousedown", handleClickOutside);
+    }, [showAirportList]); // Changed dependency to showAirportList
+
+    // FIXED: Airport selection handler
+    const handleAirportSelect = (airportName) => {
+        setDepartureAirport(airportName);
+        setShowAirportList(false);
+    };
+
     const inputClass =
-        "w-full bg-white text-black placeholder-black outline-none placeholder:text-lg ";
+        "w-full bg-white text-black placeholder-black outline-none placeholder:text-lg";
 
     const containerClass =
         "relative border gap-x-5 border-primary rounded-xl placeholder:font-Montserrat px-4 py-4 hover:border-secondary flex items-center focus-within:ring-1 focus-within:ring-primary-hover";
@@ -171,17 +195,17 @@ export default function CustomizeUmrahPopup() {
     return (
         <form
             onSubmit={handleSubmit}
-            className="bg-white px-4 py-6 rounded-xl shadow-md w-full font-Montserrat placeholder:text-gray-300">
+            className="bg-white px-4 py-6 rounded-xl shadow-md w-full font-Montserrat">
             <div className=" hidden gap-4 md:grid md:grid-cols-2 lg:grid-cols-4">
 
                 {/* Departure Airport */}
-                <div className="relative col-span-1" ref={airportRef} >
+                <div className="relative col-span-1" ref={airportRef}>
                     <div
                         className={`${containerClass}`}
+                        onClick={() => setShowAirportList(true)}
                     >
                         <input
                             type="text"
-                            onClick={() => setShowAirportList(true)}
                             value={departureAirport}
                             onChange={(e) => setDepartureAirport(e.target.value)}
                             placeholder="Departure Airport"
@@ -208,10 +232,15 @@ export default function CustomizeUmrahPopup() {
                                         <li
                                             key={airport.id}
                                             className="px-3 py-2 cursor-pointer hover:bg-gray-300"
-                                            onClick={(e) => {
-                                                e.stopPropagation();
+                                            onClick={() => {
                                                 setDepartureAirport(airport.name);
                                                 setShowAirportList(false);
+                                            }}
+                                            onMouseDown={(e) => {
+                                                // Use onMouseDown instead of onClick to prevent event conflicts
+                                                e.preventDefault();
+                                                e.stopPropagation();
+                                                handleAirportSelect(airport.name);
                                             }}
                                         >
                                             {airport.name}
@@ -256,6 +285,13 @@ export default function CustomizeUmrahPopup() {
                     <input
                         type="number"
                         value={makkahNights}
+                        onKeyPress={(e) => {
+                            // Prevent non-numeric characters (except backspace, delete, tab)
+                            if (!/[0-9]/.test(e.key) &&
+                                !['Backspace', 'Delete', 'Tab', 'Enter'].includes(e.key)) {
+                                e.preventDefault();
+                            }
+                        }}
                         onChange={(e) => setMakkahNights(e.target.value)}
                         placeholder="No.Nights Makkah"
                         className={inputClass}
@@ -268,6 +304,13 @@ export default function CustomizeUmrahPopup() {
                     <input
                         type="number"
                         value={medinahNights}
+                        onKeyPress={(e) => {
+                            // Prevent non-numeric characters (except backspace, delete, tab)
+                            if (!/[0-9]/.test(e.key) &&
+                                !['Backspace', 'Delete', 'Tab', 'Enter'].includes(e.key)) {
+                                e.preventDefault();
+                            }
+                        }}
                         onChange={(e) => setMedinahNights(e.target.value)}
                         placeholder="No.Nights Madinah"
                         className={inputClass}
@@ -351,6 +394,12 @@ export default function CustomizeUmrahPopup() {
                     <input
                         type="text"
                         value={fullName}
+                        onKeyPress={(e) => {
+                            // Prevent numbers and unwanted characters immediately
+                            if (/[0-9!@#$%^&*()_+={}[\]|\\:";'<>?,./]/.test(e.key)) {
+                                e.preventDefault();
+                            }
+                        }}
                         onChange={(e) => setFullName(e.target.value)}
                         placeholder="Name*"
                         className={inputClass}
@@ -367,6 +416,13 @@ export default function CustomizeUmrahPopup() {
                     <input
                         type="text"
                         value={phone}
+                        onKeyPress={(e) => {
+                            // Prevent non-numeric characters (except backspace, delete, tab)
+                            if (!/[0-9]/.test(e.key) &&
+                                !['Backspace', 'Delete', 'Tab', 'Enter'].includes(e.key)) {
+                                e.preventDefault();
+                            }
+                        }}
                         onChange={(e) => setPhone(e.target.value)}
                         placeholder="Phone.No*"
                         className={inputClass}
@@ -521,6 +577,7 @@ export default function CustomizeUmrahPopup() {
                                 type="number"
                                 placeholder="No.Nights Makkah"
                                 value={makkahNights}
+                                inputMode='numeric'
                                 onChange={(e) => setMakkahNights(e.target.value)}
                                 className={`${inputClass} border border-gray-300 rounded-lg px-4 py-3 mb-4 w-full`}
                                 min={1}
@@ -529,6 +586,7 @@ export default function CustomizeUmrahPopup() {
                                 type="number"
                                 placeholder="No.Nights Madinah"
                                 value={medinahNights}
+                                inputMode='numeric'
                                 onChange={(e) => setMedinahNights(e.target.value)}
                                 className={`${inputClass} border border-gray-300 rounded-lg px-4 py-3 mb-4 w-full`}
                                 min={1}
@@ -577,8 +635,8 @@ export default function CustomizeUmrahPopup() {
                     {currentStep === 4 && (
                         <>
                             <input type="text" placeholder="Name*" value={fullName} onChange={(e) => setFullName(e.target.value)} className={`${inputClass} border border-gray-300 rounded-lg px-4 py-3 mb-4 w-full`} />
-                            <input type="text" placeholder="Phone.No*" value={phone} onChange={(e) => setPhone(e.target.value)} className={`${inputClass} border border-gray-300 rounded-lg px-4 py-3 mb-4 w-full`} />
-                            <input type="email" placeholder="Email Address*" value={email} onChange={(e) => setEmail(e.target.value)} className={`${inputClass} border border-gray-300 rounded-lg px-4 py-3 mb-4 w-full`} />
+                            <input type="text" placeholder="Phone.No*" value={phone} onChange={(e) => setPhone(e.target.value)} inputMode='numeric' className={`${inputClass} border border-gray-300 rounded-lg px-4 py-3 mb-4 w-full`} />
+                            <input type="email" placeholder="Email Address*" value={email} onChange={(e) => setEmail(e.target.value)} inputMode='email' className={`${inputClass} border border-gray-300 rounded-lg px-4 py-3 mb-4 w-full`} />
                         </>
                     )}
 
@@ -587,7 +645,7 @@ export default function CustomizeUmrahPopup() {
                         <>
                             <input type="text" placeholder="Type Your Message..." value={message} onChange={(e) => setMessage(e.target.value)} className={`${inputClass} border border-gray-300 rounded-lg px-4 py-3 mb-4 w-full`} />
                             <div className="relative mb-4">
-                                <input type="text" placeholder="Captcha Answer" value={captcha} onChange={(e) => setCaptcha(e.target.value)} className={`${inputClass} border border-gray-300 rounded-lg px-4 py-3 w-full`} />
+                                <input type="text" placeholder="Captcha Answer" value={captcha} onChange={(e) => setCaptcha(e.target.value)} inputMode='numeric' className={`${inputClass} border border-gray-300 rounded-lg px-4 py-3 w-full`} />
                                 <span className="absolute right-3 top-1/2 -translate-y-1/2 text-secondary font-semibold">{num1}+{num2}</span>
                             </div>
                         </>

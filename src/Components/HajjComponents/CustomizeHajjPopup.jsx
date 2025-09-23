@@ -285,6 +285,13 @@ export default function CustomizeHajjPopup() {
                     <input
                         type="number"
                         value={makkahNights}
+                        onKeyPress={(e) => {
+                            // Prevent non-numeric characters (except backspace, delete, tab)
+                            if (!/[0-9]/.test(e.key) &&
+                                !['Backspace', 'Delete', 'Tab', 'Enter'].includes(e.key)) {
+                                e.preventDefault();
+                            }
+                        }}
                         onChange={(e) => setMakkahNights(e.target.value)}
                         placeholder="No.Nights Makkah"
                         className={inputClass}
@@ -297,6 +304,13 @@ export default function CustomizeHajjPopup() {
                     <input
                         type="number"
                         value={medinahNights}
+                        onKeyPress={(e) => {
+                            // Prevent non-numeric characters (except backspace, delete, tab)
+                            if (!/[0-9]/.test(e.key) &&
+                                !['Backspace', 'Delete', 'Tab', 'Enter'].includes(e.key)) {
+                                e.preventDefault();
+                            }
+                        }}
                         onChange={(e) => setMedinahNights(e.target.value)}
                         placeholder="No.Nights Madinah"
                         className={inputClass}
@@ -380,6 +394,12 @@ export default function CustomizeHajjPopup() {
                     <input
                         type="text"
                         value={fullName}
+                        onKeyPress={(e) => {
+                            // Prevent numbers and unwanted characters immediately
+                            if (/[0-9!@#$%^&*()_+={}[\]|\\:";'<>?,./]/.test(e.key)) {
+                                e.preventDefault();
+                            }
+                        }}
                         onChange={(e) => setFullName(e.target.value)}
                         placeholder="Name*"
                         className={inputClass}
@@ -396,6 +416,13 @@ export default function CustomizeHajjPopup() {
                     <input
                         type="text"
                         value={phone}
+                        onKeyPress={(e) => {
+                            // Prevent non-numeric characters (except backspace, delete, tab)
+                            if (!/[0-9]/.test(e.key) &&
+                                !['Backspace', 'Delete', 'Tab', 'Enter'].includes(e.key)) {
+                                e.preventDefault();
+                            }
+                        }}
                         onChange={(e) => setPhone(e.target.value)}
                         placeholder="Phone.No*"
                         className={inputClass}
@@ -550,6 +577,7 @@ export default function CustomizeHajjPopup() {
                                 type="number"
                                 placeholder="No.Nights Makkah"
                                 value={makkahNights}
+                                inputMode='numeric'
                                 onChange={(e) => setMakkahNights(e.target.value)}
                                 className={`${inputClass} border border-gray-300 rounded-lg px-4 py-3 mb-4 w-full`}
                                 min={1}
@@ -558,6 +586,7 @@ export default function CustomizeHajjPopup() {
                                 type="number"
                                 placeholder="No.Nights Madinah"
                                 value={medinahNights}
+                                inputMode='numeric'
                                 onChange={(e) => setMedinahNights(e.target.value)}
                                 className={`${inputClass} border border-gray-300 rounded-lg px-4 py-3 mb-4 w-full`}
                                 min={1}
@@ -606,8 +635,8 @@ export default function CustomizeHajjPopup() {
                     {currentStep === 4 && (
                         <>
                             <input type="text" placeholder="Name*" value={fullName} onChange={(e) => setFullName(e.target.value)} className={`${inputClass} border border-gray-300 rounded-lg px-4 py-3 mb-4 w-full`} />
-                            <input type="text" placeholder="Phone.No*" value={phone} onChange={(e) => setPhone(e.target.value)} className={`${inputClass} border border-gray-300 rounded-lg px-4 py-3 mb-4 w-full`} />
-                            <input type="email" placeholder="Email Address*" value={email} onChange={(e) => setEmail(e.target.value)} className={`${inputClass} border border-gray-300 rounded-lg px-4 py-3 mb-4 w-full`} />
+                            <input type="text" placeholder="Phone.No*" value={phone} onChange={(e) => setPhone(e.target.value)} inputMode='numeric' className={`${inputClass} border border-gray-300 rounded-lg px-4 py-3 mb-4 w-full`} />
+                            <input type="email" placeholder="Email Address*" value={email} onChange={(e) => setEmail(e.target.value)} inputMode='email' className={`${inputClass} border border-gray-300 rounded-lg px-4 py-3 mb-4 w-full`} />
                         </>
                     )}
 
@@ -616,7 +645,7 @@ export default function CustomizeHajjPopup() {
                         <>
                             <input type="text" placeholder="Type Your Message..." value={message} onChange={(e) => setMessage(e.target.value)} className={`${inputClass} border border-gray-300 rounded-lg px-4 py-3 mb-4 w-full`} />
                             <div className="relative mb-4">
-                                <input type="text" placeholder="Captcha Answer" value={captcha} onChange={(e) => setCaptcha(e.target.value)} className={`${inputClass} border border-gray-300 rounded-lg px-4 py-3 w-full`} />
+                                <input type="text" placeholder="Captcha Answer" value={captcha} onChange={(e) => setCaptcha(e.target.value)} inputMode='numeric' className={`${inputClass} border border-gray-300 rounded-lg px-4 py-3 w-full`} />
                                 <span className="absolute right-3 top-1/2 -translate-y-1/2 text-secondary font-semibold">{num1}+{num2}</span>
                             </div>
                         </>
