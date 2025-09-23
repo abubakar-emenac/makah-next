@@ -30,6 +30,7 @@ import CookiePolicy from "./Pages/CommonPages/CookiesPolicy"
 import ThankYou from "./Pages/CommonPages/ThankYouPage"
 import Navbar from "./Components/CommonComponents/NavBar"
 import ScrollToTopButton from "./Components/CommonComponents/ScrollToTopButton"
+import Lenis from 'lenis'
 
 function App() {
   useGlobalSettingsInjector();
@@ -37,6 +38,16 @@ function App() {
   AnalyticsInjector();
   useSeoScripts();
   useFaviconInjector();
+
+  // Initialize Lenis
+  const lenis = new Lenis({
+    autoRaf: true,
+  });
+
+  // Listen for the scroll event and log the event data
+  lenis.on('scroll', (e) => {
+    console.log(e);
+  });
 
   return (
     <>
