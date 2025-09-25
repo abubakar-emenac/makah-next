@@ -5,6 +5,9 @@ import { BASE_URL_IMG } from '../../Helpers/apiEndpoints';
 import parse from 'html-react-parser'
 
 export default function HeroSection({ pageData }) {
+    React.useEffect(() => {
+        console.log("HeroSection received data:", pageData);
+    }, [pageData]);
 
     const buttonEnabled = pageData?.button_enable;
     const buttonText = pageData?.button_text;
@@ -40,12 +43,17 @@ export default function HeroSection({ pageData }) {
             <div className="w-full max-w-[90%] lg:max-w-[80%] mx-auto px-4 sm:px-6 md:px-8 h-full flex flex-col justify-center text-center">
 
                 {/* HEADING */}
-                <h1 className="text-white font-abril leading-tight 
-    text-[22px] sm:text-[30px] md:text-[38px] lg:text-[44px] 
-    drop-shadow-lg ml-10 md:ml-24"
-                    dangerouslySetInnerHTML={{ __html: pageData?.banner_heading }}
-                />
-
+                <div className="text-white font-abril leading-tight 
+                    text-[22px] sm:text-[30px] md:text-[38px] lg:text-[44px] 
+                    drop-shadow-lg"
+                >
+                    <div
+                        className='ml-10 md:ml-24'
+                        dangerouslySetInnerHTML={{
+                            __html: pageData?.banner_heading
+                        }}
+                    />
+                </div>
 
                 {/* SUBHEADING */}
                 <p
