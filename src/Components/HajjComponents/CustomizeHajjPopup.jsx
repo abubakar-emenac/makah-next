@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 import Loader from '../CommonComponents/Loader';
 
-export default function CustomizeHajjPopup() {
+export default function CustomizeUmrahPopup() {
     const navigate = useNavigate();
     const [departureDate, setDepartureDate] = useState(null);
     const [makkahNights, setMakkahNights] = useState('');
@@ -20,7 +20,6 @@ export default function CustomizeHajjPopup() {
     const [roomType, setRoomType] = useState('');
     const [mealType, setMealType] = useState('');
     const [distance, setDistance] = useState('');
-    const [passengers, setPassengers] = useState('');
     const [num1, setNum1] = useState(0);
     const [num2, setNum2] = useState(0);
     const [captcha, setCaptcha] = useState('');
@@ -33,6 +32,24 @@ export default function CustomizeHajjPopup() {
     const [currentStep, setCurrentStep] = useState(1);
     const datePickerRef = useRef(null);
     const airportRef = useRef(null);
+    const [guestOpen, setGuestIsOpen] = useState(false);
+    const [adults, setAdults] = useState(1);
+    const [children, setChildren] = useState(0);
+    const [infants, setInfants] = useState(0);
+    const dropdownRef = useRef(null);
+
+    const totalGuests = adults + children + infants;
+
+
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+                setGuestIsOpen(false);
+            }
+        };
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => document.removeEventListener("mousedown", handleClickOutside);
+    }, []);
 
     useEffect(() => {
         generateCaptcha();
@@ -75,7 +92,6 @@ export default function CustomizeHajjPopup() {
         if (!roomType) return toast.error("Please select room type");
         if (!mealType) return toast.error("Please select meal type");
         if (!distance) return toast.error("Please select distance");
-        if (!passengers) return toast.error("Please select passengers");
         if (parseInt(captcha, 10) !== num1 + num2) {
             toast.error("Captcha is incorrect ❌");
             return false;
@@ -106,7 +122,10 @@ export default function CustomizeHajjPopup() {
                 Room_Type: roomType,
                 Meal_Type: mealType,
                 Distance: distance,
-                passenger: passengers,
+                infants: infants,
+                children: children,
+                adults: adults,
+                passenger: totalGuests,
                 Message: message,
                 page_url: window.location.href, // full URL
             },
@@ -131,7 +150,6 @@ export default function CustomizeHajjPopup() {
                 setRoomType("");
                 setMealType("");
                 setDistance("");
-                setPassengers("");
                 setMessage("");
             }
         } catch (error) {
@@ -376,17 +394,76 @@ export default function CustomizeHajjPopup() {
                 </div>
 
                 {/* Passengers */}
-                <div className={`${containerClass} col-span-1`}>
-                    <select
-                        value={passengers}
-                        onChange={(e) => setPassengers(e.target.value)}
-                        className={selectClass}
+                <div className={`${containerClass} col-span-1 relative`} ref={dropdownRef}>
+                    {/* Input-like display */}
+                    <div
+                        onClick={() => {
+                            setGuestIsOpen(!guestOpen);
+                            setIsOpen(false); // close calendar if open
+                        }}
+                        className=" px-4 py-2  flex items-center cursor-pointer"
                     >
-                        <option value="" disabled>Passengers</option>
-                        <option value="1 Adult">1 Adult</option>
-                        <option value="2 Adults">2 Adults</option>
-                        <option value="3 Adults">3 Adults</option>
-                    </select>
+                        <input
+                            type="text"
+                            readOnly
+                            placeholder="Passengers"
+                            value={
+                                totalGuests === 0
+                                    ? ""
+                                    : `${String(adults).padStart(2, "0")} ADT - ${String(children).padStart(
+                                        2,
+                                        "0"
+                                    )} CHD - ${String(infants).padStart(2, "0")} INF`
+                            }
+                            className={`w-full outline-none bg-transparent ${selectClass}`}
+                        />
+                    </div>
+
+                    {/* Dropdown */}
+                    {guestOpen && (
+                        <div className="absolute left-0 top-full mt-2 w-full bg-white rounded-md shadow-lg p-4 space-y-4 z-50">
+                            {[
+                                { label: "Adult(s)", count: adults, setCount: setAdults, min: 1 },
+                                { label: "Child(s)", count: children, setCount: setChildren, min: 0 },
+                                { label: "Infant(s)", count: infants, setCount: setInfants, min: 0 },
+                            ].map(({ label, count, setCount, min }) => (
+                                <div key={label} className="flex items-center justify-between">
+                                    <span className="text-sm font-medium text-gray-700">{label}</span>
+                                    <div className="flex items-center gap-2">
+                                        <button
+                                            type="button"
+                                            onClick={(e) => {
+                                                e.stopPropagation();
+                                                if (count > min) setCount(count - 1);
+                                            }}
+                                        >
+                                            <img
+                                                src={`${BASE_URL_SVG}/assets/svgs/PassInminus.svg`}
+                                                className="w-5 h-5"
+                                                alt="minus"
+                                            />
+                                        </button>
+                                        <span className="w-8 text-center font-semibold underline">
+                                            {String(count).padStart(2, "0")}
+                                        </span>
+                                        <button
+                                            type="button"
+                                            onClick={(e) => {
+                                                e.stopPropagation();
+                                                setCount(count + 1);
+                                            }}
+                                        >
+                                            <img
+                                                src={`${BASE_URL_SVG}/assets/svgs/PassIncplus.svg`}
+                                                className="w-5 h-5"
+                                                alt="plus"
+                                            />
+                                        </button>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    )}
                 </div>
 
                 {/* Full Name */}
@@ -622,12 +699,77 @@ export default function CustomizeHajjPopup() {
                                 <option value="Medium">Medium</option>
                                 <option value="Far">Far</option>
                             </select>
-                            <select value={passengers} onChange={(e) => setPassengers(e.target.value)} className={`${selectClass} border border-gray-300 rounded-lg px-4 py-3 mb-4 w-full`}>
-                                <option value="">Passengers</option>
-                                <option value="1 Adult">1 Adult</option>
-                                <option value="2 Adults">2 Adults</option>
-                                <option value="3 Adults">3 Adults</option>
-                            </select>
+                            <div className={`${selectClass} border border-gray-300 rounded-lg px-4 py-3 mb-4 w-full relative`} ref={dropdownRef}>
+                                {/* Input-like display */}
+                                <div
+                                    onClick={() => {
+                                        setGuestIsOpen(!guestOpen);
+                                        setIsOpen(false); // close calendar if open
+                                    }}
+                                    className=" px-2 py-2 flex items-center cursor-pointer"
+                                >
+                                    <input
+                                        type="text"
+                                        readOnly
+                                        placeholder="Passengers"
+                                        value={
+                                            totalGuests === 0
+                                                ? ""
+                                                : `${String(adults).padStart(2, "0")} ADT - ${String(children).padStart(
+                                                    2,
+                                                    "0"
+                                                )} CHD - ${String(infants).padStart(2, "0")} INF`
+                                        }
+                                        className={`w-full outline-none bg-transparent ${selectClass}`}
+                                    />
+                                </div>
+
+                                {/* Dropdown */}
+                                {guestOpen && (
+                                    <div className="absolute left-0 top-full mt-2 w-full bg-white rounded-md shadow-lg p-4 space-y-4 z-50">
+                                        {[
+                                            { label: "Adult(s)", count: adults, setCount: setAdults, min: 1 },
+                                            { label: "Child(s)", count: children, setCount: setChildren, min: 0 },
+                                            { label: "Infant(s)", count: infants, setCount: setInfants, min: 0 },
+                                        ].map(({ label, count, setCount, min }) => (
+                                            <div key={label} className="flex items-center justify-between">
+                                                <span className="text-sm font-medium text-gray-700">{label}</span>
+                                                <div className="flex items-center gap-2">
+                                                    <button
+                                                        type="button"
+                                                        onClick={(e) => {
+                                                            e.stopPropagation();
+                                                            if (count > min) setCount(count - 1);
+                                                        }}
+                                                    >
+                                                        <img
+                                                            src={`${BASE_URL_SVG}/assets/svgs/PassInminus.svg`}
+                                                            className="w-5 h-5"
+                                                            alt="minus"
+                                                        />
+                                                    </button>
+                                                    <span className="w-8 text-center font-semibold underline">
+                                                        {String(count).padStart(2, "0")}
+                                                    </span>
+                                                    <button
+                                                        type="button"
+                                                        onClick={(e) => {
+                                                            e.stopPropagation();
+                                                            setCount(count + 1);
+                                                        }}
+                                                    >
+                                                        <img
+                                                            src={`${BASE_URL_SVG}/assets/svgs/PassIncplus.svg`}
+                                                            className="w-5 h-5"
+                                                            alt="plus"
+                                                        />
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                )}
+                            </div>
                         </>
                     )}
 

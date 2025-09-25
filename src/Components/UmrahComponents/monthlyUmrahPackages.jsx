@@ -16,58 +16,45 @@ export default function MonthlyUmrahPackages({ pageData }) {
         const fetchPackages = async () => {
             try {
                 let response;
-                console.log("🔍 widgetData:", widgetData);
-
                 if (widgetData?.umrah_type !== undefined) {
                     setType("umrah")
-                    console.log("📌 Detected: Umrah branch");
                     if (widgetData?.umrah_package_ids) {
-                        console.log("➡️ Calling Umrah by ID:", widgetData.umrah_package_ids);
                         response = await axios.get(
                             endpoints.umrahById(widgetData.umrah_package_ids)
                         );
                     } else if (widgetData?.star && Number(widgetData.star) > 0) {
                         const stars = Number(widgetData.star);
                         const type = Number(widgetData.umrah_type);
-                        console.log("➡️ Calling Umrah by Stars:", stars, "Type:", type);
                         response = await axios.get(endpoints.umrahByStar(stars, type));
                     }
                     else if (widgetData?.umrah_type) {
-                        console.log("➡️ Calling Umrah by Type:", widgetData.umrah_type);
                         response = await axios.get(
                             endpoints.umrahByType(widgetData.umrah_type)
                         );
                     } else {
-                        console.log("➡️ Calling Default Umrah Packages");
                         response = await axios.get(endpoints.getUmrah);
                     }
                 }
                 else if (widgetData?.hajj_type !== undefined) {
                     setType("hajj")
-                    console.log("📌 Detected: Hajj branch");
                     if (widgetData?.hajj_package_ids) {
-                        console.log("➡️ Calling Hajj by ID:", widgetData.hajj_package_ids);
                         response = await axios.get(
                             endpoints.hajjById(widgetData.hajj_package_ids)
                         );
                     } else if (widgetData?.star && Number(widgetData.star) > 0) {
                         const stars = Number(widgetData.star);
                         const type = Number(widgetData.hajj_type);
-                        console.log("➡️ Calling hajj by Stars:", stars, "Type:", type);
                         response = await axios.get(endpoints.hajjByStar(stars, type));
                     }
                     else if (widgetData?.hajj_type) {
-                        console.log("➡️ Calling Hajj by Type:", widgetData.hajj_type);
                         response = await axios.get(
                             endpoints.hajjByType(widgetData.hajj_type)
                         );
                     } else {
-                        console.log("➡️ Calling Default Hajj Packages");
                         response = await axios.get(endpoints.getHajj);
                     }
                 }
                 else {
-                    console.log("⚠️ No umrah_type or hajj_type → fallback to Umrah");
                     response = await axios.get(endpoints.getUmrah);
                 }
 
@@ -91,49 +78,9 @@ export default function MonthlyUmrahPackages({ pageData }) {
             sliderRef.current.slickPrev();
         }
     };
-
-    // const slickSettings = {
-    //     dots: false,
-    //     infinite: true,
-    //     speed: 700,
-    //     slidesToShow: 1, // mobile-first
-    //     slidesToScroll: 1,
-    //     autoplay: false,
-    //     arrows: false,
-    //     responsive: [
-    //         {
-    //             breakpoint: 480, // mobile
-    //             settings: {
-    //                 slidesToShow: 1,
-    //                 slidesToScroll: 1,
-    //             }
-    //         },
-    //         {
-    //             breakpoint: 768, // tablet
-    //             settings: {
-    //                 slidesToShow: 1.7,
-    //                 slidesToScroll: 1,
-    //             }
-    //         },
-    //         {
-    //             breakpoint: 1024, // small laptops
-    //             settings: {
-    //                 slidesToShow: 4,
-    //                 slidesToScroll: 1,
-    //             }
-    //         },
-    //         {
-    //             breakpoint: 1280, // desktop
-    //             settings: {
-    //                 slidesToShow: 4,
-    //                 slidesToScroll: 1,
-    //             }
-    //         },
-    //     ],
-    // };
     const slickSettings = {
         dots: false,
-        infinite: true,
+        infinite: false,
         speed: 700,
         slidesToShow: 4, // desktop default
         slidesToScroll: 1,
@@ -204,7 +151,7 @@ export default function MonthlyUmrahPackages({ pageData }) {
                                 className="bg-white cursor-pointer rounded-full p-2 shadow-md hover:scale-105 transition border border-gray-200"
                                 aria-label="Previous Slide"
                             >
-                                <img src={`${BASE_URL_SVG}/assets/svgs/arrow-left.svg`} alt="Left Arrow" className="w-5 h-5 sm:w-6 sm:h-6" />
+                                <img src={`${BASE_URL_SVG}/assets/svgs/arrow-right.svg`} alt="Left Arrow" className="w-5 h-5 sm:w-6 sm:h-6 rotate-180" />
                             </span>
                             <span
                                 onClick={handleNext}

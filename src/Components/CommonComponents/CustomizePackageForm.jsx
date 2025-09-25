@@ -90,7 +90,6 @@ const CustomizePackageForm = () => {
     };
 
     const [userIp, setUserIp] = useState("");
-    console.log("IP", userIp)
 
     useEffect(() => {
         const fetchIp = async () => {

@@ -103,7 +103,7 @@ const Navbar = ({ textColor = "black" }) => {
           {!logo && !darkLogo ? (
             // Fallback image (SEO friendly, no blink)
             <img
-              src="/logo.png"
+              src="/svg/logo.png"
               alt="Makkah Travel"
               loading="eager"
               fetchPriority="high"

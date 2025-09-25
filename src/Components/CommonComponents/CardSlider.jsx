@@ -359,7 +359,6 @@ export default function CardSlider({ pageData }) {
           } else if (widgetData?.star && Number(widgetData.star) > 0) {
             const stars = Number(widgetData.star);
             const type = Number(widgetData.umrah_type);
-            console.log("➡️ Calling Umrah by Stars:", stars, "Type:", type);
             response = await axios.get(endpoints.umrahByStar(stars, type));
           }
           else if (widgetData?.umrah_type) {
@@ -379,7 +378,6 @@ export default function CardSlider({ pageData }) {
           } else if (widgetData?.star && Number(widgetData.star) > 0) {
             const stars = Number(widgetData.star);
             const type = Number(widgetData.umrah_type);
-            console.log("➡️ Calling hajj by Stars:", stars, "Type:", type);
             response = await axios.get(endpoints.hajjByStar(stars, type));
           }
           else if (widgetData?.hajj_type) {
@@ -470,11 +468,7 @@ export default function CardSlider({ pageData }) {
               onClick={handlePrev}
               className="bg-white cursor-pointer rounded-full p-2 shadow-md"
             >
-              <img
-                src={`${BASE_URL_SVG}/assets/svgs/arrow-left.svg`}
-                alt="Left Arrow"
-                className="w-5 h-5 sm:w-6 sm:h-6"
-              />
+              <img src={`${BASE_URL_SVG}/assets/svgs/arrow-right.svg`} alt="Left Arrow" className="w-5 h-5 sm:w-6 sm:h-6 rotate-180" />
             </span>
             <span
               onClick={handleNext}

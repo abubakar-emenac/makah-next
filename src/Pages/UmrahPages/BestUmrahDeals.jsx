@@ -14,11 +14,9 @@ export default function BestUmrahDeals() {
         const fetchPageData = async () => {
             try {
                 const res = await axios.get(endpoints.getPageUrl(slug));
-                console.log("API full response:", res.data);
 
 
                 if (res.data?.status === 1) {
-                    console.log("Result object:", res.data?.result);
                     setBestUmrahData(res.data.result);
 
                     if (res.data.result?.browser_title) {

@@ -99,21 +99,7 @@ const BlogDetails = () => {
     fetchBlogDetails();
   }, [page_url]);
 
-  if (loading) {
-    return (
-      <div className="flex items-center justify-center min-h-[40vh]">
-        <p className="text-lg font-Montserrat">Loading Blog...</p>
-      </div>
-    );
-  }
 
-  if (!blog) {
-    return (
-      <div className="flex items-center justify-center min-h-[40vh]">
-        <p className="text-lg font-Montserrat">Blog not Found.</p>
-      </div>
-    );
-  }
 
   const imageUrl = blog.image_url ? `${BASE_URL_IMG}/${blog.banner_image_url}` : ""
 
