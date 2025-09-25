@@ -11,7 +11,7 @@ const BlogDetails = () => {
   const [blog, setBlog] = useState(null);
   const [latestBlogs, setLatestBlogs] = useState([]);
   const [loading, setLoading] = useState(true);
-  // console.log("BlogData", blog)
+  console.log("BlogData", blog)
 
   const formatDate = (dateString) => {
     const date = new Date(dateString);
@@ -99,8 +99,6 @@ const BlogDetails = () => {
     fetchBlogDetails();
   }, [page_url]);
 
-
-
   const imageUrl = blog && blog.banner_image_url ? `${BASE_URL_IMG}/${blog.banner_image_url}` : ""
 
   return (
@@ -147,10 +145,12 @@ const BlogDetails = () => {
             {/* on{" "}
             {new Date(blog.publish_date).toLocaleDateString()} */}
           </p>
-          <div
-            className="prose prose-a:text-primary prose-lg font-Montserrat parseData"
-            dangerouslySetInnerHTML={{ __html: blog.description }}
-          />
+          {blog.description && (
+            <div
+              className="prose prose-a:text-primary prose-lg font-Montserrat parseData"
+              dangerouslySetInnerHTML={{ __html: blog.description }}
+            />
+          )}
         </main>
 
 

@@ -32,8 +32,8 @@ export default function HeroSection({ pageData }) {
             style={{
                 backgroundImage: `url(${BASE_URL_IMG}/${pageData?.image_url})`,
                 //    backgroundSize: '100% 100%', 
-                // backgroundSize: 'cover', 
-                backgroundSize: 'center',
+                backgroundSize: 'cover', 
+                // backgroundSize: 'center',
                 backgroundPosition: 'center',
                 backgroundRepeat: 'no-repeat',
             }}
