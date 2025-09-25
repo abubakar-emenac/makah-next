@@ -31,26 +31,24 @@ export default function HeroSection({ pageData }) {
             className="flex flex-col w-full h-[300px] sm:h-[350px] md:h-[400px] lg:h-[450px] relative"
             style={{
                 backgroundImage: `url(${BASE_URL_IMG}/${pageData?.image_url})`,
+                //    backgroundSize: '100% 100%', 
+                // backgroundSize: 'cover', 
                 backgroundSize: 'center',
                 backgroundPosition: 'center',
+                backgroundRepeat: 'no-repeat',
             }}
         >
 
             {/* CONTENT CONTAINER */}
-            <div className="w-full max-w-[90%] lg:max-w-[80%] mx-auto px-4 sm:px-6 md:px-8 h-full flex flex-col justify-center">
+            <div className="w-full max-w-[90%] lg:max-w-[80%] mx-auto px-4 sm:px-6 md:px-8 h-full flex flex-col justify-center text-center">
 
                 {/* HEADING */}
-                <div className="text-white font-abril leading-tight 
-                    text-[22px] sm:text-[30px] md:text-[38px] lg:text-[44px] 
-                    drop-shadow-lg"
-                >
-                    <div
-                        className='ml-10 md:ml-24'
-                        dangerouslySetInnerHTML={{
-                            __html: pageData?.banner_heading
-                        }}
-                    />
-                </div>
+                <h1 className="text-white font-abril leading-tight 
+    text-[22px] sm:text-[30px] md:text-[38px] lg:text-[44px] 
+    drop-shadow-lg ml-10 md:ml-24"
+                    dangerouslySetInnerHTML={{ __html: pageData?.banner_heading }}
+                />
+
 
                 {/* SUBHEADING */}
                 <p

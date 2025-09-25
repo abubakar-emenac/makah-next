@@ -11,6 +11,7 @@ const BlogDetails = () => {
   const [blog, setBlog] = useState(null);
   const [latestBlogs, setLatestBlogs] = useState([]);
   const [loading, setLoading] = useState(true);
+  // console.log("BlogData", blog)
 
   const formatDate = (dateString) => {
     const date = new Date(dateString);
@@ -133,15 +134,19 @@ const BlogDetails = () => {
         {/* Canonical */}
         <link rel="canonical" href={window.location.href} />
       </Helmet>
-      {/* ✅ Hero Section using single blog data */}
-      <HeroSectionblog
-        pageData={{
-          banner_heading: blog.banner_heading || blog.title,
-          description: blog.banner_description,
-          image_url: blog.banner_image_url,
-          button_enable: "0",
-        }}
-      />
+
+      {blog && (
+        <HeroSectionblog
+          pageData={{
+            banner_heading: blog.banner_heading || blog.title,
+            description: blog.banner_description,
+            image_url: blog.banner_image_url,
+            button_enable: "1",
+            button_text:blog?.button_text,
+            button_link:blog?.button_link
+          }}
+        />
+      )}
 
       {/* ✅ Main Content */}
       <div className="max-w-6xl mx-auto px-4 py-12 flex flex-col-reverse md:flex-row gap-10">
@@ -149,8 +154,8 @@ const BlogDetails = () => {
         <main className="w-full md:w-2/3 order-1 md:order-1">
 
           <p className="text-gray-600 text-sm mb-6 font-Montserrat">
-    
-             {/* on{" "}
+
+            {/* on{" "}
             {new Date(blog.publish_date).toLocaleDateString()} */}
           </p>
           <div
@@ -161,7 +166,7 @@ const BlogDetails = () => {
 
 
         {/* Right - Latest Posts Sidebar */}
-       <aside className="w-full md:w-1/3 mb-8 md:mb-0 md:sticky top-24 self-start h-fit">
+        <aside className="w-full md:w-1/3 mb-8 md:mb-0 md:sticky top-24 self-start h-fit">
           <span className="text-lg font-semibold font-Montserrat mb-4">Latest Posts</span>
           <div className="grid grid-cols-1 gap-4 overflow-y-auto pr-1">
             {latestBlogs.map((item) => (
@@ -182,7 +187,7 @@ const BlogDetails = () => {
                   <span className="text-md font-semibold font-Montserrat line-clamp-2">
                     {item.title}
                   </span>
-                 
+
                 </div>
               </Link>
             ))}
