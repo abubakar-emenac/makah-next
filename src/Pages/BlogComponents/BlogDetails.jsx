@@ -101,7 +101,7 @@ const BlogDetails = () => {
 
 
 
-  const imageUrl = blog && blog.image_url ? `${BASE_URL_IMG}/${blog.banner_image_url}` : ""
+  const imageUrl = blog.banner_image_url ? `${BASE_URL_IMG}/${blog.banner_image_url}` : ""
 
   return (
     <div>
