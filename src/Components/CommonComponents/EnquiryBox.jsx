@@ -171,7 +171,7 @@ export default function EnquiryBox() {
     const [num1, setNum1] = useState(0);
     const [num2, setNum2] = useState(0);
     const [departureDate, setDepartureDate] = useState(null);
-    const [guestCount, setGuestCount] = useState('');
+    const [isGuestOpen, setIsGuestOpen] = useState(false);
     const [number, setNumber] = useState('');
     const [fullName, setFullName] = useState('');
     const [email, setEmail] = useState('');
@@ -180,6 +180,15 @@ export default function EnquiryBox() {
     const [isOpen, setIsOpen] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const datePickerRef = useRef(null);
+    const [adults, setAdults] = useState(0);
+    const [passengers, setPassengers] = useState(0);
+    const [children, setChildren] = useState(0);
+    const [infants, setInfants] = useState(0);
+
+    useEffect(() => {
+        setPassengers(adults + children + infants);
+    }, [adults, children, infants]);
+
 
     const [userIp, setUserIp] = useState("");
     // console.log("IP", userIp)
@@ -208,13 +217,29 @@ export default function EnquiryBox() {
         fetchIp();
     }, []);
 
+    const dropdownRef = useRef(null);
+
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+                setIsGuestOpen(false);
+            }
+        };
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => document.removeEventListener('mousedown', handleClickOutside);
+    }, []);
+
+
+
+
     const handleSubmit = async (e) => {
+        const totalGuests = adults + children + infants;
         e.preventDefault();
 
         if (isLoading) return; // Prevent double submit
 
         if (!departureDate) return toast.error("Please select a departure date");
-        if (!guestCount || guestCount <= 0) return toast.error("Please enter number of guests");
+        if (totalGuests <= 0) return toast.error("Please enter number of guests");
         if (!number) return toast.error("Please enter your phone number");
         if (!fullName.trim()) return toast.error("Please enter your full name");
         if (!email.trim()) return toast.error("Please enter your email address");
@@ -232,7 +257,10 @@ export default function EnquiryBox() {
             formType: "enquiry",
             contact_detail: {
                 departureDate: departureDate ? departureDate.toISOString().split("T")[0] : null,
-                guestCount,
+                passengers: passengers,
+                adults: adults,
+                children: children,
+                infants: infants,
                 guestAccommodation: accommodation,
                 user_ip: userIp,
             },
@@ -248,14 +276,15 @@ export default function EnquiryBox() {
             });
 
             const data = await response.json();
-
             if (data.status === 1 && data.message.includes("Email sent successfully")) {
                 navigate('/thank-you')
                 toast.success("Enquiry submitted successfully ✅");
 
                 // Reset form
                 setDepartureDate(null);
-                setGuestCount('');
+                setAdults("")
+                setChildren("")
+                setInfants("")
                 setNumber('');
                 setFullName('');
                 setEmail('');
@@ -266,10 +295,12 @@ export default function EnquiryBox() {
                 toast("Your enquiry was saved, but the email could not be sent ⚠️", { icon: "⚠️" });
             } else {
                 toast.error("Something went wrong ❌ Please try again later.");
+                setCaptcha('');
             }
         } catch (error) {
             console.error(error);
             toast.error("Something went wrong ❌ Please try again later.");
+            setCaptcha('');
         } finally {
             setIsLoading(false);
         }
@@ -310,26 +341,78 @@ export default function EnquiryBox() {
                     />
                 </div>
 
-                {/* Guests */}
-                <div className="relative border border-primary rounded-md px-4 py-2 hover:border-secondary flex items-center focus-within:ring-1 focus-within:ring-primary-hover">
-                    <input
-                        type="number"
-                        value={guestCount}
-                        min={1}
-                        inputMode="numeric" // shows number keypad on mobile
-                        placeholder="Guests"
-                        onChange={(e) => setGuestCount(e.target.value)}
-                        onKeyPress={(e) => {
-                            // Prevent non-numeric characters including e, E, +, -, .
-                            if (!/[0-9]/.test(e.key) &&
-                                !['Backspace', 'Delete', 'Tab', 'Enter', 'ArrowLeft', 'ArrowRight'].includes(e.key)) {
-                                e.preventDefault();
-                            }
+                <div className="relative" ref={dropdownRef}>
+                    <div
+                        className="relative border border-primary rounded-md px-4 py-2 hover:border-secondary flex items-center focus-within:ring-1 focus-within:ring-primary-hover h-[52px]"
+                        onClick={() => {
+                            setIsGuestOpen(!isGuestOpen);
+                            setIsOpen(false); // close calendar if open
                         }}
-                        className="w-full bg-transparent outline-none text-sm"
-                    />
-                    <img src={`${BASE_URL_SVG}/assets/svgs/Guests SVG.svg`} alt="guests" className="absolute right-4 bg-white top-1/2 transform -translate-y-1/2 w-5 h-5 pointer-events-none" />
+                    >
+                        <input
+                            type="text"
+                            readOnly
+                            placeholder="Guests"
+                            value={
+                                adults === 0 && children === 0 && infants === 0
+                                    ? ""
+                                    : `${String(adults).padStart(2, "0")} ADT - ${String(children).padStart(2, "0")} CHD - ${String(infants).padStart(2, "0")} INF`
+                            }
+                            className="w-full outline-none font-Montserrat font-medium text-[14px] text-gray-600"
+                        />
+                        <img
+                            src={`${BASE_URL_SVG}/assets/svgs/Accomodation.svg`}
+                            className="ml-2"
+                            alt="Passengers"
+                        />
+                    </div>
+
+                    {isGuestOpen && (
+                        <div className="absolute left-0 top-full mt-2 w-full bg-white rounded-md shadow-lg p-4 space-y-4 z-50">
+                            {[
+                                { label: "Adult(s)", count: adults, setCount: setAdults, min: 1 },
+                                { label: "Child(s)", count: children, setCount: setChildren, min: 0 },
+                                { label: "Infant(s)", count: infants, setCount: setInfants, min: 0 },
+                            ].map(({ label, count, setCount, min }) => (
+                                <div key={label} className="flex items-center justify-between">
+                                    <span className="text-sm font-medium text-gray-700">{label}</span>
+                                    <div className="flex items-center gap-2">
+                                        <button
+                                            type="button"
+                                            onClick={(e) => {
+                                                e.stopPropagation();
+                                                if (count > min) setCount(count - 1);
+                                            }}
+                                        >
+                                            <img
+                                                src={`${BASE_URL_SVG}/assets/svgs/PassInminus.svg`}
+                                                className="w-5 h-5"
+                                                alt="minus"
+                                            />
+                                        </button>
+                                        <span className="w-8 text-center font-semibold underline">
+                                            {String(count).padStart(2, "0")}
+                                        </span>
+                                        <button
+                                            type="button"
+                                            onClick={(e) => {
+                                                e.stopPropagation();
+                                                setCount(count + 1);
+                                            }}
+                                        >
+                                            <img
+                                                src={`${BASE_URL_SVG}/assets/svgs/PassIncplus.svg`}
+                                                className="w-5 h-5"
+                                                alt="plus"
+                                            />
+                                        </button>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    )}
                 </div>
+
 
                 {/* Phone */}
                 <div className="relative border border-primary rounded-md px-4 py-2 hover:border-secondary flex items-center focus-within:ring-1 focus-within:ring-primary-hover">

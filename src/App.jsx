@@ -33,7 +33,11 @@ import Navbar from "./Components/CommonComponents/NavBar"
 import ScrollToTopButton from "./Components/CommonComponents/ScrollToTopButton"
 import Lenis from 'lenis'
 
+
+
 function App() {
+
+
   useGlobalSettingsInjector();
   // usePageMetaInjector();
   AnalyticsInjector();
@@ -45,16 +49,12 @@ function App() {
     const lenis = new Lenis({
       autoRaf: true, // automatically hooks into requestAnimationFrame
     });
-
-    // optional: listen for scroll
-    lenis.on("scroll", (e) => {
-      console.log("Lenis scroll:", e);
-    });
-
     return () => {
       lenis.destroy(); // ✅ cleanup on unmount
     };
-  }, []); // run only once
+  }, []);
+
+  // run only once
 
   return (
     <>
@@ -118,6 +118,7 @@ function App() {
         <Route path="*" element={<NotFound />} />
 
       </Routes>
+
       <Footer />
 
       <Toaster

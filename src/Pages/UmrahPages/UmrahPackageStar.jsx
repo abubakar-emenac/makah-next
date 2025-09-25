@@ -65,11 +65,7 @@ const UmrahStarSection = ({ packages = [], section }) => {
                         onClick={() => sliderRef.current?.slickPrev()}
                         className="bg-white rounded-full p-2 sm:p-3 shadow border border-gray-200 flex-shrink-0"
                     >
-                        <img
-                            src={`${BASE_URL_SVG}/assets/svgs/arrow-left.svg`}
-                            alt="Prev"
-                            className="w-5 sm:w-6 h-5 sm:h-6"
-                        />
+                        <img src={`${BASE_URL_SVG}/assets/svgs/arrow-right.svg`} alt="Left Arrow" className="w-5 h-5 sm:w-6 sm:h-6 rotate-180" />
                     </button>
                     <button
                         onClick={() => sliderRef.current?.slickNext()}

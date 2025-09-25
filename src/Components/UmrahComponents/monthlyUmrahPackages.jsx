@@ -91,49 +91,9 @@ export default function MonthlyUmrahPackages({ pageData }) {
             sliderRef.current.slickPrev();
         }
     };
-
-    // const slickSettings = {
-    //     dots: false,
-    //     infinite: true,
-    //     speed: 700,
-    //     slidesToShow: 1, // mobile-first
-    //     slidesToScroll: 1,
-    //     autoplay: false,
-    //     arrows: false,
-    //     responsive: [
-    //         {
-    //             breakpoint: 480, // mobile
-    //             settings: {
-    //                 slidesToShow: 1,
-    //                 slidesToScroll: 1,
-    //             }
-    //         },
-    //         {
-    //             breakpoint: 768, // tablet
-    //             settings: {
-    //                 slidesToShow: 1.7,
-    //                 slidesToScroll: 1,
-    //             }
-    //         },
-    //         {
-    //             breakpoint: 1024, // small laptops
-    //             settings: {
-    //                 slidesToShow: 4,
-    //                 slidesToScroll: 1,
-    //             }
-    //         },
-    //         {
-    //             breakpoint: 1280, // desktop
-    //             settings: {
-    //                 slidesToShow: 4,
-    //                 slidesToScroll: 1,
-    //             }
-    //         },
-    //     ],
-    // };
     const slickSettings = {
         dots: false,
-        infinite: true,
+        infinite: false,
         speed: 700,
         slidesToShow: 4, // desktop default
         slidesToScroll: 1,
@@ -204,7 +164,7 @@ export default function MonthlyUmrahPackages({ pageData }) {
                                 className="bg-white cursor-pointer rounded-full p-2 shadow-md hover:scale-105 transition border border-gray-200"
                                 aria-label="Previous Slide"
                             >
-                                <img src={`${BASE_URL_SVG}/assets/svgs/arrow-left.svg`} alt="Left Arrow" className="w-5 h-5 sm:w-6 sm:h-6" />
+                                <img src={`${BASE_URL_SVG}/assets/svgs/arrow-right.svg`} alt="Left Arrow" className="w-5 h-5 sm:w-6 sm:h-6 rotate-180" />
                             </span>
                             <span
                                 onClick={handleNext}

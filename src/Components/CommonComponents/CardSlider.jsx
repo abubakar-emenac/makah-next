@@ -470,11 +470,7 @@ export default function CardSlider({ pageData }) {
               onClick={handlePrev}
               className="bg-white cursor-pointer rounded-full p-2 shadow-md"
             >
-              <img
-                src={`${BASE_URL_SVG}/assets/svgs/arrow-left.svg`}
-                alt="Left Arrow"
-                className="w-5 h-5 sm:w-6 sm:h-6"
-              />
+              <img src={`${BASE_URL_SVG}/assets/svgs/arrow-right.svg`} alt="Left Arrow" className="w-5 h-5 sm:w-6 sm:h-6 rotate-180" />
             </span>
             <span
               onClick={handleNext}

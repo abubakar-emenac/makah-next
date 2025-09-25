@@ -289,7 +289,7 @@ const HajjCards = ({ Packagedata, packages, loading, c_type }) => {
                         <ViewAllButton color="primary" slug={Packagedata?.button_link} size="md" label={Packagedata?.button_text} />
                         <div className="flex items-center gap-3">
                             <span onClick={handlePrev} className="p-2 bg-white border border-gray-200 rounded-full shadow cursor-pointer hover:scale-105 transition">
-                                <img src={`${BASE_URL_SVG}/assets/svgs/arrow-left.svg`} alt="Prev" className="w-5 h-5 sm:w-6 sm:h-6" />
+                                <img src={`${BASE_URL_SVG}/assets/svgs/arrow-right.svg`} alt="Left Arrow" className="w-5 h-5 sm:w-6 sm:h-6 rotate-180" />
                             </span>
                             <span onClick={handleNext} className="p-2 bg-white border border-gray-200 rounded-full shadow cursor-pointer hover:scale-105 transition">
                                 <img src={`${BASE_URL_SVG}/assets/svgs/arrow-right.svg`} alt="Next" className="w-5 h-5 sm:w-6 sm:h-6" />
