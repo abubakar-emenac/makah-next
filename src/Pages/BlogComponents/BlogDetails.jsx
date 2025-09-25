@@ -13,14 +13,7 @@ const BlogDetails = () => {
   const [loading, setLoading] = useState(true);
   console.log("BlogData", blog)
 
-  const formatDate = (dateString) => {
-    const date = new Date(dateString);
-    return date.toLocaleDateString("en-GB", {
-      day: "2-digit",
-      month: "short",
-      year: "2-digit",
-    });
-  };
+
 
   useEffect(() => {
     const fetchBlogDetails = async () => {
