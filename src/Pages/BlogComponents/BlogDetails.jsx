@@ -101,7 +101,7 @@ const BlogDetails = () => {
 
 
 
-  const imageUrl = blog.image_url ? `${BASE_URL_IMG}/${blog.banner_image_url}` : ""
+  const imageUrl = blog && blog.image_url ? `${BASE_URL_IMG}/${blog.banner_image_url}` : ""
 
   return (
     <div>
@@ -128,8 +128,8 @@ const BlogDetails = () => {
             description: blog.banner_description,
             image_url: blog.banner_image_url,
             button_enable: "1",
-            button_text:blog?.button_text,
-            button_link:blog?.button_link
+            button_text: blog?.button_text,
+            button_link: blog?.button_link
           }}
         />
       )}
