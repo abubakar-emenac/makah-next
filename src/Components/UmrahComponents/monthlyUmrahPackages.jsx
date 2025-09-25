@@ -16,58 +16,45 @@ export default function MonthlyUmrahPackages({ pageData }) {
         const fetchPackages = async () => {
             try {
                 let response;
-                console.log("🔍 widgetData:", widgetData);
-
                 if (widgetData?.umrah_type !== undefined) {
                     setType("umrah")
-                    console.log("📌 Detected: Umrah branch");
                     if (widgetData?.umrah_package_ids) {
-                        console.log("➡️ Calling Umrah by ID:", widgetData.umrah_package_ids);
                         response = await axios.get(
                             endpoints.umrahById(widgetData.umrah_package_ids)
                         );
                     } else if (widgetData?.star && Number(widgetData.star) > 0) {
                         const stars = Number(widgetData.star);
                         const type = Number(widgetData.umrah_type);
-                        console.log("➡️ Calling Umrah by Stars:", stars, "Type:", type);
                         response = await axios.get(endpoints.umrahByStar(stars, type));
                     }
                     else if (widgetData?.umrah_type) {
-                        console.log("➡️ Calling Umrah by Type:", widgetData.umrah_type);
                         response = await axios.get(
                             endpoints.umrahByType(widgetData.umrah_type)
                         );
                     } else {
-                        console.log("➡️ Calling Default Umrah Packages");
                         response = await axios.get(endpoints.getUmrah);
                     }
                 }
                 else if (widgetData?.hajj_type !== undefined) {
                     setType("hajj")
-                    console.log("📌 Detected: Hajj branch");
                     if (widgetData?.hajj_package_ids) {
-                        console.log("➡️ Calling Hajj by ID:", widgetData.hajj_package_ids);
                         response = await axios.get(
                             endpoints.hajjById(widgetData.hajj_package_ids)
                         );
                     } else if (widgetData?.star && Number(widgetData.star) > 0) {
                         const stars = Number(widgetData.star);
                         const type = Number(widgetData.hajj_type);
-                        console.log("➡️ Calling hajj by Stars:", stars, "Type:", type);
                         response = await axios.get(endpoints.hajjByStar(stars, type));
                     }
                     else if (widgetData?.hajj_type) {
-                        console.log("➡️ Calling Hajj by Type:", widgetData.hajj_type);
                         response = await axios.get(
                             endpoints.hajjByType(widgetData.hajj_type)
                         );
                     } else {
-                        console.log("➡️ Calling Default Hajj Packages");
                         response = await axios.get(endpoints.getHajj);
                     }
                 }
                 else {
-                    console.log("⚠️ No umrah_type or hajj_type → fallback to Umrah");
                     response = await axios.get(endpoints.getUmrah);
                 }
 

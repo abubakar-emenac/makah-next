@@ -20,7 +20,6 @@ export default function Home() {
         const fetchPageData = async () => {
             try {
                 const res = await axios.get(endpoints.getPage);
-                console.log("API full response:", res);
 
 
                 if (res.data?.status === 1) {

@@ -60,7 +60,7 @@ export default function ImageSlider({ images = [] }) {
                         className="bg-white cursor-pointer rounded-full p-2 shadow-md hover:scale-105 transition border border-gray-200"
                         aria-label="Next Slide"
                     >
-                        <img src={`${BASE_URL_SVG}/assets/svgs/arrow-left.svg`} alt="Right Arrow" className="w-5 h-5 sm:w-6 sm:h-6" />
+                        <img src={`${BASE_URL_SVG}/assets/svgs/arrow-right.svg`} alt="Left Arrow" className="w-5 h-5 sm:w-6 sm:h-6 rotate-180" />
                     </span>
 
                     <span

@@ -359,7 +359,6 @@ export default function CardSlider({ pageData }) {
           } else if (widgetData?.star && Number(widgetData.star) > 0) {
             const stars = Number(widgetData.star);
             const type = Number(widgetData.umrah_type);
-            console.log("➡️ Calling Umrah by Stars:", stars, "Type:", type);
             response = await axios.get(endpoints.umrahByStar(stars, type));
           }
           else if (widgetData?.umrah_type) {
@@ -379,7 +378,6 @@ export default function CardSlider({ pageData }) {
           } else if (widgetData?.star && Number(widgetData.star) > 0) {
             const stars = Number(widgetData.star);
             const type = Number(widgetData.umrah_type);
-            console.log("➡️ Calling hajj by Stars:", stars, "Type:", type);
             response = await axios.get(endpoints.hajjByStar(stars, type));
           }
           else if (widgetData?.hajj_type) {
