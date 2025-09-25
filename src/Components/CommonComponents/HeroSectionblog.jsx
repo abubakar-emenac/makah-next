@@ -5,9 +5,9 @@ import { BASE_URL_IMG } from '../../Helpers/apiEndpoints';
 import parse from 'html-react-parser'
 
 export default function HeroSection({ pageData }) {
-    // React.useEffect(() => {
-    //     console.log("HeroSection received data:", pageData);
-    // }, [pageData]);
+    React.useEffect(() => {
+        console.log("HeroSection received data:", pageData);
+    }, [pageData]);
 
     const buttonEnabled = pageData?.button_enable;
     const buttonText = pageData?.button_text;
@@ -32,7 +32,7 @@ export default function HeroSection({ pageData }) {
             style={{
                 backgroundImage: `url(${BASE_URL_IMG}/${pageData?.image_url})`,
                 //    backgroundSize: '100% 100%', 
-                backgroundSize: 'cover', 
+                backgroundSize: 'cover',
                 // backgroundSize: 'center',
                 backgroundPosition: 'center',
                 backgroundRepeat: 'no-repeat',
@@ -40,7 +40,7 @@ export default function HeroSection({ pageData }) {
         >
 
             {/* CONTENT CONTAINER */}
-            <div className="w-full max-w-[90%] lg:max-w-[80%] mx-auto px-4 sm:px-6 md:px-8 h-full flex flex-col justify-center text-center">
+            <div className="w-full max-w-[90%] lg:max-w-[80%] mx-auto px-4 sm:px-6 md:px-8 h-full flex flex-col justify-center text-center sm:text-left">
 
                 {/* HEADING */}
                 <div className="text-white font-abril leading-tight 
@@ -48,7 +48,7 @@ export default function HeroSection({ pageData }) {
                     drop-shadow-lg"
                 >
                     <div
-                        className='ml-10 md:ml-24'
+                        className=''
                         dangerouslySetInnerHTML={{
                             __html: pageData?.banner_heading
                         }}

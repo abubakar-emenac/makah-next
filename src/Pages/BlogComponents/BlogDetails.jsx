@@ -8,7 +8,7 @@ import { Helmet } from "react-helmet";
 
 const BlogDetails = () => {
   const { page_url } = useParams();
-  const [blog, setBlog] = useState(null);
+  const [blog, setBlog] = useState({});
   const [latestBlogs, setLatestBlogs] = useState([]);
   const [loading, setLoading] = useState(true);
   console.log("BlogData", blog)
