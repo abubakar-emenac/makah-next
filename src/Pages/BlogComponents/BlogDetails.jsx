@@ -105,21 +105,24 @@ const BlogDetails = () => {
 
   return (
     <div>
-      <Helmet>
-        <title>{blog.browser_title}</title>
-        <meta name="description" content={blog.meta_description || ""} />
-        <meta name="keywords" content={blog.meta_keywords || ""} />
+      {
+        blog && (
+          <Helmet>
+            <title>{blog.browser_title}</title>
+            <meta name="description" content={blog.meta_description || ""} />
+            <meta name="keywords" content={blog.meta_keywords || ""} />
 
-        {/* Open Graph Tags */}
-        <meta property="og:title" content={blog.browser_title} />
-        <meta property="og:description" content={blog.meta_description || ""} />
-        <meta property="og:image" content={imageUrl} />
-        <meta property="og:url" content={window.location.href} />
-        <meta property="og:type" content="Travels & Tours" />
+            {/* Open Graph Tags */}
+            <meta property="og:title" content={blog.browser_title} />
+            <meta property="og:description" content={blog.meta_description || ""} />
+            <meta property="og:image" content={imageUrl} />
+            <meta property="og:url" content={window.location.href} />
+            <meta property="og:type" content="Travels & Tours" />
 
-        {/* Canonical */}
-        <link rel="canonical" href={window.location.href} />
-      </Helmet>
+            {/* Canonical */}
+            <link rel="canonical" href={window.location.href} />
+          </Helmet>
+        )}
 
       {blog && (
         <HeroSectionblog
