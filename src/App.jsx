@@ -37,6 +37,7 @@ function App() {
   const location = useLocation();
   const navigate = useNavigate();
 
+
   useGlobalSettingsInjector();
   AnalyticsInjector();
   useSeoScripts();
@@ -63,7 +64,7 @@ function App() {
     return () => {
       lenis.destroy();
     };
-  }, []);
+  }, []); // run only once
 
   return (
     <>

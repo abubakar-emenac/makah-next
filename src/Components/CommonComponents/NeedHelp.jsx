@@ -97,8 +97,7 @@ export default function NeedHelp() {
                         NEED HELP?
                     </span>
                     <p className="text-[14px] sm:text-base md:text-lg font-Montserrat mt-3 leading-relaxed max-w-xl lg:ml-auto">
-                        Makkah Travel is here to help you visit religious places
-                        and make Umrah trips that connect with your soul.
+                        Makkah Travel is here to help you visit religious places.
                     </p>
                 </div>
 

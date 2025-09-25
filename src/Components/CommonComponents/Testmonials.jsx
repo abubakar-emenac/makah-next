@@ -674,7 +674,7 @@ export default function Testimonials({ pageData }) {
                 className="hidden md:flex absolute -left-6 top-[60%] -translate-y-1/2 bg-white cursor-pointer rounded-full p-2 shadow-md hover:scale-105 transition border border-gray-200 z-10"
                 aria-label="Previous Slide"
             >
-                <img src={`${BASE_URL_SVG}/assets/svgs/arrow-left.svg`} alt="Left Arrow" className="w-5 h-5 sm:w-6 sm:h-6" />
+                <img src={`${BASE_URL_SVG}/assets/svgs/arrow-right.svg`} alt="Left Arrow" className="w-5 h-5 sm:w-6 sm:h-6 rotate-180" />
             </span>
 
             <span
