@@ -31,6 +31,7 @@ import ThankYou from "./Pages/CommonPages/ThankYouPage"
 import Navbar from "./Components/CommonComponents/NavBar"
 import ScrollToTopButton from "./Components/CommonComponents/ScrollToTopButton"
 import Lenis from 'lenis'
+import WhatsAppButton from "./Components/CommonComponents/WhatsAppButton"
 
 function App() {
   const location = useLocation();
@@ -68,6 +69,7 @@ function App() {
   return (
     <>
       <ScrollToTopButton />
+      <WhatsAppButton />
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
