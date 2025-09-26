@@ -5,7 +5,6 @@ import { Routes, Route, Navigate, useLocation, useNavigate } from "react-router-
 import NotFound from "./Pages/CommonPages/NotFound"
 import SpecificCategoryUmrah from "./Pages/UmrahPages/SpecificCategoryUmrah"
 import AboutPage from "./Pages/CommonPages/AboutPage"
-import BestUmrahDeals from "./Pages/UmrahPages/BestUmrahDeals"
 import UmrahPackageStar from "./Pages/UmrahPages/UmrahPackageStar"
 import UmrahLayout from "./Pages/UmrahPages/UmrahLayout"
 import CustomizationForm from "./Components/CommonComponents/CustomizationForm"
