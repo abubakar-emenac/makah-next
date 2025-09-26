@@ -88,17 +88,6 @@ const BlogDetails = () => {
 
       {/* ✅ Main Content */}
       <div className="max-w-6xl mx-auto px-4 py-12 flex flex-col-reverse md:flex-row gap-10">
-        {/* Left - Blog Content */}
-        <main className="w-full md:w-2/3">
-          <p className="text-gray-600 text-sm mb-6 font-Montserrat"></p>
-          {blog.description && (
-            <div
-              className="prose prose-a:text-primary prose-lg font-Montserrat parseData"
-              dangerouslySetInnerHTML={{ __html: blog.description }}
-            />
-          )}
-        </main>
-
         {/* Right - Latest Posts Sidebar */}
         <aside className="w-full md:w-1/3 md:sticky top-24 self-start h-fit">
           <span className="text-lg font-semibold font-Montserrat mb-4 block">
@@ -127,6 +116,15 @@ const BlogDetails = () => {
             ))}
           </div>
         </aside>
+        <main className="w-full md:w-2/3">
+          <p className="text-gray-600 text-sm mb-6 font-Montserrat"></p>
+          {blog.description && (
+            <div
+              className="prose prose-a:text-primary prose-lg font-Montserrat parseData"
+              dangerouslySetInnerHTML={{ __html: blog.description }}
+            />
+          )}
+        </main>
       </div>
 
       {/* ✅ Need Help Section at the end */}

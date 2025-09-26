@@ -173,7 +173,7 @@ export default function ContactUS() {
             }
         };
         fetchPageData();
-    }, [contactData]);
+    }, []);
 
     const [userIp, setUserIp] = useState("");
     // console.log("IP", userIp)
@@ -294,7 +294,7 @@ export default function ContactUS() {
                 <div className="hidden sm:grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 my-10 w-full">
                     {allIcons.map((item, idx) => (
                         <div key={idx} className="relative w-full">
-                            <div className="relative bg-gray-100 rounded-md pt-16 pb-8 px-6 text-center shadow-sm h-60">
+                            <div className="relative bg-gray-100 rounded-md pt-16 pb-8 px-6 text-center shadow-sm md:h-64 lg:h-72 xl:h-60">
                                 {/* Floating icon card */}
                                 <motion.div
                                     initial={{ opacity: 0, y: -8 }}

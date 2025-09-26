@@ -6,7 +6,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { BASE_URL_SVG, endpoints } from '../../Helpers/apiEndpoints';
 import axios from 'axios';
-export default function MonthlyUmrahPackages({ pageData }) {
+export default function RelevantPackages({ pageData }) {
     const sliderRef = useRef(null);
     const [packages, setPackages] = useState([]);
     const [type, setType] = useState();
@@ -82,23 +82,23 @@ export default function MonthlyUmrahPackages({ pageData }) {
         dots: false,
         infinite: true,
         speed: 700,
-        slidesToShow: 4, // desktop default
+        slidesToShow: 3, // desktop default
         slidesToScroll: 1,
         autoplay: false,
         autoplaySpeed: 3000,
         arrows: false,
         responsive: [
             {
-                breakpoint: 1280, // ≤ 1280px
+                breakpoint: 1380, // ≤ 1280px
                 settings: {
-                    slidesToShow: 3,
+                    slidesToShow: 2.5,
                     slidesToScroll: 1,
                 }
             },
             {
-                breakpoint: 1380, // ≤ 1280px
+                breakpoint: 1280, // ≤ 1280px
                 settings: {
-                    slidesToShow: 4,
+                    slidesToShow: 2.5,
                     slidesToScroll: 1,
                 }
             },

@@ -10,6 +10,14 @@ import SpecificCategoryUmrah from "../Pages/UmrahPages/SpecificCategoryUmrah";
 import NotFound from "../Pages/CommonPages/NotFound";
 import { Helmet } from "react-helmet";
 
+const FullPageLoader = () => {
+    return (
+        <div className="fixed inset-0 flex items-center justify-center bg-white z-50">
+            <div className="w-12 h-12 border-4 border-gray-300 border-t-primary rounded-full animate-spin"></div>
+        </div>
+    );
+};
+
 export default function PageNavigator() {
     const { slug } = useParams();
     const [pageData, setPageData] = useState(null);
@@ -17,6 +25,7 @@ export default function PageNavigator() {
 
     useEffect(() => {
         const fetchPage = async () => {
+            setLoading(true);
             try {
                 const res = await axios.get(endpoints.getPageUrl(slug));
                 // console.log("Response", res)
@@ -93,7 +102,9 @@ export default function PageNavigator() {
         fetchPage();
     }, [slug]);
 
-    if (loading) return <p className="text-center py-10">Loading...</p>;
+    if (loading) {
+        return <FullPageLoader />;
+    }
     if (!pageData) return (
         <NotFound />
     )
@@ -148,6 +159,11 @@ export default function PageNavigator() {
         const hasHajjSection2 =
             Array.isArray(section_2_widget) &&
             section_2_widget.some((w) => w && w.hajj_type);
+
+
+        if (loading) {
+            return <FullPageLoader />;   // <-- loader for Hajj routes
+        }
 
         if (hasHajjSection1 && hasHajjSection2) {
             return (

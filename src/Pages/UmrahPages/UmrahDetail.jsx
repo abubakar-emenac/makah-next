@@ -4,7 +4,6 @@ import CustomizeUmrahPopup from '../../Components/UmrahComponents/CustomizeUmrah
 import ImageGallery from '../CommonPages/ImageGallery'
 import ImageSlider from '../../Components/CommonComponents/ImageSlider'
 import Testmonials from '../../Components/CommonComponents/Testmonials'
-import MonthlyUmrahPackages from '../../Components/UmrahComponents/monthlyUmrahPackages'
 import NeedHelp from '../../Components/CommonComponents/NeedHelp'
 import { useParams, useLocation, Link } from 'react-router-dom'
 import { endpoints, BASE_URL_IMG, BASE_URL_SVG } from '../../Helpers/apiEndpoints'
@@ -13,6 +12,15 @@ import axios from 'axios'
 import NotFound from '../CommonPages/NotFound';
 import { Helmet } from 'react-helmet';
 import { useGlobalData } from "../../Helpers/useGlobalData";
+import RelevantPackages from '../../Components/CommonComponents/RelevantPackages';
+
+const FullPageLoader = () => {
+    return (
+        <div className="fixed inset-0 flex items-center justify-center bg-white z-50">
+            <div className="w-12 h-12 border-4 border-gray-300 border-t-primary rounded-full animate-spin"></div>
+        </div>
+    );
+};
 
 export default function UmrahDetail() {
     const { globalData } = useGlobalData();
@@ -182,11 +190,7 @@ export default function UmrahDetail() {
     ];
     const activeIcons = icon.filter(item => services[item.key] === 1);
     if (loading) {
-        return (
-            <div className="flex justify-center items-center h-64">
-                <div>Loading...</div>
-            </div>
-        );
+        return <FullPageLoader />;
     }
     if (error) {
         return (
@@ -304,7 +308,7 @@ export default function UmrahDetail() {
                                     </div>
                                 </div>
                             ))}
-                        </div>  
+                        </div>
 
 
                         {/* Action Buttons */}
@@ -449,7 +453,7 @@ export default function UmrahDetail() {
                                 <span
                                     dangerouslySetInnerHTML={{
                                         __html: isMakkahLong
-                                            ? makkahDescription.slice(0, 300) + "..."
+                                            ? makkahDescription.slice(0, 250) + "..."
                                             : makkahDescription,
                                     }}
                                 />
@@ -497,7 +501,7 @@ export default function UmrahDetail() {
                                 <span
                                     dangerouslySetInnerHTML={{
                                         __html: isMadinahLong
-                                            ? madinahDescription.slice(0, 300) + "..."
+                                            ? madinahDescription.slice(0, 250) + "..."
                                             : madinahDescription,
                                     }}
                                 />
@@ -528,7 +532,7 @@ export default function UmrahDetail() {
                 (widget) => widget && Object.keys(widget).length > 0
             ) && (
                     <div className="w-full md:max-w-[85%] lg:max-w-[80%] mx-auto my-5 md:px-4">
-                        <MonthlyUmrahPackages pageData={packageData} />
+                    <RelevantPackages pageData={packageData} />
                     </div>
                 )}
 

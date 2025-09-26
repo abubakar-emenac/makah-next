@@ -361,9 +361,9 @@ export default function EnquiryBox() {
                             className="w-full outline-none font-Montserrat font-medium text-[14px] text-gray-600"
                         />
                         <img
-                            src={`${BASE_URL_SVG}/assets/svgs/Accomodation.svg`}
-                            className="ml-2"
-                            alt="Passengers"
+                            src={`${BASE_URL_SVG}assets/svgs/Guests SVG.svg`}
+                            alt="guests"
+                            className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5"
                         />
                     </div>
 
