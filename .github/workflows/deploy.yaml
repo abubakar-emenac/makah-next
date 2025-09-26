@@ -37,7 +37,7 @@ jobs:
           # CRA uses build/, Vite uses dist/
           aws s3 sync dist/ s3://${{ secrets.S3_BUCKET_NAME }} --delete \
             --exclude "sitemap.xml" \
-            --exclude "blog/post-sitemap.xml" \
+            --exclude "post-sitemap.xml" \
             --exclude "robots.txt"
 
       - name: 🌐 Fetch and Upload Root Sitemap
@@ -49,7 +49,7 @@ jobs:
       - name: 🌐 Fetch and Upload Blog Post Sitemap
         run: |
           curl -s https://admin.makkahtravel.co.uk/api/generate-post-sitemap > post-sitemap.xml
-          aws s3 cp post-sitemap.xml s3://${{ secrets.S3_BUCKET_NAME }}/blog/post-sitemap.xml \
+          aws s3 cp post-sitemap.xml s3://${{ secrets.S3_BUCKET_NAME }}/post-sitemap.xml \
             --content-type "application/xml"
 
       - name: ⚡ Invalidate CloudFront Cache
