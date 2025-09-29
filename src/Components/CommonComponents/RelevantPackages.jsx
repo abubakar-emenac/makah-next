@@ -11,6 +11,8 @@ export default function RelevantPackages({ pageData }) {
     const [packages, setPackages] = useState([]);
     const [type, setType] = useState();
     const widgetData = pageData?.section_2_widget?.[0];
+    const showArrows = widgetData?.slider_enable !== "0";
+    const showButton = widgetData?.button_text && widgetData?.button_link !== "0";
     // const [currentSlide, setCurrentSlide] = useState(0);
     useEffect(() => {
         const fetchPackages = async () => {
@@ -144,7 +146,10 @@ export default function RelevantPackages({ pageData }) {
 
                 <div className="w-full lg:w-[45%] flex justify-start lg:justify-end">
                     <div className="flex items-center gap-3 flex-wrap">
+                        {showButton && (
                         <ViewAllButton color="primary" slug={widgetData.button_link} label={widgetData.button_text} size="md" />
+                        )}
+                        {showArrows && (
                         <div className="flex items-center gap-3">
                             <span
                                 onClick={handlePrev}
@@ -161,6 +166,7 @@ export default function RelevantPackages({ pageData }) {
                                 <img src={`${BASE_URL_SVG}/assets/svgs/arrow-right.svg`} alt="Right Arrow" className="w-5 h-5 sm:w-6 sm:h-6" />
                             </span>
                         </div>
+                        )}
                     </div>
                 </div>
             </div>

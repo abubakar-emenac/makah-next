@@ -185,9 +185,9 @@ export default function HajjDetail() {
 
     const icon = [
         { key: 'flight', icon: '/svgs/flightd.svg', label: 'Flight' },
-        { key: 'accomodation', icon: '/svgs/hotel.svg', label: 'Hotel' },
         { key: 'visa', icon: '/svgs/visa.svg', label: 'Visa' },
         { key: 'transfer', icon: '/svgs/transport.svg', label: 'Transport' },
+        { key: 'accomodation', icon: '/svgs/hotel.svg', label: 'Hotel' },
         { key: 'breakfast', icon: '/svgs/dinner.svg', label: 'Half-Board' },
     ];
     const activeIcons = icon.filter(item => services[item.key] === 1);
@@ -402,7 +402,7 @@ export default function HajjDetail() {
                             onClick={() => setIsOpen(true)}
                             onMouseEnter={() => setHoverBtn1(true)}
                             onMouseLeave={() => setHoverBtn1(false)}
-                            className="w-full border border-secondary hover:border-primary text-primary hover:border-0 hover:bg-primary hover:text-white font-semibold text-xl font-Montserrat flex justify-between items-center py-4 pl-7 pr-5 cursor-pointer transition-all duration-300 ease-in-out">
+                            className="w-full border border-secondary text-start hover:border-primary text-primary hover:border-0 hover:bg-primary hover:text-white font-semibold text-xl font-Montserrat flex justify-between items-start py-4 pl-3 pr-5 cursor-pointer transition-all duration-300 ease-in-out">
                             Book This Package
                             <img src={
                                 hoverBtn1
@@ -415,7 +415,7 @@ export default function HajjDetail() {
                             to={"/customize-your-umrah"}
                             onMouseEnter={() => setHoverBtn2(true)}
                             onMouseLeave={() => setHoverBtn2(false)}
-                            className="w-full border border-secondary hover:border-primary text-primary hover:border-0 hover:bg-primary hover:text-white font-semibold text-xl font-Montserrat flex justify-between items-center py-4 pl-7 pr-5 cursor-pointer transition-all duration-300 ease-in-out">
+                            className="w-full text-xl border border-secondary hover:border-primary text-primary hover:border-0 hover:bg-primary hover:text-white font-semibold font-Montserrat flex justify-between items-center  p-4 pl-3 cursor-pointer transition-all duration-300 ease-in-out">
                             Customize My Package
                             <img src={
                                 hoverBtn2

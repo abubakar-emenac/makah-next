@@ -183,9 +183,9 @@ export default function UmrahDetail() {
 
     const icon = [
         { key: 'flight', icon: '/svgs/flightd.svg', label: 'Flight' },
-        { key: 'accomodation', icon: '/svgs/hotel.svg', label: 'Hotel' },
         { key: 'visa', icon: '/svgs/visa.svg', label: 'Visa' },
         { key: 'transfer', icon: '/svgs/transport.svg', label: 'Transport' },
+        { key: 'accomodation', icon: '/svgs/hotel.svg', label: 'Hotel' },
         { key: 'breakfast', icon: '/svgs/dinner.svg', label: 'Half-Board' },
     ];
     const activeIcons = icon.filter(item => services[item.key] === 1);
@@ -391,7 +391,7 @@ export default function UmrahDetail() {
                     {/* Left (2/3 width on lg+, full width on mobile) */}
                     <div className="w-full lg:w-3/4 font-Montserrat text-[16px]">
                         {packageData?.description && (
-                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3 bg-[rgba(219,158,48,0.08)] p-7">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3 bg-[rgba(219,158,48,0.08)] custom-bullet p-7">
                                 {parse(packageData.description)}
                             </div>
                         )}
@@ -403,7 +403,7 @@ export default function UmrahDetail() {
                             onClick={() => setIsOpen(true)}
                             onMouseEnter={() => setHoverBtn1(true)}
                             onMouseLeave={() => setHoverBtn1(false)}
-                            className="w-full border border-secondary hover:border-primary text-primary hover:border-0 hover:bg-primary hover:text-white font-semibold text-xl font-Montserrat flex justify-between items-center py-4 pl-7 pr-5 cursor-pointer transition-all duration-300 ease-in-out">
+                            className="w-full border border-secondary text-start hover:border-primary text-primary hover:border-0 hover:bg-primary hover:text-white font-semibold text-xl font-Montserrat flex justify-between items-start py-4 pl-3 pr-5 cursor-pointer transition-all duration-300 ease-in-out">
                             Book This Package
                             <img src={
                                 hoverBtn1
@@ -416,7 +416,7 @@ export default function UmrahDetail() {
                             to={"/customize-your-umrah"}
                             onMouseEnter={() => setHoverBtn2(true)}
                             onMouseLeave={() => setHoverBtn2(false)}
-                            className="w-full text-xl border border-secondary hover:border-primary text-primary hover:border-0 hover:bg-primary hover:text-white font-semibold font-Montserrat flex justify-between items-center  p-4 cursor-pointer transition-all duration-300 ease-in-out">
+                            className="w-full text-xl border border-secondary hover:border-primary text-primary hover:border-0 hover:bg-primary hover:text-white font-semibold font-Montserrat flex justify-between items-center  p-4 pl-3 cursor-pointer transition-all duration-300 ease-in-out">
                             Customize My Package
                             <img src={
                                 hoverBtn2

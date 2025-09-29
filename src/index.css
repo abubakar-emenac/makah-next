@@ -206,3 +206,7 @@ html {
 .animate-fade-in-out {
   animation: fadeInOut 10s ease-in-out forwards;
 }
+.custom-bullet>ul {
+  list-style-image: url('/public/svg/bullet.svg');
+  list-style-type: square;
+}

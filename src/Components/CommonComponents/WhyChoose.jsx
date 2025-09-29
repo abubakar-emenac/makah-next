@@ -360,13 +360,13 @@ export default function WhyChoose() {
                                             {/* Default image (front) */}
                                             <img
                                                 src={item.icon}
-                                                alt={item.heading}
+                                                alt={`why choose icon ${index}`}
                                                 className="absolute inset-0 backface-hidden w-full h-full object-contain"
                                             />
                                             {/* Hover image (back) */}
                                             <img
                                                 src={hoverMatch.icon}
-                                                alt={`${item.heading}`}
+                                                alt={`why choose icon ${index}`}
                                                 className="absolute inset-0 backface-hidden w-full h-full object-contain rotate-y-180"
                                             />
                                         </div>
@@ -375,7 +375,7 @@ export default function WhyChoose() {
                                         <div className="relative w-20 sm:w-24 h-20 sm:h-24">
                                             <img
                                                 src={item.icon}
-                                                    alt={item.heading}
+                                                    alt={`why choose icon ${index}`}
                                                     className={`w-full h-full object-contain transition-opacity duration-300 ${hoveredIndex === index ? "opacity-70" : "opacity-100"
                                                         }`}
                                                 />
@@ -404,7 +404,7 @@ export default function WhyChoose() {
                                 <div className="flex-shrink-0 flex justify-center items-center h-28 mb-3">
                                     <img
                                         src={item.icon}
-                                        alt={item.heading}
+                                        alt={`why choose icon ${index}`}
                                         className="w-20 sm:w-24 h-auto object-contain"
                                     />
                                 </div>
