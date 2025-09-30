@@ -287,6 +287,7 @@ export default function CustomizeUmrahPopup() {
                         }}
                         onClickOutside={() => setIsOpen(false)}
                         open={isOpen}
+                        minDate={new Date()}
                         placeholderText="Departure Date"
                         className={inputClass}
                         dateFormat="dd/MM/yyyy"
@@ -637,6 +638,7 @@ export default function CustomizeUmrahPopup() {
                                     placeholderText="Departure Date"
                                     className={`${inputClass} border border-gray-300 rounded-lg px-4 py-3 w-full`}
                                     dateFormat="dd/MM/yyyy"
+                                    minDate={new Date()}
                                 />
                                 <img
                                     src={`${BASE_URL_SVG}/assets/svgs/Departure Date SVG.svg`}

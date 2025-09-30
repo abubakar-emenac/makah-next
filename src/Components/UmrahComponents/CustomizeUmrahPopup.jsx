@@ -287,6 +287,7 @@ export default function CustomizeUmrahPopup() {
                         }}
                         onClickOutside={() => setIsOpen(false)}
                         open={isOpen}
+                        minDate={new Date()}
                         placeholderText="Departure Date"
                         className={inputClass}
                         dateFormat="dd/MM/yyyy"
@@ -635,6 +636,7 @@ export default function CustomizeUmrahPopup() {
                                     selected={departureDate}
                                     onChange={(date) => setDepartureDate(date)}
                                     placeholderText="Departure Date"
+                                    minDate={new Date()}
                                     className={`${inputClass} border border-gray-300 rounded-lg px-4 py-3 w-full`}
                                     dateFormat="dd/MM/yyyy"
                                 />
