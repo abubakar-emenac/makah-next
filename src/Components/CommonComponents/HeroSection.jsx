@@ -239,18 +239,16 @@ export default function HeroSection({ pageData }) {
 
     return (
         <div
-            className="flex flex-col w-full h-screen"
+            className="flex flex-col w-full"
             style={{
                 backgroundImage: `url(${BASE_URL_IMG}/${pageData?.image_url})`,
-                // backgroundSize: 'fill',
-                backgroundSize: 'cover',
-                backgroundRepeat: 'no-repeat',
+                backgroundSize: 'fill',
                 backgroundPosition: 'center',
             }}
         >
 
             {/* CONTENT CONTAINER - This container now holds the rest of the hero content */}
-            <div className="w-full max-w-[98%] sm:max-w-[95%] md:max-w-[90%] lg:max-w-[85%] xl:max-w-[75%] mx-auto px-3 sm:px-4 md:px-6 mt-4 sm:mt-6 md:mt-8 flex flex-col justify-center h-full">
+            <div className="w-full max-w-[98%] sm:max-w-[95%] md:max-w-[90%] lg:max-w-[85%] xl:max-w-[75%] mx-auto px-3 sm:px-4 md:px-6 mt-4 sm:mt-6 md:mt-8">
 
                 {/* HEADINGS */}
                 <div
@@ -260,7 +258,7 @@ export default function HeroSection({ pageData }) {
                     dangerouslySetInnerHTML={{
                         __html: pageData?.banner_heading
                     }}
-                >
+                > 
                 </div>
 
                 {/* SUBHEADING */}
