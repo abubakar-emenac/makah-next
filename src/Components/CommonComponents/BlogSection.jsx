@@ -67,6 +67,7 @@ export default function BlogSection() {
           src={`${BASE_URL_SVG}/assets/svgs/crown-black.svg`}
           alt="Crown"
           className="w-12 sm:w-16 md:w-20 mb-3 sm:mb-4"
+          loading="lazy"
         />
         <h2 className="text-[26px] sm:text-[32px] md:text-[36px] font-abril leading-tight mb-3 sm:mb-4">
           {widgets[1]?.heading || "Our Latest News"}
@@ -86,6 +87,7 @@ export default function BlogSection() {
               src={`${BASE_URL_IMG}/${firstBlog.image_url}`}
               alt={firstBlog.image_alt || firstBlog.title}
               className="w-full h-64 sm:h-72 md:h-80 lg:h-[360px] object-fill rounded-md"
+              loading="lazy"
             />
           </Link>
           {/* <span className="text-black mt-4 block font-Montserrat text-[14px] sm:text-[15px] md:text-[16px]">
@@ -93,7 +95,7 @@ export default function BlogSection() {
           </span> */}
           <Link to={`/blog/${firstBlog.page_url}`}>
             <h3 className="text-[22px] sm:text-[28px] md:text-[32px] font-abril leading-tight mt-2 mb-3 cursor-pointer">
-            {firstBlog.title}
+              {firstBlog.title}
             </h3>
           </Link>
           <p className="text-[14px] sm:text-[15px] md:text-[16px] font-Montserrat leading-relaxed text-black mb-4 line-clamp-3">
@@ -131,6 +133,7 @@ export default function BlogSection() {
                   <img
                     src={`${BASE_URL_SVG}/assets/svgs/grayarrow.svg`}
                     alt="arrow"
+                    loading="lazy"
                   />
                 </Link>
                 {index < otherBlogs.length - 1 && (

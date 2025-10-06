@@ -428,6 +428,7 @@ const CustomizePackageForm = () => {
                     src={`${BASE_URL_SVG}/assets/svgs/crown-black.svg`}
                     alt="Crown"
                     className="w-12 sm:w-16 md:w-35"
+                    loading="lazy"
                 />
                 <div className='flex'>
                     <div className='w-full md:max-w-[70%] mx-auto'>
@@ -479,7 +480,7 @@ const CustomizePackageForm = () => {
                                                 setOriginSuggestions(filtered);
                                             }}
                                         />
-                                        <img src={`${BASE_URL_SVG}/assets/svgs/plane.svg`} alt="Departure Airport" className="ml-2 w-5 h-5" />
+                                        <img src={`${BASE_URL_SVG}/assets/svgs/plane.svg`} alt="Departure Airport" className="ml-2 w-5 h-5" loading="lazy" />
                                     </div>
 
                                     {originSuggestions.length > 0 && (
@@ -516,7 +517,7 @@ const CustomizePackageForm = () => {
                                         minDate={new Date()}
                                     />
                                     <img src={`${BASE_URL_SVG}/assets/svgs/Departure Date SVG.svg`}
-                                        alt="Departure Date" className="ml-auto w-5 h-5" />
+                                        alt="Departure Date" className="ml-auto w-5 h-5" loading="lazy" />
                                 </div>
 
                                 {activeTab === "umrah" && (
@@ -584,7 +585,7 @@ const CustomizePackageForm = () => {
                                         />
                                         <img
                                             src={`${BASE_URL_SVG}/assets/svgs/Accomodation.svg`}
-                                            alt="Accomodation" className="ml-2" />
+                                            alt="Accomodation" className="ml-2" loading="lazy" />
                                     </div>
 
                                     {/* Dropdown Menu */}
@@ -620,7 +621,7 @@ const CustomizePackageForm = () => {
                                                     className="w-full outline-none font-Montserrat font-medium text-[14px] text-gray-600"
                                                 />
                                                 <img src={`${BASE_URL_SVG}/assets/svgs/Accomodation.svg`}
-                                                    alt="Accomodation" className="ml-2" />
+                                                    alt="Accomodation" className="ml-2" loading="lazy" />
                                             </div>
 
                                             {/* Dropdown Menu */}
@@ -654,7 +655,7 @@ const CustomizePackageForm = () => {
                                                     className="w-full outline-none font-Montserrat font-medium text-[14px] text-gray-600"
                                                 />
                                                 <img src={`${BASE_URL_SVG}/assets/svgs/Accomodation.svg`}
-                                                    alt="Accomodation" className="ml-2" />
+                                                    alt="Accomodation" className="ml-2" loading="lazy" />
                                             </div>
 
                                             {/* Dropdown Menu */}
@@ -688,7 +689,7 @@ const CustomizePackageForm = () => {
                                                     className="w-full outline-none font-Montserrat font-medium text-[14px] text-gray-600"
                                                 />
                                                 <img src={`${BASE_URL_SVG}/assets/svgs/Accomodation.svg`}
-                                                    alt="Accomodation" className="ml-2" />
+                                                    alt="Accomodation" className="ml-2" loading="lazy" />
                                             </div>
 
                                             {/* Dropdown Menu */}
@@ -733,7 +734,7 @@ const CustomizePackageForm = () => {
                                             className="w-full outline-none font-Montserrat font-medium 
                                             text-[14px] text-gray-600"
                                         />
-                                        <img src={`${BASE_URL_SVG}/assets/svgs/Accomodation.svg`} className="ml-2" alt="Passengers" />
+                                        <img src={`${BASE_URL_SVG}/assets/svgs/Accomodation.svg`} className="ml-2" alt="Passengers" loading="lazy" />
                                     </div>
 
                                     {/* Dropdown */}
@@ -762,7 +763,7 @@ const CustomizePackageForm = () => {
                                                                 }
                                                             }}
                                                         >
-                                                            <img src={`${BASE_URL_SVG}/assets/svgs/PassInminus.svg`} className="w-5 h-5" alt="Passengers" />
+                                                            <img src={`${BASE_URL_SVG}/assets/svgs/PassInminus.svg`} className="w-5 h-5" alt="Passengers" loading="lazy" />
                                                         </button>
 
                                                         {/* Count display */}
@@ -787,7 +788,7 @@ const CustomizePackageForm = () => {
                                                                 }
                                                             }}
                                                         >
-                                                            <img src={`${BASE_URL_SVG}/assets/svgs/PassIncplus.svg`} className="w-5 h-5" alt="Passengers" />
+                                                            <img src={`${BASE_URL_SVG}/assets/svgs/PassIncplus.svg`} className="w-5 h-5" alt="Passengers" loading="lazy" />
                                                         </button>
                                                     </div>
                                                 </div>
@@ -812,7 +813,7 @@ const CustomizePackageForm = () => {
                                                     className="w-full outline-none font-Montserrat font-medium text-[14px] text-gray-600"
                                                 />
                                                 <img src={`${BASE_URL_SVG}/assets/svgs/Accomodation.svg`}
-                                                    alt="Accomodation" className="ml-2" />
+                                                    alt="Accomodation" className="ml-2" loading="lazy" />
                                             </div>
 
                                             {/* Dropdown Menu */}
@@ -862,6 +863,7 @@ const CustomizePackageForm = () => {
                                         src={`${BASE_URL_SVG}/assets/svgs/Name SVG.svg`}
                                         alt="name"
                                         className="ml-2 w-5 h-5"
+                                        loading="lazy"
                                     />
                                 </div>
 
@@ -889,6 +891,7 @@ const CustomizePackageForm = () => {
                                         src={`${BASE_URL_SVG}/assets/svgs/Phone Number SVG.svg`}
                                         alt="phone"
                                         className="ml-2 w-5 h-5"
+                                        loading="lazy"
                                     />
                                 </div>
 
@@ -909,6 +912,7 @@ const CustomizePackageForm = () => {
                                         src={`${BASE_URL_SVG}/assets/svgs/Email SVG.svg`}
                                         alt="email"
                                         className="ml-2 w-5 h-5"
+                                        loading="lazy"
                                     />
                                 </div>
 
@@ -964,7 +968,7 @@ const CustomizePackageForm = () => {
                                     ) : (
                                         <>
                                             <span>Submit</span>
-                                            <img src={`${BASE_URL_SVG}/assets/svgs/SubmitArrow.svg`} alt="submit" className="w-7 h-7" />
+                                            <img src={`${BASE_URL_SVG}/assets/svgs/SubmitArrow.svg`} alt="submit" className="w-7 h-7" loading="lazy" />
                                         </>
                                     )}
                                 </button>
@@ -978,6 +982,7 @@ const CustomizePackageForm = () => {
                             src={`${BASE_URL_SVG}/assets/svgs/FormImg.svg`}
                             alt="submit"
                             className="w-full h-full object-contain"
+                            loading="lazy"
                         />
                     </div>
 

@@ -39,6 +39,7 @@ const ContactInfo = () => {
                             <img
                                 src="/svg/Cntct.svg"
                                 alt="Cntct"
+                                loading="lazy"
                             />
                         </div>
                     </div>
@@ -61,6 +62,7 @@ const ContactInfo = () => {
                             <img
                                 src="/svg/Email.svg"
                                 alt="Email"
+                                loading="lazy"
                             />
                         </div>
                     </div>
@@ -83,6 +85,7 @@ const ContactInfo = () => {
                             <img
                                 src="/svg/location.svg"
                                 alt="location"
+                                loading="lazy"
                             />
                         </div>
                     </div>
@@ -105,6 +108,7 @@ const ContactInfo = () => {
                             <img
                                 src="/svg/Media.svg"
                                 alt="Media"
+                                loading="lazy"
                             />
                         </div>
                     </div>
@@ -118,14 +122,17 @@ const ContactInfo = () => {
                             <img
                                 src="/svg/fac.svg"
                                 alt="Media"
+                                loading="lazy"
                             />
                             <img
                                 src="/svg/Insta.svg"
                                 alt="Media"
+                                loading="lazy"
                             />
                             <img
                                 src="/svg/You.svg"
                                 alt="Media"
+                                loading="lazy"
                             />
                         </div>
                     </div>
