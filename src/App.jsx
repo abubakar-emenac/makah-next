@@ -84,7 +84,7 @@ function App() {
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/cookies-policy" element={<CookiePolicy />} />
         <Route path="/contact-us" element={<ContactUS />} />
-        <Route path="/customize-your-umrah" element={<CustomizePackageForm />} />
+        <Route path="/customise-your-package" element={<CustomizePackageForm />} />
         <Route path="/:slug" element={<PageNavigator />} />
         <Route path="/umrah/:slug" element={<UmrahDetail />} />
         <Route path="/hajj/:slug" element={<HajjDetail />} />
