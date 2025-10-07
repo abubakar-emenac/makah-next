@@ -70,9 +70,6 @@ export default function EnquiryBox() {
         return () => document.removeEventListener('mousedown', handleClickOutside);
     }, []);
 
-
-
-
     const handleSubmit = async (e) => {
         const totalGuests = adults + children + infants;
         e.preventDefault();
@@ -150,7 +147,7 @@ export default function EnquiryBox() {
     return (
         <form
             onSubmit={handleSubmit}
-            className="bg-white px-4 py-6 rounded-xl shadow-md w-full font-Montserrat"
+            className="bg-white px-4 py-6 rounded-xl shadow-xl w-full font-Montserrat"
         >
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
 

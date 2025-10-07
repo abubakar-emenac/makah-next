@@ -87,6 +87,14 @@ const Navbar = ({ textColor = "black" }) => {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 640);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 640);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   return (
     <nav
       className={`fixed top-0 left-0 w-full font-Montserrat z-[9999] transition-all duration-300 
@@ -111,7 +119,7 @@ const Navbar = ({ textColor = "black" }) => {
             />
           ) : (
             <img
-              src={`${WEB_URL}/${scrolled || forceDarkLogo ? darkLogo : logo}`}
+              src={`${WEB_URL}/${isMobile || scrolled || forceDarkLogo ? darkLogo : logo}`}
               alt="Company Logo"
               className="lg:w-40 md:w-32 sm:w-28 w-16"
               loading="eager"
@@ -207,11 +215,11 @@ const Navbar = ({ textColor = "black" }) => {
                 d="M6 18L18 6M6 6l12 12"
               />
             ) : (
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M4 6h16M4 12h16M4 18h16"
+              />
             )}
           </svg>
         </button>
@@ -238,7 +246,7 @@ const Navbar = ({ textColor = "black" }) => {
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: -50, opacity: 0 }}
               transition={{ duration: 0.4, type: "spring", stiffness: 120 }}
-              className="fixed top-16 left-1/2 -translate-x-1/2 w-[95%] max-w-lg md:max-w-md bg-white rounded-3xl shadow-2xl z-[9999] flex flex-col px-6 py-6 space-y-4"
+              className="fixed top-16 left-1/2 -translate-x-1/2 w-[95%] max-w-lg md:max-w-md bg-white rounded-3xl shadow-2xl z-[9999] flex flex-col px-6 py-6 space-y-4 bg-black"
             >
               {navItems.map((item, i) => (
                 <motion.div
