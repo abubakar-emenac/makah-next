@@ -178,7 +178,7 @@ export default function UmrahPackageStar({ pageData }) {
                     />
                 ))}
             </div>
-            {pageData?.scroll_description && (
+            {packagesData.length > 0 && pageData?.scroll_description && (
                 <ScrollDetail pageData={pageData} />
             )}
             {Array.isArray(pageData?.faqs) && pageData.faqs.length > 0 && (
