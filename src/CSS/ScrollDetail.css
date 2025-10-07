@@ -1,10 +1,18 @@
 /* ScrollDetail.css */
 @reference "../index.css";
+
 :root {
   --primary: #DB9E30;
   --primary-alpha: rgba(219, 158, 48, 0.1);
   --secondary: #57A68F;
 }
+
+.scrollable-box {
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  touch-action: auto;
+}
+
 
 .custom-scrollbar h1 {
   color: var(--secondary);
@@ -41,20 +49,21 @@
   font-size: 0.67em;
   /* ~10.72px */
 }
+
 .custom-scrollbar {
   /* This is the key part for scrollbar placement */
   direction: rtl;
   /* This enables vertical scrolling and hides horizontal */
   overflow-y: auto;
-    overflow-x: hidden;
-    height: 100%;
-    /* Take up the full height of the parent div */
-    -webkit-overflow-scrolling: touch;
-  
-    /* Firefox styling */
-    scrollbar-width: thin;
-    scrollbar-color: var(--primary) var(--primary-alpha);
-  }
+  overflow-x: hidden;
+  height: 100%;
+  /* Take up the full height of the parent div */
+  -webkit-overflow-scrolling: touch;
+
+  /* Firefox styling */
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary) var(--primary-alpha);
+}
 
 .custom-scrollbar>* {
   /* This is crucial to reset the text direction inside */
@@ -69,34 +78,36 @@
 .custom-scrollbar::-webkit-scrollbar-track {
   background: var(--primary-alpha);
   border-radius: 999px;
-    padding: 8px 0;
-    background-clip: content-box;
-  }
-  
-  .custom-scrollbar::-webkit-scrollbar-thumb {
+  padding: 8px 0;
+  background-clip: content-box;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
   background-color: var(--primary);
   border-radius: 999px;
-    min-height: 20px;
-    max-height: 40px;
-    background-clip: padding-box;
-    border-right: 2px solid transparent;
-    border-left: 2px solid transparent;
-  }
-  
-  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  min-height: 20px;
+  max-height: 40px;
+  background-clip: padding-box;
+  border-right: 2px solid transparent;
+  border-left: 2px solid transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
   background-color: #c48725;
 }
 
 .custom-scrollbar a {
   @apply relative inline-block text-primary hover:text-primary-hover no-underline;
 }
- .custom-scrollbar a::after {
-   content: "";
-   @apply absolute left-0 -bottom-[0.1px] h-[2px] w-0 bg-primary transition-all duration-300;
- }
- .custom-scrollbar a:hover::after {
-   @apply w-full;
- }
+
+.custom-scrollbar a::after {
+  content: "";
+  @apply absolute left-0 -bottom-[0.1px] h-[2px] w-0 bg-primary transition-all duration-300;
+}
+
+.custom-scrollbar a:hover::after {
+  @apply w-full;
+}
 
 /* ✅ Make sure every <a> inside .custom-scrollbar is styled */
 .custom-scrollbar a,
@@ -118,29 +129,33 @@
 .custom-scrollbar a strong:hover::after {
   @apply w-full;
 }
- .custom-scrollbar a::after {
-   content: "";
-   @apply absolute left-0 -bottom-[0.1px] h-[2px] w-0 bg-primary transition-all duration-300;
- }
 
- .custom-scrollbar a:hover::after {
-   @apply w-full;
- }
- .custom-scrollbar ul {
+.custom-scrollbar a::after {
+  content: "";
+  @apply absolute left-0 -bottom-[0.1px] h-[2px] w-0 bg-primary transition-all duration-300;
+}
+
+.custom-scrollbar a:hover::after {
+  @apply w-full;
+}
+
+.custom-scrollbar ul {
   @apply list-disc pl-5;
-  }
+}
 
- .custom-scrollbar ol {
-   @apply list-decimal pl-5;
- }
- .custom-scrollbar li {
-   @apply mb-2;
-   /* optional spacing between items */
- }
- /* Tables inside parseData or custom-scrollbar */
- .custom-scrollbar table {
-   @apply w-full border-collapse border border-gray-300 text-sm sm:text-base mb-4;
- }
+.custom-scrollbar ol {
+  @apply list-decimal pl-5;
+}
+
+.custom-scrollbar li {
+  @apply mb-2;
+  /* optional spacing between items */
+}
+
+/* Tables inside parseData or custom-scrollbar */
+.custom-scrollbar table {
+  @apply w-full border-collapse border border-gray-300 text-sm sm:text-base mb-4;
+}
 
 .custom-scrollbar th,
 .custom-scrollbar td {
@@ -149,11 +164,12 @@
 
 .custom-scrollbar th {
   @apply bg-gray-100 font-semibold;
-  }
+}
 
 .custom-scrollbar tbody tr:nth-child(even) {
   @apply bg-gray-50;
 }
+
 .custom-scrollbar caption {
   @apply text-sm text-gray-500 mb-2;
 }

@@ -24,13 +24,14 @@ export default function HeroSection({ pageData }) {
     let viewAllButtonComponent = null;
     if (buttonEnabled === "1") {
         viewAllButtonComponent = (
-            <div className=" md:mt-4 lg:mt-6
+            <div className="md:mt-4 lg:mt-6
        w-full sm:w-[95%] md:w-[95%] lg:max-w-[88%] xl:max-w-[88%]
-        mx-auto sm:pb-20">
+        mx-auto pb-10 sm:pb-20">
                 <ViewAllButton
                     color="primary"
                     slug={buttonLink}
                     label={buttonText}
+                    size={isMobile ? "sm" : "md"}
                 />
             </div>
         );

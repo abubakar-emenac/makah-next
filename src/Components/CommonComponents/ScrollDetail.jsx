@@ -76,7 +76,9 @@ export default function ScrollDetail({ pageData }) {
             </div>
 
             {/* Scrollable description */}
-            <div className="w-full sm:px-6 md:px-1 mt-6 h-[500px] max-h-full" data-lenis-prevent>
+            <div className="w-full sm:px-6 md:px-1 mt-6 h-[500px] max-h-full scrollable-box"
+            //  data-lenis-prevent
+            >
                 <div
                     className="custom-scrollbar prose font-Montserrat p-3"
                 >

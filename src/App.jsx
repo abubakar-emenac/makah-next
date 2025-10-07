@@ -59,27 +59,14 @@ function App() {
 
   // Initialize Lenis
   useEffect(() => {
-    const lenis = new Lenis({
-      autoRaf: true,
-    });
+    const lenis = new Lenis({ autoRaf: true });
+    window.lenisInstance = lenis;
+
     return () => {
       lenis.destroy();
+      window.lenisInstance = null;
     };
   }, []);
-
-  // useEffect(() => {
-  //   const lenis = new Lenis({
-  //     duration: 0.4,
-  //     easing: (t) => t,
-  //     smooth: true,
-  //     autoRaf: true,
-  //   });
-
-  //   lenis.on("scroll", (e) => {
-  //   });
-
-  //   return () => lenis.destroy();
-  // }, []);
 
   return (
     <>
