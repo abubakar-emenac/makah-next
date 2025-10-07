@@ -87,7 +87,7 @@ const BlogDetails = () => {
       />
 
       {/* ✅ Main Content */}
-      <div className="max-w-6xl mx-auto px-4 py-8 flex flex-col-reverse md:flex-row gap-10">
+      <div className="max-w-6xl mx-auto px-4 md:py-8 flex flex-col-reverse md:flex-row gap-10">
         {/* Right - Latest Posts Sidebar */}
         <aside className="w-full md:w-1/3 md:sticky top-24 self-start h-fit">
           <span className="text-lg font-semibold font-Montserrat mb-4 block">
