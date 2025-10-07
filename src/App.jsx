@@ -57,15 +57,15 @@ function App() {
     }
   }, [location.pathname, location.search, navigate]);
 
-  // Initialize Lenis
-  useEffect(() => {
-    const lenis = new Lenis({
-      autoRaf: true,
-    });
-    return () => {
-      lenis.destroy();
-    };
-  }, []); // run only once
+  // // Initialize Lenis
+  // useEffect(() => {
+  //   const lenis = new Lenis({
+  //     autoRaf: true,
+  //   });
+  //   return () => {
+  //     lenis.destroy();
+  //   };
+  // }, []); // run only once
 
   return (
     <>
