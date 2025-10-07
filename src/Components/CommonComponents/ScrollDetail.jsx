@@ -46,11 +46,14 @@ export default function ScrollDetail({ pageData }) {
             h.style.marginBottom = "5px";
         });
 
-        // const cleanHtml = doc.body.innerHTML.trim();
+        const blockTags = ["p", "div", "li", "ul", "ol"];
+        Array.from(doc.body.children).forEach((child) => {
+            if (blockTags.includes(child.tagName.toLowerCase())) {
+                child.insertAdjacentHTML("afterend", "<br/>");
+            }
+        });
 
-        const cleanHtml = doc.body.innerHTML
-            .replace(/<\/(?!h[1-6]\b)([^>]+)>/gi, (match) => match + "<br/>")
-            .trim();
+        const cleanHtml = doc.body.innerHTML.trim();
 
         if (isMeaningfulContent(cleanHtml)) {
             setFilteredDescription(cleanHtml);

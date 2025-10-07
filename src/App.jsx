@@ -57,15 +57,29 @@ function App() {
     }
   }, [location.pathname, location.search, navigate]);
 
-  // // Initialize Lenis
+  // Initialize Lenis
+  useEffect(() => {
+    const lenis = new Lenis({
+      autoRaf: true,
+    });
+    return () => {
+      lenis.destroy();
+    };
+  }, []);
+
   // useEffect(() => {
   //   const lenis = new Lenis({
+  //     duration: 0.4,
+  //     easing: (t) => t,
+  //     smooth: true,
   //     autoRaf: true,
   //   });
-  //   return () => {
-  //     lenis.destroy();
-  //   };
-  // }, []); // run only once
+
+  //   lenis.on("scroll", (e) => {
+  //   });
+
+  //   return () => lenis.destroy();
+  // }, []);
 
   return (
     <>
