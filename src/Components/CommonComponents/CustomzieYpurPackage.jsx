@@ -55,7 +55,7 @@ export default function CustomizeYourPackage({ pageData }) {
                     <p className="text-white font-Montserrat text-[14px] sm:text-[14px] lg:text-[13px] xl:text-[15px] leading-relaxed mb-4 lg:mb-4">
                         {parse(pageData?.simple_description || "")}
                     </p>
-                    <ViewAllButton label="Start Customization" color="primary" size="md" slug={"customize-your-umrah"} />
+                    <ViewAllButton label="Start Customization" color="primary" size="md" slug={"customize-your-package"} />
 
                 </div>
             </div>
