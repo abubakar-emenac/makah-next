@@ -32,6 +32,7 @@ import Navbar from "./Components/CommonComponents/NavBar"
 import ScrollToTopButton from "./Components/CommonComponents/ScrollToTopButton"
 import Lenis from 'lenis'
 import WhatsAppButton from "./Components/CommonComponents/WhatsAppButton"
+import ScrollToTop from "./Components/CommonComponents/ScrollToTop"
 
 function App() {
   const location = useLocation();
@@ -68,6 +69,7 @@ function App() {
 
   return (
     <>
+      <ScrollToTop />
       <ScrollToTopButton />
       <WhatsAppButton />
       <Navbar />

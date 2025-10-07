@@ -40,6 +40,12 @@ export default function ScrollDetail({ pageData }) {
             figureImg.closest("figure")?.remove();
         }
 
+        const headings = doc.querySelectorAll("h1, h2, h3, h4, h5, h6");
+        headings.forEach((h) => {
+            h.style.display = "block";
+            h.style.marginBottom = "5px";
+        });
+
         // const cleanHtml = doc.body.innerHTML.trim();
 
         const cleanHtml = doc.body.innerHTML
@@ -50,6 +56,7 @@ export default function ScrollDetail({ pageData }) {
             setFilteredDescription(cleanHtml);
         }
     }, [pageData]);
+
     if (!filteredDescription) {
         return null;
     }
