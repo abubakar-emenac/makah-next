@@ -91,7 +91,7 @@ export default function SpecificCategoryHajj({ pageData }) {
         setVisibleCount((prev) => prev + 9);
     };
 
-
+    if (loading) return <p className="text-center py-10">Loading packages...</p>;
 
     return (
         <div className="flex flex-col mb-4">
