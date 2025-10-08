@@ -416,7 +416,7 @@ export default function HajjDetail() {
                             onMouseEnter={() => setHoverBtn2(true)}
                             onMouseLeave={() => setHoverBtn2(false)}
                             className="w-full text-xl border border-secondary hover:border-primary text-primary hover:border-0 hover:bg-primary hover:text-white font-semibold font-Montserrat flex justify-between items-center  p-4 pl-3 cursor-pointer transition-all duration-300 ease-in-out">
-                            Customize My Package
+                            Customise My Package
                             <img src={
                                 hoverBtn2
                                     ? `${BASE_URL_SVG}/assets/svgs/arrow-bg-white.svg`
