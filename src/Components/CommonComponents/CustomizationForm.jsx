@@ -24,7 +24,7 @@ export default function CustomizationForm({
                         <div className="mb-6 flex gap-4">
                             <img src={`${BASE_URL_SVG}/assets/svgs/crown-black.svg`} alt="Btn" loading="lazy" />
                             <h1 className="text-2xl sm:text-3xl md:text-4xl font-abril text-black mb-6 flex items-center gap-2">
-                                Customize Your Package
+                                Customise Your Package
                             </h1>
                             <button
                                 onClick={() => handleTypeChange("Umrah")}

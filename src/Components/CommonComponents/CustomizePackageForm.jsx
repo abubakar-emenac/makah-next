@@ -359,7 +359,7 @@ const CustomizePackageForm = () => {
             phone,
             form_type: "Package Booking",
             contact_detail: {
-                subject: "Customize Form",
+                subject: "Customise Form",
                 date: departureDate,
                 user_ip: userIp,
                 Departure_Airport: originLabel,
