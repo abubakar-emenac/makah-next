@@ -434,7 +434,7 @@ const CustomizePackageForm = () => {
                     <div className='w-full md:max-w-[70%] mx-auto'>
                         <div className="flex flex-col xl:flex-row justify-between font-Montserrat items-start xl:items-center gap-6">
                             <h1 className="font-abril text-2xl sm:text-3xl md:text-4xl">
-                                Customize Your Package
+                                Customise Your Package
                             </h1>
                             <div className="ml-auto flex items-center gap-2">
                                 <button
