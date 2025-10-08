@@ -412,7 +412,7 @@ export default function HajjDetail() {
                         </button>
 
                         <Link
-                            to={"/customize-your-umrah"}
+                            to={"/customise-your-package"}
                             onMouseEnter={() => setHoverBtn2(true)}
                             onMouseLeave={() => setHoverBtn2(false)}
                             className="w-full text-xl border border-secondary hover:border-primary text-primary hover:border-0 hover:bg-primary hover:text-white font-semibold font-Montserrat flex justify-between items-center  p-4 pl-3 cursor-pointer transition-all duration-300 ease-in-out">

@@ -46,7 +46,7 @@ export default function CustomizeYourPackage({ pageData }) {
                 <div className="w-full max-w-xl lg:max-w-lg xl:max-w-xl">
                     <h2 className='flex flex-col'>
                         <span className="text-white font-Montserrat text-[38px] md:text-[38px] lg:text-[46px] mb-1">
-                            CUSTOMIZE &nbsp;
+                            CUSTOMISE &nbsp;
                         </span>
                         <span className="text-white font-abril text-[70px] md:text-[78px] lg:text-[89px] leading-tight lg:leading-snug mb-2 lg:mb-3">
                             Your Package
