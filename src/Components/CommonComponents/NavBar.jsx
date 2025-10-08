@@ -41,7 +41,7 @@ const Navbar = ({ textColor = "black" }) => {
     "cookies-policy",
     "blog",
     "blog/",
-    "customize-your-umrah"
+    "customise-your-package"
   ];
 
   const path = location.pathname;
