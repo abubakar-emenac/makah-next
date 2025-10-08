@@ -212,6 +212,9 @@ export default function UmrahDetail() {
         <div>
             <Helmet>
                 <title>{packageData.browser_title}</title>
+                <script >
+                    {packageData.script}
+                </script>
                 <meta name="description" content={packageData.meta_description || ""} />
                 <meta name="keywords" content={packageData.meta_keywords || ""} />
 

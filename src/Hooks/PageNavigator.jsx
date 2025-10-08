@@ -145,6 +145,9 @@ export default function PageNavigator() {
             <meta property="og:image" content={imageUrl} />
             <meta property="og:url" content={window.location.href} />
             <meta property="og:type" content="Travels & Tours" />
+            <script >
+                {pageData.script}
+            </script>
 
             {/* Canonical */}
             <link rel="canonical" href={window.location.href} />
