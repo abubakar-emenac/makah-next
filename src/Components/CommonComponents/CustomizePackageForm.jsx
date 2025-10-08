@@ -60,7 +60,7 @@ const CustomizePackageForm = () => {
     useEffect(() => {
         const fetchPageData = async () => {
             try {
-                const res = await axios.get(endpoints.getPageUrl('customize-your-umrah'));
+                const res = await axios.get(endpoints.getPageUrl('customise-your-package'));
                 // console.log('API full response:', res.data);
 
                 if (res.data?.status === 1) {
