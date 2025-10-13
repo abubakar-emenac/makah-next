@@ -226,6 +226,7 @@ export default function HajjDetail() {
                 <meta property="og:image" content={imageUrl} />
                 <meta property="og:url" content={window.location.href} />
                 <meta property="og:type" content="Travels & Tours" />
+                 <meta name="robots" content="noindex" />
                 <script >
                     {packageData.script}
                 </script>
