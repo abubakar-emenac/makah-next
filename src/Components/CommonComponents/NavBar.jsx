@@ -39,8 +39,6 @@ const Navbar = ({ textColor = "black" }) => {
     "privacy-policy",
     "contact-us",
     "cookies-policy",
-    "blog",
-    "blog/",
     "customise-your-package"
   ];
 
