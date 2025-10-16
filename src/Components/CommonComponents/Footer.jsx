@@ -224,7 +224,7 @@ export default function Footer() {
                         {footerItems.logo ? (
                             <img
                                 src={`${WEB_URL}/${logo}`}
-                                alt="Company Logo"
+                                alt="Makkah Travel"
                                 className="object-contain w-auto"
                             />
                         ) : (
@@ -324,7 +324,7 @@ export default function Footer() {
                             {footerItems.logo ? (
                                 <img
                                     src={`${WEB_URL}/${logo}`}
-                                    alt="Company Logo"
+                                    alt="Makkah Travel"
                                     className="object-contain w-auto"
                                 />
                             ) : (
