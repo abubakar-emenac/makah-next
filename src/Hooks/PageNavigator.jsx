@@ -102,6 +102,32 @@ export default function PageNavigator() {
         fetchPage();
     }, [slug]);
 
+    useEffect(() => {
+        if (!pageData?.script) return;
+
+        const tempDiv = document.createElement("div");
+        tempDiv.innerHTML = pageData.script;
+
+        const scripts = tempDiv.querySelectorAll("script");
+
+        scripts.forEach((oldScript) => {
+            const newScript = document.createElement("script");
+            if (oldScript.type) newScript.type = oldScript.type;
+            if (oldScript.src) newScript.src = oldScript.src;
+            else if (oldScript.textContent) newScript.text = oldScript.textContent;
+            document.head.appendChild(newScript);
+        });
+
+        return () => {
+            scripts.forEach((oldScript) => {
+                const existing = [...document.head.querySelectorAll("script")].find(
+                    (s) => s.innerHTML === oldScript.innerHTML || s.src === oldScript.src
+                );
+                if (existing) existing.remove();
+            });
+        };
+    }, [pageData])
+
     if (loading) {
         return <FullPageLoader />;
     }
@@ -145,9 +171,6 @@ export default function PageNavigator() {
             <meta property="og:image" content={imageUrl} />
             <meta property="og:url" content={window.location.href} />
             <meta property="og:type" content="Travels & Tours" />
-            <script >
-                {pageData.script}
-            </script>
 
             {/* Canonical */}
             <link rel="canonical" href={window.location.href} />

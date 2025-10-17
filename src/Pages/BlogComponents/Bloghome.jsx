@@ -66,6 +66,31 @@ const BlogHome = () => {
     fetchPageData();
   }, [currentPage]);
 
+  useEffect(() => {
+    if (!pageData?.script) return;
+
+    // Parse the HTML string returned from API
+    const tempDiv = document.createElement("div");
+    tempDiv.innerHTML = pageData.script;
+
+    // Find all <script> tags inside it
+    const scripts = tempDiv.querySelectorAll("script");
+
+    scripts.forEach((oldScript) => {
+      const newScript = document.createElement("script");
+
+      // Copy type, src, and inner content
+      if (oldScript.type) newScript.type = oldScript.type;
+      if (oldScript.src) {
+        newScript.src = oldScript.src;
+      } else {
+        newScript.text = oldScript.innerHTML;
+      }
+
+      document.head.appendChild(newScript);
+    });
+  }, [pageData]);
+
   if (loading) return <FullPageLoader />;
 
   const imageUrl = pageData?.image_url ? `${BASE_URL_IMG}/${pageData.image_url}` : "";

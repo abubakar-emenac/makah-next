@@ -174,6 +174,30 @@ export default function ContactUS() {
         };
         fetchPageData();
     }, []);
+    useEffect(() => {
+        if (!contactData?.script) return;
+
+        // Parse the HTML string returned from API
+        const tempDiv = document.createElement("div");
+        tempDiv.innerHTML = contactData.script;
+
+        // Find all <script> tags inside it
+        const scripts = tempDiv.querySelectorAll("script");
+
+        scripts.forEach((oldScript) => {
+            const newScript = document.createElement("script");
+
+            // Copy type, src, and inner content
+            if (oldScript.type) newScript.type = oldScript.type;
+            if (oldScript.src) {
+                newScript.src = oldScript.src;
+            } else {
+                newScript.text = oldScript.innerHTML;
+            }
+
+            document.head.appendChild(newScript);
+        });
+    }, [contactData]);
 
     const [userIp, setUserIp] = useState("");
     // console.log("IP", userIp)
@@ -264,6 +288,8 @@ export default function ContactUS() {
         );
     }
 
+
+
     const imageUrl = contactData.banner_img?.[0]?.url
         ? `${BASE_URL_IMG}/${contactData.banner_img[0].url}`
         : '';
@@ -284,9 +310,6 @@ export default function ContactUS() {
 
                 {/* Canonical */}
                 <link rel="canonical" href={window.location.href} />
-                <script >
-                    {contactData.script}
-                </script>
             </Helmet>
             <div className="flex flex-col w-full max-w-[90%] mt-32 lg:max-w-[75%] mx-auto font-Montserrat">
 
