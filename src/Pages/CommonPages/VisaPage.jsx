@@ -102,6 +102,31 @@ export default function VisaPage() {
 
         fetchPageData();
     }, []);
+    useEffect(() => {
+        if (!visaPageData?.script) return;
+
+        const tempDiv = document.createElement("div");
+        tempDiv.innerHTML = visaPageData.script;
+
+        const scripts = tempDiv.querySelectorAll("script");
+
+        scripts.forEach((oldScript) => {
+            const newScript = document.createElement("script");
+            if (oldScript.type) newScript.type = oldScript.type;
+            if (oldScript.src) newScript.src = oldScript.src;
+            else if (oldScript.textContent) newScript.text = oldScript.textContent;
+            document.head.appendChild(newScript);
+        });
+
+        return () => {
+            scripts.forEach((oldScript) => {
+                const existing = [...document.head.querySelectorAll("script")].find(
+                    (s) => s.innerHTML === oldScript.innerHTML || s.src === oldScript.src
+                );
+                if (existing) existing.remove();
+            });
+        };
+    }, [visaPageData])
 
     const imageUrl = visaPageData && visaPageData.image_url ? `${BASE_URL_IMG}/${visaPageData.image_url}` : ""
 
@@ -121,9 +146,6 @@ export default function VisaPage() {
 
                 {/* Canonical */}
                 <link rel="canonical" href={window.location.href} />
-                <script >
-                    {visaPageData.script}
-                </script>
             </Helmet>
 
             <HeroSection pageData={visaPageData} />
