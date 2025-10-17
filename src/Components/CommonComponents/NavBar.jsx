@@ -117,7 +117,7 @@ const Navbar = ({ textColor = "black" }) => {
             />
           ) : (
             <img
-              src={`${WEB_URL}/${isMobile || scrolled || forceDarkLogo ? darkLogo : logo}`}
+              src={`${WEB_URL}${isMobile || scrolled || forceDarkLogo ? darkLogo : logo}`}
               alt="Makkah Travel"
               className="lg:w-40 md:w-32 sm:w-28 w-16"
               loading="eager"

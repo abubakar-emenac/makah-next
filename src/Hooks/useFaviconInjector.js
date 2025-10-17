@@ -1,7 +1,11 @@
 // src/Hooks/useFaviconInjector.js
 import { useEffect } from "react";
 import axios from "axios";
-import { BASE_URL_IMG, BASE_URL_SVG, endpoints } from "../Helpers/apiEndpoints";
+import {
+  BASE_URL_IMG,
+  BASE_URL_SVG_PUBLIC,
+  endpoints,
+} from "../Helpers/apiEndpoints";
 
 const useFaviconInjector = () => {
   useEffect(() => {
@@ -18,7 +22,7 @@ const useFaviconInjector = () => {
         // console.log("faviconPath:", faviconPath);
 
         if (faviconPath) {
-          const faviconUrl = `${BASE_URL_SVG}${faviconPath}`;
+          const faviconUrl = `${BASE_URL_SVG_PUBLIC}${faviconPath}`;
 
           // Remove existing favicons
           document

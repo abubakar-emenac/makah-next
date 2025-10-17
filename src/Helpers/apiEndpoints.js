@@ -5,6 +5,7 @@ const BASE_URL = "https://admin.makkahtravel.co.uk/api";
 const WEB_URL = "https://admin.makkahtravel.co.uk";
 const BASE_URL_IMG = "https://admin.makkahtravel.co.uk/media";
 const BASE_URL_SVG = "https://admin.makkahtravel.co.uk/";
+const BASE_URL_SVG_PUBLIC = "https://admin.makkahtravel.co.uk";
 
 const BASE_URL_Front = "https://makkahtravel.co.uk/";
 const endpoints = {
@@ -39,4 +40,5 @@ export {
   BASE_URL_SVG,
   BASE_URL_Front,
   WEB_URL,
+  BASE_URL_SVG_PUBLIC,
 };
