@@ -34,6 +34,31 @@ export default function Home() {
         fetchPageData();
     }, []);
 
+    useEffect(() => {
+        if (!homeData?.script) return;
+
+        // Parse the HTML string returned from API
+        const tempDiv = document.createElement("div");
+        tempDiv.innerHTML = homeData.script;
+
+        // Find all <script> tags inside it
+        const scripts = tempDiv.querySelectorAll("script");
+
+        scripts.forEach((oldScript) => {
+            const newScript = document.createElement("script");
+
+            // Copy type, src, and inner content
+            if (oldScript.type) newScript.type = oldScript.type;
+            if (oldScript.src) {
+                newScript.src = oldScript.src;
+            } else {
+                newScript.text = oldScript.innerHTML;
+            }
+
+            document.head.appendChild(newScript);
+        });
+    }, [homeData]);
+
     if (!homeData?.browser_title) return null
 
     const imageUrl = homeData.image_url ? `${BASE_URL_IMG}/${homeData.image_url}` : ""
@@ -54,9 +79,9 @@ export default function Home() {
 
                 {/* Canonical */}
                 <link rel="canonical" href={window.location.href} />
-                <script >
+                {/* <script >
                     {homeData.script}
-                </script>
+                </script> */}
             </Helmet>
 
             <HeroSection pageData={homeData} />
