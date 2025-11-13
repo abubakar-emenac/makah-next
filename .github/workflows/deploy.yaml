@@ -25,11 +25,6 @@ jobs:
       - name: 🔨 Build React app
         run: npm run build
 
-      - name: 🌐 Generate sitemaps from Laravel API
-        run: |
-          curl -s https://admin.makkahtravel.co.uk/api/generate-sitemap -o build/sitemap.xml
-          curl -s https://admin.makkahtravel.co.uk/api/generate-post-sitemap -o build/post-sitemap.xml
-
       - name: 🔐 Upload build contents to /public_html
         uses: appleboy/scp-action@v0.1.4
         with:
