@@ -1,4 +1,4 @@
-name: 🚀 Deploy React Frontend to cPanel
+name: 🚀 Deploy React Frontend (Vite) to cPanel
 
 on:
   push:
@@ -22,19 +22,16 @@ jobs:
       - name: 📦 Install dependencies
         run: npm ci
 
-      - name: 🔨 Build React app
+      - name: 🔨 Build React app (Vite)
         run: npm run build
 
-      - name: 🔐 Upload all files to /public_html
+      - name: 🔐 Upload dist contents to /public_html
         uses: appleboy/scp-action@v0.1.4
         with:
           host: ${{ secrets.CPANEL_HOST }}
           username: ${{ secrets.CPANEL_USER }}
-          key: ${{ secrets.CPANEL_SSH_KEY }}      # must be passphrase-free
-          source: "*"
+          key: ${{ secrets.CPANEL_SSH_KEY }}
+          source: "dist/*"
           target: "public_html"
-          strip_components: 0
-          port: 22
-          timeout: 30s
-          command_timeout: 10m
           overwrite: true
+          strip_components: 0

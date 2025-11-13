@@ -2,7 +2,7 @@ name: 🕒 Auto Update Sitemaps on cPanel
 
 on:
   schedule:
-    - cron: '0 */2 * * *'   # Every 2 hours (UTC)
+    - cron: '0 */2 * * *'   # Every 2 hours UTC
   workflow_dispatch:
 
 jobs:
@@ -15,18 +15,14 @@ jobs:
           curl -s https://admin.makkahtravel.co.uk/api/generate-sitemap -o sitemap.xml
           curl -s https://admin.makkahtravel.co.uk/api/generate-post-sitemap -o post-sitemap.xml
 
-      - name: 🔐 Upload sitemaps directly to /public_html
+      - name: 🔐 Upload sitemaps to /public_html
         uses: appleboy/scp-action@v0.1.4
         with:
           host: ${{ secrets.CPANEL_HOST }}
           username: ${{ secrets.CPANEL_USER }}
-          key: ${{ secrets.CPANEL_SSH_KEY }}      # must be passphrase-free
+          key: ${{ secrets.CPANEL_SSH_KEY }}
           source: |
             sitemap.xml
             post-sitemap.xml
           target: "public_html"
-          strip_components: 0
-          port: 22
-          timeout: 30s
-          command_timeout: 5m
           overwrite: true
