@@ -1,28 +1,36 @@
-name: 🕒 Auto Update Sitemaps on cPanel
+name: Update Sitemaps
 
 on:
   schedule:
-    - cron: '0 */2 * * *'   # Every 2 hours UTC
+    - cron: '0 */2 * * *' # Runs every 2 hours (UTC)
   workflow_dispatch:
 
 jobs:
   update-sitemaps:
     runs-on: ubuntu-latest
-
     steps:
-      - name: 🌐 Fetch sitemaps from Laravel API
+      - name: 🔽 Download sitemap.xml from Laravel API
         run: |
-          curl -s https://admin.makkahtravel.co.uk/api/generate-sitemap -o sitemap.xml
-          curl -s https://admin.makkahtravel.co.uk/api/generate-post-sitemap -o post-sitemap.xml
+          curl -s -H "Accept: application/xml" https://admin.makkahtravel.co.uk/api/generate-sitemap -o sitemap.xml
 
-      - name: 🔐 Upload sitemaps to /public_html
-        uses: appleboy/scp-action@v0.1.4
+      - name: 🔽 Download post-sitemap.xml from Laravel API
+        run: |
+          curl -s -H "Accept: application/xml" https://admin.makkahtravel.co.uk/api/generate-post-sitemap -o post-sitemap.xml
+
+      - name: ⚙️ Configure AWS CLI
+        uses: aws-actions/configure-aws-credentials@v2
         with:
-          host: ${{ secrets.CPANEL_HOST }}
-          username: ${{ secrets.CPANEL_USER }}
-          key: ${{ secrets.CPANEL_SSH_KEY }}
-          source: |
-            sitemap.xml
-            post-sitemap.xml
-          target: "public_html"
-          overwrite: true
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      - name: 🚀 Upload sitemaps to S3
+        run: |
+          aws s3 cp sitemap.xml s3://${{ secrets.S3_BUCKET_NAME }}/sitemap.xml --content-type "application/xml"
+          aws s3 cp post-sitemap.xml s3://${{ secrets.S3_BUCKET_NAME }}/post-sitemap.xml --content-type "application/xml"
+
+      - name: ⚡ Invalidate CloudFront Cache (sitemaps only)
+        run: |
+          aws cloudfront create-invalidation \
+          --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} \
+          --paths "/sitemap.xml" "/post-sitemap.xml"
