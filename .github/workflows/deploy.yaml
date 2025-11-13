@@ -25,12 +25,12 @@ jobs:
       - name: 🔨 Build React app
         run: npm run build
 
-      - name: 🔐 Upload build contents to /public_html
+      - name: 🔐 Upload all project files to /public_html
         uses: appleboy/scp-action@v0.1.4
         with:
           host: ${{ secrets.CPANEL_HOST }}
           username: ${{ secrets.CPANEL_USER }}
           key: ${{ secrets.CPANEL_SSH_KEY }}
-          source: "build/*"
+          source: "*"          # Upload everything from repo root
           target: "public_html"
-          strip_components: 1
+          strip_components: 0  # Keep folder structure as-is
