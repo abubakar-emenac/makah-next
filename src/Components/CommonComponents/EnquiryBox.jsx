@@ -101,6 +101,7 @@ export default function EnquiryBox() {
                 infants: infants,
                 guestAccommodation: accommodation,
                 user_ip: userIp,
+                pageURL: window.location.href,
             },
         };
 

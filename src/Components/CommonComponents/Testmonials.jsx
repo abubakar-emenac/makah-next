@@ -88,12 +88,12 @@ export default function Testimonials({ pageData }) {
 
             // Convert comma-separated string into number array
             const ids = widget.reviews_ids
-                .split(",")
-                .map(id => Number(id.trim()))
-                .filter(id => !isNaN(id));
+                ? widget.reviews_ids.split(",").map(id => Number(id.trim())).filter(id => !isNaN(id))
+                : [];
+
 
             if (ids.length > 0) {
-                axios.get(endpoints.getReviews(ids))
+                axios.get(endpoints.getReviews(ids.join(",")))
                     .then(res => {
                         if (res.data?.status === 1) {
                             setReviewsData(res.data.result.reviews || []);
