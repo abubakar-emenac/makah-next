@@ -3,13 +3,12 @@ name: Deploy React + Dynamic Sitemaps
 on:
   push:
     branches:
-      - main   # or your deployment branch
+      - main # or your deployment branch
   workflow_dispatch:
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
     steps:
       - name: 🧾 Checkout Code
         uses: actions/checkout@v3
@@ -36,24 +35,24 @@ jobs:
         run: |
           # CRA uses build/, Vite uses dist/
           aws s3 sync dist/ s3://${{ secrets.S3_BUCKET_NAME }} --delete \
-            --exclude "sitemap.xml" \
-            --exclude "post-sitemap.xml" \
-            --exclude "robots.txt"
+          --exclude "sitemap.xml" \
+          --exclude "post-sitemap.xml" \
+          --exclude "robots.txt"
 
       - name: 🌐 Fetch and Upload Root Sitemap
         run: |
           curl -s https://admin.makkahtravel.co.uk/api/generate-sitemap > sitemap.xml
           aws s3 cp sitemap.xml s3://${{ secrets.S3_BUCKET_NAME }}/sitemap.xml \
-            --content-type "application/xml"
+          --content-type "application/xml"
 
       - name: 🌐 Fetch and Upload Blog Post Sitemap
         run: |
           curl -s https://admin.makkahtravel.co.uk/api/generate-post-sitemap > post-sitemap.xml
           aws s3 cp post-sitemap.xml s3://${{ secrets.S3_BUCKET_NAME }}/post-sitemap.xml \
-            --content-type "application/xml"
+          --content-type "application/xml"
 
       - name: ⚡ Invalidate CloudFront Cache
         run: |
           aws cloudfront create-invalidation \
-            --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} \
-            --paths "/*"
+          --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} \
+          --paths "/*"
