@@ -45,17 +45,22 @@ function App() {
   useFaviconInjector();
 
   // ✅ Normalize URL (collapse multiple slashes + remove trailing slash)
-  useEffect(() => {
-    let normalizedPath = location.pathname.replace(/\/{2,}/g, "/");
-
-    if (normalizedPath.length > 1 && normalizedPath.endsWith("/")) {
-      normalizedPath = normalizedPath.slice(0, -1);
+  const getNormalizedPath = (path) => {
+    let normalized = path.replace(/\/{2,}/g, "/");
+    if (normalized.length > 1 && normalized.endsWith("/")) {
+      normalized = normalized.slice(0, -1);
     }
+    return normalized;
+  };
 
-    if (location.pathname !== normalizedPath) {
+  const normalizedPath = getNormalizedPath(location.pathname);
+  const isInvalidPath = location.pathname !== normalizedPath;
+
+  useEffect(() => {
+    if (isInvalidPath) {
       navigate(normalizedPath + location.search, { replace: true });
     }
-  }, [location.pathname, location.search, navigate]);
+  }, [isInvalidPath, normalizedPath, location.search, navigate]);
 
   // Initialize Lenis
   useEffect(() => {
@@ -74,25 +79,27 @@ function App() {
       <ScrollToTopButton />
       <WhatsAppButton />
       <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/home" element={<Navigate to="/" replace />} />
-        <Route path="/hajj-and-umrah-visa" element={<VisaPage />} />
-        <Route path="/customization" element={<CustomizationForm />} />
-        <Route path="/about-us" element={<AboutPage />} />
-        <Route path="/terms-and-conditions" element={<TnCpage />} />
-        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-        <Route path="/cookies-policy" element={<CookiePolicy />} />
-        <Route path="/contact-us" element={<ContactUS />} />
-        <Route path="/customise-your-package" element={<CustomizePackageForm />} />
-        <Route path="/:slug" element={<PageNavigator />} />
-        <Route path="/umrah/:slug" element={<UmrahDetail />} />
-        <Route path="/hajj/:slug" element={<HajjDetail />} />
-        <Route path="/thank-you" element={<ThankYou />} />
-        <Route path="/blog" element={<Bloghome />} />
-        <Route path="/blog/:page_url" element={<BlogDetails />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
+      {!isInvalidPath && (
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/home" element={<Navigate to="/" replace />} />
+          <Route path="/hajj-and-umrah-visa" element={<VisaPage />} />
+          <Route path="/customization" element={<CustomizationForm />} />
+          <Route path="/about-us" element={<AboutPage />} />
+          <Route path="/terms-and-conditions" element={<TnCpage />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/cookies-policy" element={<CookiePolicy />} />
+          <Route path="/contact-us" element={<ContactUS />} />
+          <Route path="/customise-your-package" element={<CustomizePackageForm />} />
+          <Route path="/:slug" element={<PageNavigator />} />
+          <Route path="/umrah/:slug" element={<UmrahDetail />} />
+          <Route path="/hajj/:slug" element={<HajjDetail />} />
+          <Route path="/thank-you" element={<ThankYou />} />
+          <Route path="/blog" element={<Bloghome />} />
+          <Route path="/blog/:page_url" element={<BlogDetails />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      )}
 
       <Footer />
 
