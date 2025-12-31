@@ -117,18 +117,18 @@ const BlogDetails = () => {
           <span className="text-lg font-semibold font-Montserrat mb-4 block">
             Latest Posts
           </span>
-          <div className="grid grid-cols-1 gap-4 overflow-y-auto pr-1">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 gap-4 overflow-y-auto pr-1">
             {latestBlogs.map((item) => (
               <Link
                 key={item.id}
                 to={`/blog/${item.page_url}`}
-                className="rounded-xl overflow-hidden hover:shadow-md transition block"
+                className="rounded-xl overflow-hidden hover:shadow-md transition block border border-gray-100"
               >
-                <div className="w-full h-28 rounded-xl">
+                <div className="w-full h-40 sm:h-48 md:h-52 rounded-xl overflow-hidden">
                   <img
                     src={`${BASE_URL_IMG}/${item.image_url}`}
                     alt={item.image_alt || item.title}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-fill"
                   />
                 </div>
                 <div className="p-3">
