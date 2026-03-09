@@ -143,7 +143,7 @@ export default function BlogSection() {
             </div>
           ))}
 
-          <div className="mt-[84px]">
+          <div className="mt-[30px] min-[1024px]:mt-auto">
             <ViewAllButton label="View All Blogs" color="primary" size="md" slug={"blog"} />
           </div>
         </div>
