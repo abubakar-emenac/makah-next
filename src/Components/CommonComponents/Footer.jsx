@@ -454,7 +454,8 @@ export default function Footer() {
 
                 {/* Bottom Text */}
                 <div className="space-y-4 text-sm mt-6 px-9">
-                    <p className="font-Montserrat font-semibold text-base">
+                    <a target='_blank' href="//www.dmca.com/Protection/Status.aspx?ID=3d8e8532-bb1c-4b76-b59f-b8fab6f914a8" title="DMCA.com Protection Status" class="dmca-badge"> <img src ="https://images.dmca.com/Badges/dmca_protected_sml_120n.png?ID=3d8e8532-bb1c-4b76-b59f-b8fab6f914a8"  alt="DMCA.com Protection Status" /></a>  <script src="https://images.dmca.com/Badges/DMCABadgeHelper.min.js"> </script>
+                    <p className="font-Montserrat font-semibold text-base mt-6 ">
                         {footerItems.contents.footer_copyright_content || 'All rights reserved Flight Booking @ 2010 - 2025'}
                     </p>
                     <p className="font-Montserrat text-xs leading-relaxed"
