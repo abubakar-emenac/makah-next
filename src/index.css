@@ -1,4 +1,8 @@
 /* index.css or main.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 @font-face {
   font-family: Abril;
   src: url('./assets/fonts/AbrilFatface-Regular.ttf');
@@ -14,17 +18,10 @@
   src: url('./assets/fonts/Montserrat-VariableFont_wght.ttf');
 }
 
-@import "tailwindcss";
-
-@theme {
-  --font-abril: Abril, 'sans-serif';
-  --font-Montserrat-italic: Montserrat-italic, 'sans-serif';
-    --font-Montserrat: Montserrat, 'sans-serif';
+:root {
   --color-primary-hover: #C18620;
   --color-primary: #DB9E30;
   --color-secondary: #57A68F;
-  /* --default-font-family: */
-
 }
 
 *::selection {
@@ -90,7 +87,7 @@ html {
 
 @layer utilities {
   strong {
-    @apply text-secondary
+    @apply text-secondary;
   }
 
   .parseData {
@@ -207,6 +204,6 @@ html {
   animation: fadeInOut 10s ease-in-out forwards;
 }
 .custom-bullet>ul {
-  list-style-image: url('/public/svg/bullet.svg');
+  list-style-image: url('/svg/bullet.svg');
   list-style-type: square;
 }

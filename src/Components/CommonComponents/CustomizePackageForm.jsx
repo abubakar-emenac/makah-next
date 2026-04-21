@@ -421,7 +421,7 @@ const CustomizePackageForm = () => {
                 <link rel="canonical" href={window.location.href} />
             </Helmet>
 
-            <div className=" w-[85%] mx-auto mb-10 mt-30">
+            <div className=" w-[85%] mx-auto mb-10 mt-30 h-[100px]">
             </div>
             <div className="w-full max-w-[92%] mx-auto mt-10 mb-15">
                 <img
