@@ -4,7 +4,7 @@ import axios from "axios";
 import { BASE_URL_IMG, BASE_URL_SVG, endpoints } from "../../Helpers/apiEndpoints";
 import HeroSectionblog from "../../Components/CommonComponents/HeroSectionblog";
 import NeedHelp from "../../Components/CommonComponents/NeedHelp";
-import { Helmet } from "react-helmet";
+import PageScript from "../../Components/CommonComponents/PageScript";
 
 const FullPageLoader = () => (
   <div className="fixed inset-0 flex items-center justify-center bg-white z-50">
@@ -66,48 +66,12 @@ const BlogHome = () => {
     fetchPageData();
   }, [currentPage]);
 
-  useEffect(() => {
-    if (!pageData?.script) return;
-
-    // Parse the HTML string returned from API
-    const tempDiv = document.createElement("div");
-    tempDiv.innerHTML = pageData.script;
-
-    // Find all <script> tags inside it
-    const scripts = tempDiv.querySelectorAll("script");
-
-    scripts.forEach((oldScript) => {
-      const newScript = document.createElement("script");
-
-      // Copy type, src, and inner content
-      if (oldScript.type) newScript.type = oldScript.type;
-      if (oldScript.src) {
-        newScript.src = oldScript.src;
-      } else {
-        newScript.text = oldScript.innerHTML;
-      }
-
-      document.head.appendChild(newScript);
-    });
-  }, [pageData]);
 
   if (loading) return <FullPageLoader />;
 
-  const imageUrl = pageData?.image_url ? `${BASE_URL_IMG}/${pageData.image_url}` : "";
-
   return (
     <div>
-      <Helmet>
-        <title>{pageData?.browser_title}</title>
-        <meta name="description" content={pageData?.meta_description || ""} />
-        <meta name="keywords" content={pageData?.meta_keywords || ""} />
-        <meta property="og:title" content={pageData?.browser_title} />
-        <meta property="og:description" content={pageData?.meta_description || ""} />
-        <meta property="og:image" content={imageUrl} />
-        <meta property="og:url" content={window.location.href} />
-        <meta property="og:type" content="Travels & Tours" />
-        <link rel="canonical" href={window.location.href} />
-      </Helmet>
+      <PageScript html={pageData?.script} ownerKey="blog-home" />
 
       {pageData && <HeroSectionblog pageData={pageData} />}
 

@@ -1,13 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Navbar from './NavBar';
-import { BASE_URL_IMG, BASE_URL_SVG, endpoints } from '../../Helpers/apiEndpoints';
+import { BASE_URL_SVG, endpoints } from '../../Helpers/apiEndpoints';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import '../../CSS/datepicker-custom.css';
 import Loader from './Loader';
-import toast from "react-hot-toast";
+import { toast } from "sonner";
 import axios from 'axios';
-import { Helmet } from 'react-helmet';
 
 import { useNavigate } from 'react-router-dom';
 
@@ -74,8 +73,6 @@ const CustomizePackageForm = () => {
 
         fetchPageData();
     }, []);
-
-    const imageUrl = pageData && pageData.image_url ? `${BASE_URL_IMG}/${pageData.image_url}` : ""
 
     useEffect(() => {
         generateCaptcha();
@@ -405,22 +402,6 @@ const CustomizePackageForm = () => {
 
     return (
         <>
-            <Helmet>
-                <title>{pageData.browser_title}</title>
-                <meta name="description" content={pageData.meta_description || ""} />
-                <meta name="keywords" content={pageData.meta_keywords || ""} />
-
-                {/* Open Graph Tags */}
-                <meta property="og:title" content={pageData.browser_title} />
-                <meta property="og:description" content={pageData.meta_description || ""} />
-                <meta property="og:image" content={imageUrl} />
-                <meta property="og:url" content={window.location.href} />
-                <meta property="og:type" content="Travels & Tours" />
-
-                {/* Canonical */}
-                <link rel="canonical" href={window.location.href} />
-            </Helmet>
-
             <div className=" w-[85%] mx-auto mb-10 mt-30 h-[100px]">
             </div>
             <div className="w-full max-w-[92%] mx-auto mt-10 mb-15">

@@ -4,7 +4,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import { BASE_URL_SVG } from '../../Helpers/apiEndpoints';
 import { motion, AnimatePresence } from "framer-motion";
 import CustomizeUmrahPopup from '../../Components/UmrahComponents/CustomizeUmrahPopup';
-import { Helmet } from 'react-helmet';
 
 export default function NotFound() {
   const [isOpen, setIsOpen] = useState(false);
@@ -25,13 +24,6 @@ export default function NotFound() {
   }, [isOpen]);
   return (
     <div className="w-full flex flex-col">
-
-      <Helmet>
-        <title>404 Page Not Found</title>
-        <meta name="robots" content="noindex, nofollow" />
-        <link rel="canonical" href={window.location.href} />
-      </Helmet>
-
       <Navbar textColor="black" />
 
       <div

@@ -2,7 +2,7 @@ import { getPageMetadataBySlug } from "../../Helpers/metadata";
 import SlugClientPage from "./SlugClientPage";
 
 export async function generateMetadata({ params }) {
-  const { slug } = params;
+  const { slug } = await params;
   return getPageMetadataBySlug(slug, `/${slug}`);
 }
 

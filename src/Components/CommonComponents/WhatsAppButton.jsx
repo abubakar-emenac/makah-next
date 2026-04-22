@@ -1,18 +1,27 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useGlobalData } from "../../Helpers/useGlobalData";
 
 const WhatsAppButton = () => {
-    const { globalData } = useGlobalData();
-    const whatsappObj = globalData?.result?.global_variables?.find(
-        (item) => item.code === "[%WHATSAPP%]"
-      );
-      const whatsappNumber = whatsappObj?.code_value || "";
-      const whatsappLink = whatsappNumber ? `https://wa.me/${whatsappNumber}` : "#";
+  const { globalData } = useGlobalData();
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  const whatsappObj = globalData?.result?.global_variables?.find(
+    (item) => item.code === "[%WHATSAPP%]"
+  );
+  const whatsappNumber = whatsappObj?.code_value || "";
+  const whatsappLink = whatsappNumber ? `https://wa.me/${whatsappNumber}` : "";
+
+  if (!isMounted || !whatsappLink) {
+    return null;
+  }
 
 
   return (
-      <div className="fixed bottom-4 left-4 z-50 lg:hidden"> 
-      {/* 👆 changed right-4 → left-4 */}
+    <div className="fixed bottom-4 left-4 z-50 lg:hidden">
       <a
         href={whatsappLink}
         target="_blank"

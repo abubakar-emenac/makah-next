@@ -5,7 +5,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import '../../CSS/datepicker-custom.css';
 import { BASE_URL_SVG, endpoints } from '../../Helpers/apiEndpoints'
 import Loader from './Loader';
-import toast from 'react-hot-toast';
+import { toast } from 'sonner';
 
 export default function EnquiryBox() {
     const navigate = useNavigate()

@@ -21,6 +21,10 @@ module.exports = {
         Montserrat: ["Montserrat", "sans-serif"],
         "Montserrat-italic": ["Montserrat-italic", "sans-serif"],
       },
+      spacing: {
+        35: "8.75rem", 
+        15: "3.75rem",
+      },
     },
   },
   plugins: [],

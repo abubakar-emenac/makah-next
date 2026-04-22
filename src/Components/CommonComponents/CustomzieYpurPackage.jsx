@@ -52,9 +52,9 @@ export default function CustomizeYourPackage({ pageData }) {
                             Your Package
                         </span>
                     </h2>
-                    <p className="text-white font-Montserrat text-[14px] sm:text-[14px] lg:text-[13px] xl:text-[15px] leading-relaxed mb-4 lg:mb-4">
+                    <div className="text-white font-Montserrat text-[14px] sm:text-[14px] lg:text-[13px] xl:text-[15px] leading-relaxed mb-4 lg:mb-4">
                         {parse(pageData?.simple_description || "")}
-                    </p>
+                    </div>
                     <ViewAllButton label="Start Customisation" color="primary" size="md" slug={"customise-your-package"} />
 
                 </div>

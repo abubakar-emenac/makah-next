@@ -59,7 +59,7 @@ export default function ImageGallery({ images = [] }) {
     return (
         <div className="w-full max-w-5xl mx-auto flex flex-col items-center pb-20 relative">
             {/* Main Image */}
-            <div className="relative w-full h-[440px]">
+            <div className="relative w-full h-[278px] sm:h-[440px] ">
                 <img
                     src={`${BASE_URL_SVG}/${images[currentIndex].url}`}
                     alt={images[currentIndex]?.alt || `Slide ${currentIndex + 1}`}

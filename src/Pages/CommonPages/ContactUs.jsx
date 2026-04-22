@@ -4,13 +4,13 @@ import NeedHelp from "../../Components/CommonComponents/NeedHelp";
 import axios from "axios";
 import { BASE_URL_IMG, BASE_URL_SVG, endpoints } from "../../Helpers/apiEndpoints";
 import { useGlobalData } from "../../Helpers/useGlobalData";
-import toast from 'react-hot-toast';
+import { toast } from 'sonner';
 import Loader from "../../Components/CommonComponents/Loader";
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Slider from 'react-slick';
 import { motion } from "framer-motion";
-import { Helmet } from "react-helmet";
+import PageScript from "../../Components/CommonComponents/PageScript";
 
 export default function ContactUS() {
     const navigate = useNavigate();
@@ -174,30 +174,6 @@ export default function ContactUS() {
         };
         fetchPageData();
     }, []);
-    useEffect(() => {
-        if (!contactData?.script) return;
-
-        // Parse the HTML string returned from API
-        const tempDiv = document.createElement("div");
-        tempDiv.innerHTML = contactData.script;
-
-        // Find all <script> tags inside it
-        const scripts = tempDiv.querySelectorAll("script");
-
-        scripts.forEach((oldScript) => {
-            const newScript = document.createElement("script");
-
-            // Copy type, src, and inner content
-            if (oldScript.type) newScript.type = oldScript.type;
-            if (oldScript.src) {
-                newScript.src = oldScript.src;
-            } else {
-                newScript.text = oldScript.innerHTML;
-            }
-
-            document.head.appendChild(newScript);
-        });
-    }, [contactData]);
 
     const [userIp, setUserIp] = useState("");
     // console.log("IP", userIp)
@@ -287,30 +263,9 @@ export default function ContactUS() {
             </div>
         );
     }
-
-
-
-    const imageUrl = contactData.banner_img?.[0]?.url
-        ? `${BASE_URL_IMG}/${contactData.banner_img[0].url}`
-        : '';
-
     return (
         <>
-            <Helmet>
-                <title>{contactData.browser_title}</title>
-                <meta name="description" content={contactData.meta_description || ""} />
-                <meta name="keywords" content={contactData.meta_keywords || ""} />
-
-                {/* Open Graph Tags */}
-                <meta property="og:title" content={contactData.browser_title} />
-                <meta property="og:description" content={contactData.meta_description || ""} />
-                <meta property="og:image" content={imageUrl} />
-                <meta property="og:url" content={window.location.href} />
-                <meta property="og:type" content="Travels & Tours" />
-
-                {/* Canonical */}
-                <link rel="canonical" href={window.location.href} />
-            </Helmet>
+            <PageScript html={contactData?.script} ownerKey="contact" />
             <div className="flex flex-col w-full max-w-[90%] mt-32 lg:max-w-[75%] mx-auto font-Montserrat">
 
                 {/* Cards Section */}

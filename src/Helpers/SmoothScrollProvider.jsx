@@ -10,7 +10,7 @@ export default function SmoothScrollProvider({ children }) {
 
     const scroll = new LocomotiveScroll({
       el: scrollEl,
-      smooth: true,
+      smooth: false,
       multiplier: 5, // scroll speed // optional class on elements
     });
 

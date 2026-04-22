@@ -4,9 +4,9 @@ import Testimonials from '../../Components/CommonComponents/Testmonials'
 import Navbar from '../../Components/CommonComponents/NavBar'
 import NeedHelp from '../../Components/CommonComponents/NeedHelp'
 import axios from 'axios'
-import { BASE_URL_IMG, endpoints } from '../../Helpers/apiEndpoints'
+import { endpoints } from '../../Helpers/apiEndpoints'
 import parse from "html-react-parser";
-import { Helmet } from 'react-helmet'
+import PageScript from '../../Components/CommonComponents/PageScript'
 export default function AboutPage() {
     const [aboutData, setAboutData] = useState({});
 
@@ -88,30 +88,6 @@ export default function AboutPage() {
         fetchPageData();
     }, []);
 
-    useEffect(() => {
-        if (!aboutData?.script) return;
-
-        // Parse the HTML string returned from API
-        const tempDiv = document.createElement("div");
-        tempDiv.innerHTML = aboutData.script;
-
-        // Find all <script> tags inside it
-        const scripts = tempDiv.querySelectorAll("script");
-
-        scripts.forEach((oldScript) => {
-            const newScript = document.createElement("script");
-
-            // Copy type, src, and inner content
-            if (oldScript.type) newScript.type = oldScript.type;
-            if (oldScript.src) {
-                newScript.src = oldScript.src;
-            } else {
-                newScript.text = oldScript.innerHTML;
-            }
-
-            document.head.appendChild(newScript);
-        });
-    }, [aboutData]);
 
     if (!aboutData) {
         return (
@@ -121,27 +97,9 @@ export default function AboutPage() {
         );
     }
 
-    const imageUrl = aboutData.banner_img?.[0]?.url
-        ? `${BASE_URL_IMG}/${aboutData.banner_img[0].url}`
-        : '';
-
     return (
         <div className='flex flex-col mt-8 w-full max-w-[75%] mx-auto'>
-            <Helmet>
-                <title>{aboutData.browser_title}</title>
-                <meta name="description" content={aboutData.meta_description || ""} />
-                <meta name="keywords" content={aboutData.meta_keywords || ""} />
-
-                {/* Open Graph Tags */}
-                <meta property="og:title" content={aboutData.browser_title} />
-                <meta property="og:description" content={aboutData.meta_description || ""} />
-                <meta property="og:image" content={imageUrl} />
-                <meta property="og:url" content={window.location.href} />
-                <meta property="og:type" content="Travels & Tours" />
-
-                {/* Canonical */}
-                <link rel="canonical" href={window.location.href} />
-            </Helmet>
+            <PageScript html={aboutData?.script} ownerKey="about" />
             <Navbar textColor='black' />
             <div className='max-w-[75%] mx-auto mt-8 parseData'>
                 {parse(aboutData?.content ?? "")}

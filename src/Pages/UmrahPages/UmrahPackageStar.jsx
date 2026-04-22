@@ -103,10 +103,6 @@ const UmrahStarSection = ({ packages = [], section }) => {
 export default function UmrahPackageStar({ pageData }) {
     const { section_1_widget, section_2_widget, section_3_widget } = pageData;
 
-    useEffect(() => {
-        document.title = pageData.browser_title;
-    }, [pageData.browser_title]);
-
     const sections = useMemo(
         () => [
             ...(section_1_widget || []),

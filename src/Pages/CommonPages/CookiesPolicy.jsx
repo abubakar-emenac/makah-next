@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react'
 import Navbar from '../../Components/CommonComponents/NavBar'
 import NeedHelp from '../../Components/CommonComponents/NeedHelp'
 import axios from 'axios'
-import { BASE_URL_IMG, endpoints } from '../../Helpers/apiEndpoints'
+import { endpoints } from '../../Helpers/apiEndpoints'
 import parse from "html-react-parser";
-import { Helmet } from 'react-helmet'
+import PageScript from '../../Components/CommonComponents/PageScript'
 export default function CookiePolicy() {
     const [cpData, setCPData] = useState({});
 
@@ -94,29 +94,9 @@ export default function CookiePolicy() {
         );
     }
 
-    const imageUrl = cpData.banner_img?.[0]?.url
-        ? `${BASE_URL_IMG}/${cpData.banner_img[0].url}`
-        : '';
     return (
         <div className='flex flex-col mt-8 w-full ma-w-[75%] mx-auto'>
-            <Helmet>
-                <title>{cpData.browser_title}</title>
-                <meta name="description" content={cpData.meta_description || ""} />
-                <meta name="keywords" content={cpData.meta_keywords || ""} />
-
-                {/* Open Graph Tags */}
-                <meta property="og:title" content={cpData.browser_title} />
-                <meta property="og:description" content={cpData.meta_description || ""} />
-                <meta property="og:image" content={imageUrl} />
-                <meta property="og:url" content={window.location.href} />
-                <meta property="og:type" content="Travels & Tours" />
-
-                {/* Canonical */}
-                <link rel="canonical" href={window.location.href} />
-                <script >
-                    {cpData.script}
-                </script>
-            </Helmet>
+            <PageScript html={cpData?.script} ownerKey="cookies-policy" />
             <Navbar textColor='black' />
             <div className='max-w-[90%] md:max-w-[75%] mx-auto mt-16 parseData'>
                 {parse(cpData?.content ?? "")}

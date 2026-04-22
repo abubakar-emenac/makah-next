@@ -18,10 +18,6 @@ export default function BestUmrahDeals() {
 
                 if (res.data?.status === 1) {
                     setBestUmrahData(res.data.result);
-
-                    if (res.data.result?.browser_title) {
-                        document.title = res.data.result.browser_title;
-                    }
                 }
             } catch (err) {
                 console.error("Error fetching page data:", err);

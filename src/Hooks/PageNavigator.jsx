@@ -2,13 +2,13 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import { BASE_URL_IMG, endpoints } from "../Helpers/apiEndpoints";
+import { endpoints } from "../Helpers/apiEndpoints";
 import HajjPackage from "../Pages/HajjPackages/HajjPackage";
 import SpecificCategoryHajj from "../Pages/HajjPackages/SpecificCategoryHajj";
 import UmrahPackageStar from "../Pages/UmrahPages/UmrahPackageStar";
 import SpecificCategoryUmrah from "../Pages/UmrahPages/SpecificCategoryUmrah";
 import NotFound from "../Pages/CommonPages/NotFound";
-import { Helmet } from "react-helmet";
+import PageScript from "../Components/CommonComponents/PageScript";
 
 const FullPageLoader = () => {
     return (
@@ -102,31 +102,6 @@ export default function PageNavigator() {
         fetchPage();
     }, [slug]);
 
-    useEffect(() => {
-        if (!pageData?.script) return;
-
-        const tempDiv = document.createElement("div");
-        tempDiv.innerHTML = pageData.script;
-
-        const scripts = tempDiv.querySelectorAll("script");
-
-        scripts.forEach((oldScript) => {
-            const newScript = document.createElement("script");
-            if (oldScript.type) newScript.type = oldScript.type;
-            if (oldScript.src) newScript.src = oldScript.src;
-            else if (oldScript.textContent) newScript.text = oldScript.textContent;
-            document.head.appendChild(newScript);
-        });
-
-        return () => {
-            scripts.forEach((oldScript) => {
-                const existing = [...document.head.querySelectorAll("script")].find(
-                    (s) => s.innerHTML === oldScript.innerHTML || s.src === oldScript.src
-                );
-                if (existing) existing.remove();
-            });
-        };
-    }, [pageData])
 
     if (loading) {
         return <FullPageLoader />;
@@ -134,8 +109,6 @@ export default function PageNavigator() {
     if (!pageData) return (
         <NotFound />
     )
-
-    const imageUrl = pageData.image_url ? `${BASE_URL_IMG}/${pageData.image_url}` : ""
 
     const {
         section_1_widget = [],
@@ -160,21 +133,9 @@ export default function PageNavigator() {
     );
 
     const HelmetTags = (
-        <Helmet>
-            <title>{pageData.browser_title}</title>
-            <meta name="description" content={pageData.meta_description || ""} />
-            <meta name="keywords" content={pageData.meta_keywords || ""} />
-
-            {/* Open Graph Tags */}
-            <meta property="og:title" content={pageData.browser_title} />
-            <meta property="og:description" content={pageData.meta_description || ""} />
-            <meta property="og:image" content={imageUrl} />
-            <meta property="og:url" content={window.location.href} />
-            <meta property="og:type" content="Travels & Tours" />
-
-            {/* Canonical */}
-            <link rel="canonical" href={window.location.href} />
-        </Helmet>
+        <>
+            <PageScript html={pageData?.script} ownerKey={slug} />
+        </>
     );
 
     // ----- Hajj logic -----

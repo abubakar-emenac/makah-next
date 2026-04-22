@@ -54,10 +54,10 @@ import Testimonials from '../../Components/CommonComponents/Testmonials';
 import Navbar from '../../Components/CommonComponents/NavBar';
 import NeedHelp from '../../Components/CommonComponents/NeedHelp';
 import axios from 'axios';
-import { BASE_URL_IMG, endpoints } from '../../Helpers/apiEndpoints';
+import { endpoints } from '../../Helpers/apiEndpoints';
 import ScrollDetail from '../../Components/CommonComponents/ScrollDetail';
 import parse from 'html-react-parser';
-import { Helmet } from 'react-helmet';
+import PageScript from '../../Components/CommonComponents/PageScript';
 
 export default function VisaPage() {
     const [visaPageData, setVisaPageData] = useState({});
@@ -102,51 +102,10 @@ export default function VisaPage() {
 
         fetchPageData();
     }, []);
-    useEffect(() => {
-        if (!visaPageData?.script) return;
-
-        const tempDiv = document.createElement("div");
-        tempDiv.innerHTML = visaPageData.script;
-
-        const scripts = tempDiv.querySelectorAll("script");
-
-        scripts.forEach((oldScript) => {
-            const newScript = document.createElement("script");
-            if (oldScript.type) newScript.type = oldScript.type;
-            if (oldScript.src) newScript.src = oldScript.src;
-            else if (oldScript.textContent) newScript.text = oldScript.textContent;
-            document.head.appendChild(newScript);
-        });
-
-        return () => {
-            scripts.forEach((oldScript) => {
-                const existing = [...document.head.querySelectorAll("script")].find(
-                    (s) => s.innerHTML === oldScript.innerHTML || s.src === oldScript.src
-                );
-                if (existing) existing.remove();
-            });
-        };
-    }, [visaPageData])
-
-    const imageUrl = visaPageData && visaPageData.image_url ? `${BASE_URL_IMG}/${visaPageData.image_url}` : ""
 
     return (
         <>
-            <Helmet>
-                <title>{visaPageData.browser_title}</title>
-                <meta name="description" content={visaPageData.meta_description || ""} />
-                <meta name="keywords" content={visaPageData.meta_keywords || ""} />
-
-                {/* Open Graph Tags */}
-                <meta property="og:title" content={visaPageData.browser_title} />
-                <meta property="og:description" content={visaPageData.meta_description || ""} />
-                <meta property="og:image" content={imageUrl} />
-                <meta property="og:url" content={window.location.href} />
-                <meta property="og:type" content="Travels & Tours" />
-
-                {/* Canonical */}
-                <link rel="canonical" href={window.location.href} />
-            </Helmet>
+            <PageScript html={visaPageData?.script} ownerKey="visa" />
 
             <HeroSection pageData={visaPageData} />
 

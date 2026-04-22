@@ -8,6 +8,7 @@ import { WEB_URL, BASE_URL_SVG } from "../../Helpers/apiEndpoints";
 const Navbar = ({ textColor = "black" }) => {
   const { globalData } = useGlobalData();
   const location = useLocation();
+  const [isMounted, setIsMounted] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState(null);
   const [scrolled, setScrolled] = useState(false);
@@ -80,6 +81,10 @@ const Navbar = ({ textColor = "black" }) => {
     setActiveDropdown(null);
   };
   useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
@@ -93,6 +98,10 @@ const Navbar = ({ textColor = "black" }) => {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+
+  if (!isMounted) {
+    return null;
+  }
 
   return (
     <nav

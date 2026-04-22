@@ -8,8 +8,6 @@ import axios from 'axios';
 import { BASE_URL_SVG, endpoints } from '../../Helpers/apiEndpoints';
 
 export default function SpecificCategoryHajj({ pageData }) {
-    document.title = pageData.browser_title;
-
     const [packages, setPackages] = useState([]);
     const [visibleCount, setVisibleCount] = useState(9);
     const [loading, setLoading] = useState(true);

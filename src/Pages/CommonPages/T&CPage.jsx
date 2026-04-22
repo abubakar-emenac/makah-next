@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react'
 import Navbar from '../../Components/CommonComponents/NavBar'
 import NeedHelp from '../../Components/CommonComponents/NeedHelp'
 import axios from 'axios'
-import { BASE_URL_IMG, endpoints } from '../../Helpers/apiEndpoints'
+import { endpoints } from '../../Helpers/apiEndpoints'
 import parse from "html-react-parser";
-import { Helmet } from 'react-helmet'
+import PageScript from '../../Components/CommonComponents/PageScript'
 export default function TnCpage() {
     const [tnCpage, setTnCpage] = useState({});
 
@@ -94,30 +94,9 @@ export default function TnCpage() {
         );
     }
 
-    const imageUrl = tnCpage.banner_img?.[0]?.url
-        ? `${BASE_URL_IMG}/${tnCpage.banner_img[0].url}`
-        : '';
-
     return (
         <div className='flex flex-col mt-8 w-full ma-w-[75%] mx-auto'>
-            <Helmet>
-                <title>{tnCpage.browser_title}</title>
-                <meta name="description" content={tnCpage.meta_description || ""} />
-                <meta name="keywords" content={tnCpage.meta_keywords || ""} />
-
-                {/* Open Graph Tags */}
-                <meta property="og:title" content={tnCpage.browser_title} />
-                <meta property="og:description" content={tnCpage.meta_description || ""} />
-                <meta property="og:image" content={imageUrl} />
-                <meta property="og:url" content={window.location.href} />
-                <meta property="og:type" content="Travels & Tours" />
-                <script >
-                    {tnCpage.script}
-                </script>
-
-                {/* Canonical */}
-                <link rel="canonical" href={window.location.href} />
-            </Helmet>
+            <PageScript html={tnCpage?.script} ownerKey="terms-and-conditions" />
             <Navbar textColor='black' />
             <div className='max-w-[90%] md:max-w-[75%] mx-auto mt-16 parseData'>
                 {parse(tnCpage?.content ?? "")}

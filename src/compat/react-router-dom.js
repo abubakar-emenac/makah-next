@@ -5,8 +5,21 @@ import { useParams as useNextParams, usePathname, useRouter } from "next/navigat
 import { useEffect, useState } from "react";
 
 export function Link({ to, href, children, ...props }) {
+  const targetHref = href ?? to ?? "/";
+  const isExternalLike =
+    typeof targetHref === "string" &&
+    /^(https?:|mailto:|tel:|#)/i.test(targetHref);
+
+  if (isExternalLike) {
+    return (
+      <a href={targetHref} {...props}>
+        {children}
+      </a>
+    );
+  }
+
   return (
-    <NextLink href={href ?? to ?? "/"} {...props}>
+    <NextLink href={targetHref} {...props}>
       {children}
     </NextLink>
   );

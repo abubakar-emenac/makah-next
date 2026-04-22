@@ -10,10 +10,6 @@ import axios from "axios";
 export default function SpecificCategoryUmrah({ pageData }) {
     const { section_1_widget } = pageData;
 
-    useEffect(() => {
-        document.title = pageData.browser_title;
-    }, [pageData.browser_title]);
-
     const sections = useMemo(
         () => [...(section_1_widget || [])],
         [section_1_widget]

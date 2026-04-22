@@ -82,19 +82,12 @@ export default function MonthlyUmrahPackages({ pageData }) {
         dots: false,
         infinite: true,
         speed: 700,
-        slidesToShow: 4, // desktop default
+        slidesToShow: 1, // desktop default
         slidesToScroll: 1,
         autoplay: false,
         autoplaySpeed: 3000,
         arrows: false,
         responsive: [
-            {
-                breakpoint: 1280, // ≤ 1280px
-                settings: {
-                    slidesToShow: 3,
-                    slidesToScroll: 1,
-                }
-            },
             {
                 breakpoint: 1380, // ≤ 1280px
                 settings: {
@@ -103,23 +96,31 @@ export default function MonthlyUmrahPackages({ pageData }) {
                 }
             },
             {
-                breakpoint: 1024, // ≤ 1024px
+                breakpoint: 1280, // ≤ 1280px
                 settings: {
-                    slidesToShow: 2,
+                    slidesToShow: 3,
+                    slidesToScroll: 1,
+                }
+            },
+            
+            {
+                breakpoint: 1000, // ≤ 1024px
+                settings: {
+                    slidesToShow: 3,
                     slidesToScroll: 1,
                 }
             },
             {
                 breakpoint: 768, // ≤ 768px
                 settings: {
-                    slidesToShow: 1.7,
+                    slidesToShow: 2,
                     slidesToScroll: 1,
                 }
             },
             {
-                breakpoint: 480, // ≤ 480px
+                breakpoint: 576, // ≤ 480px
                 settings: {
-                    slidesToShow: 1,
+                    slidesToShow: 2,
                     slidesToScroll: 1,
                 }
             }

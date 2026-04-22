@@ -11,8 +11,6 @@ import ViewAllButton from '../../Components/CommonComponents/ViewAllButton';
 import HajjPackageCard from '../../Components/HajjComponents/HajjPackageCard';
 
 export default function HajjPackage({ pageData }) {
-    document.title = pageData.browser_title;
-
     const sliderRefs = {
         section1: useRef(null),
         section2: useRef(null),

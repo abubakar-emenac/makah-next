@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react'
 import Navbar from '../../Components/CommonComponents/NavBar'
 import NeedHelp from '../../Components/CommonComponents/NeedHelp'
 import axios from 'axios'
-import { BASE_URL_IMG, endpoints } from '../../Helpers/apiEndpoints'
+import { endpoints } from '../../Helpers/apiEndpoints'
 import parse from "html-react-parser";
-import { Helmet } from 'react-helmet'
+import PageScript from '../../Components/CommonComponents/PageScript'
 export default function PrivacyPolicy() {
     const [pageContent, setPageContent] = useState({});
 
@@ -94,30 +94,9 @@ export default function PrivacyPolicy() {
         );
     }
 
-    const imageUrl = pageContent.banner_img?.[0]?.url
-        ? `${BASE_URL_IMG}/${pageContent.banner_img[0].url}`
-        : '';
-
     return (
         <div className='flex flex-col mt-8 w-full ma-w-[75%] mx-auto'>
-            <Helmet>
-                <title>{pageContent.browser_title}</title>
-                <meta name="description" content={pageContent.meta_description || ""} />
-                <meta name="keywords" content={pageContent.meta_keywords || ""} />
-
-                {/* Open Graph Tags */}
-                <meta property="og:title" content={pageContent.browser_title} />
-                <meta property="og:description" content={pageContent.meta_description || ""} />
-                <meta property="og:image" content={imageUrl} />
-                <meta property="og:url" content={window.location.href} />
-                <meta property="og:type" content="Travels & Tours" />
-
-                {/* Canonical */}
-                <link rel="canonical" href={window.location.href} />
-                <script >
-                    {pageContent.script}
-                </script>
-            </Helmet>
+            <PageScript html={pageContent?.script} ownerKey="privacy-policy" />
             <Navbar textColor='black' />
             <div className='max-w-[90%] md:max-w-[75%] mx-auto mt-16 parseData'>
                 {parse(pageContent?.content ?? "")}

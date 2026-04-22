@@ -83,30 +83,31 @@ export default function CardSlider({ pageData }) {
     dots: false,
     infinite: true,
     speed: 700,
-    slidesToShow: 3,  // how many visible
+    slidesToShow: 1,  // how many visible
     slidesToScroll: 1, // always move 1
     arrows: false,
     beforeChange: (_, next) => setCurrentSlide(next),
     responsive: [
-      {
-        breakpoint: 1280,
-        settings: { slidesToShow: 2, slidesToScroll: 1 }
-      },
+     
       {
         breakpoint: 1380,
         settings: { slidesToShow: 3, slidesToScroll: 1 }
       },
+       {
+        breakpoint: 1280,
+        settings: { slidesToShow: 2, slidesToScroll: 1 }
+      },
       {
         breakpoint: 1024,
-        settings: { slidesToShow: 1, slidesToScroll: 1 }
+        settings: { slidesToShow: 2, slidesToScroll: 1 }
       },
       {
         breakpoint: 768,
         settings: { slidesToShow: 1, slidesToScroll: 1 }
       },
       {
-        breakpoint: 480,
-        settings: { slidesToShow: 1, slidesToScroll: 1 }
+        breakpoint: 576,
+        settings: { slidesToShow: 2, slidesToScroll: 1 }
       }
     ],
   };

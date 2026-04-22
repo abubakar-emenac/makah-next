@@ -1,12 +1,10 @@
-"use client";
+import { getPageMetadataBySlug } from "../Helpers/metadata";
+import HomeClientPage from "./HomeClientPage";
 
-import AppShell from "../app-shell/AppShell";
-import HomePage from "../Pages/CommonPages/HomePage";
+export async function generateMetadata() {
+  return getPageMetadataBySlug("home", "/");
+}
 
 export default function Page() {
-  return (
-    <AppShell>
-      <HomePage />
-    </AppShell>
-  );
+  return <HomeClientPage />;
 }

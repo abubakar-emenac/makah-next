@@ -6,13 +6,13 @@ import ImageSlider from '../../Components/CommonComponents/ImageSlider'
 import Testmonials from '../../Components/CommonComponents/Testmonials'
 import NeedHelp from '../../Components/CommonComponents/NeedHelp'
 import { useParams, useLocation, Link } from 'react-router-dom'
-import { endpoints, BASE_URL_IMG, BASE_URL_SVG } from '../../Helpers/apiEndpoints'
+import { endpoints, BASE_URL_SVG } from '../../Helpers/apiEndpoints'
 import parse from "html-react-parser";
 import axios from 'axios'
 import NotFound from '../CommonPages/NotFound';
-import { Helmet } from 'react-helmet';
 import { useGlobalData } from "../../Helpers/useGlobalData";
 import RelevantPackages from '../../Components/CommonComponents/RelevantPackages';
+import PageScript from '../../Components/CommonComponents/PageScript';
 
 const FullPageLoader = () => {
     return (
@@ -206,31 +206,9 @@ export default function UmrahDetail() {
         )
     }
 
-    const imageUrl = packageData.image_url ? `${BASE_URL_IMG}/${packageData.image_url}` : ""
-
     return (
         <div>
-            <Helmet>
-                <title>{packageData.browser_title}</title>
-                <script >
-                    {packageData.script}
-                </script>
-                <meta name="description" content={packageData.meta_description || ""} />
-                <meta name="keywords" content={packageData.meta_keywords || ""} />
-
-                {/* Open Graph Tags */}
-                <meta property="og:title" content={packageData.browser_title} />
-                <meta property="og:description" content={packageData.meta_description || ""} />
-                <meta property="og:image" content={imageUrl} />
-                <meta property="og:url" content={window.location.href} />
-                <meta property="og:type" content="Travels & Tours" />
-                <meta name="robots" content="noindex" />
-                {/* Canonical */}
-                <link rel="canonical" href={window.location.href} />
-                <script >
-                    {packageData.script}
-                </script>
-            </Helmet>
+            <PageScript html={packageData?.script} ownerKey={slug} />
 
             <div className="flex flex-col w-full max-w-[97%] md:max-w-[85%] lg:max-w-[80%] mx-auto px-4 mt-20">
 
@@ -406,7 +384,7 @@ export default function UmrahDetail() {
                             onClick={() => setIsOpen(true)}
                             onMouseEnter={() => setHoverBtn1(true)}
                             onMouseLeave={() => setHoverBtn1(false)}
-                            className="w-full border border-secondary text-start hover:border-primary text-primary hover:border-0 hover:bg-primary hover:text-white font-semibold text-xl font-Montserrat flex justify-between items-start py-4 pl-3 pr-5 cursor-pointer transition-all duration-300 ease-in-out">
+                            className="w-full border border-secondary text-start hover:border-primary text-primary hover:border-0 hover:bg-primary hover:text-white font-semibold text-xl font-Montserrat flex justify-between items-center py-4 pl-3 pr-5 cursor-pointer transition-all duration-300 ease-in-out">
                             Book This Package
                             <img src={
                                 hoverBtn1
