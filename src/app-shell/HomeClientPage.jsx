@@ -1,6 +1,6 @@
 "use client";
 
-import AppShell from "../app-shell/AppShell";
+import AppShell from "./AppShell";
 import HomePage from "../Pages/CommonPages/HomePage";
 
 export default function HomeClientPage() {

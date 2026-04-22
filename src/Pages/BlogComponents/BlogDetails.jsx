@@ -8,13 +8,7 @@ import NotFound from "../CommonPages/NotFound";
 import PageScript from "../../Components/CommonComponents/PageScript";
 
 
-const FullPageLoader = () => {
-  return (
-    <div className="fixed inset-0 flex items-center justify-center bg-white z-50">
-      <div className="w-12 h-12 border-4 border-gray-300 border-t-primary rounded-full animate-spin"></div>
-    </div>
-  );
-};
+import { BlogDetailSkeleton } from "../../Components/CommonComponents/Skeleton";
 
 const BlogDetails = () => {
   const { page_url } = useParams();
@@ -50,7 +44,7 @@ const BlogDetails = () => {
 
   // 🔹 Loading state
   if (loading) {
-    return <FullPageLoader />;
+    return <BlogDetailSkeleton />;
   }
 
   // 🔹 Not found state

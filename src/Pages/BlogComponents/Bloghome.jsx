@@ -6,11 +6,7 @@ import HeroSectionblog from "../../Components/CommonComponents/HeroSectionblog";
 import NeedHelp from "../../Components/CommonComponents/NeedHelp";
 import PageScript from "../../Components/CommonComponents/PageScript";
 
-const FullPageLoader = () => (
-  <div className="fixed inset-0 flex items-center justify-center bg-white z-50">
-    <div className="w-12 h-12 border-4 border-gray-300 border-t-primary rounded-full animate-spin"></div>
-  </div>
-);
+import { BannerSkeleton, SliderSkeleton } from "../../Components/CommonComponents/Skeleton";
 
 const BlogHome = () => {
   const [featuredBlogs, setFeaturedBlogs] = useState([]);
@@ -67,7 +63,17 @@ const BlogHome = () => {
   }, [currentPage]);
 
 
-  if (loading) return <FullPageLoader />;
+  if (loading) {
+    return (
+      <div className="space-y-10">
+        <BannerSkeleton />
+        <div className="container mx-auto px-4 py-12 space-y-16">
+          <SliderSkeleton count={3} />
+          <SliderSkeleton count={3} />
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div>

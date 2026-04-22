@@ -2,7 +2,6 @@ import path from "path";
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  pageExtensions: ["page.js", "page.jsx"],
   webpack: (config) => {
     config.resolve.alias["react-router-dom"] = path.resolve(
       "./src/compat/react-router-dom.js"

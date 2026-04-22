@@ -5,7 +5,7 @@ import {
   endpoints,
 } from "./apiEndpoints";
 
-async function fetchJson(url) {
+export async function fetchJson(url) {
   try {
     const res = await fetch(url, { next: { revalidate: 300 } });
     if (!res.ok) return null;
@@ -45,11 +45,11 @@ function extractGoogleVerification(contents) {
   return fallbackMatch?.[1];
 }
 
-async function fetchGeneralSettings() {
+export async function fetchGeneralSettings() {
   return fetchJson(endpoints.generalSettings);
 }
 
-async function fetchPageBySlug(slug) {
+export async function fetchPageBySlug(slug) {
   const normalizedSlug = (slug || "").replace(/^\/+/, "").trim();
   const isHomeSlug = normalizedSlug === "" || normalizedSlug === "home";
 
@@ -132,6 +132,7 @@ export async function getPageMetadataBySlug(slug, canonicalPath) {
     fetchGeneralSettings(),
   ]);
   const page = pageResponse?.result;
+  if (!page) return null;
   return generatePageMetadata(page, generalSettings, canonicalPath || slug);
 }
 
@@ -141,6 +142,7 @@ export async function getBlogDetailMetadata(pageUrl) {
     fetchGeneralSettings(),
   ]);
   const blog = blogResponse?.blog;
+  if (!blog) return null;
   return generatePageMetadata(blog, generalSettings, `blog/${pageUrl}`);
 }
 
@@ -155,6 +157,7 @@ export async function getPackageMetadata(type, slug) {
     fetchGeneralSettings(),
   ]);
   const pkg = packageResponse?.result;
+  if (!pkg) return null;
   return generatePageMetadata(pkg, generalSettings, `${type}/${slug}`);
 }
 
