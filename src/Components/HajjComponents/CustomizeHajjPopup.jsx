@@ -4,7 +4,7 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import '../../CSS/datepicker-custom.css';
 import { BASE_URL_SVG, endpoints } from '../../Helpers/apiEndpoints';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "@navigation";
 import axios from "axios";
 import Loader from '../CommonComponents/Loader';
 

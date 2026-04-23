@@ -4,7 +4,7 @@ import ImageGallery from '../CommonPages/ImageGallery'
 import ImageSlider from '../../Components/CommonComponents/ImageSlider'
 import Testmonials from '../../Components/CommonComponents/Testmonials'
 import NeedHelp from '../../Components/CommonComponents/NeedHelp'
-import { useParams, useLocation, Link } from 'react-router-dom'
+import { useParams, useLocation, Link } from "@navigation"
 import { endpoints, BASE_URL_SVG } from '../../Helpers/apiEndpoints'
 import parse from "html-react-parser";
 import axios from 'axios'

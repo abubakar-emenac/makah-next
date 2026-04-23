@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 import Navbar from '../../Components/CommonComponents/NavBar';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from "@navigation";
 import { BASE_URL_SVG } from '../../Helpers/apiEndpoints';
 import { motion, AnimatePresence } from "framer-motion";
 import CustomizeUmrahPopup from '../../Components/UmrahComponents/CustomizeUmrahPopup';

@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react"
-import { useLocation } from "react-router-dom"
+import { useLocation } from "@navigation"
 import NProgress from "nprogress"
 import "nprogress/nprogress.css" // Import default styles
 

@@ -1,7 +1,7 @@
 import { useEffect } from "react"
 import Home from "./MainPages/CommonPages/HomePage"
 import Footer from "./Components/CommonComponents/Footer"
-import { Routes, Route, Navigate, useLocation, useNavigate } from "react-router-dom"
+import { Routes, Route, Navigate, useLocation, useNavigate } from "@navigation"
 import NotFound from "./MainPages/CommonPages/NotFound"
 import SpecificCategoryUmrah from "./MainPages/UmrahPages/SpecificCategoryUmrah"
 import AboutPage from "./MainPages/CommonPages/AboutPage"

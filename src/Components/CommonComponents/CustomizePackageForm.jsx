@@ -8,7 +8,7 @@ import Loader from './Loader';
 import { toast } from "sonner";
 import axios from 'axios';
 
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "@navigation";
 
 const CustomizePackageForm = () => {
     const navigate = useNavigate()

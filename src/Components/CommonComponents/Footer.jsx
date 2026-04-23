@@ -1,5 +1,5 @@
 // import React from 'react'
-// import { Link } from 'react-router-dom';
+// import { Link } from "@navigation";
 
 // export default function Footer() {
 //     const logo = [
@@ -128,7 +128,7 @@
 //     );
 // }
 import React, { useMemo, useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from "@navigation";
 import { useGlobalData } from "../../Helpers/useGlobalData";
 import { BASE_URL_SVG, WEB_URL } from '../../Helpers/apiEndpoints';
 import { label } from 'framer-motion/client';

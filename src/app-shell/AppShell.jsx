@@ -9,8 +9,6 @@ import ScrollToTopButton from "../Components/CommonComponents/ScrollToTopButton"
 import WhatsAppButton from "../Components/CommonComponents/WhatsAppButton";
 import PageScript from "../Components/CommonComponents/PageScript";
 import TopLoadingBar from "../Components/CommonComponents/TopLoadingBar";
-import SkeletonLoaderShell from "../Components/CommonComponents/SkeletonLoaderShell";
-import { GlobalDataProvider } from "../Helpers/GlobalDataProvider";
 import { GlobalDataContext } from "../Helpers/GlobalDataContext";
 import { useContext } from "react";
 import { Toaster } from "sonner";
@@ -51,7 +49,9 @@ export default function AppShell({ children }) {
       <ScrollToTopButton />
       <WhatsAppButton />
       <Navbar />
-      {children}
+      <main className="min-h-screen">
+        {children}
+      </main>
       <Footer />
       <Toaster position="bottom-right" richColors />
     </>

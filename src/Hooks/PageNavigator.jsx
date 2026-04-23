@@ -1,6 +1,6 @@
 // src/pages/PageNavigator.jsx
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams } from "@navigation";
 import axios from "axios";
 import { endpoints } from "../Helpers/apiEndpoints";
 import HajjPackage from "../MainPages/HajjPackages/HajjPackage";

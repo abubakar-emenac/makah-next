@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useParams } from "@navigation";
 import UmrahDetail from "./UmrahDetail";
 
 export default function UmrahLayout() {

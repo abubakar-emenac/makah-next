@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link } from "@navigation";
 import axios from "axios";
 import { BASE_URL_IMG, BASE_URL_SVG, endpoints } from "../../Helpers/apiEndpoints";
 import HeroSectionblog from "../../Components/CommonComponents/HeroSectionblog";

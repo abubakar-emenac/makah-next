@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { ChevronUp } from "lucide-react";
-import { useLocation } from "react-router-dom";
+import { useLocation } from "@navigation";
 
 const ScrollToTopButton = () => {
   const [visible, setVisible] = useState(false);

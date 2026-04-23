@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { endpoints } from '../../Helpers/apiEndpoints'
-import { useParams } from 'react-router-dom'
+import { useParams } from "@navigation"
 import axios from 'axios'
 import HeroSection from '../../Components/CommonComponents/HeroSection'
 import MonthlyUmrahPackages from '../../Components/UmrahComponents/monthlyUmrahPackages'

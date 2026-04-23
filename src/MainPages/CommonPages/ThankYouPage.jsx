@@ -1,6 +1,6 @@
 import React from 'react';
 import Navbar from '../../Components/CommonComponents/NavBar';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from "@navigation";
 import { BASE_URL_SVG } from '../../Helpers/apiEndpoints';
 
 export default function ThankYou() {
