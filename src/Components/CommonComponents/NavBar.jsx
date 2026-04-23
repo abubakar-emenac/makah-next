@@ -84,8 +84,14 @@ const Navbar = ({ textColor = "black" }) => {
     setIsMounted(true);
   }, []);
 
+  const onScroll = () => {
+    if (typeof window !== 'undefined') {
+      setScrolled(window.scrollY > 50);
+    }
+  };
+
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 50);
+    onScroll(); // Check scroll status immediately on mount
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
@@ -93,15 +99,11 @@ const Navbar = ({ textColor = "black" }) => {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    setIsMobile(window.innerWidth < 640);
     const handleResize = () => setIsMobile(window.innerWidth < 640);
+    handleResize(); // Initial check
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
-
-  if (!isMounted) {
-    return null;
-  }
 
   return (
     <nav

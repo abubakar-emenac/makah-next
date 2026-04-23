@@ -120,7 +120,18 @@ export default function PageScript({ html, ownerKey }) {
                 else if (property) selector += `[property="${CSS.escape(property)}"]`;
 
                 const existing = document.head.querySelector(selector);
-                if (existing && existing.getAttribute('content') === content) return;
+                if (existing) {
+                    // Avoid duplicate meta tags (e.g. Next metadata + page script meta).
+                    // If an element from this scope already exists, just keep it updated.
+                    if (existing.dataset.pageScriptOwner === currentScope) {
+                        if (content) {
+                            existing.setAttribute('content', content);
+                        }
+                        return;
+                    }
+                    // A meta tag with same key already exists from another source; do not duplicate.
+                    return;
+                }
             } else if (tagName === 'link') {
                 const rel = oldEl.getAttribute('rel');
                 const href = oldEl.getAttribute('href');

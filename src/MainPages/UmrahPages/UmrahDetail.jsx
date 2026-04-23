@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { AnimatePresence, motion } from "framer-motion";
+import CustomizeUmrahPopup from '../../Components/UmrahComponents/CustomizeUmrahPopup';
 import ImageGallery from '../CommonPages/ImageGallery'
 import ImageSlider from '../../Components/CommonComponents/ImageSlider'
 import Testmonials from '../../Components/CommonComponents/Testmonials'
@@ -8,20 +9,29 @@ import { useParams, useLocation, Link } from 'react-router-dom'
 import { endpoints, BASE_URL_SVG } from '../../Helpers/apiEndpoints'
 import parse from "html-react-parser";
 import axios from 'axios'
-import NotFound from '../CommonPages/NotFound'
-import CustomizeHajjPopup from '../../Components/HajjComponents/CustomizeHajjPopup';
+import NotFound from '../CommonPages/NotFound';
 import { useGlobalData } from "../../Helpers/useGlobalData";
 import RelevantPackages from '../../Components/CommonComponents/RelevantPackages';
 import PageScript from '../../Components/CommonComponents/PageScript';
 
 import { PackageDetailSkeleton } from '../../Components/CommonComponents/Skeleton';
 
-export default function HajjDetail() {
+export default function UmrahDetail() {
     const { globalData } = useGlobalData();
     const [hoverBtn1, setHoverBtn1] = useState(false);
     const [hoverBtn2, setHoverBtn2] = useState(false);
     const { slug } = useParams();
     const location = useLocation();
+    const detailSlugRef = useRef("");
+    if (!detailSlugRef.current) {
+        if (slug) {
+            detailSlugRef.current = slug;
+        } else {
+            const pathParts = (location?.pathname || "").split("/").filter(Boolean);
+            detailSlugRef.current = decodeURIComponent(pathParts[pathParts.length - 1] || "");
+        }
+    }
+    const detailSlug = detailSlugRef.current;
     const [packageData, setPackageData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -41,6 +51,7 @@ export default function HajjDetail() {
         globalData?.result?.global_variables?.find((v) => v.code === code)
             ?.code_value || "";
 
+
     useEffect(() => {
         const handleClickOutside = (event) => {
             if (modalRef.current && !modalRef.current.contains(event.target)) {
@@ -58,10 +69,15 @@ export default function HajjDetail() {
     }, [location.pathname]);
     useEffect(() => {
         const fetchPageData = async () => {
+            if (!detailSlug) {
+                setPackageData(null);
+                setLoading(false);
+                return;
+            }
             setLoading(true);
             setError(null);
             try {
-                const res = await axios.get(endpoints.hajjByslug(slug));
+                const res = await axios.get(endpoints.umrahByslug(detailSlug));
                 if (res.data?.status === 1) {
                     setPackageData(res.data.result);
                 }
@@ -69,7 +85,6 @@ export default function HajjDetail() {
                     return (
                         <NotFound />
                     )
-
                 }
             } catch (err) {
 
@@ -83,7 +98,7 @@ export default function HajjDetail() {
         };
 
         fetchPageData();
-    }, [slug]);
+    }, [detailSlug]);
 
 
     const button = [
@@ -141,11 +156,12 @@ export default function HajjDetail() {
 
     return (
         <div>
-            <PageScript html={packageData?.script} ownerKey={slug} />
-            <div className="flex mt-20 flex-col w-full max-w-[95%] md:max-w-[85%] lg:max-w-[80%] mx-auto px-4">
+            <PageScript html={packageData?.script} ownerKey={detailSlug} />
+
+            <div className="flex flex-col w-full max-w-[97%] md:max-w-[85%] lg:max-w-[80%] mx-auto px-4 mt-20">
 
                 {/* Package Title + Price */}
-                <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mt-4">
+                <div className="flex flex-col md:flex-row flex-wrap justify-between items-start md:items-center gap-4 mt-4">
                     <div className="w-full md:w-3/4 lg:w-[55%]">
                         {/* <img src="/svgs/filledStar.svg" alt="" className="w-6 sm:w-7 lg:w-8" /> */}
                         <div className="flex items-center gap-1">
@@ -173,11 +189,12 @@ export default function HajjDetail() {
 
                 {/* Image Gallery + Hotel Nights */}
                 <div className="flex flex-col lg:flex-row w-full mt-5 gap-6">
+                    {/* Left: Gallery */}
                     <div className="w-full lg:w-2/3">
-
                         <ImageGallery images={packageData?.images || []} />
                     </div>
 
+                    {/* Right: Nights + Buttons + Certs */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:flex lg:flex-col w-full lg:w-1/3 gap-6">
                         {/* Nights Info */}
                         <div className="flex flex-col gap-y-6 w-[84%] ml-auto">
@@ -276,6 +293,7 @@ export default function HajjDetail() {
                     </div>
                 </div>
 
+
                 {/* Package Details */}
                 <div className="flex flex-col w-full mt-8">
                     <h2 className="text-2xl md:text-3xl font-Montserrat font-semibold">PACKAGE DETAILS</h2>
@@ -302,7 +320,7 @@ export default function HajjDetail() {
                     {/* Left (2/3 width on lg+, full width on mobile) */}
                     <div className="w-full lg:w-3/4 font-Montserrat text-[16px]">
                         {packageData?.description && (
-                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3 bg-[rgba(219,158,48,0.08)] p-7">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3 bg-[rgba(219,158,48,0.08)] custom-bullet p-7">
                                 {parse(packageData.description)}
                             </div>
                         )}
@@ -314,7 +332,7 @@ export default function HajjDetail() {
                             onClick={() => setIsOpen(true)}
                             onMouseEnter={() => setHoverBtn1(true)}
                             onMouseLeave={() => setHoverBtn1(false)}
-                            className="w-full border border-secondary text-start hover:border-primary text-primary hover:border-0 hover:bg-primary hover:text-white font-semibold text-xl font-Montserrat flex justify-between items-start py-4 pl-3 pr-5 cursor-pointer transition-all duration-300 ease-in-out">
+                            className="w-full border border-secondary text-start hover:border-primary text-primary hover:border-0 hover:bg-primary hover:text-white font-semibold text-xl font-Montserrat flex justify-between items-center py-4 pl-3 pr-5 cursor-pointer transition-all duration-300 ease-in-out">
                             Book This Package
                             <img src={
                                 hoverBtn1
@@ -435,7 +453,6 @@ export default function HajjDetail() {
                 </div>
             </div>
 
-
             {packageData?.ourclientsays_widget?.length > 0 && (
                 <Testmonials pageData={packageData} />
             )}
@@ -444,9 +461,10 @@ export default function HajjDetail() {
                 (widget) => widget && Object.keys(widget).length > 0
             ) && (
                     <div className="w-full md:max-w-[85%] lg:max-w-[80%] mx-auto my-5 md:px-4">
-                        <RelevantPackages pageData={packageData} />
+                    <RelevantPackages pageData={packageData} />
                     </div>
                 )}
+
 
 
             <NeedHelp />
@@ -479,13 +497,12 @@ export default function HajjDetail() {
                                         <img src={`${BASE_URL_SVG}/assets/svgs/cross.svg`} alt="crosee" className=' cursor-pointer' />
                                     </button>
                                 </div>
-                                <CustomizeHajjPopup />
+                                <CustomizeUmrahPopup />
                             </div>
                         </motion.div>
                     </>
                 )}
             </AnimatePresence>
-
             <AnimatePresence>
                 {descModalOpen && (
                     <>
@@ -524,6 +541,7 @@ export default function HajjDetail() {
                     </>
                 )}
             </AnimatePresence>
+
 
         </div>
     )

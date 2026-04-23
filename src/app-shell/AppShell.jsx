@@ -40,7 +40,7 @@ export default function AppShell({ children }) {
   const faviconHtml = faviconPath ? `<link rel="icon" href="${faviconPath}" type="image/png" />` : "";
 
   return (
-    <GlobalDataProvider>
+    <>
       <TopLoadingBar />
       <PageScript html={seoTagSetting?.contents} ownerKey="global-header-seo" />
       <PageScript html={analyticsSetting?.contents} ownerKey="global-analytics" />
@@ -51,11 +51,9 @@ export default function AppShell({ children }) {
       <ScrollToTopButton />
       <WhatsAppButton />
       <Navbar />
-      <SkeletonLoaderShell>
-        {children}
-      </SkeletonLoaderShell>
+      {children}
       <Footer />
       <Toaster position="bottom-right" richColors />
-    </GlobalDataProvider>
+    </>
   );
 }

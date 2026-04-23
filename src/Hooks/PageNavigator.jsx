@@ -3,11 +3,11 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { endpoints } from "../Helpers/apiEndpoints";
-import HajjPackage from "../Pages/HajjPackages/HajjPackage";
-import SpecificCategoryHajj from "../Pages/HajjPackages/SpecificCategoryHajj";
-import UmrahPackageStar from "../Pages/UmrahPages/UmrahPackageStar";
-import SpecificCategoryUmrah from "../Pages/UmrahPages/SpecificCategoryUmrah";
-import NotFound from "../Pages/CommonPages/NotFound";
+import HajjPackage from "../MainPages/HajjPackages/HajjPackage";
+import SpecificCategoryHajj from "../MainPages/HajjPackages/SpecificCategoryHajj";
+import UmrahPackageStar from "../MainPages/UmrahPages/UmrahPackageStar";
+import SpecificCategoryUmrah from "../MainPages/UmrahPages/SpecificCategoryUmrah";
+import NotFound from "../MainPages/CommonPages/NotFound";
 import PageScript from "../Components/CommonComponents/PageScript";
 import { BannerSkeleton, SliderSkeleton } from "../Components/CommonComponents/Skeleton";
 
