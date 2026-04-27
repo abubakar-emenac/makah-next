@@ -114,7 +114,10 @@ export default function Testimonials({ pageData }) {
         autoplaySpeed: 3000,
         slidesToScroll: 1,
         responsive: [
-            { breakpoint: 1024, settings: { slidesToShow: 2 } },
+            { breakpoint: 1200, settings: { slidesToShow: 3 } },
+            { breakpoint: 1024, settings: { slidesToShow: 2.5 } },
+            { breakpoint: 992, settings: { slidesToShow: 2.5 } },
+            { breakpoint: 768, settings: { slidesToShow: 2 } },
             { breakpoint: 640, settings: { slidesToShow: 1 } }
         ]
     };

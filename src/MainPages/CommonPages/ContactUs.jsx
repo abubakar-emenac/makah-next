@@ -278,7 +278,7 @@ export default function ContactUS() {
                                     initial={{ opacity: 0, y: -8 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ duration: 0.35 }}
-                                    className="absolute -top-12 left-1/2 -translate-x-1/2 w-28 h-28 bg-white rounded-xl shadow-lg grid place-items-center"
+                                    className="absolute -top-12 left-[33%] -translate-x-1/2 w-28 h-28 bg-white rounded-xl shadow-lg grid place-items-center"
                                 >
                                     <img
                                         src={`${BASE_URL_SVG}/${item.icon}`}

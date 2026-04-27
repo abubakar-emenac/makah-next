@@ -93,21 +93,21 @@ export default function RelevantPackages({ pageData }) {
             {
                 breakpoint: 1380, // ≤ 1280px
                 settings: {
-                    slidesToShow: 2.5,
+                    slidesToShow: 3,
                     slidesToScroll: 1,
                 }
             },
             {
                 breakpoint: 1280, // ≤ 1280px
                 settings: {
-                    slidesToShow: 2.5,
+                    slidesToShow: 3,
                     slidesToScroll: 1,
                 }
             },
             {
                 breakpoint: 1024, // ≤ 1024px
                 settings: {
-                    slidesToShow: 2,
+                    slidesToShow: 2.5,
                     slidesToScroll: 1,
                 }
             },
@@ -124,10 +124,16 @@ export default function RelevantPackages({ pageData }) {
                     slidesToShow: 1,
                     slidesToScroll: 1,
                 }
+            },
+            {
+                breakpoint: 360, // ≤ 480px
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                }
             }
         ],
     };
-
 
 
     return (

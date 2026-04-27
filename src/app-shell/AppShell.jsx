@@ -49,7 +49,7 @@ export default function AppShell({ children }) {
       <ScrollToTopButton />
       <WhatsAppButton />
       <Navbar />
-      <main className="min-h-screen">
+      <main className="">
         {children}
       </main>
       <Footer />
