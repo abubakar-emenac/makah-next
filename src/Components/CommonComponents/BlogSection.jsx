@@ -137,7 +137,7 @@ export default function BlogSection() {
                   />
                 </Link>
                 {index < otherBlogs.length - 1 && (
-                  <hr className="m-5 w-20 mx-auto" />
+                  <hr className="m-5 w-20 mx-auto border-black" />
                 )}
               </div>
             </div>
