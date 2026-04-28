@@ -38,11 +38,10 @@ export default function HeroSection({ pageData }) {
   return (
     <div className="relative w-full">
       <div
-        className="w-full bg-cover bg-center bg-no-repeat"
+        className="w-full bg-cover bg-center bg-no-repeat xl:min-h-[70vh] "
         style={{
           backgroundImage: `url(${BASE_URL_IMG}/${pageData?.image_url})`,
           backgroundSize: '100% auto',
-          minHeight: '70vh',
           backgroundPosition: isMobile ? "center 40px" : "top center",
         }}
       >
@@ -81,7 +80,7 @@ export default function HeroSection({ pageData }) {
           {/* ENQUIRY BOX - Bottom par fixed like hajjumrahhub */}
           <div className="w-full 
           sm:w-[95%] md:w-[95%] lg:max-w-[88%] xl:max-w-[88%] mx-auto
-          mt-5 md:mt-6 lg:mt-10 mb-8">
+          mt-5 md:mt-6 lg:mt-10 xl:mb-8 ">
             <EnquiryBox />
           </div>
         </div>

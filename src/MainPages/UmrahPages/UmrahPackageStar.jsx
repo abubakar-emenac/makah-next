@@ -16,15 +16,48 @@ const UmrahStarSection = ({ packages = [], section }) => {
         dots: false,
         infinite: true,
         speed: 700,
-        slidesToShow: 3,
+        slidesToShow: 1, 
         slidesToScroll: 1,
         autoplay: false,
+        autoplaySpeed: 3000,
         arrows: false,
         responsive: [
-            { breakpoint: 1280, settings: { slidesToShow: 3 } },
-            { breakpoint: 1024, settings: { slidesToShow: 2.5 } },
-            { breakpoint: 768, settings: { slidesToShow: 1.7 } },
-            { breakpoint: 480, settings: { slidesToShow: 1 } },
+            {
+                breakpoint: 1380, // ≤ 1280px
+                settings: {
+                    slidesToShow: 3,
+                    slidesToScroll: 1,
+                }
+            },
+            {
+                breakpoint: 1280, // ≤ 1280px
+                settings: {
+                    slidesToShow: 3,
+                    slidesToScroll: 1,
+                }
+            },
+            
+            {
+                breakpoint: 1000, // ≤ 1024px
+                settings: {
+                    slidesToShow: 3,
+                    slidesToScroll: 1,
+                }
+            },
+            {
+                breakpoint: 768, // ≤ 768px
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 1,
+                }
+            },
+            {
+                breakpoint: 576, // ≤ 480px
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 1,
+                }
+            }
         ],
     };
 

@@ -30,7 +30,7 @@ import CookiePolicy from "./MainPages/CommonPages/CookiesPolicy"
 import ThankYou from "./MainPages/CommonPages/ThankYouPage"
 import Navbar from "./Components/CommonComponents/NavBar"
 import ScrollToTopButton from "./Components/CommonComponents/ScrollToTopButton"
-import Lenis from 'lenis'
+
 import WhatsAppButton from "./Components/CommonComponents/WhatsAppButton"
 import ScrollToTop from "./Components/CommonComponents/ScrollToTop"
 
@@ -62,16 +62,7 @@ function App() {
     }
   }, [isInvalidPath, normalizedPath, location.search, navigate]);
 
-  // Initialize Lenis
-  useEffect(() => {
-    const lenis = new Lenis({ autoRaf: true });
-    window.lenisInstance = lenis;
 
-    return () => {
-      lenis.destroy();
-      window.lenisInstance = null;
-    };
-  }, []);
 
   const settings = globalData?.result?.settings || [];
 

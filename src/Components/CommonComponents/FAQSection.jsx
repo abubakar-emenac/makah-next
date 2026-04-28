@@ -169,7 +169,7 @@ export default function FAQSection({ pageData }) {
                     ))}
                 </div> */}
 
-                <div className="lg:w-[55%] faq-scroll-container mt-16 max-h-[490px] overflow-y-auto" data-lenis-prevent>
+                <div className="lg:w-[55%] faq-scroll-container mt-16 max-h-[490px] overflow-y-auto">
                     {faqs.map((faq, index) => (
                         <div key={index} className="border-b py-4 font-Montserrat">
                             <button

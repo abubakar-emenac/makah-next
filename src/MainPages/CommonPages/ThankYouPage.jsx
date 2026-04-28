@@ -11,7 +11,7 @@ export default function ThankYou() {
             <Navbar textColor="black" />
 
             <div
-                className="relative flex flex-col items-center justify-center text-white pt-20 overflow-hidden"
+                className="relative flex flex-col items-center justify-center text-white pt-20 overflow-hidden h-auto"
                 style={{ backgroundColor: '#DB9E30' }}
             >
                 {/* Clouds */}
@@ -32,9 +32,9 @@ export default function ThankYou() {
                 />
 
                 {/* Top Text */}
-                <div className="w-full mx-auto flex flex-col items-center gap-10 text-center relative z-10">
+                <div className="w-full mx-auto flex flex-col items-center  text-center relative gap-6  sm:gap-10 z-10">
                     {/* Info Text */}
-                    <div className="text-base sm:text-lg md:text-xl font-Montserrat font-light leading-relaxed">
+                    <div className="text-[14px] sm:text-lg md:text-xl font-Montserrat font-light leading-relaxed">
                         <p>We have received your enquiry</p>
                         <p>
                             One of our agents will get back to you within{' '}
@@ -43,12 +43,12 @@ export default function ThankYou() {
                     </div>
 
                     {/* Background THANK YOU */}
-                    <h1 className="absolute flex items-center font-Montserrat justify-center text-[80px] sm:text-[120px] md:text-[180px] lg:text-[220px] font-bold text-white z-0 mt-5">
+                    <h1 className="absolute leading-[1.2] flex items-center font-Montserrat justify-center text-[80px]  sm:text-[120px] md:text-[160px] lg:text-[220px] font-bold text-white z-0 mt-7 sm:mt-5">
                         THANK YOU
                     </h1>
 
                     {/* Foreground Illustration + Button */}
-                    <div className="relative z-10 flex items-center gap-6 mt-10">
+                    <div className="relative z-10 flex items-center gap-0 sm:gap-6 mt-5">
                         <img
                             src={`${BASE_URL_SVG}assets/svgs/thankyou.svg`}
                             alt="Thank You Illustration"

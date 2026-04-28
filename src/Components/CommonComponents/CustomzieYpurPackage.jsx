@@ -10,7 +10,7 @@ export default function CustomizeYourPackage({ pageData }) {
         ? `${BASE_URL_IMG}/${pageData.simple_image_url}`
         : "/images/iStock-872424158.png";
     return (
-        <div className="relative w-full mt-16 flex flex-col lg:flex-row overflow-hidden">
+        <div className="relative w-full mt-0 sm:mt-16 flex flex-col lg:flex-row overflow-hidden">
             {/* Left Image - Hidden on mobile */}
             <div className="
                 hidden

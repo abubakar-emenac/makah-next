@@ -177,8 +177,8 @@ export default function CardSlider({ pageData }) {
                 sliderRef.current?.slickGoTo(index);
               }}
               className={`h-1 cursor-pointer rounded-full transition-all duration-300 ${currentSlide === index
-                ? "w-20 bg-primary h-1"
-                : "w-10 bg-secondary h-1"
+                ? "w-10 bg-primary h-1 md:w-20"
+                : "w-5 bg-secondary h-1 md:w-10"
                 }`}
             />
           ))}

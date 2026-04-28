@@ -256,7 +256,7 @@ const Navbar = ({ textColor = "black" }) => {
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: -50, opacity: 0 }}
               transition={{ duration: 0.4, type: "spring", stiffness: 120 }}
-              className="fixed top-16 left-1/2 -translate-x-1/2 w-[95%] max-w-lg md:max-w-md bg-white rounded-3xl shadow-2xl z-[9999] flex flex-col px-6 py-6 space-y-4 bg-black"
+              className="fixed top-16 sm:right-[15px] right-[10px] -translate-x-1/2 w-[95%] max-w-lg md:max-w-md bg-white rounded-3xl shadow-2xl z-[9999] flex flex-col px-6 py-6 space-y-4 bg-black"
             >
               {navItems.map((item, i) => (
                 <motion.div

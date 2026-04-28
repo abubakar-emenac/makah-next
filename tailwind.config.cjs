@@ -22,7 +22,8 @@ module.exports = {
         "Montserrat-italic": ["Montserrat-italic", "sans-serif"],
       },
       spacing: {
-        35: "8.75rem", 
+        35: "8.75rem",
+        25: "6.25rem",
         15: "3.75rem",
       },
     },

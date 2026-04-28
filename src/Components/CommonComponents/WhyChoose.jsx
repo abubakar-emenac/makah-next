@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useMemo, useState, useRef } from "react";
 import Slider from "react-slick";
 import { useGlobalData } from "../../Helpers/useGlobalData";
 import "slick-carousel/slick/slick.css";
@@ -9,6 +9,7 @@ export default function WhyChoose() {
     const { globalData } = useGlobalData();
     const [currentSlide, setCurrentSlide] = useState(0);
     const [hoveredIndex, setHoveredIndex] = useState(null);
+    const sliderRef = useRef(null);
 
     const homePageSettings = useMemo(() => {
         return globalData?.result?.settings?.find(
@@ -54,7 +55,7 @@ export default function WhyChoose() {
     if (!slogansEnabled || !sloganData) return null;
 
     const sliderSettings = {
-        dots: true,
+        dots: false,
         infinite: true,
         speed: 500,
         slidesToShow: 1,
@@ -187,7 +188,7 @@ export default function WhyChoose() {
 
                 {/* Mobile Slider */}
                 <div className="lg:hidden mt-6">
-                    <Slider {...sliderSettings}>
+                    <Slider {...sliderSettings} ref={sliderRef}>
                         {sloganData.cards.map((item, index) => (
                             <div
                                 key={index}
@@ -209,8 +210,25 @@ export default function WhyChoose() {
                             </div>
                         ))}
                     </Slider>
+
+                    {/* Pagination Dots */}
+                    <div className="flex justify-center mt-6 gap-2">
+                        {sloganData.cards.map((_, index) => (
+                            <span
+                                key={index}
+                                onClick={() => {
+                                    setCurrentSlide(index);
+                                    sliderRef.current?.slickGoTo(index);
+                                }}
+                                className={`h-1 cursor-pointer rounded-full transition-all duration-300 ${currentSlide === index
+                                    ? "w-10 bg-primary md:w-20"
+                                    : "w-5 bg-secondary md:w-10"
+                                    }`}
+                            />
+                        ))}
+                    </div>
                 </div>
             </div>
         </>
     );
-}
+}

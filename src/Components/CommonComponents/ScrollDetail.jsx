@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import parse from "html-react-parser";
-import Lenis from "lenis";
+
 import "../../CSS/ScrollDetail.css";
 
 export default function ScrollDetail({ pageData }) {
@@ -77,7 +77,7 @@ export default function ScrollDetail({ pageData }) {
 
             {/* Scrollable description */}
             <div className="w-full sm:px-6 md:px-1 mt-6 h-[500px] max-h-full"
-             data-lenis-prevent
+
             >
                 <div
                     className="custom-scrollbar prose font-Montserrat p-3"

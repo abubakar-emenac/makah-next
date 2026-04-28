@@ -1,6 +1,6 @@
 "use client";
 
-import Lenis from "lenis";
+
 import { useEffect } from "react";
 import Navbar from "../Components/CommonComponents/NavBar";
 import Footer from "../Components/CommonComponents/Footer";
@@ -16,14 +16,7 @@ import { Toaster } from "sonner";
 export default function AppShell({ children }) {
   const { globalData } = useContext(GlobalDataContext) || {};
 
-  useEffect(() => {
-    const lenis = new Lenis({ autoRaf: true });
-    window.lenisInstance = lenis;
-    return () => {
-      lenis.destroy();
-      window.lenisInstance = null;
-    };
-  }, []);
+
 
   const settings = globalData?.result?.settings || [];
 
@@ -49,7 +42,7 @@ export default function AppShell({ children }) {
       <ScrollToTopButton />
       <WhatsAppButton />
       <Navbar />
-      <main className="min-h-screen">
+      <main className="empty:min-h-[80vh]">
         {children}
       </main>
       <Footer />
