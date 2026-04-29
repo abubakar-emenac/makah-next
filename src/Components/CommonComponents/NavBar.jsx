@@ -184,7 +184,7 @@ const Navbar = ({ textColor = "black" }) => {
           </div>
           <div className="relative rounded-l-3xl rounded-r-lg flex items-center text-xs md:text-sm font-medium ml-4 bg-white">
             <div className="  pl-3 md:pl-4 py-1.5 md:py-[1.5px] flex flex-col items-end">
-              <span className="text-yellow-500 leading-tight">Call Now:</span>
+              <span className="text-yellow-500 leading-tight">Live Call Now:</span>
               <a href={`tel:${phoneNumber}`} >
                 {phoneNumber}
               </a>
