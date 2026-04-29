@@ -76,8 +76,8 @@ export function generatePageMetadata(pageData, generalSettings, slug = "") {
     : undefined;
   const googleVerification =
     seoTagSetting?.is_active && seoTagSetting?.contents
-      ? extractGoogleVerification(seoTagSetting.contents)
-      : undefined;
+      ? extractGoogleVerification(seoTagSetting.contents) || "uvO57qg3JPD6_LpJM_fHldETk1ek9ntvGyfOGhHZD9w"
+      : "uvO57qg3JPD6_LpJM_fHldETk1ek9ntvGyfOGhHZD9w";
 
   const meta = pageData?.meta || {};
   const title = pageData?.browser_title || meta?.title || pageData?.title;
