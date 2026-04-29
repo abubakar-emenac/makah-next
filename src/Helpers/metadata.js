@@ -5,9 +5,9 @@ import {
   endpoints,
 } from "./apiEndpoints";
 
-export async function fetchJson(url) {
+export async function fetchJson(url, tags = []) {
   try {
-    const res = await fetch(url, { next: { revalidate: 300 } });
+    const res = await fetch(url, { next: { tags, revalidate: 3600 } });
     if (!res.ok) return null;
     return await res.json();
   } catch {
@@ -35,18 +35,18 @@ function extractGoogleVerification(contents) {
   if (typeof contents !== "string") return undefined;
 
   const strictMatch = contents.match(
-    /name=["']google-site-verification["'][^>]*content=["']([^"']+)["']/i
+    /name=["']google-site-verification["'][^>]*content=["']([^"']+)["']/i,
   );
   if (strictMatch?.[1]) return strictMatch[1];
 
   const fallbackMatch = contents.match(
-    /google-site-verification[^>]*content=["']([^"']+)["']/i
+    /google-site-verification[^>]*content=["']([^"']+)["']/i,
   );
   return fallbackMatch?.[1];
 }
 
 export async function fetchGeneralSettings() {
-  return fetchJson(endpoints.generalSettings);
+  return fetchJson(endpoints.generalSettings, ["settings"]);
 }
 
 export async function fetchPageBySlug(slug) {
@@ -54,10 +54,12 @@ export async function fetchPageBySlug(slug) {
   const isHomeSlug = normalizedSlug === "" || normalizedSlug === "home";
 
   if (isHomeSlug) {
-    return fetchJson(endpoints.getPage);
+    return fetchJson(endpoints.getPage, ["pages"]);
   }
 
-  return fetchJson(endpoints.getPageUrl(encodeURIComponent(normalizedSlug)));
+  return fetchJson(endpoints.getPageUrl(encodeURIComponent(normalizedSlug)), [
+    "pages",
+  ]);
 }
 
 export function generatePageMetadata(pageData, generalSettings, slug = "") {
@@ -66,7 +68,7 @@ export function generatePageMetadata(pageData, generalSettings, slug = "") {
   const logoSetting = settings.find((s) => s.ref_name === "Website Logo");
   const indexSetting = settings.find((s) => s.ref_name === "Google Can Index?");
   const seoTagSetting = settings.find(
-    (s) => s.ref_name === "SEO Meta Tags in Header"
+    (s) => s.ref_name === "SEO Meta Tags in Header",
   );
 
   const favicon = logoSetting?.contents?.favicon;
@@ -76,7 +78,8 @@ export function generatePageMetadata(pageData, generalSettings, slug = "") {
     : undefined;
   const googleVerification =
     seoTagSetting?.is_active && seoTagSetting?.contents
-      ? extractGoogleVerification(seoTagSetting.contents) || "uvO57qg3JPD6_LpJM_fHldETk1ek9ntvGyfOGhHZD9w"
+      ? extractGoogleVerification(seoTagSetting.contents) ||
+        "uvO57qg3JPD6_LpJM_fHldETk1ek9ntvGyfOGhHZD9w"
       : "uvO57qg3JPD6_LpJM_fHldETk1ek9ntvGyfOGhHZD9w";
 
   const meta = pageData?.meta || {};
@@ -138,7 +141,9 @@ export async function getPageMetadataBySlug(slug, canonicalPath) {
 
 export async function getBlogDetailMetadata(pageUrl) {
   const [blogResponse, generalSettings] = await Promise.all([
-    fetchJson(endpoints.blogdeatilsgpage(encodeURIComponent(pageUrl))),
+    fetchJson(endpoints.blogdeatilsgpage(encodeURIComponent(pageUrl)), [
+      "blogs",
+    ]),
     fetchGeneralSettings(),
   ]);
   const blog = blogResponse?.blog;
@@ -153,7 +158,7 @@ export async function getPackageMetadata(type, slug) {
       : endpoints.hajjByslug(encodeURIComponent(slug));
 
   const [packageResponse, generalSettings] = await Promise.all([
-    fetchJson(url),
+    fetchJson(url, [type === "umrah" ? "umrah-packages" : "hajj-packages"]),
     fetchGeneralSettings(),
   ]);
   const pkg = packageResponse?.result;
@@ -163,7 +168,7 @@ export async function getPackageMetadata(type, slug) {
 
 export async function getNotFoundMetadata() {
   const [notFoundResponse, generalSettings] = await Promise.all([
-    fetchJson(endpoints.getPageUrl("404")),
+    fetchJson(endpoints.getPageUrl("404"), ["pages"]),
     fetchGeneralSettings(),
   ]);
   const notFoundPage = notFoundResponse?.result;

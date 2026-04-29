@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, Link } from "@navigation";
-import axios from "axios";
-import { BASE_URL_IMG, endpoints } from "../../Helpers/apiEndpoints";
+import { api } from "../../utils/api";
+import { BASE_URL_IMG } from "../../Helpers/apiEndpoints";
 import HeroSectionblog from "../../Components/CommonComponents/HeroSectionblog";
 import NeedHelp from '../../Components/CommonComponents/NeedHelp'
 import NotFound from "../CommonPages/NotFound";
@@ -23,11 +23,11 @@ const BlogDetails = () => {
         setLoading(true);
         setError(false);
 
-        const res = await axios.get(endpoints.blogdeatilsgpage(page_url));
+        const data = await api.getBlogDetails(page_url);
 
-        if (res.data.blog) {
-          setBlog(res.data.blog);
-          setLatestBlogs(res.data.latest_blogs || []);
+        if (data?.blog) {
+          setBlog(data.blog);
+          setLatestBlogs(data.latest_blogs || []);
         } else {
           setError(true); // no blog found
         }

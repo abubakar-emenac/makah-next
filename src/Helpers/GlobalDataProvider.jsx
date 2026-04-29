@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useMemo } from "react";
 import axios from "axios";
-import { endpoints } from "./apiEndpoints";
+import { api } from "../utils/api";
 import { GlobalDataContext } from './GlobalDataContext';
 
 export const GlobalDataProvider = ({ children }) => {
@@ -23,8 +23,7 @@ export const GlobalDataProvider = ({ children }) => {
                 setLoading(true);
 
                 // Fetch fresh data
-                const response = await axios.get(`${endpoints.generalSettings}`);
-                const data = response.data;
+                const data = await api.getSettings();
 
                 // Save to state
                 setGlobalData(data);

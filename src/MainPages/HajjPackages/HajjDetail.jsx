@@ -5,9 +5,9 @@ import ImageSlider from '../../Components/CommonComponents/ImageSlider'
 import Testmonials from '../../Components/CommonComponents/Testmonials'
 import NeedHelp from '../../Components/CommonComponents/NeedHelp'
 import { useParams, useLocation, Link } from "@navigation"
-import { endpoints, BASE_URL_SVG } from '../../Helpers/apiEndpoints'
+import { api } from "../../utils/api"
+import { BASE_URL_SVG } from '../../Helpers/apiEndpoints'
 import parse from "html-react-parser";
-import axios from 'axios'
 import NotFound from '../CommonPages/NotFound'
 import CustomizeHajjPopup from '../../Components/HajjComponents/CustomizeHajjPopup';
 import { useGlobalData } from "../../Helpers/useGlobalData";
@@ -76,9 +76,9 @@ export default function HajjDetail() {
             setLoading(true);
             setError(null);
             try {
-                const res = await axios.get(endpoints.hajjByslug(detailSlug));
-                if (res.data?.status === 1) {
-                    setPackageData(res.data.result);
+                const data = await api.getHajjBySlug(detailSlug);
+                if (data?.status === 1) {
+                    setPackageData(data.result);
                 }
                 else {
                     return (

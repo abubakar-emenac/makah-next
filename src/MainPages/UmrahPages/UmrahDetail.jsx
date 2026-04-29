@@ -6,9 +6,9 @@ import ImageSlider from '../../Components/CommonComponents/ImageSlider'
 import Testmonials from '../../Components/CommonComponents/Testmonials'
 import NeedHelp from '../../Components/CommonComponents/NeedHelp'
 import { useParams, useLocation, Link } from "@navigation"
-import { endpoints, BASE_URL_SVG } from '../../Helpers/apiEndpoints'
+import { api } from "../../utils/api"
+import { BASE_URL_SVG } from '../../Helpers/apiEndpoints'
 import parse from "html-react-parser";
-import axios from 'axios'
 import NotFound from '../CommonPages/NotFound';
 import { useGlobalData } from "../../Helpers/useGlobalData";
 import RelevantPackages from '../../Components/CommonComponents/RelevantPackages';
@@ -77,9 +77,9 @@ export default function UmrahDetail() {
             setLoading(true);
             setError(null);
             try {
-                const res = await axios.get(endpoints.umrahByslug(detailSlug));
-                if (res.data?.status === 1) {
-                    setPackageData(res.data.result);
+                const data = await api.getUmrahBySlug(detailSlug);
+                if (data?.status === 1) {
+                    setPackageData(data.result);
                 }
                 else {
                     return (

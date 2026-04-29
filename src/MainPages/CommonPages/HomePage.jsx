@@ -10,8 +10,7 @@ import Testmonials from "../../Components/CommonComponents/Testmonials"
 import WhyChoose from "../../Components/CommonComponents/WhyChoose"
 import HajjDeals from "../../Components/HajjComponents/HajjDeals"
 import MonthlyUmrahPackages from "../../Components/UmrahComponents/monthlyUmrahPackages"
-import axios from 'axios'
-import { endpoints } from "../../Helpers/apiEndpoints"
+import { api } from "../../utils/api"
 import PageScript from "../../Components/CommonComponents/PageScript"
 export default function Home() {
     const [homeData, setHomeData] = useState({});
@@ -19,12 +18,12 @@ export default function Home() {
     useEffect(() => {
         const fetchPageData = async () => {
             try {
-                const res = await axios.get(endpoints.getPage);
+                const data = await api.getPage();
 
 
-                if (res.data?.status === 1) {
-                    // console.log("Result object:", res.data?.result);
-                    setHomeData(res.data.result);
+                if (data?.status === 1) {
+                    // console.log("Result object:", data?.result);
+                    setHomeData(data.result);
                 }
             } catch (err) {
                 console.error("Error fetching page data:", err);

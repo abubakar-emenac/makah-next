@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "@navigation";
-import axios from "axios";
-import { BASE_URL_IMG, BASE_URL_SVG, endpoints } from "../../Helpers/apiEndpoints";
+import { api } from "../../utils/api";
+import { BASE_URL_IMG, BASE_URL_SVG } from "../../Helpers/apiEndpoints";
 import HeroSectionblog from "../../Components/CommonComponents/HeroSectionblog";
 import NeedHelp from "../../Components/CommonComponents/NeedHelp";
 import PageScript from "../../Components/CommonComponents/PageScript";
@@ -23,10 +23,10 @@ const BlogHome = () => {
   const fetchBlogs = async (page = 1) => {
     setLoading(true);
     try {
-      const res = await axios.get(`${endpoints.blogpage}?page=${page}&limit=${blogsPerPage}`);
-      setFeaturedBlogs(res.data.featured_blogs || []);
-      setLatestBlogs(res.data.latest_blogs || []);
-      if (res.data.pagination) setTotalPages(res.data.pagination.total_pages);
+      const data = await api.getBlogs();
+      setFeaturedBlogs(data.featured_blogs || []);
+      setLatestBlogs(data.latest_blogs || []);
+      if (data.pagination) setTotalPages(data.pagination.total_pages);
     } catch (err) {
       console.error("Error fetching blogs:", err);
     } finally {
@@ -37,10 +37,10 @@ const BlogHome = () => {
   // ✅ Fetch page data (once)
   const fetchPageData = async () => {
     try {
-      const resPage = await axios.get(endpoints.getPageUrl("blog"));
-      if (resPage.data.status === 1) {
-        const result = resPage.data.result;
-        setPageData(result);
+      const data = await api.getPageBySlug("blog");
+      if (data?.status === 1) {
+        const result = data.result;
+        setPageData(result); 
 
         if (result.widgets_content) {
           const widgetRegex = /\{\{Blog section \d+ ?heading="([^"]+)" sub_heading="([^"]+)"\}\}/g;
