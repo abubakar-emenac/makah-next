@@ -5,6 +5,7 @@ import ViewAllButton from '../../Components/CommonComponents/ViewAllButton';
 import ScrollDetail from '../../Components/CommonComponents/ScrollDetail';
 import FAQSection from '../../Components/CommonComponents/FAQSection';
 import axios from 'axios';
+import { Skeleton } from '../../Components/CommonComponents/Skeleton';
 import { BASE_URL_SVG, endpoints } from '../../Helpers/apiEndpoints';
 
 export default function SpecificCategoryHajj({ pageData }) {
@@ -25,8 +26,6 @@ export default function SpecificCategoryHajj({ pageData }) {
 
                 try {
                     const res = await axios.get(endpoints.hajjById(ids.join(',')));
-
-                    // ✅ Correct response shape
                     return Array.isArray(res.data?.result?.data)
                         ? res.data.result.data
                         : [];
@@ -89,8 +88,6 @@ export default function SpecificCategoryHajj({ pageData }) {
         setVisibleCount((prev) => prev + 9);
     };
 
-    if (loading) return <p className="text-center py-10">Loading packages...</p>;
-
     return (
         <div className="flex flex-col mb-4">
             <HeroSection pageData={pageData} />
@@ -104,16 +101,27 @@ export default function SpecificCategoryHajj({ pageData }) {
                         className="w-16 sm:w-18 md:w-20 mb-3 sm:mb-4"
                     />
                     <h2 className="text-[28px] sm:text-[32px] md:text-[36px] font-abril leading-tight mb-3 sm:mb-4">
-                        {widget.heading}
+                        {widget?.heading || "Hajj Packages"}
                     </h2>
                 </div>
 
-                {/* Package Grid */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-10">
-                    {packages.slice(0, visibleCount).map((pkg) => (
-                        <PackageCard key={pkg.id} pkg={pkg} p_type="hajj" />
-                    ))}
-                </div>
+                {loading ? (
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-10">
+                        {[...Array(6)].map((_, i) => (
+                            <div key={i} className="space-y-4">
+                                <Skeleton className="w-full h-[250px] rounded-2xl" />
+                                <Skeleton className="h-6 w-3/4" />
+                                <Skeleton className="h-4 w-1/2" />
+                            </div>
+                        ))}
+                    </div>
+                ) : (
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-10">
+                        {packages.slice(0, visibleCount).map((pkg) => (
+                            <PackageCard key={pkg.id} pkg={pkg} p_type="hajj" />
+                        ))}
+                    </div>
+                )}
 
 
                 {/* Load More Button */}

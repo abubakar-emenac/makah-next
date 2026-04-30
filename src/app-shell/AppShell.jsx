@@ -12,6 +12,7 @@ import TopLoadingBar from "../Components/CommonComponents/TopLoadingBar";
 import { GlobalDataContext } from "../Helpers/GlobalDataContext";
 import { useContext } from "react";
 import { Toaster } from "sonner";
+import SkeletonLoaderShell from "../Components/CommonComponents/SkeletonLoaderShell";
 
 export default function AppShell({ children }) {
   const { globalData } = useContext(GlobalDataContext) || {};
@@ -42,8 +43,10 @@ export default function AppShell({ children }) {
       <ScrollToTopButton />
       <WhatsAppButton />
       <Navbar />
-      <main className="empty:min-h-[80vh]">
-        {children}
+      <main>
+        <SkeletonLoaderShell>
+          {children}
+        </SkeletonLoaderShell>
       </main>
       <Footer />
       <Toaster position="bottom-right" richColors />

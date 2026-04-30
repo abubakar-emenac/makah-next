@@ -6,6 +6,7 @@ import ScrollDetail from "../../Components/CommonComponents/ScrollDetail";
 import FAQSection from "../../Components/CommonComponents/FAQSection";
 import { BASE_URL_SVG, endpoints } from "../../Helpers/apiEndpoints";
 import axios from "axios";
+import { Skeleton } from "../../Components/CommonComponents/Skeleton";
 
 export default function SpecificCategoryUmrah({ pageData }) {
     const { section_1_widget } = pageData;
@@ -17,6 +18,7 @@ export default function SpecificCategoryUmrah({ pageData }) {
 
     const [visibleCount, setVisibleCount] = useState(9);
     const [packagesData, setPackagesData] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     const fetchPackages = async (widget) => {
         try {
@@ -30,9 +32,6 @@ export default function SpecificCategoryUmrah({ pageData }) {
 
                 try {
                     const res = await axios.get(endpoints.umrahById(ids.join(",")));
-                    console.log("Umrah by IDs response:", res.data);
-
-                    // Response shape: result.data
                     if (Array.isArray(res.data?.result?.data)) {
                         return res.data.result.data;
                     }
@@ -68,19 +67,27 @@ export default function SpecificCategoryUmrah({ pageData }) {
 
     useEffect(() => {
         async function loadPackages() {
-            const results = await Promise.all(
-                sections.map(async (widget) => {
-                    const packages = await fetchPackages(widget);
-                    return { ...widget, packages };
-                })
-            );
-            // flatten all packages
-            const flattened = results.flatMap((section) => section.packages);
-            setPackagesData(flattened);
+            setLoading(true);
+            try {
+                const results = await Promise.all(
+                    sections.map(async (widget) => {
+                        const packages = await fetchPackages(widget);
+                        return { ...widget, packages };
+                    })
+                );
+                const flattened = results.flatMap((section) => section.packages);
+                setPackagesData(flattened);
+            } catch (error) {
+                console.error("Error in loadPackages:", error);
+            } finally {
+                setLoading(false);
+            }
         }
 
         if (sections.length > 0) {
             loadPackages();
+        } else {
+            setLoading(false);
         }
     }, [sections]);
 
@@ -105,30 +112,42 @@ export default function SpecificCategoryUmrah({ pageData }) {
                     </h2>
                 </div>
 
-                {/* Package Grid */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-rows-2 lg:grid-cols-3 gap-6 mt-10">
-                    {packagesData.slice(0, visibleCount).map((pkg, index) => (
-                        <PackageCard key={index} p_type="umrah" pkg={pkg} />
-                    ))}
-                </div>
-
-                {/* Load More Button */}
-                {visibleCount < packagesData.length && (
-                    <div className="w-full flex justify-center mt-10">
-                        <ViewAllButton
-                            label="Load More Packages"
-                            onClick={handleLoadMore}
-                            color="primary"
-                            size="md"
-                        />
+                {loading ? (
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-10">
+                        {[...Array(6)].map((_, i) => (
+                            <div key={i} className="space-y-4">
+                                <Skeleton className="w-full h-[250px] rounded-2xl" />
+                                <Skeleton className="h-6 w-3/4" />
+                                <Skeleton className="h-4 w-1/2" />
+                            </div>
+                        ))}
                     </div>
+                ) : (
+                    <>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-rows-2 lg:grid-cols-3 gap-6 mt-10">
+                            {packagesData.slice(0, visibleCount).map((pkg, index) => (
+                                <PackageCard key={index} p_type="umrah" pkg={pkg} />
+                            ))}
+                        </div>
+
+                        {visibleCount < packagesData.length && (
+                            <div className="w-full flex justify-center mt-10">
+                                <ViewAllButton
+                                    label="Load More Packages"
+                                    onClick={handleLoadMore}
+                                    color="primary"
+                                    size="md"
+                                />
+                            </div>
+                        )}
+                    </>
                 )}
             </div>
-            {pageData?.scroll_description && (
+            {!loading && pageData?.scroll_description && (
                 <ScrollDetail pageData={pageData} />
             )}
 
-            {Array.isArray(pageData?.faqs) && pageData.faqs.length > 0 && (
+            {!loading && Array.isArray(pageData?.faqs) && pageData.faqs.length > 0 && (
                 <FAQSection pageData={pageData} />
             )}
         </div>

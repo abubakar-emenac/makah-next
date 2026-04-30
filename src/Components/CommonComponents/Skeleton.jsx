@@ -2,7 +2,7 @@ import React from "react";
 
 export const Skeleton = ({ className, style }) => (
   <div
-    className={`animate-pulse bg-gray-200 rounded ${className}`}
+    className={`skeleton-shimmer rounded ${className}`}
     style={style}
   />
 );
@@ -34,7 +34,7 @@ export const SliderSkeleton = ({ count = 3 }) => (
 );
 
 export const PackageDetailSkeleton = () => (
-  <div className="flex flex-col w-full max-w-[95%] md:max-w-[85%] lg:max-w-[80%] mx-auto px-4 mt-24 space-y-10">
+  <div className="flex flex-col w-full max-w-[95%] md:max-w-[85%] lg:max-w-[80%] mx-auto px-4 pt-24 md:pt-32 space-y-10">
     <div className="flex flex-col md:flex-row justify-between gap-6">
       <div className="w-full md:w-2/3 space-y-4">
         <Skeleton className="h-10 w-3/4" />

@@ -10,6 +10,7 @@ import SpecificCategoryUmrah from "../MainPages/UmrahPages/SpecificCategoryUmrah
 import NotFound from "../MainPages/CommonPages/NotFound";
 import PageScript from "../Components/CommonComponents/PageScript";
 import { BannerSkeleton, SliderSkeleton } from "../Components/CommonComponents/Skeleton";
+import { isRenderableSlugPage } from "../Helpers/pageDataValidation";
 
 export default function PageNavigator() {
     const { slug } = useParams();
@@ -38,9 +39,9 @@ export default function PageNavigator() {
 
     if (loading) {
         return (
-          <div className="space-y-10">
+          <div className="flex flex-col w-full space-y-10 pt-24 md:pt-32 pb-20">
             <BannerSkeleton />
-            <div className="max-w-[1240px] mx-auto px-4 py-10 space-y-16">
+            <div className="max-w-[1240px] mx-auto space-y-16 w-full px-4">
                 <SliderSkeleton count={4} />
                 <SliderSkeleton count={4} />
             </div>
@@ -50,6 +51,10 @@ export default function PageNavigator() {
     if (!pageData) return (
         <NotFound />
     )
+
+    if (!isRenderableSlugPage(pageData)) {
+        return <NotFound />;
+    }
 
     const {
         section_1_widget = [],
@@ -91,9 +96,9 @@ export default function PageNavigator() {
 
         if (loading) {
             return (
-                <div className="space-y-10">
+                <div className="flex flex-col w-full space-y-10 pt-24 md:pt-32 pb-20">
                     <BannerSkeleton />
-                    <div className="max-w-[1240px] mx-auto px-4 py-10 space-y-16">
+                    <div className="max-w-[1240px] mx-auto px-4 space-y-16 w-full">
                         <SliderSkeleton count={4} />
                     </div>
                 </div>
@@ -125,9 +130,7 @@ export default function PageNavigator() {
             )
         }
 
-        return (
-            <NotFound />
-        )
+        return <NotFound />
     }
 
     // ----- Umrah logic -----
@@ -166,14 +169,10 @@ export default function PageNavigator() {
             )
         }
 
-        return (
-            <NotFound />
-        )
+        return <NotFound />
     }
 
     // ----- Fallback -----
     console.warn("Unmatched pageData structure:", pageData);
-    return (
-        <NotFound />
-    )
+    return <NotFound />
 }

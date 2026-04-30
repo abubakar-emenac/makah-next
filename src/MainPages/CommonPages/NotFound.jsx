@@ -1,5 +1,4 @@
 import React, { useRef, useState, useEffect } from 'react';
-import Navbar from '../../Components/CommonComponents/NavBar';
 import { Link, useNavigate } from "@navigation";
 import { BASE_URL_SVG } from '../../Helpers/apiEndpoints';
 import { motion, AnimatePresence } from "framer-motion";
@@ -24,7 +23,6 @@ export default function NotFound() {
   }, [isOpen]);
   return (
     <div className="w-full flex flex-col">
-      <Navbar textColor="black" />
 
       <div
         className="relative flex flex-col items-center justify-center text-white py-20"

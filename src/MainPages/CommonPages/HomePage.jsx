@@ -11,22 +11,26 @@ import WhyChoose from "../../Components/CommonComponents/WhyChoose"
 import HajjDeals from "../../Components/HajjComponents/HajjDeals"
 import MonthlyUmrahPackages from "../../Components/UmrahComponents/monthlyUmrahPackages"
 import { api } from "../../utils/api"
+import { BannerSkeleton, SliderSkeleton } from "../../Components/CommonComponents/Skeleton"
 import PageScript from "../../Components/CommonComponents/PageScript"
+
 export default function Home() {
     const [homeData, setHomeData] = useState({});
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchPageData = async () => {
             try {
+                setLoading(true);
                 const data = await api.getPage();
 
-
                 if (data?.status === 1) {
-                    // console.log("Result object:", data?.result);
                     setHomeData(data.result);
                 }
             } catch (err) {
                 console.error("Error fetching page data:", err);
+            } finally {
+                setLoading(false);
             }
         };
 
@@ -34,7 +38,17 @@ export default function Home() {
     }, []);
 
 
-    if (!homeData?.browser_title) return null
+    if (loading || !homeData?.browser_title) {
+        return (
+            <div className="flex flex-col w-full space-y-10 pt-24 md:pt-32 pb-20">
+                <BannerSkeleton />
+                <div className="max-w-[1240px] mx-auto space-y-16">
+                    <SliderSkeleton count={4} />
+                    <SliderSkeleton count={4} />
+                </div>
+            </div>
+        );
+    }
 
     return (
         <>

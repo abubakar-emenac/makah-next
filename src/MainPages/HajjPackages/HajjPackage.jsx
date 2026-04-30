@@ -9,6 +9,7 @@ import ScrollDetail from '../../Components/CommonComponents/ScrollDetail';
 import FAQSection from '../../Components/CommonComponents/FAQSection';
 import ViewAllButton from '../../Components/CommonComponents/ViewAllButton';
 import HajjPackageCard from '../../Components/HajjComponents/HajjPackageCard';
+import { SliderSkeleton } from '../../Components/CommonComponents/Skeleton';
 
 export default function HajjPackage({ pageData }) {
     const sliderRefs = {
@@ -17,6 +18,7 @@ export default function HajjPackage({ pageData }) {
     };
 
     const [packagesData, setPackagesData] = useState({ section1: [], section2: [] });
+    const [loading, setLoading] = useState(true);
 
     const fetchPackages = async (widget) => {
         try {
@@ -48,11 +50,18 @@ export default function HajjPackage({ pageData }) {
 
     useEffect(() => {
         const loadPackages = async () => {
-            const [section1, section2] = await Promise.all([
-                pageData.section_1_widget?.[0] ? fetchPackages(pageData.section_1_widget[0]) : [],
-                pageData.section_2_widget?.[0] ? fetchPackages(pageData.section_2_widget[0]) : [],
-            ]);
-            setPackagesData({ section1, section2 });
+            setLoading(true);
+            try {
+                const [section1, section2] = await Promise.all([
+                    pageData.section_1_widget?.[0] ? fetchPackages(pageData.section_1_widget[0]) : [],
+                    pageData.section_2_widget?.[0] ? fetchPackages(pageData.section_2_widget[0]) : [],
+                ]);
+                setPackagesData({ section1, section2 });
+            } catch (error) {
+                console.error("Error in loadPackages:", error);
+            } finally {
+                setLoading(false);
+            }
         };
         loadPackages();
     }, [pageData]);
@@ -137,26 +146,42 @@ export default function HajjPackage({ pageData }) {
         <div className="pb-10 sm:pb-14 lg:pb-20">
             <HeroSection pageData={pageData} />
 
-            {renderPackageSection(
-                pageData.section_1_widget?.[0],
-                packagesData.section1,
-                sliderRefs.section1,
-                "section1"
-            )}
+            {loading ? (
+                <div className="w-full max-w-[95%] sm:max-w-[90%] lg:max-w-[85%] mx-auto space-y-16 mt-10">
+                    {[...Array(2)].map((_, i) => (
+                        <div key={i} className="space-y-6">
+                            <div className="space-y-4">
+                                <div className="w-20 h-20 skeleton-shimmer rounded-xl" />
+                                <div className="w-64 h-10 skeleton-shimmer rounded" />
+                            </div>
+                            <SliderSkeleton count={4} />
+                        </div>
+                    ))}
+                </div>
+            ) : (
+                <>
+                    {renderPackageSection(
+                        pageData.section_1_widget?.[0],
+                        packagesData.section1,
+                        sliderRefs.section1,
+                        "section1"
+                    )}
 
-            {renderPackageSection(
-                pageData.section_2_widget?.[0],
-                packagesData.section2,
-                sliderRefs.section2,
-                "section2"
-            )}
+                    {renderPackageSection(
+                        pageData.section_2_widget?.[0],
+                        packagesData.section2,
+                        sliderRefs.section2,
+                        "section2"
+                    )}
 
-            {pageData?.scroll_description && (
-                <ScrollDetail pageData={pageData} />
-            )}
+                    {pageData?.scroll_description && (
+                        <ScrollDetail pageData={pageData} />
+                    )}
 
-            {Array.isArray(pageData?.faqs) && pageData.faqs.length > 0 && (
-                <FAQSection pageData={pageData} />
+                    {Array.isArray(pageData?.faqs) && pageData.faqs.length > 0 && (
+                        <FAQSection pageData={pageData} />
+                    )}
+                </>
             )}
         </div>
     );

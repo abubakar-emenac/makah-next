@@ -24,9 +24,5 @@ const routeComponents = {
 
 export default function RouteClientRenderer({ route }) {
   const Component = routeComponents[route] || routeComponents.notFound;
-  return (
-    <AppShell>
-      <Component />
-    </AppShell>
-  );
+  return <Component />;
 }

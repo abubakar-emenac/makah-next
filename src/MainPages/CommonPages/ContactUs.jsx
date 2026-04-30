@@ -11,6 +11,7 @@ import 'slick-carousel/slick/slick-theme.css';
 import Slider from 'react-slick';
 import { motion } from "framer-motion";
 import PageScript from "../../Components/CommonComponents/PageScript";
+import { BannerSkeleton, Skeleton } from "../../Components/CommonComponents/Skeleton";
 
 export default function ContactUS() {
     const navigate = useNavigate();
@@ -18,7 +19,7 @@ export default function ContactUS() {
     const [num2, setNum2] = useState(0);
 
     const { globalData } = useGlobalData();
-    const [contactData, setContactData] = useState({});
+    const [contactData, setContactData] = useState(null);
     const [fullName, setFullName] = useState('');
     const [email, setEmail] = useState('');
     const [phone, setPhone] = useState('');
@@ -26,6 +27,7 @@ export default function ContactUS() {
     const [message, setMessage] = useState('');
     const [captcha, setCaptcha] = useState('');
     const [isLoading, setIsLoading] = useState(false);
+    const [pageLoading, setPageLoading] = useState(true);
 
     const generateCaptcha = () => {
         setNum1(Math.floor(Math.random() * 10) + 1); // 1-10
@@ -105,71 +107,15 @@ export default function ContactUS() {
     useEffect(() => {
         const fetchPageData = async () => {
             try {
+                setPageLoading(true);
                 const res = await axios.get(endpoints.getPageUrl("contact-us"));
-                // console.log(res)
                 if (res.data?.status === 1) {
                     setContactData(res.data.result);
-                    // if (res.data.result?.browser_title) {
-                    //     document.title = res.data.result.browser_title;
-                    // }
-                    // // Set Meta Description
-                    // const desc = document.querySelector('meta[name="description"]') || document.createElement("meta");
-                    // desc.setAttribute("name", "description");
-                    // desc.setAttribute("content", res.data.result.meta_description || "");
-                    // if (!desc.parentNode) document.head.appendChild(desc);
-
-                    // // Set meta keywords
-                    // const keywords = document.querySelector('meta[name="keywords"]') || document.createElement("meta");
-                    // keywords.setAttribute("name", "keywords");
-                    // keywords.setAttribute("content", res.data.result.meta_keywords);
-                    // if (!keywords.parentNode) document.head.appendChild(keywords);
-
-                    // // OG Title
-                    // const ogTitle = document.querySelector('meta[property="og:title"]') || document.createElement("meta");
-                    // ogTitle.setAttribute("property", "og:title");
-                    // ogTitle.setAttribute("content", res.data.result.browser_title);
-                    // if (!ogTitle.parentNode) document.head.appendChild(ogTitle);
-
-                    // // OG Description
-                    // const ogDescription = document.querySelector('meta[property="og:description"]') || document.createElement("meta");
-                    // ogDescription.setAttribute("property", "og:description");
-                    // ogDescription.setAttribute("content", res.data.result.meta_description || "");
-                    // if (!ogDescription.parentNode) document.head.appendChild(ogDescription);
-
-                    // // OG Image (dynamic from banner_img[0])
-                    // const imageUrl = res.data.result.banner_img?.[0]?.url
-                    //     ? `${BASE_URL_IMG}/${res.data.result.banner_img[0].url}`
-                    //     : '';
-
-                    // const ogImage = document.querySelector('meta[property="og:image"]') || document.createElement("meta");
-                    // ogImage.setAttribute("property", "og:image");
-                    // ogImage.setAttribute("content", imageUrl);
-                    // if (!ogImage.parentNode) document.head.appendChild(ogImage);
-
-                    // // OG URL (current page URL)
-                    // const ogUrl = document.querySelector('meta[property="og:url"]') || document.createElement("meta");
-                    // ogUrl.setAttribute("property", "og:url");
-                    // ogUrl.setAttribute("content", window.location.href);
-                    // if (!ogUrl.parentNode) document.head.appendChild(ogUrl);
-
-                    // // OG Type (always set to "Travels & Tours")
-                    // const ogType = document.querySelector('meta[property="og:type"]') || document.createElement("meta");
-                    // ogType.setAttribute("property", "og:type");
-                    // ogType.setAttribute("content", "Travels & Tours");
-                    // if (!ogType.parentNode) document.head.appendChild(ogType);
-
-                    // // Canonical Link
-                    // let canonicalLink = document.querySelector('link[rel="canonical"]');
-                    // if (!canonicalLink) {
-                    //     canonicalLink = document.createElement("link");
-                    //     canonicalLink.setAttribute("rel", "canonical");
-                    //     document.head.appendChild(canonicalLink);
-                    // }
-                    // canonicalLink.setAttribute("href", window.location.href);
                 }
-                // console.log("the contact data is:", contactData)
             } catch (err) {
                 console.error("Error fetching page data:", err);
+            } finally {
+                setPageLoading(false);
             }
         };
         fetchPageData();
@@ -255,6 +201,30 @@ export default function ContactUS() {
             setIsLoading(false);
         }
     };
+
+    if (pageLoading) {
+        return (
+            <div className="flex flex-col w-full space-y-10 pt-32">
+                <BannerSkeleton />
+                <div className="flex flex-col w-full max-w-[90%] lg:max-w-[75%] mx-auto space-y-12 pb-20">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                        {[...Array(4)].map((_, i) => (
+                            <Skeleton key={i} className="h-64 rounded-xl" />
+                        ))}
+                    </div>
+                    <div className="flex flex-col lg:flex-row gap-8 w-full">
+                        <div className="lg:w-3/5 w-full space-y-4">
+                            <Skeleton className="h-10 w-1/4" />
+                            <Skeleton className="h-64 w-full rounded-2xl" />
+                        </div>
+                        <div className="lg:w-2/5 w-full">
+                            <Skeleton className="h-64 w-full rounded-2xl" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        );
+    }
 
     if (!contactData) {
         return (

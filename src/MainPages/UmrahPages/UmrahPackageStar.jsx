@@ -9,6 +9,8 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import axios from "axios";
 import ScrollDetail from "../../Components/CommonComponents/ScrollDetail";
+import { SliderSkeleton } from "../../Components/CommonComponents/Skeleton";
+
 const UmrahStarSection = ({ packages = [], section }) => {
     const sliderRef = useRef(null);
 
@@ -146,51 +148,61 @@ export default function UmrahPackageStar({ pageData }) {
     );
 
     const [packagesData, setPackagesData] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         async function fetchPackages() {
-            const results = await Promise.all(
-                sections.map(async (widget) => {
-                    try {
-                        let packages = [];
+            setLoading(true);
+            try {
+                const results = await Promise.all(
+                    sections.map(async (widget) => {
+                        try {
+                            let packages = [];
 
-                        if (widget.umrah_package_ids) {
-                            const ids = widget.umrah_package_ids
-                                .split(",")
-                                .map((id) => id.trim())
-                                .filter(Boolean);
+                            if (widget.umrah_package_ids) {
+                                const ids = widget.umrah_package_ids
+                                    .split(",")
+                                    .map((id) => id.trim())
+                                    .filter(Boolean);
 
-                            if (ids.length > 0) {
-                                const res = await axios.get(endpoints.umrahById(ids.join(",")));
-                                packages = Array.isArray(res.data?.result?.data)
-                                    ? res.data.result.data
+                                if (ids.length > 0) {
+                                    const res = await axios.get(endpoints.umrahById(ids.join(",")));
+                                    packages = Array.isArray(res.data?.result?.data)
+                                        ? res.data.result.data
+                                        : [];
+                                }
+                            } else if (widget.star && widget.star !== "0") {
+                                const res = await axios.get(endpoints.umrahByStar(widget.star, widget.umrah_type));
+                                packages = Array.isArray(res.data?.result?.packages?.data)
+                                    ? res.data.result.packages.data
+                                    : [];
+                            } else if (widget.umrah_type) {
+                                const res = await axios.get(endpoints.umrahByType(widget.umrah_type));
+                                packages = Array.isArray(res.data?.result?.packages?.data)
+                                    ? res.data.result.packages.data
                                     : [];
                             }
-                        } else if (widget.star && widget.star !== "0") {
-                            const res = await axios.get(endpoints.umrahByStar(widget.star, widget.umrah_type));
-                            packages = Array.isArray(res.data?.result?.packages?.data)
-                                ? res.data.result.packages.data
-                                : [];
-                        } else if (widget.umrah_type) {
-                            const res = await axios.get(endpoints.umrahByType(widget.umrah_type));
-                            packages = Array.isArray(res.data?.result?.packages?.data)
-                                ? res.data.result.packages.data
-                                : [];
+
+                            return { ...widget, packages };
+                        } catch (err) {
+                            console.error("Error fetching packages for widget:", widget, err);
+                            return { ...widget, packages: [] };
                         }
+                    })
+                );
 
-                        return { ...widget, packages };
-                    } catch (err) {
-                        console.error("Error fetching packages for widget:", widget, err);
-                        return { ...widget, packages: [] };
-                    }
-                })
-            );
-
-            setPackagesData(results);
+                setPackagesData(results);
+            } catch (error) {
+                console.error("Error in fetchPackages:", error);
+            } finally {
+                setLoading(false);
+            }
         }
 
         if (sections.length > 0) {
             fetchPackages();
+        } else {
+            setLoading(false);
         }
     }, [sections]);
 
@@ -198,19 +210,34 @@ export default function UmrahPackageStar({ pageData }) {
     return (
         <div className="flex flex-col w-full">
             <HeroSection pageData={pageData} />
+            
             <div className="flex flex-col my-8 w-full max-w-full md:max-w-[88%] mx-auto">
-                {packagesData.map((section, idx) => (
-                    <UmrahStarSection
-                        key={idx}
-                        packages={section.packages}
-                        section={section}
-                    />
-                ))}
+                {loading ? (
+                    <div className="space-y-12">
+                        {[...Array(sections.length || 2)].map((_, i) => (
+                            <div key={i} className="space-y-6">
+                                <div className="ml-4 space-y-4">
+                                    <div className="w-20 h-20 skeleton-shimmer rounded-xl" />
+                                    <div className="w-64 h-10 skeleton-shimmer rounded" />
+                                </div>
+                                <SliderSkeleton count={4} />
+                            </div>
+                        ))}
+                    </div>
+                ) : (
+                    packagesData.map((section, idx) => (
+                        <UmrahStarSection
+                            key={idx}
+                            packages={section.packages}
+                            section={section}
+                        />
+                    ))
+                )}
             </div>
-            {packagesData.length > 0 && pageData?.scroll_description && (
+            {!loading && packagesData.length > 0 && pageData?.scroll_description && (
                 <ScrollDetail pageData={pageData} />
             )}
-            {packagesData.length > 0 && Array.isArray(pageData?.faqs) && pageData.faqs.length > 0 && (
+            {!loading && packagesData.length > 0 && Array.isArray(pageData?.faqs) && pageData.faqs.length > 0 && (
                 <FAQSection pageData={pageData} />
             )}
         </div>
