@@ -25,8 +25,6 @@ export async function GET() {
     <url>
       <loc>${baseUrl}/blog/${slug}</loc>
       <lastmod>${new Date().toISOString()}</lastmod>
-      <changefreq>weekly</changefreq>
-      <priority>0.6</priority>
     </url>`;
             })
             .join('')}
