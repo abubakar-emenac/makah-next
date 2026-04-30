@@ -3,7 +3,7 @@ export default function robots() {
         rules: {
             userAgent: '*',
             allow: '/',
-            disallow: ['/api/', '/_next/', '/static/'],
+            disallow: ['/api/'],
         },
         sitemap: [
             'https://makkahtravel.co.uk/sitemap.xml',
