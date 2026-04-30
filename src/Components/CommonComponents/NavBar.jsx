@@ -40,7 +40,8 @@ const Navbar = ({ textColor = "black" }) => {
     "privacy-policy",
     "contact-us",
     "cookies-policy",
-    "customise-your-package"
+    "customise-your-package",
+    "about-us",
   ];
 
   const path = location.pathname;
