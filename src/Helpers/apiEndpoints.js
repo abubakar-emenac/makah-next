@@ -31,6 +31,8 @@ const endpoints = {
     `${BASE_URL}/get-makkah-blog?page_url=${page_url}`,
   getAirport: `${BASE_URL}/airports`,
   getReviews: (ids) => `${BASE_URL}/reviews?review_ids=${ids}`,
+  generateSitemap: `${BASE_URL}/generate-sitemap`,
+  generatePostSitemap: `${BASE_URL}/generate-post-sitemap`,
 };
 
 export {

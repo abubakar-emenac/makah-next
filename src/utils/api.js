@@ -24,6 +24,25 @@ async function fetchAPI(url, tags = [], revalidate = 3600) {
   }
 }
 
+async function fetchText(url, tags = [], revalidate = 3600) {
+  try {
+    const res = await fetch(url, {
+      next: {
+        tags: tags,
+        revalidate: revalidate,
+      },
+    });
+
+    if (!res.ok) {
+      return null;
+    }
+
+    return await res.text();
+  } catch (error) {
+    return null;
+  }
+}
+
 export const api = {
   // General Settings
   getSettings: () => fetchAPI(endpoints.generalSettings, ["settings"]),
@@ -53,6 +72,8 @@ export const api = {
   // Others
   getAirports: () => fetchAPI(endpoints.getAirport, ["settings"]),
   getReviews: (ids) => fetchAPI(endpoints.getReviews(ids), ["reviews"]),
+  getGenerateSitemap: () => fetchText(endpoints.generateSitemap, ["sitemap"]),
+  getGeneratePostSitemap: () => fetchText(endpoints.generatePostSitemap, ["sitemap"]),
 };
 
 export default api;
