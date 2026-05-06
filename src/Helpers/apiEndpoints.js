@@ -26,7 +26,7 @@ const endpoints = {
   hajjById: (id) => `${BASE_URL}/hajj-packages?package_ids=${id}`,
   hajjByStar: (stars, type) =>
     `${BASE_URL}/hajj-packages?type=${type}&stars=${stars}`,
-  blogpage: `${BASE_URL}/get-makkah-blog`,
+  blogpage: (page) => `${BASE_URL}/get-makkah-blog${page ? `?page=${page}` : ""}`,
   blogdeatilsgpage: (page_url) =>
     `${BASE_URL}/get-makkah-blog?page_url=${page_url}`,
   getAirport: `${BASE_URL}/airports`,

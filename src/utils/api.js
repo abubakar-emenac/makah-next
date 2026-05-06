@@ -66,7 +66,7 @@ export const api = {
   getHajjByStar: (stars, type) => fetchAPI(endpoints.hajjByStar(stars, type), ["hajj-packages"]),
 
   // Blogs
-  getBlogs: () => fetchAPI(endpoints.blogpage, ["blogs"]),
+  getBlogs: (page) => fetchAPI(endpoints.blogpage(page), ["blogs"]),
   getBlogDetails: (slug) => fetchAPI(endpoints.blogdeatilsgpage(slug), ["blogs"]),
 
   // Others

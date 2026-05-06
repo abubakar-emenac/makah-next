@@ -13,7 +13,7 @@ export default function BlogSection() {
     const fetchBlogsAndWidgets = async () => {
       try {
         // ✅ Fetch blogs
-        const resBlogs = await axios.get(endpoints.blogpage);
+        const resBlogs = await axios.get(endpoints.blogpage());
         setLatestBlogs(resBlogs.data.latest_blogs || []);
 
         // ✅ Fetch page data (for heading/subheading)
