@@ -95,23 +95,27 @@ const UmrahStarSection = ({ packages = [], section }) => {
                         />
                     )}
 
-                    {/* Prev & Next Arrows */}
-                    <button
-                        onClick={() => sliderRef.current?.slickPrev()}
-                        className="bg-white rounded-full p-2 sm:p-3 shadow border border-gray-200 flex-shrink-0"
-                    >
-                        <img src={`${BASE_URL_SVG}/assets/svgs/arrow-right.svg`} alt="Left Arrow" className="w-5 h-5 sm:w-6 sm:h-6 rotate-180" />
-                    </button>
-                    <button
-                        onClick={() => sliderRef.current?.slickNext()}
-                        className="bg-white rounded-full p-2 sm:p-3 shadow border border-gray-200 flex-shrink-0"
-                    >
-                        <img
-                            src={`${BASE_URL_SVG}/assets/svgs/arrow-right.svg`}
-                            alt="Next"
-                            className="w-5 sm:w-6 h-5 sm:h-6"
-                        />
-                    </button>
+                    {/* Prev & Next Arrows - Hidden if not enough packages to slide */}
+                    <div className={`flex gap-2 sm:gap-3 items-center ${packages.length <= 3 ? 'lg:hidden' : ''} ${packages.length <= 3 ? 'min-[1000px]:hidden' : ''} ${packages.length <= 2 ? 'max-[1000px]:hidden' : ''} ${packages.length <= 1 ? 'max-[576px]:hidden' : ''}`}>
+                        <button
+                            onClick={() => sliderRef.current?.slickPrev()}
+                            className="bg-white rounded-full p-2 sm:p-3 shadow border border-gray-200 hover:bg-gray-50 transition-colors flex-shrink-0"
+                            aria-label="Previous slide"
+                        >
+                            <img src={`${BASE_URL_SVG}/assets/svgs/arrow-right.svg`} alt="Left Arrow" className="w-5 h-5 sm:w-6 sm:h-6 rotate-180" />
+                        </button>
+                        <button
+                            onClick={() => sliderRef.current?.slickNext()}
+                            className="bg-white rounded-full p-2 sm:p-3 shadow border border-gray-200 hover:bg-gray-50 transition-colors flex-shrink-0"
+                            aria-label="Next slide"
+                        >
+                            <img
+                                src={`${BASE_URL_SVG}/assets/svgs/arrow-right.svg`}
+                                alt="Next"
+                                className="w-5 sm:w-6 h-5 sm:h-6"
+                            />
+                        </button>
+                    </div>
                 </div>
             </div>
 

@@ -1,7 +1,7 @@
 "use client";
 
 
-import { useEffect } from "react";
+import { Suspense } from "react";
 import Navbar from "../Components/CommonComponents/NavBar";
 import Footer from "../Components/CommonComponents/Footer";
 import ScrollToTop from "../Components/CommonComponents/ScrollToTop";
@@ -42,13 +42,15 @@ export default function AppShell({ children }) {
       <ScrollToTop />
       <ScrollToTopButton />
       <WhatsAppButton />
-      <Navbar />
-      <main>
-        <SkeletonLoaderShell>
-          {children}
-        </SkeletonLoaderShell>
-      </main>
-      <Footer />
+      <div className="min-h-screen flex flex-col">
+        <Navbar />
+        <main className="flex-1">
+          <SkeletonLoaderShell>
+            {children}
+          </SkeletonLoaderShell>
+        </main>
+        <Footer />
+      </div>
       <Toaster position="bottom-right" richColors />
     </>
   );

@@ -50,11 +50,13 @@ const Slider = forwardRef(function Slider(props, ref) {
   return (
     <Swiper
       className={className}
-      loop={infinite && slideCount > 1}
+      loop={(infinite && slideCount > slidesToShow)}
       speed={speed}
       slidesPerView={slidesToShow}
       slidesPerGroup={slidesToScroll}
       breakpoints={breakpoints}
+      watchOverflow={true}
+      centeredSlides={false}
       onSwiper={setSwiper}
       onSlideChange={(s) => beforeChange?.(s.previousIndex, s.realIndex)}
     >
