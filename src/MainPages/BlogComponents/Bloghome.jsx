@@ -14,6 +14,7 @@ const BlogHome = () => {
   const [pageData, setPageData] = useState(null);
   const [widgets, setWidgets] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [firstLoad, setFirstLoad] = useState(true);
 
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
@@ -23,7 +24,7 @@ const BlogHome = () => {
   const fetchBlogs = async (page = 1) => {
     setLoading(true);
     try {
-      const data = await api.getBlogs();
+      const data = await api.getBlogs(page);
       setFeaturedBlogs(data.featured_blogs || []);
       setLatestBlogs(data.latest_blogs || []);
       if (data.pagination) setTotalPages(data.pagination.total_pages);
@@ -31,6 +32,7 @@ const BlogHome = () => {
       console.error("Error fetching blogs:", err);
     } finally {
       setLoading(false);
+      setFirstLoad(false);
     }
   };
 
@@ -58,12 +60,16 @@ const BlogHome = () => {
   };
 
   useEffect(() => {
-    fetchBlogs(currentPage);
     fetchPageData();
+  }, []);
+
+  useEffect(() => {
+    fetchBlogs(currentPage);
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }, [currentPage]);
 
 
-  if (loading) {
+  if (firstLoad) {
     return (
       <div className="space-y-10">
         <BannerSkeleton />
@@ -138,12 +144,12 @@ const BlogHome = () => {
           </div>
         )}
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 ${loading ? 'opacity-50 pointer-events-none' : ''} transition-opacity duration-300`}>
           {latestBlogs.map((blog) => (
             <Link
               key={blog.id}
               to={`/blog/${blog.page_url}`}
-              className="rounded-xl overflow-hidden shadow hover:shadow-lg transition block"
+              className="rounded-xl overflow-hidden shadow hover:shadow-lg transition block bg-white"
             >
               <img
                 src={`${BASE_URL_IMG}/${blog.image_url}`}
