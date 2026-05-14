@@ -136,23 +136,26 @@ export default function CardSlider({ pageData }) {
               size="md"
               label={widgetData?.button_text}
             />
-            <span
-              onClick={handlePrev}
-              className="bg-white cursor-pointer rounded-full p-2 shadow-md"
-            >
-              <img src={`${BASE_URL_SVG}/assets/svgs/arrow-right.svg`} alt="Left Arrow" className="w-5 h-5 sm:w-6 sm:h-6 rotate-180" loading="lazy" />
-            </span>
-            <span
-              onClick={handleNext}
-              className="bg-white cursor-pointer rounded-full p-2 shadow-md"
-            >
-              <img
-                src={`${BASE_URL_SVG}/assets/svgs/arrow-right.svg`}
-                alt="Right Arrow"
-                className="w-5 h-5 sm:w-6 sm:h-6"
-                loading="lazy"
-              />
-            </span>
+            <div className={`flex gap-2 ${packages.length <= 1 ? 'hidden' : 'flex'} ${packages.length <= 2 ? 'md:hidden' : 'md:flex'} ${packages.length <= 3 ? 'min-[1380px]:hidden' : 'min-[1380px]:flex'}`}>
+              <span
+                onClick={handlePrev} 
+                className="bg-white cursor-pointer rounded-full p-2 shadow-md"
+              >
+                <img src={`${BASE_URL_SVG}/assets/svgs/arrow-right.svg`} alt="Left Arrow" className="w-5 h-5 sm:w-6 sm:h-6 rotate-180" loading="lazy" />
+              </span>
+              <span
+                onClick={handleNext}
+                className="bg-white cursor-pointer rounded-full p-2 shadow-md"
+              >
+                <img
+                  src={`${BASE_URL_SVG}/assets/svgs/arrow-right.svg`}
+                  alt="Right Arrow"
+                  className="w-5 h-5 sm:w-6 sm:h-6"
+                  loading="lazy"
+                />
+              </span>
+            </div>
+
           </div>
         </div>
       </div>

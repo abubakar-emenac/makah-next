@@ -157,7 +157,7 @@ export default function MonthlyUmrahPackages({ pageData }) {
                     <div className="w-full lg:w-[45%] flex justify-start lg:justify-end">
                         <div className="flex items-center gap-3 flex-wrap">
                             <ViewAllButton color="primary" slug={widgetData.button_link} label={widgetData.button_text} size="md" />
-                            <div className="flex items-center gap-3">
+                            <div className={`flex items-center gap-3 ${packages.length <= 1 ? 'hidden' : 'flex'} ${packages.length <= 2 ? 'min-[576px]:hidden' : 'min-[576px]:flex'} ${packages.length <= 3 ? 'min-[1000px]:hidden' : 'min-[1000px]:flex'} ${packages.length <= 4 ? 'min-[1380px]:hidden' : 'min-[1380px]:flex'}`}>
                                 <span
                                     onClick={handlePrev}
                                     className="bg-white cursor-pointer rounded-full p-2 shadow-md hover:scale-105 transition border border-gray-200"

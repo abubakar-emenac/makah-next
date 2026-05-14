@@ -90,7 +90,7 @@ export default function RelevantPackages({ pageData }) {
         autoplaySpeed: 3000,
         arrows: false,
         responsive: [
-            {
+            { 
                 breakpoint: 1380, // ≤ 1280px
                 settings: {
                     slidesToShow: 3,
@@ -156,7 +156,7 @@ export default function RelevantPackages({ pageData }) {
                         <ViewAllButton color="primary" slug={widgetData.button_link} label={widgetData.button_text} size="md" />
                         )}
                         {showArrows && (
-                        <div className="flex items-center gap-3">
+                        <div className={`flex items-center gap-3 ${packages.length <= 1 ? 'hidden' : 'flex'} ${packages.length <= 2 ? 'min-[1024px]:hidden' : 'min-[1024px]:flex'} ${packages.length <= 3 ? 'min-[1280px]:hidden' : 'min-[1280px]:flex'}`}>
                             <span
                                 onClick={handlePrev}
                                 className="bg-white cursor-pointer rounded-full p-2 shadow-md hover:scale-105 transition border border-gray-200"
