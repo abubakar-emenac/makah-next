@@ -129,11 +129,16 @@
 // }
 import React, { useMemo, useState, useEffect } from 'react';
 import { Link } from "@navigation";
+import { usePathname } from "next/navigation";
 import { useGlobalData } from "../../Helpers/useGlobalData";
-import { BASE_URL_SVG, WEB_URL } from '../../Helpers/apiEndpoints';
-import { label } from 'framer-motion/client';
+import { BASE_URL_Front, BASE_URL_SVG, WEB_URL } from '../../Helpers/apiEndpoints';
+
+const DMCA_BADGE_ID = "3d8e8532-bb1c-4b76-b59f-b8fab6f914a8";
+const DMCA_BADGE_IMG = `https://images.dmca.com/Badges/dmca_protected_sml_120m.png?ID=${DMCA_BADGE_ID}`;
+
 export default function Footer() {
     const { globalData } = useGlobalData();
+    const pathname = usePathname() || "/";
 
     const currentYear = new Date().getFullYear();
     const [hovered, setHovered] = useState(false);
@@ -148,14 +153,13 @@ export default function Footer() {
         { label: "Instagram", icon: "/svg/ig1.svg" }
     ];
 
-    // Preload hover images (hook at the top)
+    // Preload hover images
     useEffect(() => {
         hoveredicons.forEach(h => {
             const img = new Image();
             img.src = h.icon;
         });
     }, []); 
-
     const footerItems = useMemo(() => {
         if (!globalData?.result?.footer_setting) return null;
 
@@ -200,6 +204,13 @@ export default function Footer() {
             contents: updatedContents
         };
     }, [globalData, currentYear]);
+
+    const dmcaProtectionHref = useMemo(() => {
+        const origin = BASE_URL_Front.replace(/\/$/, "");
+        const path = pathname.startsWith("/") ? pathname : `/${pathname}`;
+        const refurl = `${origin}${path}`;
+        return `https://www.dmca.com/Protection/Status.aspx?ID=${DMCA_BADGE_ID}&refurl=${encodeURIComponent(refurl)}`;
+    }, [pathname]);
 
     if (!footerItems) {
         return null; // or a loader/skeleton
@@ -454,7 +465,23 @@ export default function Footer() {
 
                 {/* Bottom Text */}
                 <div className="space-y-4 text-sm mt-6 px-9">
-                    <a target='_blank' href="//www.dmca.com/Protection/Status.aspx?ID=3d8e8532-bb1c-4b76-b59f-b8fab6f914a8" title="DMCA.com Protection Status" className="dmca-badge"> <img src ="https://images.dmca.com/Badges/dmca_protected_sml_120n.png?ID=3d8e8532-bb1c-4b76-b59f-b8fab6f914a8"  alt="DMCA.com Protection Status" /></a>  
+                    <a
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        href={dmcaProtectionHref}
+                        title="DMCA.com Protection Status"
+                        className="dmca-badge inline-block"
+                    >
+                        <img
+                            src={DMCA_BADGE_IMG}
+                            alt="DMCA.com Protection Status"
+                            width={120}
+                            height={20}
+                            className="h-auto w-[120px] max-w-full"
+                            loading="lazy"
+                            decoding="async"
+                        />
+                    </a>
                     <p className="font-Montserrat font-semibold text-base mt-6 ">
                         {footerItems.contents.footer_copyright_content || 'All rights reserved Flight Booking @ 2010 - 2025'}
                     </p>

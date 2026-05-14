@@ -18,10 +18,10 @@ const nextConfig = {
             key: "Content-Security-Policy",
             value: `
               default-src 'self';
-              script-src 'self' 'unsafe-inline' 'unsafe-eval' https://*.googletagmanager.com https://*.google-analytics.com https://connect.facebook.net https://admin.makkahtravel.co.uk;
+              script-src 'self' 'unsafe-inline' 'unsafe-eval' https://*.googletagmanager.com https://*.google-analytics.com https://connect.facebook.net https://admin.makkahtravel.co.uk https://images.dmca.com;
               style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
               font-src 'self' https://fonts.gstatic.com data:;
-              img-src 'self' data: https://*.google-analytics.com https://*.facebook.com https://admin.makkahtravel.co.uk;
+              img-src 'self' data: https://*.google-analytics.com https://*.facebook.com https://admin.makkahtravel.co.uk https://images.dmca.com https://www.dmca.com;
               connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://admin.makkahtravel.co.uk;
               frame-src 'self' https://*.facebook.com https://admin.makkahtravel.co.uk;
               object-src 'none';
