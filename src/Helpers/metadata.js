@@ -62,8 +62,48 @@ export async function fetchPageBySlug(slug) {
   ]);
 }
 
+
+function resolveGlobalVariables(text, globalVariables) {
+  if (typeof text !== "string" || !globalVariables || !Array.isArray(globalVariables)) {
+    return text;
+  }
+  let resolvedText = text;
+  globalVariables.forEach((variable) => {
+    if (variable.code && variable.code_value) {
+      resolvedText = resolvedText.split(variable.code).join(variable.code_value);
+    }
+  });
+  return resolvedText;
+}
+
+export function getWebsiteTitle(generalSettings) {
+  const globalVariables =
+    generalSettings?.result?.global_variables ||
+    generalSettings?.global_variables ||
+    [];
+  const websiteTitleVariable = globalVariables.find(
+    (v) => v.code === "[%WEBSITETITLE%]",
+  );
+  if (websiteTitleVariable?.code_value) return websiteTitleVariable.code_value;
+
+  const settings = getSettingsArray(generalSettings);
+  const websiteTitleSetting = settings.find(
+    (s) => s.ref_name === "Website Title",
+  );
+  if (websiteTitleSetting?.contents) {
+    return resolveGlobalVariables(websiteTitleSetting.contents, globalVariables);
+  }
+  return "Makkah Travel";
+}
+
 export function generatePageMetadata(pageData, generalSettings, slug = "") {
   const settings = getSettingsArray(generalSettings);
+  const globalVariables =
+    generalSettings?.result?.global_variables ||
+    generalSettings?.global_variables ||
+    [];
+
+  const websiteTitle = getWebsiteTitle(generalSettings);
 
   const logoSetting = settings.find((s) => s.ref_name === "Website Logo");
   const indexSetting = settings.find((s) => s.ref_name === "Google Can Index?");
@@ -83,7 +123,16 @@ export function generatePageMetadata(pageData, generalSettings, slug = "") {
       : "uvO57qg3JPD6_LpJM_fHldETk1ek9ntvGyfOGhHZD9w";
 
   const meta = pageData?.meta || {};
-  const title = pageData?.browser_title || meta?.title || pageData?.title;
+  let title = pageData?.browser_title || meta?.title || pageData?.title;
+
+  if (title) {
+    if (!title.toLowerCase().includes(websiteTitle.toLowerCase())) {
+      title = `${title} | ${websiteTitle}`;
+    }
+  } else {
+    title = websiteTitle;
+  }
+
   const description = pageData?.meta_description || meta?.description;
   const keywords = pageData?.meta_keywords || meta?.keywords;
 
@@ -124,6 +173,7 @@ export function generatePageMetadata(pageData, generalSettings, slug = "") {
       description,
       url: canonicalUrl,
       type: "website",
+      siteName: websiteTitle,
       images: image ? [image] : [],
     },
   };
