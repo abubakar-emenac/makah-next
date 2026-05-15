@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useGlobalData } from "../../Helpers/useGlobalData";
+import { BASE_URL_SVG } from '../../Helpers/apiEndpoints'
 
 const WhatsAppButton = () => {
   const { globalData } = useGlobalData();
@@ -32,7 +33,7 @@ const WhatsAppButton = () => {
         {/* WhatsApp icon */}
         <div className="w-14 h-14 rounded-full shadow-lg bg-green-500 flex items-center justify-center animate-bounce">
           <img
-            src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg"
+            src={`/whatsapp.png`}
             alt="WhatsApp"
             className="w-8 h-8"
           />
