@@ -162,7 +162,7 @@ const Navbar = ({ textColor = "black" }) => {
                 {/* DROPDOWN */}
                 {item.hasDropdown && (
                   <div
-                    className={`absolute left-1/2 top-full -translate-x-1/2 mt-2 min-w-[200px] max-w-[290px] bg-white text-black rounded-md shadow-lg border transition-all duration-200 ${activeDropdown === item.label ? "opacity-100 visible" : "opacity-0 invisible"
+                    className={`max-h-[403px] overflow-y-auto absolute left-1/2 top-full -translate-x-1/2 mt-2 min-w-[200px] max-w-[290px] bg-white text-black rounded-md shadow-lg border transition-all duration-200 ${activeDropdown === item.label ? "opacity-100 visible" : "opacity-0 invisible"
                       }`}
                   >
                     <ul className="py-2 text-xs md:text-sm">
