@@ -5,6 +5,31 @@ function normalizeInlineScript(content) {
     return content.replace(/\r\n/g, "\n").trim();
 }
 
+function convertJsonToHtmlScripts(jsonStr) {
+    try {
+        const parsed = JSON.parse(jsonStr);
+        let schemas = [];
+        if (parsed && typeof parsed === "object") {
+            if (parsed.jsonld) {
+                if (Array.isArray(parsed.jsonld)) {
+                    schemas = parsed.jsonld;
+                } else {
+                    schemas = [parsed.jsonld];
+                }
+            } else if (Array.isArray(parsed)) {
+                schemas = parsed;
+            } else {
+                schemas = [parsed];
+            }
+        }
+        return schemas
+            .map((schema) => `<script type="application/ld+json">${JSON.stringify(schema)}</script>`)
+            .join("\n");
+    } catch (e) {
+        return jsonStr;
+    }
+}
+
 function normalizeSeoTagsInBody() {
     if (typeof document === "undefined" || !document.body) return;
 
@@ -72,9 +97,15 @@ export default function PageScript({ html, ownerKey }) {
             return;
         }
 
+        // Convert JSON script to HTML if applicable
+        let normalizedHtml = html;
+        if (html.trim().startsWith("{") || html.trim().startsWith("[")) {
+            normalizedHtml = convertJsonToHtmlScripts(html);
+        }
+
         // Parse the provided HTML to find tags
         const tempDiv = document.createElement("div");
-        tempDiv.innerHTML = html.trim();
+        tempDiv.innerHTML = normalizedHtml.trim();
         const elements = tempDiv.querySelectorAll("script, meta, link");
 
         if (elements.length === 0) {
