@@ -135,7 +135,7 @@ export default function UmrahDetail() {
         { key: 'visa', icon: '/svgs/visa.svg', label: 'Visa' },
         { key: 'transfer', icon: '/svgs/transport.svg', label: 'Transport' },
         { key: 'accomodation', icon: '/svgs/hotel.svg', label: 'Hotel' },
-        { key: 'breakfast', icon: '/svgs/dinner.svg', label: 'Half-Board' },
+        { key: 'breakfast', icon: '/svgs/dinner.svg', label: 'Breakfast' },
     ];
     const activeIcons = icon.filter(item => services[item.key] === 1);
     if (loading) {
