@@ -1,18 +1,19 @@
 "use client";
 
 
-import { Suspense } from "react";
+import { Suspense, useContext } from "react";
+import dynamic from "next/dynamic";
 import Navbar from "../Components/CommonComponents/NavBar";
-import Footer from "../Components/CommonComponents/Footer";
-import ScrollToTop from "../Components/CommonComponents/ScrollToTop";
-import ScrollToTopButton from "../Components/CommonComponents/ScrollToTopButton";
-import WhatsAppButton from "../Components/CommonComponents/WhatsAppButton";
 import PageScript from "../Components/CommonComponents/PageScript";
 import TopLoadingBar from "../Components/CommonComponents/TopLoadingBar";
 import { GlobalDataContext } from "../Helpers/GlobalDataContext";
-import { useContext } from "react";
 import { Toaster } from "sonner";
 import SkeletonLoaderShell from "../Components/CommonComponents/SkeletonLoaderShell";
+
+const Footer = dynamic(() => import("../Components/CommonComponents/Footer"));
+const ScrollToTop = dynamic(() => import("../Components/CommonComponents/ScrollToTop"), { ssr: false });
+const ScrollToTopButton = dynamic(() => import("../Components/CommonComponents/ScrollToTopButton"), { ssr: false });
+const WhatsAppButton = dynamic(() => import("../Components/CommonComponents/WhatsAppButton"), { ssr: false });
 
 export default function AppShell({ children }) {
   const { globalData } = useContext(GlobalDataContext) || {};

@@ -1,20 +1,21 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { AnimatePresence, motion } from "framer-motion";
-import ImageGallery from '../CommonPages/ImageGallery'
-import ImageSlider from '../../Components/CommonComponents/ImageSlider'
-import Testmonials from '../../Components/CommonComponents/Testmonials'
-import NeedHelp from '../../Components/CommonComponents/NeedHelp'
+import dynamic from 'next/dynamic';
 import { useParams, useLocation, Link } from "@navigation"
 import { api } from "../../utils/api"
 import { BASE_URL_SVG } from '../../Helpers/apiEndpoints'
 import parse from "html-react-parser";
 import NotFound from '../CommonPages/NotFound'
-import CustomizeHajjPopup from '../../Components/HajjComponents/CustomizeHajjPopup';
 import { useGlobalData } from "../../Helpers/useGlobalData";
-import RelevantPackages from '../../Components/CommonComponents/RelevantPackages';
 import PageScript from '../../Components/CommonComponents/PageScript';
-
 import { PackageDetailSkeleton } from '../../Components/CommonComponents/Skeleton';
+
+const ImageGallery = dynamic(() => import('../CommonPages/ImageGallery'));
+const ImageSlider = dynamic(() => import('../../Components/CommonComponents/ImageSlider'), { ssr: false });
+const Testmonials = dynamic(() => import('../../Components/CommonComponents/Testmonials'), { ssr: false });
+const NeedHelp = dynamic(() => import('../../Components/CommonComponents/NeedHelp'));
+const CustomizeHajjPopup = dynamic(() => import('../../Components/HajjComponents/CustomizeHajjPopup'));
+const RelevantPackages = dynamic(() => import('../../Components/CommonComponents/RelevantPackages'), { ssr: false });
 
 export default function HajjDetail() {
     const { globalData } = useGlobalData();

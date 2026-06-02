@@ -2,8 +2,10 @@ import React, { useState, useEffect, useMemo } from "react";
 import HeroSection from "../../Components/CommonComponents/HeroSection";
 import PackageCard from "../../Components/CommonComponents/PackageCard";
 import ViewAllButton from "../../Components/CommonComponents/ViewAllButton";
+import dynamic from "next/dynamic";
 import ScrollDetail from "../../Components/CommonComponents/ScrollDetail";
-import FAQSection from "../../Components/CommonComponents/FAQSection";
+
+const FAQSection = dynamic(() => import("../../Components/CommonComponents/FAQSection"));
 import { BASE_URL_SVG, endpoints } from "../../Helpers/apiEndpoints";
 import axios from "axios";
 import { Skeleton } from "../../Components/CommonComponents/Skeleton";

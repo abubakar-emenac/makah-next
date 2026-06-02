@@ -18,12 +18,12 @@ const nextConfig = {
             key: "Content-Security-Policy",
             value: `
               default-src 'self';
-              script-src 'self' 'unsafe-inline' 'unsafe-eval' https://*.googletagmanager.com https://*.google-analytics.com https://connect.facebook.net https://admin.makkahtravel.co.uk https://images.dmca.com;
-              style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
-              font-src 'self' https://fonts.gstatic.com data:;
-              img-src 'self' data: https://*.google-analytics.com https://*.facebook.com https://admin.makkahtravel.co.uk https://images.dmca.com https://www.dmca.com;
-              connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://admin.makkahtravel.co.uk;
-              frame-src 'self' https://*.facebook.com https://admin.makkahtravel.co.uk;
+              script-src 'self' 'unsafe-inline' 'unsafe-eval' https://*.googletagmanager.com https://*.google-analytics.com https://connect.facebook.net https://admin.makkahtravel.co.uk https://images.dmca.com https://embed.tawk.to https://*.tawk.to;
+              style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://embed.tawk.to https://*.tawk.to;
+              font-src 'self' https://fonts.gstatic.com data: https://embed.tawk.to https://*.tawk.to;
+              img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com https://*.facebook.com https://admin.makkahtravel.co.uk https://images.dmca.com https://www.dmca.com https://*.tawk.to;
+              connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://admin.makkahtravel.co.uk https://*.tawk.to wss://*.tawk.to https://api64.ipify.org;
+              frame-src 'self' https://*.facebook.com https://admin.makkahtravel.co.uk https://*.tawk.to;
               object-src 'none';
               base-uri 'self';
               form-action 'self';

@@ -1,18 +1,20 @@
 import { useState, useEffect } from "react"
-import BlogSection from "../../Components/CommonComponents/BlogSection"
-import CardSlider from "../../Components/CommonComponents/CardSlider"
-import CustomzieYpurPackage from "../../Components/CommonComponents/CustomzieYpurPackage"
-import FAQSection from "../../Components/CommonComponents/FAQSection"
+import dynamic from "next/dynamic"
 import HeroSection from "../../Components/CommonComponents/HeroSection"
-import NeedHelp from "../../Components/CommonComponents/NeedHelp"
-import ScrollDetail from "../../Components/CommonComponents/ScrollDetail"
-import Testmonials from "../../Components/CommonComponents/Testmonials"
-import WhyChoose from "../../Components/CommonComponents/WhyChoose"
-import HajjDeals from "../../Components/HajjComponents/HajjDeals"
-import MonthlyUmrahPackages from "../../Components/UmrahComponents/monthlyUmrahPackages"
 import { api } from "../../utils/api"
 import { BannerSkeleton, SliderSkeleton } from "../../Components/CommonComponents/Skeleton"
 import PageScript from "../../Components/CommonComponents/PageScript"
+
+const BlogSection = dynamic(() => import("../../Components/CommonComponents/BlogSection"));
+const CardSlider = dynamic(() => import("../../Components/CommonComponents/CardSlider"), { ssr: false });
+const CustomzieYpurPackage = dynamic(() => import("../../Components/CommonComponents/CustomzieYpurPackage"));
+const FAQSection = dynamic(() => import("../../Components/CommonComponents/FAQSection"));
+const NeedHelp = dynamic(() => import("../../Components/CommonComponents/NeedHelp"));
+const ScrollDetail = dynamic(() => import("../../Components/CommonComponents/ScrollDetail"));
+const Testmonials = dynamic(() => import("../../Components/CommonComponents/Testmonials"), { ssr: false });
+const WhyChoose = dynamic(() => import("../../Components/CommonComponents/WhyChoose"));
+const HajjDeals = dynamic(() => import("../../Components/HajjComponents/HajjDeals"), { ssr: false });
+const MonthlyUmrahPackages = dynamic(() => import("../../Components/UmrahComponents/monthlyUmrahPackages"), { ssr: false });
 
 export default function Home() {
     const [homeData, setHomeData] = useState({});
