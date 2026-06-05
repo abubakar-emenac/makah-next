@@ -24,12 +24,37 @@ const nextConfig = {
             key: "Content-Security-Policy",
             value: `
               default-src 'self';
-              script-src 'self' 'unsafe-inline' 'unsafe-eval' https://*.googletagmanager.com https://*.google-analytics.com https://connect.facebook.net https://admin.makkahtravel.co.uk https://images.dmca.com https://embed.tawk.to https://*.tawk.to;
-              style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://embed.tawk.to https://*.tawk.to;
-              font-src 'self' https://fonts.gstatic.com data: https://embed.tawk.to https://*.tawk.to;
-              img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com https://*.facebook.com https://admin.makkahtravel.co.uk https://images.dmca.com https://www.dmca.com https://*.tawk.to;
-              connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://admin.makkahtravel.co.uk https://*.tawk.to wss://*.tawk.to https://api64.ipify.org;
-              frame-src 'self' https://*.facebook.com https://admin.makkahtravel.co.uk https://*.tawk.to;
+              script-src 'self' 'unsafe-inline' 'unsafe-eval'
+                https://*.googletagmanager.com https://*.google-analytics.com
+                https://connect.facebook.net
+                https://admin.makkahtravel.co.uk
+                https://images.dmca.com
+                https://embed.tawk.to https://*.tawk.to
+                https://widget.clickconnector.app https://*.clickconnector.app;
+              style-src 'self' 'unsafe-inline'
+                https://fonts.googleapis.com
+                https://embed.tawk.to https://*.tawk.to
+                https://*.clickconnector.app;
+              font-src 'self' https://fonts.gstatic.com data:
+                https://embed.tawk.to https://*.tawk.to;
+              img-src 'self' data:
+                https://*.google-analytics.com https://*.googletagmanager.com
+                https://*.facebook.com
+                https://admin.makkahtravel.co.uk
+                https://images.dmca.com https://www.dmca.com
+                https://*.tawk.to https://*.clickconnector.app;
+              connect-src 'self'
+                https://*.google-analytics.com https://*.analytics.google.com
+                https://*.googletagmanager.com
+                https://admin.makkahtravel.co.uk
+                https://*.tawk.to wss://*.tawk.to
+                https://api64.ipify.org
+                https://*.clickconnector.app wss://*.clickconnector.app;
+              frame-src 'self'
+                https://*.facebook.com
+                https://admin.makkahtravel.co.uk
+                https://*.tawk.to
+                https://*.clickconnector.app;
               object-src 'none';
               base-uri 'self';
               form-action 'self';
